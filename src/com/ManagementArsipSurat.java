@@ -1,23 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com;
 
 import java.awt.Color;
 import javax.swing.JPanel;
 
-/**
- *
- * @author lan
- */
 public class ManagementArsipSurat extends javax.swing.JFrame {
+    
+    DashboardArsipKeluar ArsipKeluar = new DashboardArsipKeluar();
+    DashboardArsipMasuk ArsipMasuk = new DashboardArsipMasuk();
+    DashboardArsipkanSurat ArsipkanSurat = new DashboardArsipkanSurat();
+    DashboardKelolaAccount KelolaAccount = new DashboardKelolaAccount();
+    DashboardTrash Trash = new DashboardTrash();
+    DashboardHistory History = new DashboardHistory();
 
-    /**
-     * Creates new form ManagementArsipSurat
-     */
     public ManagementArsipSurat() {
         initComponents();
+        
+        HalamanMenu.setVisible(false);
+        PanelWadah.setVisible(false);
+        HalamanLogin.setVisible(true);
         
     }
 
@@ -40,10 +40,18 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonHistory = new javax.swing.JButton();
         Logo = new javax.swing.JLabel();
         PanelWadah = new javax.swing.JPanel();
+        HalamanLogin = new javax.swing.JPanel();
+        LabelDashboardLogin = new javax.swing.JLabel();
+        FieldUsername = new javax.swing.JTextField();
+        ButtonLogin = new javax.swing.JButton();
+        LabelUsername = new javax.swing.JLabel();
+        FieldPassword = new javax.swing.JTextField();
+        LabelPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Management Arsip Surat");
 
+        PanelUtama.setMinimumSize(new java.awt.Dimension(950, 600));
         PanelUtama.setPreferredSize(new java.awt.Dimension(1226, 617));
         PanelUtama.setLayout(null);
 
@@ -52,11 +60,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         HalamanMenu.setLayout(null);
 
         ButtonSuratMasuk.setText("Surat Masuk");
-        ButtonSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonSuratMasukMouseClicked(evt);
-            }
-        });
         ButtonSuratMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonSuratMasukActionPerformed(evt);
@@ -125,6 +128,43 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         PanelUtama.add(PanelWadah);
         PanelWadah.setBounds(260, 0, 950, 600);
 
+        HalamanLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        HalamanLogin.setMinimumSize(new java.awt.Dimension(613, 308));
+        HalamanLogin.setPreferredSize(new java.awt.Dimension(613, 308));
+        HalamanLogin.setLayout(null);
+
+        LabelDashboardLogin.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        LabelDashboardLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelDashboardLogin.setText("Dashboard Login");
+        HalamanLogin.add(LabelDashboardLogin);
+        LabelDashboardLogin.setBounds(0, 10, 610, 28);
+        HalamanLogin.add(FieldUsername);
+        FieldUsername.setBounds(210, 90, 190, 30);
+
+        ButtonLogin.setText("Login");
+        ButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLoginActionPerformed(evt);
+            }
+        });
+        HalamanLogin.add(ButtonLogin);
+        ButtonLogin.setBounds(230, 230, 150, 40);
+
+        LabelUsername.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        LabelUsername.setText("Username: ");
+        HalamanLogin.add(LabelUsername);
+        LabelUsername.setBounds(210, 60, 120, 30);
+        HalamanLogin.add(FieldPassword);
+        FieldPassword.setBounds(210, 160, 190, 30);
+
+        LabelPassword.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        LabelPassword.setText("Password:");
+        HalamanLogin.add(LabelPassword);
+        LabelPassword.setBounds(210, 130, 120, 30);
+
+        PanelUtama.add(HalamanLogin);
+        HalamanLogin.setBounds(308, 154, 613, 308);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,32 +180,51 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
-        // TODO add your handling code here:
+        PanelWadah.removeAll();
+        PanelWadah.add(ArsipKeluar);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
     }//GEN-LAST:event_ButtonSuratKeluarActionPerformed
 
     private void ButtonArsipkanSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanSuratActionPerformed
-        // TODO add your handling code here:
+        PanelWadah.removeAll();
+        PanelWadah.add(ArsipkanSurat);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
     }//GEN-LAST:event_ButtonArsipkanSuratActionPerformed
 
     private void ButtonTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTrashActionPerformed
-        // TODO add your handling code here:
+        PanelWadah.removeAll();
+        PanelWadah.add(Trash);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
     }//GEN-LAST:event_ButtonTrashActionPerformed
 
     private void ButtonKelolaAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonKelolaAccountActionPerformed
-        // TODO add your handling code here:
+        PanelWadah.removeAll();
+        PanelWadah.add(KelolaAccount);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
     }//GEN-LAST:event_ButtonKelolaAccountActionPerformed
 
     private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
-        // TODO add your handling code here:
+        PanelWadah.removeAll();
+        PanelWadah.add(History);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
     }//GEN-LAST:event_ButtonHistoryActionPerformed
 
-    private void ButtonSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSuratMasukMouseClicked
-
-    }//GEN-LAST:event_ButtonSuratMasukMouseClicked
+    private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
+        if(FieldUsername.getText().equals("lana")){
+                    HalamanMenu.setVisible(true);
+                    PanelWadah.setVisible(true);
+                    HalamanLogin.setVisible(false);
+        }
+    }//GEN-LAST:event_ButtonLoginActionPerformed
 
     private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
         PanelWadah.removeAll();
-        PanelWadah.add(new DashboardArsipMasuk());
+        PanelWadah.add(ArsipMasuk);
         PanelWadah.revalidate();
         PanelWadah.repaint();
     }//GEN-LAST:event_ButtonSuratMasukActionPerformed
@@ -211,10 +270,17 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     private javax.swing.JButton ButtonArsipkanSurat;
     private javax.swing.JButton ButtonHistory;
     private javax.swing.JButton ButtonKelolaAccount;
+    private javax.swing.JButton ButtonLogin;
     private javax.swing.JButton ButtonSuratKeluar;
     private javax.swing.JButton ButtonSuratMasuk;
     private javax.swing.JButton ButtonTrash;
+    private javax.swing.JTextField FieldPassword;
+    private javax.swing.JTextField FieldUsername;
+    private javax.swing.JPanel HalamanLogin;
     private javax.swing.JPanel HalamanMenu;
+    private javax.swing.JLabel LabelDashboardLogin;
+    private javax.swing.JLabel LabelPassword;
+    private javax.swing.JLabel LabelUsername;
     private javax.swing.JLabel Logo;
     private javax.swing.JPanel PanelUtama;
     private javax.swing.JPanel PanelWadah;
