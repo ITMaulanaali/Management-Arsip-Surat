@@ -1,5 +1,5 @@
 package com;
-
+//Masih Mulai Awal pengembangan
 import java.awt.Color;
 import javax.swing.JPanel;
 
