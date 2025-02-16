@@ -187,6 +187,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonSuratKeluarActionPerformed
 
     private void ButtonArsipkanSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanSuratActionPerformed
+        //AZIZ DAN THIO
         PanelWadah.removeAll();
         PanelWadah.add(ArsipkanSurat);
         PanelWadah.revalidate();
@@ -201,6 +202,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonTrashActionPerformed
 
     private void ButtonKelolaAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonKelolaAccountActionPerformed
+        //GALANG
         PanelWadah.removeAll();
         PanelWadah.add(KelolaAccount);
         PanelWadah.revalidate();
@@ -215,6 +217,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonHistoryActionPerformed
 
     private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
+        //HASAN
         if(FieldUsername.getText().equals("lana")){
                     HalamanMenu.setVisible(true);
                     PanelWadah.setVisible(true);
