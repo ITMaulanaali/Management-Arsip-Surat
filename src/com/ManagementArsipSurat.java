@@ -180,6 +180,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
+        //LANA
         PanelWadah.removeAll();
         PanelWadah.add(ArsipKeluar);
         PanelWadah.revalidate();
@@ -195,6 +196,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonArsipkanSuratActionPerformed
 
     private void ButtonTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTrashActionPerformed
+        //Lana
         PanelWadah.removeAll();
         PanelWadah.add(Trash);
         PanelWadah.revalidate();
@@ -210,6 +212,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonKelolaAccountActionPerformed
 
     private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
+        //Lana
         PanelWadah.removeAll();
         PanelWadah.add(History);
         PanelWadah.revalidate();
@@ -226,6 +229,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonLoginActionPerformed
 
     private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
+        //Lana
         PanelWadah.removeAll();
         PanelWadah.add(ArsipMasuk);
         PanelWadah.revalidate();
