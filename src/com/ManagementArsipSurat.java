@@ -1,7 +1,8 @@
 package com;
 //Masih Mulai Awal pengembangan
-//HasanCS
-//Full
+/**
+ * -Dashboard Login diutamakan
+ */
 import java.awt.Color;
 import javax.swing.JPanel;
 
