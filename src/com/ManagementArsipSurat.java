@@ -1,6 +1,7 @@
 package com;
 //Masih Mulai Awal pengembangan
 //HasanCS
+//Full
 import java.awt.Color;
 import javax.swing.JPanel;
 
