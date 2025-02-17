@@ -116,7 +116,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         HalamanMenu.add(ButtonHistory);
         ButtonHistory.setBounds(30, 460, 180, 40);
 
-        Logo.setIcon(new javax.swing.ImageIcon("/home/lan/Downloads/images.jpeg")); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/images.jpeg"))); // NOI18N
         Logo.setText("jLabel1");
         HalamanMenu.add(Logo);
         Logo.setBounds(50, 10, 150, 140);
