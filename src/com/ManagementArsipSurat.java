@@ -106,6 +106,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonTrash.setBounds(30, 400, 180, 40);
 
         ButtonKelolaAccount.setText("Kelola Account");
+        ButtonKelolaAccount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 255), 5));
         ButtonKelolaAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonKelolaAccountActionPerformed(evt);
