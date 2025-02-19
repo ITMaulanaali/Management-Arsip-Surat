@@ -58,6 +58,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         PanelUtama.setPreferredSize(new java.awt.Dimension(1226, 617));
         PanelUtama.setLayout(null);
 
+        HalamanMenu.setBackground(new java.awt.Color(255, 255, 255));
         HalamanMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         HalamanMenu.setPreferredSize(new java.awt.Dimension(240, 600));
         HalamanMenu.setLayout(null);
@@ -140,7 +141,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         LabelDashboardLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelDashboardLogin.setText("Dashboard Login");
         HalamanLogin.add(LabelDashboardLogin);
-        LabelDashboardLogin.setBounds(0, 10, 610, 28);
+        LabelDashboardLogin.setBounds(0, 10, 610, 32);
         HalamanLogin.add(FieldUsername);
         FieldUsername.setBounds(210, 90, 190, 30);
 
