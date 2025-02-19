@@ -63,7 +63,9 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         HalamanMenu.setPreferredSize(new java.awt.Dimension(240, 600));
         HalamanMenu.setLayout(null);
 
+        ButtonSuratMasuk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ButtonSuratMasuk.setText("Surat Masuk");
+        ButtonSuratMasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ButtonSuratMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonSuratMasukActionPerformed(evt);
