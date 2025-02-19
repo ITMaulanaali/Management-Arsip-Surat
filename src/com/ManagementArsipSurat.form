@@ -150,6 +150,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="ButtonKelolaAccount">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="24" style="2"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Kelola Account"/>
               </Properties>
               <Events>
