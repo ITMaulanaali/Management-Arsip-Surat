@@ -87,6 +87,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
 
         ButtonArsipkanSurat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ButtonArsipkanSurat.setText("Arsipkan Surat");
+        ButtonArsipkanSurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         ButtonArsipkanSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonArsipkanSuratActionPerformed(evt);
