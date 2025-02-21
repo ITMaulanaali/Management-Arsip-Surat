@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com;
+import lib.database.Query;
 
-/**
- *
- * @author lan
- */
 public class DashboardHistory extends javax.swing.JPanel {
 
-    /**
-     * Creates new form DashboardHistory
-     */
+    Query query = new Query();
     public DashboardHistory() {
         initComponents();
     }
@@ -27,6 +18,7 @@ public class DashboardHistory extends javax.swing.JPanel {
     private void initComponents() {
 
         LabelDashboardHistory = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setAlignmentX(0.0F);
         setAlignmentY(100.0F);
@@ -38,10 +30,26 @@ public class DashboardHistory extends javax.swing.JPanel {
         LabelDashboardHistory.setText("Dashboard History");
         add(LabelDashboardHistory);
         LabelDashboardHistory.setBounds(337, 5, 220, 28);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(340, 170, 190, 70);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String[] atributs = {"no_reg","nama","alamat","tgl_daftar","tgl_lahir","jam_daftar"};
+        String[] values = {"40","kupang","bandung","2024-04-21","2003-11-11","08:46:33"};
+        query.setNamaTabel("data_anggota").setAtribut(atributs).setValue(values).insert();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelDashboardHistory;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
