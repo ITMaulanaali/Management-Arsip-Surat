@@ -3,8 +3,6 @@ package com;
 /**
  * -Dashboard Login diutamakan
  */
-import java.awt.Color;
-import javax.swing.JPanel;
 
 public class ManagementArsipSurat extends javax.swing.JFrame {
     
@@ -41,7 +39,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonTrash = new javax.swing.JButton();
         ButtonKelolaAccount = new javax.swing.JButton();
         ButtonHistory = new javax.swing.JButton();
-        Logo = new javax.swing.JLabel();
         PanelWadah = new javax.swing.JPanel();
         HalamanLogin = new javax.swing.JPanel();
         LabelDashboardLogin = new javax.swing.JLabel();
@@ -125,11 +122,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         HalamanMenu.add(ButtonHistory);
         ButtonHistory.setBounds(30, 460, 180, 40);
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/images.jpeg"))); // NOI18N
-        Logo.setText("jLabel1");
-        HalamanMenu.add(Logo);
-        Logo.setBounds(50, 10, 150, 140);
-
         PanelUtama.add(HalamanMenu);
         HalamanMenu.setBounds(0, 0, 240, 600);
 
@@ -149,7 +141,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         LabelDashboardLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelDashboardLogin.setText("Dashboard Login");
         HalamanLogin.add(LabelDashboardLogin);
-        LabelDashboardLogin.setBounds(0, 10, 610, 32);
+        LabelDashboardLogin.setBounds(0, 10, 610, 28);
         HalamanLogin.add(FieldUsername);
         FieldUsername.setBounds(210, 90, 190, 30);
 
@@ -300,7 +292,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     private javax.swing.JLabel LabelDashboardLogin;
     private javax.swing.JLabel LabelPassword;
     private javax.swing.JLabel LabelUsername;
-    private javax.swing.JLabel Logo;
     private javax.swing.JPanel PanelUtama;
     private javax.swing.JPanel PanelWadah;
     // End of variables declaration//GEN-END:variables
