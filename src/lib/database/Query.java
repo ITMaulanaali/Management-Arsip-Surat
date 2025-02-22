@@ -151,3 +151,21 @@ public class Query {
         
     }
 }
+
+/**
+ * Fomat insert:
+ * 
+ * String[] atributs = {"namaKolomId1","namaKolom2","namaKolom3"};
+ * String[] values = {"74","keren","rumah"};
+ * query.setNamaTabel("namaTable").setAtribut(atributs).setValue(values).insert();
+ * 
+ * format update:
+ * 
+ * String[] atributs = {"namaKolomId1","namaKolom2","namaKolom3"};
+ * String[] values = {"74","keren","rumah"};
+ * query.setNamaTabel("namaTable").setAtribut(atributs).setValue(values).setWhereId(atributs[0], values[0]).update();
+ * 
+ * format delete:
+ * 
+ * query.setNamaTabel("namaTable").setWhereId("namaKolomId", "valueKolomId").delete();
+ */
