@@ -72,7 +72,7 @@ public class Query {
     private String setQueryUpdate(String[] atribut){
         String hasilQuery ="";
         for(int i=0; i<atribut.length; i++){
-            hasilQuery += atribut[i] + " = ?";
+            hasilQuery += atribut[i] + " = ?,";
         }
         hasilQuery = hasilQuery.substring(0, hasilQuery.length()-1);
         return hasilQuery;
@@ -108,7 +108,7 @@ public class Query {
         String atributUpdate = setQueryUpdate(atributLiteral);
         
         try{
-            statement = Koneksi.Koneksi().prepareStatement("UPDATE "+this.namaTabel+" SET ("+atributUpdate+") WHERE "+this.whereUpdate.get(0)+" = ?");
+            statement = Koneksi.Koneksi().prepareStatement("UPDATE "+this.namaTabel+" SET "+atributUpdate+" WHERE "+this.whereUpdate.get(0)+" = ?");
             
             for(int i=0; i<this.atribut.size(); i++){
                 if(this.valueString.get(i) != null){
@@ -119,13 +119,14 @@ public class Query {
             }
             
             try{
-                statement.setInt(1, Integer.parseInt(this.whereUpdate.get(1)));
+                statement.setInt(this.atribut.size()+1, Integer.parseInt(this.whereUpdate.get(1)));
             }catch(Exception e){
-                statement.setString(1, this.whereUpdate.get(1));
+                statement.setString(this.atribut.size()+1, this.whereUpdate.get(1));
             }
             statement.execute();
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Gagal melakukan insert data: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,"Gagal melakukan update data: " + e.getMessage());
+            System.out.println(e);
         }
     }
 }
