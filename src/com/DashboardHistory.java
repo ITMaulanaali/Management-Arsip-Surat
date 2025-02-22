@@ -2,8 +2,8 @@ package com;
 import lib.database.Query;
 
 public class DashboardHistory extends javax.swing.JPanel {
-
     Query query = new Query();
+    
     public DashboardHistory() {
         initComponents();
     }
