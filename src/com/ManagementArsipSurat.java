@@ -3,19 +3,24 @@ package com;
 /**
  * -Dashboard Login diutamakan
  */
-import java.awt.Color;
-import javax.swing.JPanel;
 
 public class ManagementArsipSurat extends javax.swing.JFrame {
     
-    DashboardArsipKeluar ArsipKeluar = new DashboardArsipKeluar();
-    DashboardArsipMasuk ArsipMasuk = new DashboardArsipMasuk();
-    DashboardArsipkanSurat ArsipkanSurat = new DashboardArsipkanSurat();
-    DashboardKelolaAccount KelolaAccount = new DashboardKelolaAccount();
-    DashboardTrash Trash = new DashboardTrash();
-    DashboardHistory History = new DashboardHistory();
+    DashboardArsipKeluar ArsipKeluar;
+    DashboardArsipMasuk ArsipMasuk;
+    DashboardArsipkanSurat ArsipkanSurat;
+    DashboardKelolaAccount KelolaAccount;
+    DashboardTrash Trash;
+    DashboardHistory History;
 
     public ManagementArsipSurat() {
+        this.ArsipKeluar = new DashboardArsipKeluar();
+        this.ArsipMasuk = new DashboardArsipMasuk();
+        this.ArsipkanSurat = new DashboardArsipkanSurat();
+        this.KelolaAccount = new DashboardKelolaAccount();
+        this.Trash = new DashboardTrash();
+        this.History = new DashboardHistory();
+        
         initComponents();
         
         HalamanMenu.setVisible(false);
@@ -125,10 +130,11 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         HalamanMenu.add(ButtonHistory);
         ButtonHistory.setBounds(30, 460, 180, 40);
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Foto/images.jpeg"))); // NOI18N
-        Logo.setText("jLabel1");
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/foto/antartika.jpeg"))); // NOI18N
+        Logo.setLabelFor(Logo);
+        Logo.setText("Logo");
         HalamanMenu.add(Logo);
-        Logo.setBounds(50, 10, 150, 140);
+        Logo.setBounds(0, 0, 240, 210);
 
         PanelUtama.add(HalamanMenu);
         HalamanMenu.setBounds(0, 0, 240, 600);
@@ -149,7 +155,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         LabelDashboardLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelDashboardLogin.setText("Dashboard Login");
         HalamanLogin.add(LabelDashboardLogin);
-        LabelDashboardLogin.setBounds(0, 10, 610, 32);
+        LabelDashboardLogin.setBounds(0, 10, 610, 28);
         HalamanLogin.add(FieldUsername);
         FieldUsername.setBounds(210, 90, 190, 30);
 
@@ -191,37 +197,14 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
-        //LANA
-        PanelWadah.removeAll();
-        PanelWadah.add(ArsipKeluar);
-        PanelWadah.revalidate();
-        PanelWadah.repaint();
-    }//GEN-LAST:event_ButtonSuratKeluarActionPerformed
-
-    private void ButtonArsipkanSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanSuratActionPerformed
-        //AZIZ DAN THIO
-        PanelWadah.removeAll();
-        PanelWadah.add(ArsipkanSurat);
-        PanelWadah.revalidate();
-        PanelWadah.repaint();
-    }//GEN-LAST:event_ButtonArsipkanSuratActionPerformed
-
-    private void ButtonTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTrashActionPerformed
-        //Lana
-        PanelWadah.removeAll();
-        PanelWadah.add(Trash);
-        PanelWadah.revalidate();
-        PanelWadah.repaint();
-    }//GEN-LAST:event_ButtonTrashActionPerformed
-
-    private void ButtonKelolaAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonKelolaAccountActionPerformed
-        //GALANG
-        PanelWadah.removeAll();
-        PanelWadah.add(KelolaAccount);
-        PanelWadah.revalidate();
-        PanelWadah.repaint();
-    }//GEN-LAST:event_ButtonKelolaAccountActionPerformed
+    private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
+        //HASAN
+        if(FieldUsername.getText().equals("lana")){
+                    HalamanMenu.setVisible(true);
+                    PanelWadah.setVisible(true);
+                    HalamanLogin.setVisible(false);
+        }
+    }//GEN-LAST:event_ButtonLoginActionPerformed
 
     private void ButtonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHistoryActionPerformed
         //Lana
@@ -231,14 +214,37 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         PanelWadah.repaint();
     }//GEN-LAST:event_ButtonHistoryActionPerformed
 
-    private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
-        //HASAN
-        if(FieldUsername.getText().equals("lana")){
-                    HalamanMenu.setVisible(true);
-                    PanelWadah.setVisible(true);
-                    HalamanLogin.setVisible(false);
-        }
-    }//GEN-LAST:event_ButtonLoginActionPerformed
+    private void ButtonKelolaAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonKelolaAccountActionPerformed
+        //GALANG
+        PanelWadah.removeAll();
+        PanelWadah.add(KelolaAccount);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
+    }//GEN-LAST:event_ButtonKelolaAccountActionPerformed
+
+    private void ButtonTrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTrashActionPerformed
+        //Lana
+        PanelWadah.removeAll();
+        PanelWadah.add(Trash);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
+    }//GEN-LAST:event_ButtonTrashActionPerformed
+
+    private void ButtonArsipkanSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanSuratActionPerformed
+        //AZIZ DAN THIO
+        PanelWadah.removeAll();
+        PanelWadah.add(ArsipkanSurat);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
+    }//GEN-LAST:event_ButtonArsipkanSuratActionPerformed
+
+    private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
+        //LANA
+        PanelWadah.removeAll();
+        PanelWadah.add(ArsipKeluar);
+        PanelWadah.revalidate();
+        PanelWadah.repaint();
+    }//GEN-LAST:event_ButtonSuratKeluarActionPerformed
 
     private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
         //Lana

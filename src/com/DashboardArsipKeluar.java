@@ -33,7 +33,7 @@ public class DashboardArsipKeluar extends javax.swing.JPanel {
         LabelDashboardArsipKeluar.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         LabelDashboardArsipKeluar.setText("Dashboard Arsip Keluar");
         add(LabelDashboardArsipKeluar);
-        LabelDashboardArsipKeluar.setBounds(340, 10, 280, 30);
+        LabelDashboardArsipKeluar.setBounds(330, 10, 280, 30);
     }// </editor-fold>//GEN-END:initComponents
 
 
