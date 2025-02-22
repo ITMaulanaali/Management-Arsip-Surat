@@ -42,9 +42,11 @@ public class DashboardHistory extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String[] atributs = {"no_reg","nama","alamat","tgl_daftar","tgl_lahir","jam_daftar"};
-        String[] values = {"74","cupu","rumah","2024-04-21","2003-11-11","09:40:30"};
-        query.setNamaTabel("data_anggota").setAtribut(atributs).setValue(values).setWhereIdUpdate(atributs[0], values[0]).update();
+//        String[] atributs = {"no_reg","nama","alamat","tgl_daftar","tgl_lahir","jam_daftar"};
+//        String[] values = {"74","cupu","rumah","2024-04-21","2003-11-11","09:40:30"};
+//        query.setNamaTabel("data_anggota").setAtribut(atributs).setValue(values).setWhereIdUpdate(atributs[0], values[0]).update();
+
+query.setNamaTabel("data_anggota").setWhereId("no_reg", "74").delete();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

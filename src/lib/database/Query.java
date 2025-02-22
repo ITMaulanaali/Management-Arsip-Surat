@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Query {
     private String namaTabel;
-    private ArrayList<String> whereUpdate;
+    private ArrayList<String> whereId;
     private ArrayList<String> atribut;
     private ArrayList<String> valueString;
     private ArrayList<Integer> valueInt;
@@ -18,7 +18,7 @@ public class Query {
         this.atribut = new ArrayList<>();
         this.valueString = new ArrayList<>();
         this.valueInt = new ArrayList<>();
-        this.whereUpdate = new ArrayList<>();
+        this.whereId = new ArrayList<>();
     }
     
     public Query setNamaTabel(String namaTable){
@@ -45,9 +45,9 @@ public class Query {
         return this;
     }
     
-    public Query setWhereIdUpdate(String atributId, String valueId){
-        this.whereUpdate.add(atributId);
-        this.whereUpdate.add(valueId);
+    public Query setWhereId(String atributId, String valueId){
+        this.whereId.add(atributId);
+        this.whereId.add(valueId);
         return this;
     }
     
@@ -108,7 +108,7 @@ public class Query {
         String atributUpdate = setQueryUpdate(atributLiteral);
         
         try{
-            statement = Koneksi.Koneksi().prepareStatement("UPDATE "+this.namaTabel+" SET "+atributUpdate+" WHERE "+this.whereUpdate.get(0)+" = ?");
+            statement = Koneksi.Koneksi().prepareStatement("UPDATE "+this.namaTabel+" SET "+atributUpdate+" WHERE "+this.whereId.get(0)+" = ?");
             
             for(int i=0; i<this.atribut.size(); i++){
                 if(this.valueString.get(i) != null){
@@ -119,14 +119,35 @@ public class Query {
             }
             
             try{
-                statement.setInt(this.atribut.size()+1, Integer.parseInt(this.whereUpdate.get(1)));
+                statement.setInt(this.atribut.size()+1, Integer.parseInt(this.whereId.get(1)));
             }catch(Exception e){
-                statement.setString(this.atribut.size()+1, this.whereUpdate.get(1));
+                statement.setString(this.atribut.size()+1, this.whereId.get(1));
             }
             statement.execute();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Gagal melakukan update data: " + e.getMessage());
-            System.out.println(e);
         }
+    }
+    
+    public void delete(){
+        PreparedStatement statement;
+        
+        try{
+            statement = Koneksi.Koneksi().prepareStatement("DELETE FROM "+this.namaTabel+" WHERE "+this.whereId.get(0)+" = ?");
+            
+            try{
+                statement.setInt(this.atribut.size()+1, Integer.parseInt(this.whereId.get(1)));
+            }catch(Exception e){
+                statement.setString(this.atribut.size()+1, this.whereId.get(1));
+            }
+            statement.execute();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Gagal melakukan delete row data: " + e.getMessage());
+        }
+    }
+    
+    //PR
+    public void select(){
+        
     }
 }
