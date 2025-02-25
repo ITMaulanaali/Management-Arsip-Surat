@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 24, 2025 at 06:14 AM
+-- Generation Time: Feb 25, 2025 at 06:20 PM
 -- Server version: 8.0.41-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.20
 
@@ -43,6 +43,7 @@ CREATE TABLE `surat` (
   `no_surat` varchar(100) DEFAULT NULL,
   `perihal` varchar(100) DEFAULT NULL,
   `deskripsi` text,
+  `nama_surat` varchar(100) DEFAULT NULL,
   `file_digital` mediumblob,
   `tanggal_diterima` date DEFAULT NULL,
   `tanggal_dikeluarkan` date DEFAULT NULL,
@@ -53,11 +54,9 @@ CREATE TABLE `surat` (
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal`, `deskripsi`, `file_digital`, `tanggal_diterima`, `tanggal_dikeluarkan`, `penerima`) VALUES
-(1, '0xfr46', 'makanMakan', 'enak bro', 0x61646120666f746f, '2025-08-12', NULL, NULL),
-(5, 'cob/hf5', 'coba di surat masuk', 'refresh auto', 0x70656e64696e67, '2023-11-29', NULL, NULL),
-(7, 'abogoboga', 'cheat', 'Cek test 3', 0x6f7477, '2021-10-19', NULL, NULL),
-(9, 'cx19', 'kosong', 'tidak ada', 0x706c6f6e67, '2024-11-10', NULL, NULL);
+INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal`, `deskripsi`, `nama_surat`, `file_digital`, `tanggal_diterima`, `tanggal_dikeluarkan`, `penerima`) VALUES
+(17, 'cdhfkg', 'makan', 'buka bersama', 'belum ada', NULL, '2022-11-05', NULL, NULL),
+(18, 'halo', 'bukan', 'jelaskan', 'belum', NULL, '2021-11-05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +102,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_surat` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
