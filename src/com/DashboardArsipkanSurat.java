@@ -1,26 +1,34 @@
 package com;
+import java.io.File;
 import javax.swing.JOptionPane;
 import lib.database.Query;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DashboardArsipkanSurat extends javax.swing.JPanel {
     Query query;
-    
-    String noSurat, perihal, deskripsi, fileDigital, tanggalDiterima, tanggalDikeluarkan, penerima;
+    String[] atributsSuratMasuk = {"no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
+    String[] atributsSuratKeluar = {"no_surat","perihal","deskripsi","tanggal_dikeluarkan","penerima","nama_surat","file_digital"};
+    String pathFileDigital;
+
+//    String noSurat, perihal, deskripsi, fileDigital, tanggalDiterima, tanggalDikeluarkan, penerima;
     
     public DashboardArsipkanSurat() {
         initComponents();
         this.query = new Query();
+        PanelSuratKeluar.setVisible(false);
+        PanelSuratMasuk.setVisible(false);
     }
     
     void bersihkanTextKosong(){
         InputNoSurat.setText("");
         inputPerihal.setText("");
         inputDeskripsi.setText("");
-        inputFile.setText(""); //ganti dengan format file
+        NamaFile.setText(""); //ganti dengan format file
         inputTanggalMasuk.setText("");
         inputTanggalKeluar.setText("");
         inputPenerima.setText("");
@@ -41,7 +49,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         inputPerihal = new javax.swing.JTextField();
         inputDeskripsi = new javax.swing.JTextField();
         LabelFile1 = new javax.swing.JLabel();
-        inputFile = new javax.swing.JTextField();
+        NamaFile = new javax.swing.JTextField();
         PanelSuratMasuk = new javax.swing.JPanel();
         PanelSuratMasukLabelTanggalMasuk = new javax.swing.JLabel();
         inputTanggalMasuk = new javax.swing.JTextField();
@@ -50,6 +58,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         PanelSuratKeluarLabelTanggalKeluar = new javax.swing.JLabel();
         inputPenerima = new javax.swing.JTextField();
         inputTanggalKeluar = new javax.swing.JTextField();
+        ButtonFileUpload = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(950, 6000));
         setPreferredSize(new java.awt.Dimension(950, 600));
@@ -92,7 +101,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
             }
         });
         add(RadioButtonSuratKeluar);
-        RadioButtonSuratKeluar.setBounds(170, 380, 114, 22);
+        RadioButtonSuratKeluar.setBounds(70, 420, 114, 22);
 
         RadioButtonSuratMasuk.setText("Surat Masuk");
         RadioButtonSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,7 +110,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
             }
         });
         add(RadioButtonSuratMasuk);
-        RadioButtonSuratMasuk.setBounds(170, 340, 104, 22);
+        RadioButtonSuratMasuk.setBounds(70, 380, 104, 22);
 
         InputNoSurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         InputNoSurat.addActionListener(new java.awt.event.ActionListener() {
@@ -135,14 +144,14 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         add(LabelFile1);
         LabelFile1.setBounds(70, 280, 80, 30);
 
-        inputFile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        inputFile.addActionListener(new java.awt.event.ActionListener() {
+        NamaFile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        NamaFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputFileActionPerformed(evt);
+                NamaFileActionPerformed(evt);
             }
         });
-        add(inputFile);
-        inputFile.setBounds(170, 280, 700, 30);
+        add(NamaFile);
+        NamaFile.setBounds(170, 280, 700, 30);
 
         PanelSuratMasuk.setLayout(null);
 
@@ -195,6 +204,15 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
 
         add(PanelSuratKeluar);
         PanelSuratKeluar.setBounds(460, 330, 410, 130);
+
+        ButtonFileUpload.setText("Pilih File");
+        ButtonFileUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonFileUploadActionPerformed(evt);
+            }
+        });
+        add(ButtonFileUpload);
+        ButtonFileUpload.setBounds(170, 320, 130, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void InputNoSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNoSuratActionPerformed
@@ -213,47 +231,43 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTanggalKeluarActionPerformed
 
-    private void inputFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFileActionPerformed
+    private void NamaFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NamaFileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inputFileActionPerformed
+    }//GEN-LAST:event_NamaFileActionPerformed
 
     private void inputPenerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPenerimaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPenerimaActionPerformed
 
     private void ButtonArsipkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanActionPerformed
-        this.noSurat = InputNoSurat.getText();
-        this.perihal = inputPerihal.getText();
-        this.deskripsi = inputDeskripsi.getText();
-        this.fileDigital = inputFile.getText();
-        this.tanggalDiterima = inputTanggalMasuk.getText();
-        this.tanggalDikeluarkan = inputTanggalKeluar.getText();
-        this.penerima = inputPenerima.getText();
-        
-        if(this.tanggalDiterima.isEmpty()){
-            
-            String[] atributs = {"no_surat","perihal","deskripsi","file_digital","tanggal_dikeluarkan","penerima"};
-            String[] values = {this.noSurat,this.perihal,this.deskripsi,this.fileDigital,this.tanggalDiterima,this.tanggalDikeluarkan,this.penerima};
-            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insert();
+        if(RadioButtonSuratMasuk.isSelected() == true){
+            String[] atributs = {"no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
+            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalMasuk.getText(),NamaFile.getText()};
+            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insertBinary();
             
                 if(hasil == 1){
                     JOptionPane.showMessageDialog(null,"Berhasil mengarsipkan Surat Masuk");
                     new DashboardArsipMasuk();
                     bersihkanTextKosong();
+                    PanelSuratKeluar.setVisible(false);
+                    PanelSuratMasuk.setVisible(false);
+                    
                 }else{
                     JOptionPane.showMessageDialog(null,"Gagal mengarsipkan Surat");
                 }
                 
-        }else if(this.tanggalDikeluarkan.isEmpty() || this.penerima.isEmpty()){
+        }else if(RadioButtonSuratKeluar.isSelected() == true){
             
-            String[] atributs = {"no_surat","perihal","deskripsi","file_digital","tanggal_diterima"};
-            String[] values = {this.noSurat,this.perihal,this.deskripsi,this.fileDigital,this.tanggalDiterima,this.tanggalDikeluarkan,this.penerima};
-            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insert();
+            String[] atributs = {"no_surat","perihal","deskripsi","tanggal_dikeluarkan","penerima","nama_surat","file_digital"};
+            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalKeluar.getText(),inputPenerima.getText(),this.pathFileDigital};
+            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insertBinary();
 
                 if(hasil == 1){
                     JOptionPane.showMessageDialog(null,"Berhasil mengarsipkan Surat Masuk");
                     new DashboardArsipMasuk();
                     bersihkanTextKosong();
+                    PanelSuratKeluar.setVisible(false);
+                    PanelSuratMasuk.setVisible(false);
                 }else{
                     JOptionPane.showMessageDialog(null,"Gagal mengarsipkan Surat");
                 }
@@ -293,15 +307,34 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_RadioButtonSuratKeluarMouseClicked
 
+    private void ButtonFileUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonFileUploadActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("doc", "doc","docx"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("jpg", "jpg","jpeg"));
+        int result = fileChooser.showOpenDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            this.pathFileDigital = selectedFile.getAbsolutePath();
+            String[] fileDigital = this.pathFileDigital.split("/");
+            String namaFile = fileDigital[fileDigital.length-1];
+            NamaFile.setText(namaFile);
+        }
+    }//GEN-LAST:event_ButtonFileUploadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonArsipkan;
+    private javax.swing.JButton ButtonFileUpload;
     private javax.swing.JTextField InputNoSurat;
     private javax.swing.JLabel LabelDashboardArsipkanSurat;
     private javax.swing.JLabel LabelDeskripsi;
     private javax.swing.JLabel LabelFile1;
     private javax.swing.JLabel LabelNoSurat;
     private javax.swing.JLabel LabelPerihal;
+    private javax.swing.JTextField NamaFile;
     private javax.swing.JPanel PanelSuratKeluar;
     private javax.swing.JLabel PanelSuratKeluarLabelPenerima;
     private javax.swing.JLabel PanelSuratKeluarLabelTanggalKeluar;
@@ -310,7 +343,6 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
     private javax.swing.JRadioButton RadioButtonSuratKeluar;
     private javax.swing.JRadioButton RadioButtonSuratMasuk;
     private javax.swing.JTextField inputDeskripsi;
-    private javax.swing.JTextField inputFile;
     private javax.swing.JTextField inputPenerima;
     private javax.swing.JTextField inputPerihal;
     private javax.swing.JTextField inputTanggalKeluar;

@@ -1,5 +1,7 @@
 package lib.database;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -114,6 +116,43 @@ public class Query {
         return hasil;
     }
     
+    public int insertBinary(){
+        PreparedStatement statement;
+        String[] atributLiteral = this.atribut.toArray(new String[0]);
+        String atributs = setQueryInsert(atributLiteral);
+        String values = setQueryInsertValue(atributLiteral);
+        int hasil = 0;
+        
+        //Mendapatkan path di kolom kedua sebelum file
+        String[] parts = atributs.split(",");
+        String path = parts[parts.length - 1];
+        
+        try{
+            statement = Koneksi.Koneksi().prepareStatement("INSERT INTO "+this.namaTabel+" ("+atributs+") VALUES ("+values+")");
+            File file = new File(path);
+            String namaFile = file.getName();
+            FileInputStream inputStream = new FileInputStream(file);
+            
+            for(int i=0; i<this.atribut.size(); i++){
+                    if(this.valueString.get(i) == namaFile){
+                        statement.setString(i+1, namaFile);
+                        statement.setBinaryStream(i+2, inputStream);
+                        i++;
+                    }else if(this.valueString.get(i) == null){
+                        statement.setInt(i+1, valueInt.get(i));
+                    }else if(this.valueString.get(i) != null){
+                        statement.setString(i+1, valueString.get(i));
+                    }
+                }
+            hasil = statement.executeUpdate();
+            refreshDataArray();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Gagal melakukan insert data: " + e.getMessage());
+            System.out.println("Insert gagal: " + e);
+        }
+        return hasil;
+    }
+    
     //hanya dapat update satu record data
     public void update(){
         PreparedStatement statement;
@@ -187,12 +226,12 @@ public class Query {
         try{
             statement = Koneksi.Koneksi().prepareStatement("SELECT "+atributs+" FROM "+this.namaTabel+" WHERE "+this.whereId.get(0)+" LIKE ?");
             
-            try{
-                statement.setInt(1, Integer.parseInt(this.whereId.get(1)));
-            }catch(Exception e){
+//            try{
+//                statement.setInt(1, Integer.parseInt(this.whereId.get(1)));
+//            }catch(Exception e){
                 statement.setString(1, "%"+this.whereId.get(1)+"%");
-            }
-            
+//            }
+
             hasil = statement.executeQuery();
             refreshDataArray();
         }catch(Exception e){

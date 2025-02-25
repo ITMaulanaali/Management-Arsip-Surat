@@ -1,11 +1,13 @@
 package com;
 //Masih Mulai Awal pengembangan
+
 /**
  * -Dashboard Login diutamakan
  */
+import penghubungPanel.Penghubung;
 
 public class ManagementArsipSurat extends javax.swing.JFrame {
-    
+
     DashboardArsipKeluar ArsipKeluar;
     DashboardArsipMasuk ArsipMasuk;
     DashboardArsipkanSurat ArsipkanSurat;
@@ -14,19 +16,19 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     DashboardHistory History;
 
     public ManagementArsipSurat() {
-        this.ArsipMasuk = new DashboardArsipMasuk();
-        this.ArsipKeluar = new DashboardArsipKeluar();
-        this.ArsipkanSurat = new DashboardArsipkanSurat();
-        this.KelolaAccount = new DashboardKelolaAccount();
-        this.Trash = new DashboardTrash();
-        this.History = new DashboardHistory();
-        
+        ArsipMasuk = new DashboardArsipMasuk();
+        ArsipKeluar = new DashboardArsipKeluar();
+        ArsipkanSurat = new DashboardArsipkanSurat();
+        KelolaAccount = new DashboardKelolaAccount();
+        Trash = new DashboardTrash();
+        History = new DashboardHistory();
+
         initComponents();
-        
+
         HalamanMenu.setVisible(false);
         PanelWadah.setVisible(false);
         HalamanLogin.setVisible(true);
-        
+
     }
 
     /**
@@ -205,7 +207,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
 
     private void ButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoginActionPerformed
         //HASAN
-        if(FieldUsername.getText().equals("lana")){
+        if (FieldUsername.getText().equals("lana")) {
             HalamanLogin.setVisible(false);
             HalamanMenu.setVisible(true);
             PanelWadah.setVisible(true);
@@ -251,7 +253,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
         //LANA
         PanelWadah.removeAll();
-        PanelWadah.remove(ArsipMasuk);
+        PanelWadah.remove(ArsipKeluar);
         PanelWadah.add(ArsipKeluar = new DashboardArsipKeluar());
         PanelWadah.revalidate();
         PanelWadah.repaint();
