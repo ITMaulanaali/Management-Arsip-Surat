@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package com;
 
 import java.sql.ResultSet;
@@ -10,8 +14,12 @@ import javax.swing.table.DefaultTableModel;
 import lib.database.Query;
 import penghubungPanel.Penghubung;
 
-public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
-    Penghubung DashboardUtama;
+/**
+ *
+ * @author USER
+ */
+public class PanelTable extends javax.swing.JPanel {
+Penghubung DashboardUtama;
     Query query;
     String[] atributs = {"id_surat","no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
     //value ketika mengklik table
@@ -25,7 +33,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
     
     SubPanelEdit PanelEdit;
 
-    public SubPanelTableArsipMasuk(Penghubung jembatan) {
+    public azizpaneltable(Penghubung jembatan) {
         initComponents();
         filterBy = 0;
         valueCari = TextFieldCari.getText();
@@ -85,6 +93,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         TextFieldCari = new javax.swing.JTextField();
         ComboBoxCari = new javax.swing.JComboBox<>();
         ButtonDelete = new javax.swing.JButton();
@@ -94,8 +103,10 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
         ButtonCetak = new javax.swing.JButton();
         ButtonDownload = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(800, 440));
         setLayout(null);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 440));
+        jPanel1.setLayout(null);
 
         TextFieldCari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TextFieldCari.addActionListener(new java.awt.event.ActionListener() {
@@ -103,13 +114,13 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
                 TextFieldCariActionPerformed(evt);
             }
         });
-        add(TextFieldCari);
+        jPanel1.add(TextFieldCari);
         TextFieldCari.setBounds(600, 0, 200, 30);
 
         ComboBoxCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID Surat", "No. Surat", "Perihal", "Deskripsi", "Tanggal Diterima", "File" }));
         ComboBoxCari.setToolTipText("");
         ComboBoxCari.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(ComboBoxCari);
+        jPanel1.add(ComboBoxCari);
         ComboBoxCari.setBounds(480, 0, 110, 30);
 
         ButtonDelete.setText("Delete");
@@ -119,7 +130,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
                 ButtonDeleteActionPerformed(evt);
             }
         });
-        add(ButtonDelete);
+        jPanel1.add(ButtonDelete);
         ButtonDelete.setBounds(0, 0, 100, 30);
 
         TableSuratMasuk.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,7 +151,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
         });
         jScrollPane1.setViewportView(TableSuratMasuk);
 
-        add(jScrollPane1);
+        jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(0, 60, 800, 380);
 
         ButtonEdit.setText("Edit");
@@ -150,7 +161,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
                 ButtonEditActionPerformed(evt);
             }
         });
-        add(ButtonEdit);
+        jPanel1.add(ButtonEdit);
         ButtonEdit.setBounds(120, 0, 100, 30);
 
         ButtonCetak.setText("Cetak");
@@ -160,7 +171,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
                 ButtonCetakActionPerformed(evt);
             }
         });
-        add(ButtonCetak);
+        jPanel1.add(ButtonCetak);
         ButtonCetak.setBounds(360, 0, 100, 30);
 
         ButtonDownload.setText("Download");
@@ -170,8 +181,11 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
                 ButtonDownloadActionPerformed(evt);
             }
         });
-        add(ButtonDownload);
+        jPanel1.add(ButtonDownload);
         ButtonDownload.setBounds(240, 0, 100, 30);
+
+        add(jPanel1);
+        jPanel1.setBounds(0, 0, 800, 440);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextFieldCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCariActionPerformed
@@ -221,7 +235,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
     }//GEN-LAST:event_ButtonEditActionPerformed
 
     private void ButtonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCetakActionPerformed
-        
+
     }//GEN-LAST:event_ButtonCetakActionPerformed
 
     private void ButtonDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDownloadActionPerformed
@@ -237,6 +251,7 @@ public class SubPanelTableArsipMasuk extends javax.swing.JPanel{
     private javax.swing.JComboBox<String> ComboBoxCari;
     private javax.swing.JTable TableSuratMasuk;
     private javax.swing.JTextField TextFieldCari;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

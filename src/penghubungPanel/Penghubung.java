@@ -1,7 +1,7 @@
 package penghubungPanel;
 
 import com.DashboardArsipMasuk;
-import com.SubPanelTableArsipMasuk;
+import com.azizpaneltable;
 import javax.swing.JPanel;
 
 public interface Penghubung {
