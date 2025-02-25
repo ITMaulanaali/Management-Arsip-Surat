@@ -63,6 +63,7 @@ public class SubPanelEdit extends javax.swing.JPanel{
         LabelIdSurat = new javax.swing.JLabel();
         valueIdSurat = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(800, 450));
         setLayout(null);
 
         LabelFileEditPopUp.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
