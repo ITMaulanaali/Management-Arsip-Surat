@@ -18,7 +18,7 @@ import penghubungPanel.Penghubung;
  *
  * @author USER
  */
-public class PanelTable extends javax.swing.JPanel {
+public class SubPanelTableArsipMasuk extends javax.swing.JPanel {
 Penghubung DashboardUtama;
     Query query;
     String[] atributs = {"id_surat","no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
@@ -33,7 +33,7 @@ Penghubung DashboardUtama;
     
     SubPanelEdit PanelEdit;
 
-    public azizpaneltable(Penghubung jembatan) {
+    public SubPanelTableArsipMasuk(Penghubung jembatan) {
         initComponents();
         filterBy = 0;
         valueCari = TextFieldCari.getText();
