@@ -1,5 +1,7 @@
 package com;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 import lib.database.Query;
 import java.sql.ResultSet;
@@ -13,7 +15,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
     Query query;
     String[] atributsSuratMasuk = {"no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
     String[] atributsSuratKeluar = {"no_surat","perihal","deskripsi","tanggal_dikeluarkan","penerima","nama_surat","file_digital"};
-    String pathFileDigital;
+    String pathFile;
 
 //    String noSurat, perihal, deskripsi, fileDigital, tanggalDiterima, tanggalDikeluarkan, penerima;
     
@@ -241,9 +243,8 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
 
     private void ButtonArsipkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonArsipkanActionPerformed
         if(RadioButtonSuratMasuk.isSelected() == true){
-            String[] atributs = {"no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
-            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalMasuk.getText(),NamaFile.getText()};
-            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insertBinary();
+            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalMasuk.getText(),NamaFile.getText(),this.pathFile};
+            int hasil = query.setNamaTabel("surat").setAtribut(this.atributsSuratMasuk).setValue(values).insert();
             
                 if(hasil == 1){
                     JOptionPane.showMessageDialog(null,"Berhasil mengarsipkan Surat Masuk");
@@ -259,8 +260,9 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         }else if(RadioButtonSuratKeluar.isSelected() == true){
             
             String[] atributs = {"no_surat","perihal","deskripsi","tanggal_dikeluarkan","penerima","nama_surat","file_digital"};
-            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalKeluar.getText(),inputPenerima.getText(),this.pathFileDigital};
-            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).insertBinary();
+            System.out.println(this.pathFile);
+            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalKeluar.getText(),inputPenerima.getText(),NamaFile.getText()};
+            int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).setValuePath(this.pathFile).insert();
 
                 if(hasil == 1){
                     JOptionPane.showMessageDialog(null,"Berhasil mengarsipkan Surat Masuk");
@@ -311,16 +313,18 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setAcceptAllFileFilterUsed(true);
         fileChooser.setFileFilter(new FileNameExtensionFilter("pdf", "pdf"));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("doc", "doc","docx"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("docx", "doc","docx"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("jpg", "jpg","jpeg"));
         int result = fileChooser.showOpenDialog(null);
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            this.pathFileDigital = selectedFile.getAbsolutePath();
-            String[] fileDigital = this.pathFileDigital.split("/");
+            String pathLengkap = selectedFile.getAbsolutePath();
+            
+            String[] fileDigital = pathLengkap.split("/");
             String namaFile = fileDigital[fileDigital.length-1];
             NamaFile.setText(namaFile);
+            this.pathFile = pathLengkap;
         }
     }//GEN-LAST:event_ButtonFileUploadActionPerformed
 

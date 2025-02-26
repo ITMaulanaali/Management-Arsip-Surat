@@ -1,6 +1,7 @@
 package com;
 
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -13,12 +14,17 @@ public class SubPanelEdit extends javax.swing.JPanel{
     Query query;
     String[] atributs = {"id_surat","no_surat","perihal","deskripsi","tanggal_diterima","nama_surat","file_digital"};
     String[] valuesTable;
+    String[] valuesGet;
     String hasil;
+    String path;
 
     SubPanelEdit(Penghubung jembatan) {
         initComponents();
         this.DashboardUtama = jembatan;
         this.valuesTable = jembatan.giveValuesPanelTable();
+        this.valuesGet = new String[this.atributs.length];
+        this.path = null;
+        this.query = new Query();
         setText();
         for(String i : this.valuesTable){
             System.out.println(i);
@@ -152,30 +158,48 @@ public class SubPanelEdit extends javax.swing.JPanel{
     private void ButtonUpdateEditPopUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonUpdateEditPopUpActionPerformed
         UIManager.put("OptionPane.yesButtonText", "Lanjutkan");
         UIManager.put("OptionPane.noButtonText", "Batalkan");
+        
+        String[] getText = this.valuesGet;
+        
+        getText[0] = valueIdSurat.getText();
+        getText[1] = OutputLabelNoSurat.getText();
+        getText[2] = TextFieldPerihalEditPopUp.getText();
+        getText[3] = TextFieldDeskripsiEditPopUp.getText();
+        getText[4] = TextFieldTanggalDiterimaEditPopUp.getText();
+        getText[5] = OutputFileEditPopUp.getText();
+        getText[6] = this.path;
 
-        //input data dari halaman edit Data(pikir kembali apakah harus diglobal karena setelah update harusnya data tidak digunakan kembali)
-        //Belum ditambahkan tambah File yang type data blob
-        String[] valueEdit = new String[this.atributs.length];
-
-        valueEdit[0] = valueIdSurat.getText();
-        valueEdit[1] = OutputLabelNoSurat.getText();
-        valueEdit[2] = TextFieldPerihalEditPopUp.getText();
-        valueEdit[4] = TextFieldDeskripsiEditPopUp.getText();
-        valueEdit[3] = TextFieldTanggalDiterimaEditPopUp.getText();
-        valueEdit[4] = OutputFileEditPopUp.getText();
+        ArrayList<String> atributsUpdate = new ArrayList<>();
+        ArrayList<String> valuesUpdate = new ArrayList<>();
+        //cek apakah ada perubahan atau update yang diset
+        for(int i=0; i<this.atributs.length; i++){
+            if(this.valuesTable[i] != getText[i]){
+                atributsUpdate.add(this.atributs[i]);
+                valuesUpdate.add(getText[i]);
+            }else if(this.path != null){
+                atributsUpdate.add(this.atributs[i]);
+                valuesUpdate.add(getText[i]);
+            }
+        }
+        
+        String[] atributs = atributsUpdate.toArray(new String[0]);
+        String[] values = valuesUpdate.toArray(new String[0]);
 
         if(valueEdit[0] != null || valueEdit[0] != ""){
             int option = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin Mengupdate data?", "Konfirmasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             
             if (option == JOptionPane.YES_OPTION) {
                 try{
-                    //                        String[] values = {getTextNoSurat,getTextPerihalSurat,getTextDeskripsiSurat,dataFile,getTextTanggalMasukSurat};
-                    query.setNamaTabel("surat").setAtribut(this.atributs).setValue(valueEdit).setWhereId(this.atributs[0], this.valuesTable[0]).update();
+                    String[] values = valueEdit;
+                    for(String i : values){
+                        System.out.println(i);
+                    }
+                    query.setNamaTabel("surat").setAtribut(this.atributs).setValue(values).setWhereId(this.atributs[0], this.valuesTable[0]).update();
 //                    hideKomponenUpdateData();
 //                    bersihkanTextNull(this.valuePerBaris);
                       this.DashboardUtama.pindahToSubPanelTable();
                 }catch(Exception e){
-                    JOptionPane.showMessageDialog(null,"Gagal Melakukan Update Data, Pastikan semua data tersedia");
+                    JOptionPane.showMessageDialog(null,"Gagal Melakukan Update Data, Pastikan semua data tersedia" + e);
                 }
             }
         }else{
@@ -193,8 +217,11 @@ public class SubPanelEdit extends javax.swing.JPanel{
 
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            String filePath = selectedFile.getAbsolutePath();
-            OutputFileEditPopUp.setText(filePath);
+            this.path = selectedFile.getAbsolutePath();
+            
+            String[] bagianPath = path.split("/");
+            String namaFile = bagianPath[bagianPath.length-1];
+            OutputFileEditPopUp.setText(namaFile);
         }
     }//GEN-LAST:event_ButtonFileUploadEditPopUpActionPerformed
 

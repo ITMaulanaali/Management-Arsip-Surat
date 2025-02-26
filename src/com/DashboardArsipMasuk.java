@@ -29,7 +29,7 @@ public class DashboardArsipMasuk extends javax.swing.JPanel implements Penghubun
     
     public DashboardArsipMasuk() {
         initComponents();
-        PanelTable = new azizpaneltable(this);
+        PanelTable = new SubPanelTableArsipMasuk(this);
         setPanel();
     }
     
@@ -48,7 +48,8 @@ public class DashboardArsipMasuk extends javax.swing.JPanel implements Penghubun
             PanelPopUpEdit.remove(PanelTable);
             PanelTable = null;
         }
-        PanelPopUpEdit.add(this.PanelEdit = new SubPanelEdit(this));
+        this.PanelEdit = new SubPanelEdit(this);
+        PanelPopUpEdit.add(this.PanelEdit);
         PanelPopUpEdit.revalidate();
         PanelPopUpEdit.repaint();
     }
@@ -60,7 +61,8 @@ public class DashboardArsipMasuk extends javax.swing.JPanel implements Penghubun
             PanelPopUpEdit.remove(PanelEdit);
             PanelEdit = null;
         }
-        PanelPopUpEdit.add(this.PanelTable = new azizpaneltable(this));
+        this.PanelTable = new SubPanelTableArsipMasuk(this);
+        PanelPopUpEdit.add(this.PanelTable);
         PanelPopUpEdit.revalidate();
         PanelPopUpEdit.repaint();
     }

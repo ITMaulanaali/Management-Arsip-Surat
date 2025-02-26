@@ -15,6 +15,8 @@ public class Query {
     private ArrayList<String> atribut;
     private ArrayList<String> valueString;
     private ArrayList<Integer> valueInt;
+    private String path;
+    File file;
     
     private void refreshDataArray(){
         this.namaTabel = "";
@@ -46,11 +48,17 @@ public class Query {
     
     public Query setValue(String[] value){
         for(String i : value){
-            try{
-                this.valueInt.add(Integer.parseInt(i));
-                this.valueString.add(null);
-            }catch(Exception e){
-                this.valueString.add(i);
+            if(i.contains("/")){
+                this.path = i;
+                this.valueString.add("path");
+                System.out.println(i);
+            }else{
+                try{
+                    this.valueInt.add(Integer.parseInt(i));
+                    this.valueString.add(null);
+                }catch(Exception e){
+                    this.valueString.add(i);
+                }
             }
         }
         return this;
@@ -59,6 +67,11 @@ public class Query {
     public Query setWhereId(String atributId, String valueId){
         this.whereId.add(atributId);
         this.whereId.add(valueId);
+        return this;
+    }
+    
+    public Query setValuePath(String path){
+        this.path = path;
         return this;
     }
     
@@ -89,6 +102,7 @@ public class Query {
         return hasilQuery;
     }
     
+    
     //CRUD
     public int insert(){
         PreparedStatement statement;
@@ -99,51 +113,26 @@ public class Query {
         
         try{
             statement = Koneksi.Koneksi().prepareStatement("INSERT INTO "+this.namaTabel+" ("+atributs+") VALUES ("+values+")");
+            this.file = new File(this.path);
             
             for(int i=0; i<this.atribut.size(); i++){
-                    if(this.valueString.get(i) != null){
+                    if(this.valueString.get(i) == "path"){
+                        System.out.println("ini yang terakhir tidak bisa: " + this.valueString.get(i));
+                        statement.setBinaryStream(i+1, new FileInputStream(this.file), (int)this.file.length());
+                    }else if(this.valueString.get(i) != null){
                         statement.setString(i+1, valueString.get(i));
                     }else{
                         statement.setInt(i+1, valueInt.get(i));
                     }
                 }
-            hasil = statement.executeUpdate();
-            refreshDataArray();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Gagal melakukan insert data: " + e.getMessage());
-            System.out.println("Insert gagal: " + e);
-        }
-        return hasil;
-    }
-    
-    public int insertBinary(){
-        PreparedStatement statement;
-        String[] atributLiteral = this.atribut.toArray(new String[0]);
-        String atributs = setQueryInsert(atributLiteral);
-        String values = setQueryInsertValue(atributLiteral);
-        int hasil = 0;
-        
-        //Mendapatkan path di kolom kedua sebelum file
-        String[] parts = atributs.split(",");
-        String path = parts[parts.length - 1];
-        
-        try{
-            statement = Koneksi.Koneksi().prepareStatement("INSERT INTO "+this.namaTabel+" ("+atributs+") VALUES ("+values+")");
-            File file = new File(path);
-            String namaFile = file.getName();
-            FileInputStream inputStream = new FileInputStream(file);
             
-            for(int i=0; i<this.atribut.size(); i++){
-                    if(this.valueString.get(i) == namaFile){
-                        statement.setString(i+1, namaFile);
-                        statement.setBinaryStream(i+2, inputStream);
-                        i++;
-                    }else if(this.valueString.get(i) == null){
-                        statement.setInt(i+1, valueInt.get(i));
-                    }else if(this.valueString.get(i) != null){
-                        statement.setString(i+1, valueString.get(i));
-                    }
-                }
+//            for(int i=0; i<this.atribut.size(); i++){
+//                    if(this.valueString.get(i) != null){
+//                        statement.setString(i+1, valueString.get(i));
+//                    }else{
+//                        statement.setInt(i+1, valueInt.get(i));
+//                    }
+//                }
             hasil = statement.executeUpdate();
             refreshDataArray();
         }catch(Exception e){
@@ -158,17 +147,30 @@ public class Query {
         PreparedStatement statement;
         String[] atributLiteral = this.atribut.toArray(new String[0]);
         String atributUpdate = setQueryUpdate(atributLiteral);
-        
+        System.out.println(atributUpdate);
         try{
             statement = Koneksi.Koneksi().prepareStatement("UPDATE "+this.namaTabel+" SET "+atributUpdate+" WHERE "+this.whereId.get(0)+" = ?");
             
+//            for(int i=0; i<this.atribut.size(); i++){
+//                if(this.valueString.get(i) != null){
+//                    statement.setString(i+1, valueString.get(i));
+//                }else{
+//                    statement.setInt(i+1, valueInt.get(i));
+//                }
+//            }
+            
             for(int i=0; i<this.atribut.size(); i++){
-                if(this.valueString.get(i) != null){
-                    statement.setString(i+1, valueString.get(i));
-                }else{
-                    statement.setInt(i+1, valueInt.get(i));
+                    if(this.valueString.get(i) == "path"){
+                        byte[] dataByte = new byte[(int) this.path.length()];
+                        FileInputStream inputStream = new FileInputStream(this.file);
+                        inputStream.read(dataByte);
+                        statement.setBytes(i+1, dataByte);
+                    }else if(this.valueString.get(i) != null){
+                        statement.setString(i+1, valueString.get(i));
+                    }else{
+                        statement.setInt(i+1, valueInt.get(i));
+                    }
                 }
-            }
 
             try{
                 statement.setInt(this.atribut.size()+1, Integer.parseInt(this.whereId.get(1)));
@@ -230,6 +232,29 @@ public class Query {
 //                statement.setInt(1, Integer.parseInt(this.whereId.get(1)));
 //            }catch(Exception e){
                 statement.setString(1, "%"+this.whereId.get(1)+"%");
+//            }
+
+            hasil = statement.executeQuery();
+            refreshDataArray();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Gagal melakukan Select row data: " + e.getMessage());
+        }
+        return hasil;
+    }
+    
+    public ResultSet selectWhereIdDownload(){
+        PreparedStatement statement;
+        String[] atributLiteral = this.atribut.toArray(new String[0]);
+        String atributs = setQueryInsert(atributLiteral);
+        ResultSet hasil = null;
+
+        try{
+            statement = Koneksi.Koneksi().prepareStatement("SELECT "+atributs+" FROM "+this.namaTabel+" WHERE "+this.whereId.get(0)+" = ?");
+            
+//            try{
+//                statement.setInt(1, Integer.parseInt(this.whereId.get(1)));
+//            }catch(Exception e){
+                statement.setString(1, this.whereId.get(1));
 //            }
 
             hasil = statement.executeQuery();

@@ -4,12 +4,17 @@
  */
 package com;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import lib.database.Query;
 import penghubungPanel.Penghubung;
@@ -30,8 +35,6 @@ Penghubung DashboardUtama;
     String valueCari;
     
     String buttonEdit;
-    
-    SubPanelEdit PanelEdit;
 
     public SubPanelTableArsipMasuk(Penghubung jembatan) {
         initComponents();
@@ -231,15 +234,55 @@ Penghubung DashboardUtama;
     }//GEN-LAST:event_TableSuratMasukMouseClicked
 
     private void ButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEditActionPerformed
-        this.DashboardUtama.pindahToSubPanelEdit();
+        if(this.valuePerBaris[0] != null){
+            this.DashboardUtama.pindahToSubPanelEdit();
+        }else{
+            JOptionPane.showMessageDialog(null,"Pilih dulu");
+        }
     }//GEN-LAST:event_ButtonEditActionPerformed
 
     private void ButtonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCetakActionPerformed
 
+
     }//GEN-LAST:event_ButtonCetakActionPerformed
 
     private void ButtonDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDownloadActionPerformed
+        byte[] dataBytes = null;
+        
+        if(this.valuePerBaris[0] != null){  
+            try {
+                ResultSet fileBytes = query.setNamaTabel("surat").setAtribut(this.atributs).setWhereId(this.atributs[0],this.valuePerBaris[0]).selectWhereIdDownload();
+                if(fileBytes.next()){
+                    dataBytes = fileBytes.getBytes(this.atributs[6]);
+                }
+            }catch(Exception e) {
+                System.out.println("gagal select untuk download: " + e);
+            }
+            
+            JFileChooser pilihPath = new JFileChooser();
+            pilihPath.setDialogTitle("Save");
+            pilihPath.setApproveButtonText("simpan");
+            pilihPath.setAcceptAllFileFilterUsed(true);
+            pilihPath.setSelectedFile(new File(this.valuePerBaris[5]));
+            int result = pilihPath.showOpenDialog(null);
 
+            try{
+                if(result == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = pilihPath.getSelectedFile();
+                    String pathLengkap = selectedFile.getAbsolutePath();
+                    new FileOutputStream(pathLengkap).write(dataBytes);
+                    JOptionPane.showMessageDialog(null,"Berhasil simpan file");
+                }else{
+                    bersihkanTextNull(this.valuePerBaris);
+                    menampilkanDataTableTerbaru(false, this.atributs, 0, null);
+                }
+            }catch(Exception e){
+                System.out.println("gagal simpan file: " + e);
+            }
+        
+        }else{
+            JOptionPane.showMessageDialog(null,"Pilih dulu dong");
+        }
     }//GEN-LAST:event_ButtonDownloadActionPerformed
 
 
