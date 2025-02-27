@@ -442,21 +442,66 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-PyQYmyTvnaW_m6aREVt" name="Halaman-2">
-    <mxGraphModel dx="794" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
+    <mxGraphModel dx="1222" dy="686" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2339" pageHeight="3300" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="pykPLvWLdNS0nIlNWobR-1" value="Tata Usaha" style="swimlane;" vertex="1" parent="1">
-          <mxGeometry x="180" y="40" width="420" height="400" as="geometry" />
+          <mxGeometry x="170" y="40" width="430" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="pbN27gM1wc-V037lJpP_-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="pykPLvWLdNS0nIlNWobR-3" target="pbN27gM1wc-V037lJpP_-2">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="pykPLvWLdNS0nIlNWobR-3" value="Mulai" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
-          <mxGeometry x="10" y="40" width="100" height="60" as="geometry" />
+          <mxGeometry x="160" y="40" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="pbN27gM1wc-V037lJpP_-2" target="GuyrhlzvbFBuvyAXKYbL-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pbN27gM1wc-V037lJpP_-2" value="Input data&lt;div&gt;surat&amp;nbsp;&lt;br&gt;&lt;div&gt;masuk &amp;amp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;Keluar&lt;/div&gt;&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="160" y="140" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-1" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Surat Masuk" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="310" y="270" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="GuyrhlzvbFBuvyAXKYbL-13" target="GuyrhlzvbFBuvyAXKYbL-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="GuyrhlzvbFBuvyAXKYbL-13" target="GuyrhlzvbFBuvyAXKYbL-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-13" value="Surat&amp;nbsp;&lt;div&gt;Masuk&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;rounded=1;arcSize=12;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="175" y="245" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="GuyrhlzvbFBuvyAXKYbL-17" target="GuyrhlzvbFBuvyAXKYbL-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-17" value="Surat&amp;nbsp;&lt;div&gt;Keluar&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;rounded=1;arcSize=12;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="40" y="245" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-21" value="&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Surat Keluar" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.dataStoreID;align=left;spacingLeft=3;points=[[0,0],[0.5,0],[1,0],[0,0.5],[1,0.5],[0,1],[0.5,1],[1,1]];" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="230" y="385" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-1" source="GuyrhlzvbFBuvyAXKYbL-23" target="GuyrhlzvbFBuvyAXKYbL-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-23" value="Dari Sekolah" style="whiteSpace=wrap;html=1;strokeWidth=2;rounded=1;arcSize=12;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-1">
+          <mxGeometry x="20" y="370" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="pykPLvWLdNS0nIlNWobR-2" value="Kepala Sekolah" style="swimlane;" vertex="1" parent="1">
-          <mxGeometry x="640" y="40" width="400" height="400" as="geometry" />
+          <mxGeometry x="620" y="40" width="410" height="520" as="geometry" />
         </mxCell>
         <mxCell id="pykPLvWLdNS0nIlNWobR-4" value="Selesai" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-2">
-          <mxGeometry x="50" y="130" width="100" height="60" as="geometry" />
+          <mxGeometry x="250" y="380" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="pykPLvWLdNS0nIlNWobR-2" source="GuyrhlzvbFBuvyAXKYbL-6" target="pykPLvWLdNS0nIlNWobR-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-6" value="Disposisi" style="whiteSpace=wrap;html=1;align=center;dashed=0;spacingLeft=3;" vertex="1" parent="pykPLvWLdNS0nIlNWobR-2">
+          <mxGeometry x="240" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GuyrhlzvbFBuvyAXKYbL-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="GuyrhlzvbFBuvyAXKYbL-1" target="GuyrhlzvbFBuvyAXKYbL-6">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -261,7 +261,7 @@ public class DashboardArsipkanSurat extends javax.swing.JPanel {
             
             String[] atributs = {"no_surat","perihal","deskripsi","tanggal_dikeluarkan","penerima","nama_surat","file_digital"};
             System.out.println(this.pathFile);
-            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalKeluar.getText(),inputPenerima.getText(),NamaFile.getText()};
+            String[] values = {InputNoSurat.getText(),inputPerihal.getText(),inputDeskripsi.getText(),inputTanggalKeluar.getText(),inputPenerima.getText(),NamaFile.getText(),this.pathFile};
             int hasil = query.setNamaTabel("surat").setAtribut(atributs).setValue(values).setValuePath(this.pathFile).insert();
 
                 if(hasil == 1){
