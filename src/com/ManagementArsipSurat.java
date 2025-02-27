@@ -113,7 +113,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonTrash.setBounds(30, 400, 180, 40);
 
         ButtonKelolaAccount.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        ButtonKelolaAccount.setText("Kelola Account");
+        ButtonKelolaAccount.setText("Gunakan akun");
         ButtonKelolaAccount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 255), 5));
         ButtonKelolaAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         LabelDashboardLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelDashboardLogin.setText("Dashboard Login");
         HalamanLogin.add(LabelDashboardLogin);
-        LabelDashboardLogin.setBounds(0, 10, 610, 28);
+        LabelDashboardLogin.setBounds(0, 10, 610, 32);
 
         FieldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
