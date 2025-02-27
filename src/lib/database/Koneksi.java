@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 
-class Koneksi {
+public class Koneksi {
     private static Connection connection;
     private static String url = "jdbc:mysql://localhost:3306/arsip_surat";
     private static String username = "root";

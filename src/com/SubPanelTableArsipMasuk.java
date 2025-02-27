@@ -18,6 +18,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import lib.database.Query;
 import penghubungPanel.Penghubung;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -242,7 +245,16 @@ Penghubung DashboardUtama;
     }//GEN-LAST:event_ButtonEditActionPerformed
 
     private void ButtonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCetakActionPerformed
-
+        
+          try {
+            JasperPrint jp = JasperFillManager.fillReport(
+                getClass().getResourceAsStream("cetak1.jasper"), null, lib.database.Koneksi.Koneksi());
+            JasperViewer.viewReport(jp, false);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
+        }
+          
 
     }//GEN-LAST:event_ButtonCetakActionPerformed
 

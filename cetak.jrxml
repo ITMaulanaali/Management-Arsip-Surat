@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e9bae266-6788-4e94-af3c-26b2a51d96a2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select*from surat]]>
+	</queryString>
+	<field name="id_surat" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_surat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="perihal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deskripsi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_surat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="file_digital" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_diterima" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal_dikeluarkan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="penerima" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2507599f-38f5-41d8-aac8-6bf662c2b581" x="0" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[id_surat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="46fc47bb-c94f-47b1-90c3-a1793b0b3296" x="61" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[no_surat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9444c7fd-3cb1-44a4-a56c-e7ab67ab5944" x="122" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[perihal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cebd3862-ce5a-4ef0-b21a-1415e4be60ca" x="183" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[deskripsi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a82120a2-5467-4abf-92fc-c949016763f8" x="244" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[nama_surat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1392951f-20db-4afa-b3ac-73f26366cc67" x="305" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[file_digital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b3e6ec77-4f17-450f-bfcc-e73a1dc10c7d" x="366" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[tanggal_diterima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a7e975d5-0f62-4c1b-a4c3-fe80c8242e27" x="427" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[tanggal_dikeluarkan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="922a5d69-b655-4806-acda-9dcdaa038e14" x="488" y="0" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[penerima]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement uuid="97086fee-14b7-427e-99b5-e31de97ab560" x="0" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7bae0c66-313d-4b8b-a264-7f1b5f6dd95f" x="61" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fc2917e7-aeb7-4bb9-9004-a611ba6c7d63" x="122" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{perihal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a58d1ba3-6b30-4855-894a-84b9a2aaf618" x="183" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{deskripsi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f173c94-06e3-42db-bcce-8478a8f52bd9" x="244" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nama_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4026d55a-257c-41ef-95f1-2adf12811bd7" x="305" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{file_digital}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5d99ebb3-b677-45f9-beba-325e2f60effa" x="366" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tanggal_diterima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f0d1aab-9221-4524-a6e0-09685aa9091e" x="427" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tanggal_dikeluarkan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ab6ea48d-8c85-4e27-9700-7a610906b6cf" x="488" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{penerima}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
