@@ -113,7 +113,7 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonTrash.setBounds(30, 400, 180, 40);
 
         ButtonKelolaAccount.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        ButtonKelolaAccount.setText("Gunakan akun");
+        ButtonKelolaAccount.setText("Account");
         ButtonKelolaAccount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 255), 5));
         ButtonKelolaAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
