@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FUJITSU/Documents/Management-Arsip-Surat/src/com/DashboardArsipMasuk.java</file>
-            <file>file:/C:/Users/FUJITSU/Documents/Management-Arsip-Surat/src/com/cetak1.jrxml</file>
-            <file>file:/C:/Users/FUJITSU/Documents/Management-Arsip-Surat/src/lib/database/Koneksi.java</file>
-            <file>file:/C:/Users/FUJITSU/Documents/Management-Arsip-Surat/src/com/SubPanelTableArsipMasuk.java</file>
-            <file>file:/C:/Users/FUJITSU/Documents/Management-Arsip-Surat/src/com/ManagementArsipSurat.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/com/ManagementArsipSurat.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/com/SubPanelEdit.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/lib/database/Koneksi.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/com/SubPanelTableArsipMasuk.java</file>
         </group>
     </open-files>
 </project-private>

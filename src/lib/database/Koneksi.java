@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 public class Koneksi {
     private static Connection connection;
     private static String url = "jdbc:mysql://localhost:3306/arsip_surat";
-    private static String username = "root";
-    private static String password = "";
+    private static String username = "aku";
+    private static String password = "123";
     
     public static Connection Koneksi(){
         if(connection == null){
