@@ -1,4 +1,4 @@
-import com.menuUtama.TampilanUtamaMenu;
+import app.menuUtama.TampilanUtamaMenu;
 
 public class Main extends javax.swing.JFrame {
 

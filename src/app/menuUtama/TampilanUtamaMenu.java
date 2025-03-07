@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.menuUtama;
-import com.halamanAwal.Dashboardidentitasinstansi;
+package app.menuUtama;
 /**
  *
  * @author lan
@@ -26,7 +25,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        HalamanMenu = new javax.swing.JPanel();
+        PanelMenu = new javax.swing.JPanel();
         ButtonSuratMasuk = new javax.swing.JButton();
         ButtonSuratKeluar = new javax.swing.JButton();
         ButtonArsipkanSurat = new javax.swing.JButton();
@@ -38,11 +37,11 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1200, 600));
         setPreferredSize(new java.awt.Dimension(1200, 600));
 
-        HalamanMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        HalamanMenu.setMaximumSize(new java.awt.Dimension(1050, 450));
-        HalamanMenu.setMinimumSize(new java.awt.Dimension(1050, 450));
-        HalamanMenu.setPreferredSize(new java.awt.Dimension(1050, 450));
-        HalamanMenu.setLayout(null);
+        PanelMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PanelMenu.setMaximumSize(new java.awt.Dimension(1050, 450));
+        PanelMenu.setMinimumSize(new java.awt.Dimension(1050, 450));
+        PanelMenu.setPreferredSize(new java.awt.Dimension(1050, 450));
+        PanelMenu.setLayout(null);
 
         ButtonSuratMasuk.setText("Surat Masuk");
         ButtonSuratMasuk.setMaximumSize(new java.awt.Dimension(150, 100));
@@ -58,7 +57,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonSuratMasukActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonSuratMasuk);
+        PanelMenu.add(ButtonSuratMasuk);
         ButtonSuratMasuk.setBounds(100, 75, 150, 100);
 
         ButtonSuratKeluar.setText("Surat Keluar");
@@ -70,7 +69,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonSuratKeluarActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonSuratKeluar);
+        PanelMenu.add(ButtonSuratKeluar);
         ButtonSuratKeluar.setBounds(330, 75, 150, 100);
 
         ButtonArsipkanSurat.setText("Arsipkan Surat");
@@ -82,7 +81,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonArsipkanSuratActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonArsipkanSurat);
+        PanelMenu.add(ButtonArsipkanSurat);
         ButtonArsipkanSurat.setBounds(570, 75, 150, 100);
 
         ButtonTrash.setText("Trash");
@@ -94,7 +93,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonTrashActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonTrash);
+        PanelMenu.add(ButtonTrash);
         ButtonTrash.setBounds(100, 250, 150, 100);
 
         ButtonKelolaAccount.setText("Kelola Account");
@@ -106,7 +105,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonKelolaAccountActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonKelolaAccount);
+        PanelMenu.add(ButtonKelolaAccount);
         ButtonKelolaAccount.setBounds(800, 75, 150, 100);
 
         ButtonHistory.setText("History");
@@ -115,7 +114,7 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
                 ButtonHistoryActionPerformed(evt);
             }
         });
-        HalamanMenu.add(ButtonHistory);
+        PanelMenu.add(ButtonHistory);
         ButtonHistory.setBounds(800, 250, 150, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -124,13 +123,13 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(HalamanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addComponent(HalamanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(PanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,10 +138,10 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonSuratMasukMouseClicked
 
     private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
-        HalamanMenu.removeAll();
-        HalamanMenu.add(new Dashboardidentitasinstansi());
-        HalamanMenu.revalidate();
-        HalamanMenu.repaint();
+//        PanelMenu.removeAll();
+//        PanelMenu.add(new Dashboardidentitasinstansi());
+//        PanelMenu.revalidate();
+//        PanelMenu.repaint();
     }//GEN-LAST:event_ButtonSuratMasukActionPerformed
 
     private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
@@ -173,6 +172,6 @@ public class TampilanUtamaMenu extends javax.swing.JPanel {
     private javax.swing.JButton ButtonSuratKeluar;
     private javax.swing.JButton ButtonSuratMasuk;
     private javax.swing.JButton ButtonTrash;
-    private javax.swing.JPanel HalamanMenu;
+    private javax.swing.JPanel PanelMenu;
     // End of variables declaration//GEN-END:variables
 }

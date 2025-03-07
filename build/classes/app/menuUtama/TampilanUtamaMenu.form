@@ -29,7 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
-              <Component id="HalamanMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="PanelMenu" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -37,13 +37,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="75" pref="75" max="-2" attributes="0"/>
-              <Component id="HalamanMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="PanelMenu" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="HalamanMenu">
+    <Container class="javax.swing.JPanel" name="PanelMenu">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
