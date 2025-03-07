@@ -1,24 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com;
-
-import java.awt.Color;
-import javax.swing.JPanel;
-
+package com.menuUtama;
+import com.halamanAwal.Dashboardidentitasinstansi;
 /**
  *
  * @author lan
  */
-public class ManagementArsipSurat extends javax.swing.JFrame {
+public class TampilanUtamaMenu extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManagementArsipSurat
+     * Creates new form TampilanUtamaMenu
      */
-    public ManagementArsipSurat() {
+    public TampilanUtamaMenu() {
         initComponents();
-        
     }
 
     /**
@@ -30,7 +26,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelUtama = new javax.swing.JPanel();
         HalamanMenu = new javax.swing.JPanel();
         ButtonSuratMasuk = new javax.swing.JButton();
         ButtonSuratKeluar = new javax.swing.JButton();
@@ -38,20 +33,21 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         ButtonTrash = new javax.swing.JButton();
         ButtonKelolaAccount = new javax.swing.JButton();
         ButtonHistory = new javax.swing.JButton();
-        Logo = new javax.swing.JLabel();
-        PanelWadah = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Management Arsip Surat");
-
-        PanelUtama.setPreferredSize(new java.awt.Dimension(1226, 617));
-        PanelUtama.setLayout(null);
+        setMaximumSize(new java.awt.Dimension(1200, 600));
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         HalamanMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        HalamanMenu.setPreferredSize(new java.awt.Dimension(240, 600));
+        HalamanMenu.setMaximumSize(new java.awt.Dimension(1050, 450));
+        HalamanMenu.setMinimumSize(new java.awt.Dimension(1050, 450));
+        HalamanMenu.setPreferredSize(new java.awt.Dimension(1050, 450));
         HalamanMenu.setLayout(null);
 
         ButtonSuratMasuk.setText("Surat Masuk");
+        ButtonSuratMasuk.setMaximumSize(new java.awt.Dimension(150, 100));
+        ButtonSuratMasuk.setMinimumSize(new java.awt.Dimension(150, 100));
+        ButtonSuratMasuk.setPreferredSize(new java.awt.Dimension(150, 100));
         ButtonSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ButtonSuratMasukMouseClicked(evt);
@@ -63,43 +59,55 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
             }
         });
         HalamanMenu.add(ButtonSuratMasuk);
-        ButtonSuratMasuk.setBounds(30, 160, 180, 40);
+        ButtonSuratMasuk.setBounds(100, 75, 150, 100);
 
         ButtonSuratKeluar.setText("Surat Keluar");
+        ButtonSuratKeluar.setMaximumSize(new java.awt.Dimension(150, 100));
+        ButtonSuratKeluar.setMinimumSize(new java.awt.Dimension(150, 100));
+        ButtonSuratKeluar.setPreferredSize(new java.awt.Dimension(150, 100));
         ButtonSuratKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonSuratKeluarActionPerformed(evt);
             }
         });
         HalamanMenu.add(ButtonSuratKeluar);
-        ButtonSuratKeluar.setBounds(30, 220, 180, 40);
+        ButtonSuratKeluar.setBounds(330, 75, 150, 100);
 
         ButtonArsipkanSurat.setText("Arsipkan Surat");
+        ButtonArsipkanSurat.setMaximumSize(new java.awt.Dimension(150, 100));
+        ButtonArsipkanSurat.setMinimumSize(new java.awt.Dimension(150, 100));
+        ButtonArsipkanSurat.setPreferredSize(new java.awt.Dimension(150, 100));
         ButtonArsipkanSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonArsipkanSuratActionPerformed(evt);
             }
         });
         HalamanMenu.add(ButtonArsipkanSurat);
-        ButtonArsipkanSurat.setBounds(30, 280, 180, 40);
+        ButtonArsipkanSurat.setBounds(570, 75, 150, 100);
 
         ButtonTrash.setText("Trash");
+        ButtonTrash.setMaximumSize(new java.awt.Dimension(150, 100));
+        ButtonTrash.setMinimumSize(new java.awt.Dimension(150, 100));
+        ButtonTrash.setPreferredSize(new java.awt.Dimension(150, 100));
         ButtonTrash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonTrashActionPerformed(evt);
             }
         });
         HalamanMenu.add(ButtonTrash);
-        ButtonTrash.setBounds(30, 400, 180, 40);
+        ButtonTrash.setBounds(100, 250, 150, 100);
 
         ButtonKelolaAccount.setText("Kelola Account");
+        ButtonKelolaAccount.setMaximumSize(new java.awt.Dimension(150, 100));
+        ButtonKelolaAccount.setMinimumSize(new java.awt.Dimension(150, 100));
+        ButtonKelolaAccount.setPreferredSize(new java.awt.Dimension(150, 100));
         ButtonKelolaAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonKelolaAccountActionPerformed(evt);
             }
         });
         HalamanMenu.add(ButtonKelolaAccount);
-        ButtonKelolaAccount.setBounds(30, 340, 180, 40);
+        ButtonKelolaAccount.setBounds(800, 75, 150, 100);
 
         ButtonHistory.setText("History");
         ButtonHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -108,36 +116,34 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
             }
         });
         HalamanMenu.add(ButtonHistory);
-        ButtonHistory.setBounds(30, 460, 180, 40);
+        ButtonHistory.setBounds(800, 250, 150, 100);
 
-        Logo.setIcon(new javax.swing.ImageIcon("/home/lan/Downloads/images.jpeg")); // NOI18N
-        Logo.setText("jLabel1");
-        HalamanMenu.add(Logo);
-        Logo.setBounds(50, 10, 150, 140);
-
-        PanelUtama.add(HalamanMenu);
-        HalamanMenu.setBounds(0, 0, 240, 600);
-
-        PanelWadah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PanelWadah.setMinimumSize(new java.awt.Dimension(950, 600));
-        PanelWadah.setPreferredSize(new java.awt.Dimension(950, 600));
-        PanelWadah.setLayout(new java.awt.BorderLayout());
-        PanelUtama.add(PanelWadah);
-        PanelWadah.setBounds(260, 0, 950, 600);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(HalamanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(HalamanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSuratMasukMouseClicked
+
+    }//GEN-LAST:event_ButtonSuratMasukMouseClicked
+
+    private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
+        HalamanMenu.removeAll();
+        HalamanMenu.add(new Dashboardidentitasinstansi());
+        HalamanMenu.revalidate();
+        HalamanMenu.repaint();
+    }//GEN-LAST:event_ButtonSuratMasukActionPerformed
 
     private void ButtonSuratKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratKeluarActionPerformed
         // TODO add your handling code here:
@@ -159,53 +165,6 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonHistoryActionPerformed
 
-    private void ButtonSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSuratMasukMouseClicked
-
-    }//GEN-LAST:event_ButtonSuratMasukMouseClicked
-
-    private void ButtonSuratMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSuratMasukActionPerformed
-        PanelWadah.removeAll();
-        PanelWadah.add(new DashboardArsipMasuk());
-        PanelWadah.revalidate();
-        PanelWadah.repaint();
-    }//GEN-LAST:event_ButtonSuratMasukActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagementArsipSurat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagementArsipSurat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagementArsipSurat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagementArsipSurat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ManagementArsipSurat Frame = new ManagementArsipSurat();
-                Frame.setLocationRelativeTo(null);
-                Frame.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonArsipkanSurat;
@@ -215,8 +174,5 @@ public class ManagementArsipSurat extends javax.swing.JFrame {
     private javax.swing.JButton ButtonSuratMasuk;
     private javax.swing.JButton ButtonTrash;
     private javax.swing.JPanel HalamanMenu;
-    private javax.swing.JLabel Logo;
-    private javax.swing.JPanel PanelUtama;
-    private javax.swing.JPanel PanelWadah;
     // End of variables declaration//GEN-END:variables
 }
