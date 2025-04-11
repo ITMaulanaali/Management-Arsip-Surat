@@ -1,4 +1,4 @@
-package lib.database;
+package lib;
 
 import java.io.File;
 import java.io.FileInputStream;
