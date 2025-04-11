@@ -1,11 +1,11 @@
-import app.menuUtama.TampilanUtamaMenu;
+import admin.DashboardUtama;
 
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
         PanelWadah.removeAll();
-        PanelWadah.add(new TampilanUtamaMenu());
+        PanelWadah.add(new DashboardUtama());
         PanelWadah.revalidate();
         PanelWadah.repaint();
     }
