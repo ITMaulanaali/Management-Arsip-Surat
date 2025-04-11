@@ -10,9 +10,9 @@ public class Koneksi {
 //    private static String username = "aku";
 //    private static String password = "123";
     
-    private static String url = "jdbc:mysql://project_stovefunny:1035790129012485324edba85b29c877307139e0@d5ymf.h.filess.io:3307/project_stovefunny";
-    private static String username = "project_stovefunny";
-    private static String password = "1035790129012485324edba85b29c877307139e0";
+    private static String url = "jdbc:mysql://arsipSurat_lifegiftgo:ef1d669241e7179cc85c533f83b03598be77ed66@4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
+    private static String username = "arsipSurat_lifegiftgo";
+    private static String password = "ef1d669241e7179cc85c533f83b03598be77ed66";
     
 //    private static String url = "jdbc:postgresql://eo591.h.filess.io:5432/postgrearsipsurat_coffeeiron";
 //    private static String username = "postgrearsipsurat_coffeeiron";
@@ -22,7 +22,7 @@ public class Koneksi {
     public static Connection Koneksi(){
         if(connection == null){
             try{
-                Class.forName("org.postgresql.Driver");
+//                Class.forName("org.postgresql.Driver");
                 Koneksi.connection = DriverManager.getConnection(Koneksi.url,Koneksi.username,Koneksi.password);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null,"Gagal terkoneksi Database: " + e.getMessage());
