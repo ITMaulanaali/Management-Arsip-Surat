@@ -26,21 +26,82 @@ public class DashboardUtama extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        buttonSuratMasuk = new javax.swing.JLabel();
+        buttonSuratKeluar = new javax.swing.JLabel();
+        buttonKelolaAkun = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(1200, 600));
+
+        header.setBackground(new java.awt.Color(125, 10, 10));
+        header.setMinimumSize(new java.awt.Dimension(1200, 50));
+        header.setPreferredSize(new java.awt.Dimension(1200, 80));
+
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Aplikasi Surat Menyurat");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addContainerGap(781, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-masuk.png"))); // NOI18N
+
+        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-keluar.png"))); // NOI18N
+
+        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/kelola-akun.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(buttonSuratMasuk)
+                        .addGap(112, 112, 112)
+                        .addComponent(buttonSuratKeluar)
+                        .addGap(112, 112, 112)
+                        .addComponent(buttonKelolaAkun))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonSuratMasuk)
+                    .addComponent(buttonSuratKeluar)
+                    .addComponent(buttonKelolaAkun))
+                .addGap(0, 291, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel buttonKelolaAkun;
+    private javax.swing.JLabel buttonSuratKeluar;
+    private javax.swing.JLabel buttonSuratMasuk;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
