@@ -26,21 +26,219 @@ public class DashboardUtama extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        buttonSuratMasuk = new javax.swing.JLabel();
+        buttonSuratKeluar = new javax.swing.JLabel();
+        buttonKelolaAkun = new javax.swing.JLabel();
+        backgroundSurat1 = new javax.swing.JLabel();
+        backgroundSurat2 = new javax.swing.JLabel();
+        backgroundSurat3 = new javax.swing.JLabel();
+        backgroundSurat4 = new javax.swing.JLabel();
+        backgroundSurat5 = new javax.swing.JLabel();
+        backgroundSurat6 = new javax.swing.JLabel();
+        backgroundSurat7 = new javax.swing.JLabel();
+        backgroundSurat8 = new javax.swing.JLabel();
+        backgroundSurat9 = new javax.swing.JLabel();
+        backgroundSurat11 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(1200, 600));
+
+        header.setBackground(new java.awt.Color(125, 10, 10));
+        header.setMinimumSize(new java.awt.Dimension(1200, 50));
+        header.setPreferredSize(new java.awt.Dimension(1200, 80));
+
+        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel1.setText("Aplikasi Surat Menyurat");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addContainerGap(781, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-masuk.png"))); // NOI18N
+
+        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-keluar.png"))); // NOI18N
+
+        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/kelola-akun.png"))); // NOI18N
+
+        backgroundSurat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
+        backgroundSurat1.setMaximumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat1.setMinimumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat1.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        backgroundSurat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat80x30.png"))); // NOI18N
+
+        backgroundSurat3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat100x50asli.png"))); // NOI18N
+
+        backgroundSurat4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat80x30.png"))); // NOI18N
+
+        backgroundSurat5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat80x30.png"))); // NOI18N
+
+        backgroundSurat6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat80x30.png"))); // NOI18N
+
+        backgroundSurat7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
+        backgroundSurat7.setMaximumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat7.setMinimumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat7.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        backgroundSurat8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat100x50.png"))); // NOI18N
+        backgroundSurat8.setMaximumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat8.setMinimumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat8.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        backgroundSurat9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
+        backgroundSurat9.setMaximumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat9.setMinimumSize(new java.awt.Dimension(100, 50));
+        backgroundSurat9.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        backgroundSurat11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat100x50.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backgroundSurat5)
+                                .addGap(277, 277, 277)
+                                .addComponent(backgroundSurat7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(buttonSuratMasuk)
+                                .addGap(112, 112, 112)
+                                .addComponent(buttonSuratKeluar)
+                                .addGap(112, 112, 112)
+                                .addComponent(buttonKelolaAkun)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backgroundSurat8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(184, 184, 184)
+                .addComponent(backgroundSurat4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backgroundSurat1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backgroundSurat2)
+                        .addGap(239, 239, 239))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(1182, Short.MAX_VALUE)
+                    .addComponent(backgroundSurat3)
+                    .addGap(18, 18, 18)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(535, 535, 535)
+                    .addComponent(backgroundSurat6)
+                    .addContainerGap(585, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(backgroundSurat9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1056, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(583, Short.MAX_VALUE)
+                    .addComponent(backgroundSurat11)
+                    .addGap(517, 517, 517)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(backgroundSurat7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonSuratMasuk)
+                                    .addComponent(buttonSuratKeluar)
+                                    .addComponent(buttonKelolaAkun)))
+                            .addComponent(backgroundSurat5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(backgroundSurat8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backgroundSurat2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(backgroundSurat1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 74, Short.MAX_VALUE)))
+                .addGap(13, 13, 13)
+                .addComponent(backgroundSurat4)
+                .addGap(70, 70, 70))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(166, 166, 166)
+                    .addComponent(backgroundSurat3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(476, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(646, Short.MAX_VALUE)
+                    .addComponent(backgroundSurat6)
+                    .addContainerGap()))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(523, Short.MAX_VALUE)
+                    .addComponent(backgroundSurat9, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(127, 127, 127)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(509, Short.MAX_VALUE)
+                    .addComponent(backgroundSurat11, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(129, 129, 129)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backgroundSurat1;
+    private javax.swing.JLabel backgroundSurat11;
+    private javax.swing.JLabel backgroundSurat2;
+    private javax.swing.JLabel backgroundSurat3;
+    private javax.swing.JLabel backgroundSurat4;
+    private javax.swing.JLabel backgroundSurat5;
+    private javax.swing.JLabel backgroundSurat6;
+    private javax.swing.JLabel backgroundSurat7;
+    private javax.swing.JLabel backgroundSurat8;
+    private javax.swing.JLabel backgroundSurat9;
+    private javax.swing.JLabel buttonKelolaAkun;
+    private javax.swing.JLabel buttonSuratKeluar;
+    private javax.swing.JLabel buttonSuratMasuk;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
