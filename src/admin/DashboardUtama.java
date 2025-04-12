@@ -71,11 +71,11 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-masuk.png"))); // NOI18N
+        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-masuk200px.png"))); // NOI18N
 
-        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-keluar.png"))); // NOI18N
+        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-keluar200px.png"))); // NOI18N
 
-        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/kelola-akun.png"))); // NOI18N
+        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/kelola-akun200px.png"))); // NOI18N
 
         backgroundSurat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
         backgroundSurat1.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -98,9 +98,6 @@ public class DashboardUtama extends javax.swing.JPanel {
         backgroundSurat7.setPreferredSize(new java.awt.Dimension(100, 50));
 
         backgroundSurat8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat100x50.png"))); // NOI18N
-        backgroundSurat8.setMaximumSize(new java.awt.Dimension(100, 50));
-        backgroundSurat8.setMinimumSize(new java.awt.Dimension(100, 50));
-        backgroundSurat8.setPreferredSize(new java.awt.Dimension(100, 50));
 
         backgroundSurat9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
         backgroundSurat9.setMaximumSize(new java.awt.Dimension(100, 50));
@@ -132,7 +129,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                                 .addGap(112, 112, 112)
                                 .addComponent(buttonKelolaAkun)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backgroundSurat8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backgroundSurat8)
                         .addGap(40, 40, 40))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(184, 184, 184)
@@ -190,9 +187,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                         .addComponent(backgroundSurat8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backgroundSurat2))
+                    .addComponent(backgroundSurat2)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(backgroundSurat1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
