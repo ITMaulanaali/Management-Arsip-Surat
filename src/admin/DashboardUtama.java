@@ -44,6 +44,7 @@ public class DashboardUtama extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         header.setBackground(new java.awt.Color(125, 10, 10));
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
@@ -65,17 +66,14 @@ public class DashboardUtama extends javax.swing.JPanel {
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addContainerGap(19, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-masuk200px.png"))); // NOI18N
+        buttonSuratMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk200px.png"))); // NOI18N
 
-        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/surat-keluar200px.png"))); // NOI18N
+        buttonSuratKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar200px.png"))); // NOI18N
 
-        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/kelola-akun200px.png"))); // NOI18N
+        buttonKelolaAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/kelola-akun200px.png"))); // NOI18N
 
         backgroundSurat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat90x40.png"))); // NOI18N
         backgroundSurat1.setMaximumSize(new java.awt.Dimension(100, 50));
