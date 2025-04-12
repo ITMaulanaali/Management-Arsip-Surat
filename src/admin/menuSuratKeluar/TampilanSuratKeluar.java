@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package admin.menuSuratMasuk;
+package admin.menuSuratKeluar;
+
+import admin.menuSuratMasuk.*;
 
 /**
  *
  * @author lan
  */
-public class TampilanSuratMasuk extends javax.swing.JPanel {
+public class TampilanSuratKeluar extends javax.swing.JPanel {
 
     /**
      * Creates new form SuratMasuk
      */
-    public TampilanSuratMasuk() {
+    public TampilanSuratKeluar() {
         initComponents();
     }
 
@@ -76,7 +78,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Surat Masuk");
+        jLabel4.setText("Surat Keluar");
 
         iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode50px.png"))); // NOI18N
 
@@ -104,7 +106,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5))
                     .addComponent(jLabel4))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,13 +163,13 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Icon Status", "Data Surat", "Checkbox"
+                "No", "Perihal", "Tanggal Dikirim", "Kategori", "Alamat Tujuan", "File"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
