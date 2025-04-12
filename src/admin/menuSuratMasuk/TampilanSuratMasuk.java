@@ -84,7 +84,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         jLabel5.setText("Periode");
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jLabel6.setText("Tambah");
+        jLabel6.setText("Arsipkan");
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
 
@@ -170,7 +170,6 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 "Icon Status", "Data Surat", "Checkbox"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(225, 80));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
