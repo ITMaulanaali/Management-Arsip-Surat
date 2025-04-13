@@ -90,7 +90,8 @@ public class Login extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.setMaximumSize(new java.awt.Dimension(83, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(83, 40));
+        jButton1.setMinimumSize(new java.awt.Dimension(70, 24));
+        jButton1.setPreferredSize(new java.awt.Dimension(70, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
