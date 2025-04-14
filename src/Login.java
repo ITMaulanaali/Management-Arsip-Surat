@@ -45,7 +45,7 @@ public class Login extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Selamat Datang");
@@ -67,18 +67,18 @@ public class Login extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(195, 184, 184));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 380));
 
-        jLabel2.setFont(new java.awt.Font("C059", 1, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Login");
 
-        jLabel3.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Username");
 
         jTextField1.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         jTextField1.setPreferredSize(new java.awt.Dimension(64, 35));
 
-        jLabel4.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Password");
 
@@ -86,7 +86,7 @@ public class Login extends javax.swing.JPanel {
         jTextField2.setPreferredSize(new java.awt.Dimension(64, 35));
 
         jButton1.setBackground(new java.awt.Color(125, 10, 10));
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.setMaximumSize(new java.awt.Dimension(83, 40));
@@ -145,10 +145,10 @@ public class Login extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 1205, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(353, 353, 353)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(347, 347, 347))
         );
         layout.setVerticalGroup(

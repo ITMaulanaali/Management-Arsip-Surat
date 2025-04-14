@@ -46,7 +46,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         jTextField1.setMinimumSize(new java.awt.Dimension(0, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(600, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama", "Username", "Role" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

@@ -50,7 +50,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Aplikasi Surat Menyurat");
@@ -62,7 +62,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addContainerGap(781, Short.MAX_VALUE))
+                .addContainerGap(802, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +80,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel6.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Surat Keluar");
 
@@ -92,7 +92,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +108,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
         jLabel7.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel7.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Surat Masuk");
 
@@ -120,7 +120,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +133,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         jLabel4.setText("4");
 
-        jLabel2.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Logout");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -144,7 +144,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addGap(198, 198, 198))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

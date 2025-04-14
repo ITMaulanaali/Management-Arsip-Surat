@@ -39,16 +39,18 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField1.setText("Cari");
         jTextField1.setMinimumSize(new java.awt.Dimension(0, 40));
         jTextField1.setPreferredSize(new java.awt.Dimension(600, 40));
 
+        jComboBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama", "Username", "Role" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
 
         jButton2.setBackground(new java.awt.Color(206, 31, 31));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cari");
         jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -59,9 +61,11 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
         });
 
         jButton1.setBackground(new java.awt.Color(238, 238, 238));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setText("Tambah");
         jButton1.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

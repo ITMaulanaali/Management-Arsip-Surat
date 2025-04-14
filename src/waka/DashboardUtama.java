@@ -49,7 +49,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Aplikasi Surat Menyurat");
@@ -68,13 +68,13 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(189, 189, 189));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 500));
 
-        jLabel15.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel15.setText("Logout");
 
@@ -85,7 +85,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel15)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +108,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel7.setText("Perihal:            Lomba LKS");
 
         jButton2.setBackground(new java.awt.Color(206, 31, 31));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Lihat");
         jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -164,7 +164,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel10.setText("Perihal:            Anggaran Proyek Baru");
 
         jButton3.setBackground(new java.awt.Color(206, 31, 31));
-        jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Lihat");
         jButton3.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -238,7 +238,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

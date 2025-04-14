@@ -51,7 +51,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         header1.setMinimumSize(new java.awt.Dimension(1200, 50));
         header1.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Aplikasi Surat Menyurat");
@@ -63,24 +63,24 @@ public class ArsipkanSurat extends javax.swing.JPanel {
             .addGroup(header1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel3)
-                .addContainerGap(771, Short.MAX_VALUE))
+                .addContainerGap(792, Short.MAX_VALUE))
         );
         header1Layout.setVerticalGroup(
             header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Arsipkan Surat");
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Nomor Surat");
 
         jTextField2.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Surat Diterima");
 
@@ -92,27 +92,27 @@ public class ArsipkanSurat extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Pengirim");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lomba", "Kerja Sama" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(76, 30));
 
-        jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
 
         jTextField4.setText("Nama Instansi");
         jTextField4.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Perihal");
 
         jTextField5.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel9.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("File");
 
@@ -120,13 +120,13 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jTextField6.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jButton2.setBackground(new java.awt.Color(125, 10, 10));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Arsipkan");
         jButton2.setMinimumSize(new java.awt.Dimension(83, 40));
         jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton1.setText("Kembali");
         jButton1.setMinimumSize(new java.awt.Dimension(83, 40));
         jButton1.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -204,7 +204,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addGap(0, 90, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

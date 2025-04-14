@@ -49,7 +49,7 @@ public class TambahUser extends javax.swing.JPanel {
         header1.setMinimumSize(new java.awt.Dimension(1200, 50));
         header1.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Aplikasi Surat Menyurat");
@@ -71,7 +71,7 @@ public class TambahUser extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(195, 184, 184));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
 
-        jLabel2.setFont(new java.awt.Font("C059", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Tambahkan User");
 
@@ -83,11 +83,11 @@ public class TambahUser extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Username");
 
-        jLabel5.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Nama");
 
@@ -99,11 +99,11 @@ public class TambahUser extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Role");
 
-        jLabel7.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Password");
 
@@ -114,7 +114,7 @@ public class TambahUser extends javax.swing.JPanel {
         jComboBox1.setPreferredSize(new java.awt.Dimension(76, 30));
 
         jButton1.setBackground(new java.awt.Color(125, 10, 10));
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Simpan");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -122,7 +122,7 @@ public class TambahUser extends javax.swing.JPanel {
         jButton1.setPreferredSize(new java.awt.Dimension(70, 50));
 
         jButton2.setBackground(new java.awt.Color(196, 196, 196));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jButton2.setText("Batal");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton2.setMaximumSize(new java.awt.Dimension(83, 40));

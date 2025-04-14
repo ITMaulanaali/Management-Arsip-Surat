@@ -47,23 +47,23 @@ public class SuratByPeriode extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Mulai Tanggal");
 
         jTextField2.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Selesai Tanggal");
 
         jTextField5.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Total Surat: XX");
 
-        jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Total Disposisi: XX");
 
@@ -91,7 +91,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setBackground(new java.awt.Color(206, 31, 31));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Cetak");
         jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -102,7 +102,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
         });
 
         jButton3.setBackground(new java.awt.Color(206, 31, 31));
-        jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Download");
         jButton3.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -112,7 +112,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Kembali");
 
