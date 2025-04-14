@@ -123,7 +123,7 @@ public class TambahUser extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(196, 196, 196));
         jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jButton2.setText("Simpan");
+        jButton2.setText("Batal");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jButton2.setMaximumSize(new java.awt.Dimension(83, 40));
         jButton2.setPreferredSize(new java.awt.Dimension(70, 50));
