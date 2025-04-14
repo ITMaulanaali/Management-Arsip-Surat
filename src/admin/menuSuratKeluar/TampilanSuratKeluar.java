@@ -53,6 +53,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
         jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -72,7 +73,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
         iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode50px.png"))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Periode");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -97,7 +98,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Arsipkan");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

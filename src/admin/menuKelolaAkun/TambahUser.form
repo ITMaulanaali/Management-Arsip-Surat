@@ -80,7 +80,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="36" style="1"/>
+              <Font name="Times New Roman" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -175,7 +175,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="C059" size="24" style="1"/>
+              <Font name="Times New Roman" size="24" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Tambahkan User"/>
@@ -195,7 +195,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="C059" size="18" style="1"/>
+              <Font name="Times New Roman" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Username"/>
@@ -204,7 +204,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="C059" size="18" style="1"/>
+              <Font name="Times New Roman" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Nama"/>
@@ -224,7 +224,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="C059" size="18" style="1"/>
+              <Font name="Times New Roman" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Role"/>
@@ -233,7 +233,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="C059" size="18" style="1"/>
+              <Font name="Times New Roman" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Password"/>
@@ -269,7 +269,7 @@
               <Color blue="a" green="a" red="7d" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="15" style="1"/>
+              <Font name="Times New Roman" size="15" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -296,7 +296,7 @@
               <Color blue="c4" green="c4" red="c4" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Liberation Sans" size="15" style="1"/>
+              <Font name="Times New Roman" size="15" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Batal"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
