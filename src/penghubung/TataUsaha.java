@@ -1,5 +1,5 @@
 package penghubung;
 
-public interface SuratMasuk {
+public interface TataUsaha {
     //function meneruskan data table ke button download
 }

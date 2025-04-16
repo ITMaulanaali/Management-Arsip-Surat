@@ -1,11 +1,11 @@
-import admin.DashboardUtama;
+
 
 public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
         PanelWadah.removeAll();
-        PanelWadah.add(new DashboardUtama());
+        PanelWadah.add(new Login());
         PanelWadah.revalidate();
         PanelWadah.repaint();
     }
@@ -80,6 +80,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelWadah;
+    public static javax.swing.JPanel PanelWadah;
     // End of variables declaration//GEN-END:variables
 }

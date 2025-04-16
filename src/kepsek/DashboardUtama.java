@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package kepsek;
 
 import admin.*;
+import java.awt.Color;
 
-/**
- *
- * @author lan
- */
+
 public class DashboardUtama extends javax.swing.JPanel {
 
     /**
@@ -17,6 +11,14 @@ public class DashboardUtama extends javax.swing.JPanel {
      */
     public DashboardUtama() {
         initComponents();
+        
+        PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
+        LabelSuratMasuk.setForeground(Color.decode("#FFFFFF"));
+        
+        SubPanel.removeAll();
+        SubPanel.add(new kepsek.menuSuratMasuk.TampilanSuratMasuk());
+        SubPanel.revalidate();
+        SubPanel.repaint();
     }
 
     /**
@@ -31,17 +33,16 @@ public class DashboardUtama extends javax.swing.JPanel {
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        backgroundSurat3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         iconPeriode1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        PanelMenuSuratMasuk = new javax.swing.JPanel();
         iconPeriode2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        LabelSuratMasuk = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        SubPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(1200, 600));
@@ -80,8 +81,6 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        backgroundSurat3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/surat100x50asli.png"))); // NOI18N
-
         jPanel1.setBackground(new java.awt.Color(189, 189, 189));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 500));
 
@@ -108,37 +107,33 @@ public class DashboardUtama extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(iconPeriode1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(217, 217, 217));
-        jPanel3.setPreferredSize(new java.awt.Dimension(200, 70));
+        PanelMenuSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
+        PanelMenuSuratMasuk.setPreferredSize(new java.awt.Dimension(200, 70));
 
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
-        jLabel7.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Surat Masuk");
+        LabelSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
+        LabelSuratMasuk.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LabelSuratMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabelSuratMasuk.setText("Surat Masuk");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelMenuSuratMasukLayout = new javax.swing.GroupLayout(PanelMenuSuratMasuk);
+        PanelMenuSuratMasuk.setLayout(PanelMenuSuratMasukLayout);
+        PanelMenuSuratMasukLayout.setHorizontalGroup(
+            PanelMenuSuratMasukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelMenuSuratMasukLayout.createSequentialGroup()
                 .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(LabelSuratMasuk)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        PanelMenuSuratMasukLayout.setVerticalGroup(
+            PanelMenuSuratMasukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(iconPeriode2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel4.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
@@ -159,7 +154,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(jLabel4))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -169,7 +164,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(69, 69, 69)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
@@ -177,7 +172,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        SubPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -187,7 +182,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -198,14 +193,16 @@ public class DashboardUtama extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SubPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(16, 16, 16))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel backgroundSurat3;
+    private javax.swing.JLabel LabelSuratMasuk;
+    private javax.swing.JPanel PanelMenuSuratMasuk;
+    private javax.swing.JPanel SubPanel;
     private javax.swing.JPanel header;
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
@@ -214,10 +211,7 @@ public class DashboardUtama extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }
