@@ -30,15 +30,15 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panel_surat_keluar = new javax.swing.JPanel();
         iconPeriode1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        surat_keluar = new javax.swing.JLabel();
         PanelMenuSuratMasuk = new javax.swing.JPanel();
         iconPeriode2 = new javax.swing.JLabel();
         LabelSuratMasuk = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        panel_kelola_akun = new javax.swing.JPanel();
         iconPeriode3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        kelola_akun = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         SubPanel = new javax.swing.JPanel();
 
@@ -83,33 +83,43 @@ public class DashboardUtama extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(189, 189, 189));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 500));
 
-        jPanel2.setBackground(new java.awt.Color(217, 217, 217));
-        jPanel2.setPreferredSize(new java.awt.Dimension(200, 70));
+        panel_surat_keluar.setBackground(new java.awt.Color(217, 217, 217));
+        panel_surat_keluar.setPreferredSize(new java.awt.Dimension(200, 70));
+        panel_surat_keluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel_surat_keluarMouseClicked(evt);
+            }
+        });
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
 
-        jLabel6.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Surat Keluar");
+        surat_keluar.setBackground(new java.awt.Color(217, 217, 217));
+        surat_keluar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        surat_keluar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        surat_keluar.setText("Surat Keluar");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel_surat_keluarLayout = new javax.swing.GroupLayout(panel_surat_keluar);
+        panel_surat_keluar.setLayout(panel_surat_keluarLayout);
+        panel_surat_keluarLayout.setHorizontalGroup(
+            panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_surat_keluarLayout.createSequentialGroup()
                 .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addComponent(surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panel_surat_keluarLayout.setVerticalGroup(
+            panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(iconPeriode1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(surat_keluar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         PanelMenuSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
         PanelMenuSuratMasuk.setPreferredSize(new java.awt.Dimension(200, 70));
+        PanelMenuSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseClicked(evt);
+            }
+        });
 
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
@@ -133,29 +143,34 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(217, 217, 217));
-        jPanel4.setPreferredSize(new java.awt.Dimension(200, 70));
+        panel_kelola_akun.setBackground(new java.awt.Color(217, 217, 217));
+        panel_kelola_akun.setPreferredSize(new java.awt.Dimension(200, 70));
+        panel_kelola_akun.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panel_kelola_akunMouseClicked(evt);
+            }
+        });
 
         iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/kelola-akun70px.png"))); // NOI18N
 
-        jLabel8.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Kelola Akun");
+        kelola_akun.setBackground(new java.awt.Color(217, 217, 217));
+        kelola_akun.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        kelola_akun.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kelola_akun.setText("Kelola Akun");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout panel_kelola_akunLayout = new javax.swing.GroupLayout(panel_kelola_akun);
+        panel_kelola_akun.setLayout(panel_kelola_akunLayout);
+        panel_kelola_akunLayout.setHorizontalGroup(
+            panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_kelola_akunLayout.createSequentialGroup()
                 .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(kelola_akun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panel_kelola_akunLayout.setVerticalGroup(
+            panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(iconPeriode3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kelola_akun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -171,9 +186,9 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                        .addComponent(panel_surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                         .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
+                        .addComponent(panel_kelola_akun, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,9 +197,9 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(98, 98, 98)
                 .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_surat_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_kelola_akun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
@@ -216,11 +231,59 @@ public class DashboardUtama extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void panel_surat_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseClicked
+        //berpindah warna atau pilihan dari manu surat masuk ke menu surat keluar
+        PanelMenuSuratMasuk.setBackground(Color.decode("#D9D9D9"));
+        LabelSuratMasuk.setForeground(Color.decode("#000000"));
+        panel_kelola_akun.setBackground(Color.decode("#D9D9D9"));
+        kelola_akun.setForeground(Color.decode("#000000"));
+        panel_surat_keluar.setBackground(Color.decode("#7D0A0A"));
+        surat_keluar.setForeground(Color.decode("#FFFFFF"));
+        
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.TampilanSuratKeluar());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
+        
+    }//GEN-LAST:event_panel_surat_keluarMouseClicked
+
+    private void PanelMenuSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseClicked
+        //berpindah warna atau pilihan ke menu surat masuk
+        panel_surat_keluar.setBackground(Color.decode("#D9D9D9"));
+        surat_keluar.setForeground(Color.decode("#000000"));
+        panel_kelola_akun.setBackground(Color.decode("#D9D9D9"));
+        kelola_akun.setForeground(Color.decode("#000000"));
+        PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
+        LabelSuratMasuk.setForeground(Color.decode("#FFFFFF"));
+        
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
+        
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseClicked
+
+    private void panel_kelola_akunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseClicked
+       //berpindah warna atau pilihan ke menu surat masuk
+        panel_surat_keluar.setBackground(Color.decode("#D9D9D9"));
+        surat_keluar.setForeground(Color.decode("#000000"));
+        PanelMenuSuratMasuk.setBackground(Color.decode("#D9D9D9"));
+        LabelSuratMasuk.setForeground(Color.decode("#000000"));
+        panel_kelola_akun.setBackground(Color.decode("#7D0A0A"));
+        kelola_akun.setForeground(Color.decode("#FFFFFF"));
+        
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.TampilanKelolaAkun());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
+        
+    }//GEN-LAST:event_panel_kelola_akunMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelSuratMasuk;
     private javax.swing.JPanel PanelMenuSuratMasuk;
-    private javax.swing.JPanel SubPanel;
+    public static javax.swing.JPanel SubPanel;
     private javax.swing.JPanel header;
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
@@ -228,10 +291,10 @@ public class DashboardUtama extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel kelola_akun;
+    private javax.swing.JPanel panel_kelola_akun;
+    private javax.swing.JPanel panel_surat_keluar;
+    private javax.swing.JLabel surat_keluar;
     // End of variables declaration//GEN-END:variables
 }
