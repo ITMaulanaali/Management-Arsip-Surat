@@ -193,7 +193,12 @@ public class SuratByPeriode extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -135,9 +135,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel2" alignment="0" pref="244" max="32767" attributes="0"/>
+                          <Component id="panel_surat_keluar" alignment="0" pref="244" max="32767" attributes="0"/>
                           <Component id="PanelMenuSuratMasuk" alignment="0" min="-2" pref="243" max="-2" attributes="0"/>
-                          <Component id="jPanel4" alignment="0" pref="244" max="32767" attributes="0"/>
+                          <Component id="panel_kelola_akun" alignment="0" pref="244" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
@@ -150,9 +150,9 @@
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                   <Component id="PanelMenuSuratMasuk" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="panel_surat_keluar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="panel_kelola_akun" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="120" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -161,7 +161,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="panel_surat_keluar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
@@ -170,6 +170,9 @@
               <Dimension value="[200, 70]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_surat_keluarMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -177,14 +180,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="iconPeriode1" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel6" pref="175" max="32767" attributes="0"/>
+                      <Component id="surat_keluar" pref="175" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="iconPeriode1" max="32767" attributes="0"/>
-                  <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                  <Component id="surat_keluar" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -196,7 +199,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="surat_keluar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d9" green="d9" red="d9" type="rgb"/>
@@ -219,6 +222,9 @@
               <Dimension value="[200, 70]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PanelMenuSuratMasukMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -259,7 +265,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
+        <Container class="javax.swing.JPanel" name="panel_kelola_akun">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
@@ -268,6 +274,9 @@
               <Dimension value="[200, 70]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panel_kelola_akunMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -275,14 +284,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="iconPeriode3" min="-2" pref="63" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" max="32767" attributes="0"/>
+                      <Component id="kelola_akun" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="iconPeriode3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
+                  <Component id="kelola_akun" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -294,7 +303,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="kelola_akun">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d9" green="d9" red="d9" type="rgb"/>
@@ -322,6 +331,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="SubPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>

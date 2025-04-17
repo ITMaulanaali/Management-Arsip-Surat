@@ -37,8 +37,8 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        arsipkan = new javax.swing.JButton();
+        kembali = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -92,21 +92,21 @@ public class ArsipkanSurat extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(125, 10, 10));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Arsipkan");
-        jButton2.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
+        arsipkan.setBackground(new java.awt.Color(125, 10, 10));
+        arsipkan.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        arsipkan.setForeground(new java.awt.Color(255, 255, 255));
+        arsipkan.setText("Arsipkan");
+        arsipkan.setMinimumSize(new java.awt.Dimension(83, 40));
+        arsipkan.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        jButton1.setBackground(new java.awt.Color(214, 203, 203));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Kembali");
-        jButton1.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        kembali.setBackground(new java.awt.Color(214, 203, 203));
+        kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        kembali.setText("Kembali");
+        kembali.setMinimumSize(new java.awt.Dimension(83, 40));
+        kembali.setPreferredSize(new java.awt.Dimension(80, 40));
+        kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                kembaliActionPerformed(evt);
             }
         });
 
@@ -159,9 +159,9 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 .addGap(130, 130, 130))
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(211, 211, 211)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(arsipkan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(115, 115, 115))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
@@ -223,8 +223,8 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -233,9 +233,14 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
+       
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.TampilanSuratKeluar());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
+        
+    }//GEN-LAST:event_kembaliActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
@@ -243,8 +248,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton arsipkan;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -261,5 +265,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton kembali;
     // End of variables declaration//GEN-END:variables
 }
