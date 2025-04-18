@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/Management-Arsip-Surat-master/src/admin/menuSuratMasuk/SuratByPeriode.java</file>
-            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/Management-Arsip-Surat-master/src/admin/DashboardUtama.java</file>
-            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/Management-Arsip-Surat-master/src/admin/menuSuratMasuk/TampilanSuratMasuk.java</file>
-            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/Management-Arsip-Surat-master/src/admin/menuSuratMasuk/ArsipkanSurat.java</file>
-            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/Management-Arsip-Surat-master/src/admin/menuSuratMasuk/LihatSurat.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/Login.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/admin/menuKelolaAkun/TampilanKelolaAkun.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/admin/menuKelolaAkun/TambahUser.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/admin/menuSuratMasuk/TampilanSuratMasuk.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/admin/DashboardUtama.java</file>
+            <file>file:/C:/Users/FUJITSU/Downloads/Management-Arsip-Surat-master/src/Main.java</file>
         </group>
     </open-files>
 </project-private>

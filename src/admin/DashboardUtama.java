@@ -2,7 +2,6 @@ package admin;
 
 import java.awt.Color;
 
-
 public class DashboardUtama extends javax.swing.JPanel {
 
 
@@ -39,7 +38,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         panel_kelola_akun = new javax.swing.JPanel();
         iconPeriode3 = new javax.swing.JLabel();
         kelola_akun = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         SubPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(158, 158, 158));
@@ -58,7 +57,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Sub Menu");
+        jLabel5.setText("Home");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -67,7 +66,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 737, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(19, 19, 19))
         );
@@ -173,9 +172,14 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addComponent(kelola_akun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
-        jLabel2.setText("Logout");
+        logout.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
+        logout.setText("Logout");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,7 +188,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(logout)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(panel_surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                         .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,7 +205,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(panel_kelola_akun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(logout)
                 .addContainerGap())
         );
 
@@ -279,6 +283,9 @@ public class DashboardUtama extends javax.swing.JPanel {
         
     }//GEN-LAST:event_panel_kelola_akunMouseClicked
 
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+      
+    }//GEN-LAST:event_logoutMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelSuratMasuk;
@@ -289,10 +296,10 @@ public class DashboardUtama extends javax.swing.JPanel {
     private javax.swing.JLabel iconPeriode2;
     private javax.swing.JLabel iconPeriode3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel kelola_akun;
+    private javax.swing.JLabel logout;
     private javax.swing.JPanel panel_kelola_akun;
     private javax.swing.JPanel panel_surat_keluar;
     private javax.swing.JLabel surat_keluar;
