@@ -10,7 +10,7 @@ public class Koneksi {
 //    private static String username = "aku";
 //    private static String password = "123";
     
-    private static String url = "jdbc:mysql://arsipSurat_lifegiftgo:ef1d669241e7179cc85c533f83b03598be77ed66@4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
+    private static String url = "jdbc:mysql://4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
     private static String username = "arsipSurat_lifegiftgo";
     private static String password = "ef1d669241e7179cc85c533f83b03598be77ed66";
     
@@ -26,6 +26,7 @@ public class Koneksi {
                 Koneksi.connection = DriverManager.getConnection(Koneksi.url,Koneksi.username,Koneksi.password);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null,"Gagal terkoneksi Database: " + e.getMessage());
+                e.printStackTrace();
             }
         }
         return connection;
