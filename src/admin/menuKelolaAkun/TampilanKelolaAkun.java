@@ -1,11 +1,22 @@
 package admin.menuKelolaAkun;
 
+import java.awt.Color;
+import java.awt.Component;
 import lib.Query;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 
 public class TampilanKelolaAkun extends javax.swing.JPanel {
@@ -16,6 +27,8 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
     public TampilanKelolaAkun() {
         initComponents();
         menampilkanUser();
+        buttonTable();
+        klikIcon();
     }
 
     void menampilkanUser(){
@@ -32,13 +45,122 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
                 String nama = hasil.getString("nama");
                 String username = hasil.getString("username");
                 String peran = hasil.getString("jenis_role");
-                modelTable.addRow(new Object[]{nama, username, peran});
+                modelTable.addRow(new Object[]{nama, username, peran, "Aksi"});
             }
+            TableUser.setRowHeight(30);
             TableUser.setModel(modelTable);
             
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    //versi label biasa
+//    void buttonTable(){
+//        TableUser.getColumn("Aksi").setCellRenderer((table1, value, isSelected, hasFocus, row, column) -> {
+//                JLabel label = new JLabel();
+//
+//                label.setHorizontalAlignment(SwingConstants.CENTER);
+//                label.setOpaque(true);
+//                label.setBackground(isSelected ? table1.getSelectionBackground() : Color.WHITE);
+//                label.setToolTipText("Klik untuk hapus");
+//
+//                Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
+//                label.setIcon(icon);
+//                return label;
+//            });
+//    }
+    
+    void buttonTable() {
+    Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
+
+    // Renderer untuk menampilkan tombol
+    TableUser.getColumn("Aksi").setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+        JButton button = new JButton(icon);
+        button.setOpaque(true);
+        button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
+        button.setBackground(Color.WHITE); // Background normal
+        button.setBorderPainted(false);  // Menghilangkan border pada button
+
+        // Mouse listener untuk efek hover
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(Color.RED); // Mengubah warna background menjadi merah saat hover
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(Color.WHITE); // Kembalikan ke latar belakang normal saat mouse keluar
+            }
+        });
+
+        button.setHorizontalAlignment(SwingConstants.CENTER); // Set alignment ke tengah
+        button.setToolTipText("Klik untuk hapus"); // Tooltip saat hover
+
+        return button;
+    });
+
+    // Editor untuk menangani klik tombol
+    TableUser.getColumn("Aksi").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
+        private final JButton button = new JButton(icon);
+        private int currentRow;
+
+        {
+            button.setOpaque(true);
+            button.setBorderPainted(false);  // Menghilangkan border pada button
+            button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
+            button.setBackground(Color.WHITE); // Background normal
+            button.setHorizontalAlignment(SwingConstants.CENTER);
+
+            button.addActionListener(e -> {
+                System.out.println("Hallo dari baris ke-" + currentRow);
+
+                int confirm = JOptionPane.showConfirmDialog(button, "Hapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    ((DefaultTableModel) TableUser.getModel()).removeRow(currentRow);
+                }
+
+                fireEditingStopped(); // Wajib agar cell editor selesai
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
+                                                     int row, int column) {
+            currentRow = row;
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return null;
+        }
+    });
+}
+
+
+
+
+    
+    void klikIcon(){
+        TableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int row = TableUser.rowAtPoint(evt.getPoint());
+        int column = TableUser.columnAtPoint(evt.getPoint());
+
+        // Pastikan klik terjadi di dalam tabel
+        if (row >= 0 && column >= 0) {
+            // Cek apakah kolom yang diklik adalah kolom "Aksi"
+            int aksiColumnIndex = TableUser.getColumnModel().getColumnIndex("Aksi");
+            if (column == aksiColumnIndex) {
+                System.out.println("Hallo dari baris ke-" + row);
+            }
+        }
+    }
+});
+
     }
     
     @SuppressWarnings("unchecked")
@@ -47,7 +169,7 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
 
         jTextField1 = new javax.swing.JTextField();
         tambah = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         TableUser = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(158, 158, 158));
@@ -72,7 +194,6 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
             }
         });
 
-        TableUser.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         TableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -81,12 +202,10 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Nama", "Username", "Peran", "Aksi"
+                "Username", "Nama", "Peran", "Aksi"
             }
         ));
-        TableUser.setMinimumSize(new java.awt.Dimension(1200, 80));
-        TableUser.setPreferredSize(new java.awt.Dimension(1200, 80));
-        jScrollPane1.setViewportView(TableUser);
+        jScrollPane2.setViewportView(TableUser);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,11 +214,11 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(83, 83, 83)
-                        .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,7 +229,7 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                 .addGap(93, 93, 93))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -124,10 +243,10 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tambahActionPerformed
 
-
+    private javax.swing.JPanel PanelButtonTable;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableUser;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton tambah;
     // End of variables declaration//GEN-END:variables
