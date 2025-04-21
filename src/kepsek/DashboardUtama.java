@@ -86,6 +86,11 @@ public class DashboardUtama extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(217, 217, 217));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 70));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel2MouseClicked(evt);
+            }
+        });
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
 
@@ -102,7 +107,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +117,11 @@ public class DashboardUtama extends javax.swing.JPanel {
 
         PanelMenuSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
         PanelMenuSuratMasuk.setPreferredSize(new java.awt.Dimension(200, 70));
+        PanelMenuSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseClicked(evt);
+            }
+        });
 
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
@@ -142,6 +152,11 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
         jLabel2.setText("Logout");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +170,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                         .addGap(50, 50, 50)
                         .addComponent(jLabel4))
                     .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -198,11 +213,41 @@ public class DashboardUtama extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PanelMenuSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseClicked
+        // TODO add your handling code here:
+        PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
+        LabelSuratMasuk.setForeground(Color.decode("#FFFFFF"));
+        jPanel2.setBackground(Color.decode("#D9D9D9"));
+        jLabel6.setForeground(Color.decode("#000000"));
+        
+        SubPanel.removeAll();
+        SubPanel.add(new kepsek.menuSuratMasuk.TampilanSuratMasuk());
+        SubPanel.revalidate();
+        SubPanel.repaint();
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseClicked
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+        // TODO add your handling code here:
+       jPanel2.setBackground(Color.decode("#7D0A0A"));
+        jLabel6.setForeground(Color.decode("#FFFFFF"));
+        PanelMenuSuratMasuk.setBackground(Color.decode("#D9D9D9"));
+        LabelSuratMasuk.setForeground(Color.decode("#000000"));
+        
+        SubPanel.removeAll();
+        SubPanel.add(new kepsek.menuSuratKeluar.TampilanSuratKeluar());
+        SubPanel.revalidate();
+        SubPanel.repaint();
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelSuratMasuk;
     private javax.swing.JPanel PanelMenuSuratMasuk;
-    private javax.swing.JPanel SubPanel;
+    public static javax.swing.JPanel SubPanel;
     private javax.swing.JPanel header;
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
