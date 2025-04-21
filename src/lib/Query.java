@@ -61,6 +61,7 @@ public class Query {
                     this.valueString.add(null);
                 }catch(Exception e){
                     this.valueString.add(i);
+                    this.valueInt.add(null);
                 }
             }
         }
@@ -114,6 +115,7 @@ public class Query {
         String values = setQueryInsertValue(atributLiteral);
         int hasil = 0;  
         
+        
         statement = Koneksi.Koneksi().prepareStatement("INSERT INTO "+this.namaTabel+" ("+atributs+") VALUES ("+values+")");
         if(this.path != null){
             this.file = new File(this.path);
@@ -125,8 +127,7 @@ public class Query {
             }else if(this.valueString.get(i) != null){
                 statement.setString(i+1, valueString.get(i));
             }else{
-                statement.setInt(i+1, valueInt.get(i));
-                        
+                statement.setInt(i+1, valueInt.get(i));         
             }
         }
             
