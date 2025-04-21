@@ -20,6 +20,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
      */
     public TampilanSuratKeluar() {
         initComponents();
+        
     }
 
     /**
