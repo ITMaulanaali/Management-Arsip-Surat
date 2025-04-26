@@ -112,7 +112,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
             }
         });
 
-        kembali.setBackground(new java.awt.Color(214, 203, 203));
+        kembali.setBackground(new java.awt.Color(196, 196, 196));
         kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         kembali.setText("Kembali");
         kembali.setMinimumSize(new java.awt.Dimension(83, 40));

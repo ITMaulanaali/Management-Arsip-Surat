@@ -60,8 +60,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cari = new javax.swing.JTextField();
+        pilih = new javax.swing.JComboBox<>();
         periode1 = new javax.swing.JPanel();
         iconPeriode = new javax.swing.JLabel();
         periode = new javax.swing.JLabel();
@@ -77,13 +77,23 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Cari");
-        jTextField1.setMinimumSize(new java.awt.Dimension(0, 40));
-        jTextField1.setPreferredSize(new java.awt.Dimension(600, 40));
+        cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cari.setText("Cari");
+        cari.setMinimumSize(new java.awt.Dimension(0, 40));
+        cari.setPreferredSize(new java.awt.Dimension(600, 40));
+        cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Tanggal Diterima", "File" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Tanggal Surat", "Pengirim", "Kategori", "Perihal", "Status Notifikasi" }));
+        pilih.setPreferredSize(new java.awt.Dimension(80, 40));
+        pilih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pilihActionPerformed(evt);
+            }
+        });
 
         periode1.setBackground(new java.awt.Color(217, 217, 217));
         periode1.setPreferredSize(new java.awt.Dimension(100, 40));
@@ -174,7 +184,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(190, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,7 +195,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(periode1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -193,8 +203,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pilih, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(periode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,17 +242,91 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tabel_suratMasukMouseClicked
 
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
+       
+        String searchText = cari.getText();
+    String selectedOption = (String) pilih.getSelectedItem();
+    menampilkanSuratMasuk(searchText, selectedOption);
+}                                    
+
+void menampilkanSuratMasuk(String searchText, String selectedOption) {
+    try {
+
+        String queryCondition = "";
+        switch (selectedOption) {
+            case "No":
+                queryCondition = coloumn[0];
+                break;
+            case "Tanggal Surat":
+                queryCondition = "tanggal_surat";
+                break;
+            case "Pengirim":
+                queryCondition = "pengirim";
+                break;
+            case "Kategori":
+                queryCondition = "kategori ";
+                break;
+            case "Perihal":
+                queryCondition = "perihal";
+                break;
+            case "File Surat":
+                queryCondition = "file_surat ";
+                break;
+                 case "Status Notifikasi":
+                queryCondition = "status_notifikasi ";
+                break;
+            default:
+                break;
+        }
+        // Lakukan query dengan kondisi yang telah dibuat
+        ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
+
+        DefaultTableModel modelTable = new DefaultTableModel(); 
+        modelTable.addColumn("no_surat");
+        modelTable.addColumn("tanggal_surat");
+        modelTable.addColumn("pengirim");
+        modelTable.addColumn("kategori");
+        modelTable.addColumn("perihal");
+        modelTable.addColumn("file_surat");
+        modelTable.addColumn("status_notifikasi");
+
+        while (hasil.next()) {
+            String no = hasil.getString("no_surat");
+            String tanggal = hasil.getString("tanggal_surat");
+            String pengirim = hasil.getString("pengirim");
+            String kategori = hasil.getString("kategori");
+            String perihal = hasil.getString("perihal");
+            String file_surat = hasil.getString("file_surat");
+            String status_notifikasi = hasil.getString("status_notifikasi");
+
+            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, file_surat, status_notifikasi });
+        }
+        tabel_suratMasuk.setRowHeight(30);
+        tabel_suratMasuk.setModel(modelTable);
+
+    } catch (Exception ex) {
+        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+    } 
+        
+    }//GEN-LAST:event_cariActionPerformed
+
+    private void pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihActionPerformed
+       
+        
+        
+    }//GEN-LAST:event_pilihActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel arsipkan;
+    private javax.swing.JTextField cari;
     private javax.swing.JLabel iconPeriode;
     private javax.swing.JLabel iconPeriode1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel periode;
     private javax.swing.JPanel periode1;
+    private javax.swing.JComboBox<String> pilih;
     private javax.swing.JTable tabel_suratMasuk;
     // End of variables declaration//GEN-END:variables
 }
