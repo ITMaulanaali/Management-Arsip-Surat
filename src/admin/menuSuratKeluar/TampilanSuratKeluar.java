@@ -158,6 +158,11 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabel_suratkeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabel_suratkeluarMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabel_suratkeluar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -166,7 +171,9 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -192,8 +199,8 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel_periode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +222,15 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         admin.DashboardUtama.SubPanel.repaint();
         
     }//GEN-LAST:event_panel_periodeMouseClicked
+
+    private void tabel_suratkeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseClicked
+      
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint(); 
+        
+    }//GEN-LAST:event_tabel_suratkeluarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

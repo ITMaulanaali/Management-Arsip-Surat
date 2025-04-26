@@ -267,7 +267,7 @@
     <Component class="javax.swing.JButton" name="kembali">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cb" green="cb" red="d6" type="rgb"/>
+          <Color blue="c4" green="c4" red="c4" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="18" style="1"/>
