@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 
@@ -12,8 +13,9 @@ public class PdfDiJpanel {
     private PDDocument pdfFile;
     private PDFRenderer image;
     
-    public PdfDiJpanel addFile(byte[] fileBloob) throws Exception{
-        this.pdfFile = PDDocument.load(new ByteArrayInputStream(fileBloob));
+    public PdfDiJpanel addFile(byte[] fileBloob) throws Exception {
+        this.pdfFile = Loader.loadPDF(fileBloob);
+        this.image = new PDFRenderer(this.pdfFile);
         return this;
     }
     
