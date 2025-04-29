@@ -51,7 +51,7 @@ public class Query {
     
     public Query setValue(String[] value){
         for(String i : value){
-            if(i.contains("/")){
+            if(i.contains("/") || i.contains("\\")){
                 this.path = i;
                 this.valueString.add("path");
                 System.out.println(i);
