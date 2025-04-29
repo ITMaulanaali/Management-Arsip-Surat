@@ -4,6 +4,7 @@
  */
 package kepsek.menuSuratKeluar;
 
+import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratMasuk.*;
 import admin.menuSuratMasuk.*;
 import admin.menuSuratKeluar.*;
@@ -14,7 +15,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -36,29 +40,29 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
      private void setupSearchField() {
         // Set placeholder text
-        jTextField1.setText("Cari");
-        jTextField1.setForeground(Color.GRAY);
+        cari.setText("Cari");
+        cari.setForeground(Color.GRAY);
         
         // Add focus listener to handle placeholder behavior
-        jTextField1.addFocusListener(new FocusAdapter() {
+        cari.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (jTextField1.getText().equals("Cari")) {
-                    jTextField1.setText("");
-                    jTextField1.setForeground(Color.BLACK);
+                if (cari.getText().equals("Cari")) {
+                    cari.setText("");
+                    cari.setForeground(Color.BLACK);
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (jTextField1.getText().isEmpty()) {
-                    jTextField1.setText("Cari");
-                    jTextField1.setForeground(Color.GRAY);
+                if (cari.getText().isEmpty()) {
+                    cari.setText("Cari");
+                    cari.setForeground(Color.GRAY);
                 }
             }
         });
         
         // Add action listener for search
-        jTextField1.addActionListener(e -> performSearch());
+        cari.addActionListener(e -> performSearch());
     }
         
     private void setupTable() {
@@ -86,51 +90,51 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
             }
         };
         
-        jTable1.setModel(tableModel);
+        tabelsuratkeluar.setModel(tableModel);
         
         // Set up table appearance
-        jTable1.setRowHeight(40);
-        jTable1.setFont(new Font("Arial", Font.PLAIN, 12));
-        jTable1.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
-        jTable1.setShowGrid(true);
-        jTable1.setGridColor(Color.LIGHT_GRAY);
+        tabelsuratkeluar.setRowHeight(40);
+        tabelsuratkeluar.setFont(new Font("Arial", Font.PLAIN, 12));
+        tabelsuratkeluar.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
+        tabelsuratkeluar.setShowGrid(true);
+        tabelsuratkeluar.setGridColor(Color.LIGHT_GRAY);
         
         // Adjust column widths
-        if (jTable1.getColumnCount() >= 8) {
-            TableColumn noColumn = jTable1.getColumnModel().getColumn(0);
+        if (tabelsuratkeluar.getColumnCount() >= 8) {
+            TableColumn noColumn = tabelsuratkeluar.getColumnModel().getColumn(0);
             noColumn.setPreferredWidth(100);
             
-            TableColumn perihalColumn = jTable1.getColumnModel().getColumn(1);
+            TableColumn perihalColumn = tabelsuratkeluar.getColumnModel().getColumn(1);
             perihalColumn.setPreferredWidth(200);
             
-            TableColumn kategoriColumn = jTable1.getColumnModel().getColumn(2);
+            TableColumn kategoriColumn = tabelsuratkeluar.getColumnModel().getColumn(2);
             kategoriColumn.setPreferredWidth(80);
             
-            TableColumn alamatColumn = jTable1.getColumnModel().getColumn(3);
+            TableColumn alamatColumn = tabelsuratkeluar.getColumnModel().getColumn(3);
             alamatColumn.setPreferredWidth(120);
             
-            TableColumn penerimaColumn = jTable1.getColumnModel().getColumn(4);
+            TableColumn penerimaColumn = tabelsuratkeluar.getColumnModel().getColumn(4);
             penerimaColumn.setPreferredWidth(120);
             
-            TableColumn tanggalColumn = jTable1.getColumnModel().getColumn(5);
+            TableColumn tanggalColumn = tabelsuratkeluar.getColumnModel().getColumn(5);
             tanggalColumn.setPreferredWidth(100);
             
-            TableColumn statusColumn = jTable1.getColumnModel().getColumn(6);
+            TableColumn statusColumn = tabelsuratkeluar.getColumnModel().getColumn(6);
             statusColumn.setPreferredWidth(120);
             
-            TableColumn fileColumn = jTable1.getColumnModel().getColumn(7);
+            TableColumn fileColumn = tabelsuratkeluar.getColumnModel().getColumn(7);
             fileColumn.setPreferredWidth(100);
         }
         
         // Add mouse listener to handle file opening
-        jTable1.addMouseListener(new MouseAdapter() {
+        tabelsuratkeluar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int row = jTable1.rowAtPoint(e.getPoint());
-                int col = jTable1.columnAtPoint(e.getPoint());
+                int row = tabelsuratkeluar.rowAtPoint(e.getPoint());
+                int col = tabelsuratkeluar.columnAtPoint(e.getPoint());
                 
                 if (col == 7 && row >= 0) { // File column
-                    String fileName = (String) jTable1.getValueAt(row, col);
+                    String fileName = (String) tabelsuratkeluar.getValueAt(row, col);
                     openFile(fileName);
                 }
             }
@@ -165,7 +169,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
     }
     
     private void performSearch() {
-        String searchText = jTextField1.getText().trim();
+        String searchText = cari.getText().trim();
         if (searchText.equals("Cari") || searchText.isEmpty()) {
             loadDummyData(); // Reset to show all data
             return;
@@ -173,7 +177,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         
         // Create a filtered table model
         tableModel.setRowCount(0);
-        String searchColumn = (String) jComboBox1.getSelectedItem();
+        String searchColumn = (String) pilih.getSelectedItem();
         int columnIndex;
         
         // Map UI column names to column indices
@@ -242,24 +246,29 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cari = new javax.swing.JTextField();
+        pilih = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelsuratkeluar = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Cari");
-        jTextField1.setMinimumSize(new java.awt.Dimension(0, 40));
-        jTextField1.setPreferredSize(new java.awt.Dimension(600, 40));
+        cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cari.setText("Cari");
+        cari.setMinimumSize(new java.awt.Dimension(0, 40));
+        cari.setPreferredSize(new java.awt.Dimension(600, 40));
+        cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
+        pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelsuratkeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -270,9 +279,9 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File"
             }
         ));
-        jTable1.setMinimumSize(new java.awt.Dimension(1200, 80));
-        jTable1.setPreferredSize(new java.awt.Dimension(1200, 80));
-        jScrollPane1.setViewportView(jTable1);
+        tabelsuratkeluar.setMinimumSize(new java.awt.Dimension(1200, 80));
+        tabelsuratkeluar.setPreferredSize(new java.awt.Dimension(1200, 80));
+        jScrollPane1.setViewportView(tabelsuratkeluar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -282,9 +291,9 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                         .addGap(98, 98, 98)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE))
                 .addGap(28, 28, 28))
         );
@@ -295,19 +304,24 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addGap(64, 64, 64))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cariActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField cari;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> pilih;
+    private javax.swing.JTable tabelsuratkeluar;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,24 +1,84 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package kepsek.menuSuratMasuk;
 
 import admin.menuSuratMasuk.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.Timer;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Query;
 
-/**
- *
- * @author lan
- */
 public class Disposisi extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TambahSurat
-     */
-    public Disposisi() {
+    private JPanel panelUtama;
+    private static int sequence = 0; // Penghitung urutan nomor surat
+    private static final String DIVISION = "SMK"; // Kode divisi (Kepala Sekolah)
+    private static final DateTimeFormatter YEAR_FORMATTER = DateTimeFormatter.ofPattern("yyyy");
+    Query query; 
+    String[] coloumn = {"No Surat Perihal", "Catatan"};
+    
+    private static final String DB_URL = "jdbc:mysql://4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
+    private static final String DB_USER = "arsipSurat_lifegiftgo";
+    private static final String DB_PASSWORD = "ef1d669241e7179cc85c533f83b03598be77ed66";
+    
+    private String[] dataAtributs;
+    private byte[] fileBiner;
+    
+    public Disposisi(String[] data, byte[] fileBiner) {
+        this.panelUtama = panelUtama;
         initComponents();
+        setupFormDefaults();
+        tampilkanTanggalDanWaktu();
+        this.query= new Query();
+        generateAutoLetterNumber(); // Generate nomor surat otomatis saat inisialisasi
+        
+        this.fileBiner = fileBiner;
+        this.dataAtributs = data;
+        String nomerSurat = this.dataAtributs[0];
+        String perihal = this.dataAtributs[4];
+        
+        no_disposisi.setText(nomerSurat);
+        Perihal.setText(perihal);
     }
+    
+     private void generateAutoLetterNumber() {
+        sequence++; // Increment nomor urut
+        String year = LocalDate.now().format(YEAR_FORMATTER);
+        String letterNumber = String.format("%03d/%s/%s", sequence, DIVISION, year);
+        no_disposisi.setText(letterNumber);
+    }
+    
+     private void tampilkanTanggalDanWaktu() {
+        DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+        Timer timer = new Timer(1000, e -> {
+            LocalDateTime sekarang = LocalDateTime.now();
+            tanggal_disposisi.setText(sekarang.format(formatTanggal));
+   
+        });
+        timer.start();
+     }
+    
+      private void setupFormDefaults() {
+        // Set default value for nomor surat field
+        no_disposisi.setText("");
+        
+        // Set default format for tanggal field
+        tanggal_disposisi.setText("");
+    }
+      
+      
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,22 +89,20 @@ public class Disposisi extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        no_disposisi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tanggal_disposisi = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        Perihal = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Kirim = new javax.swing.JButton();
+        Kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Catatan = new javax.swing.JTextArea();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -54,18 +112,21 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Nomor Surat");
 
-        jTextField2.setText("Otomatis");
-        jTextField2.setPreferredSize(new java.awt.Dimension(40, 30));
+        no_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
+        no_disposisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                no_disposisiActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Disposisi");
 
-        jTextField1.setText("DD/MM/YYYY / Otomatis");
-        jTextField1.setPreferredSize(new java.awt.Dimension(40, 30));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tanggal_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
+        tanggal_disposisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tanggal_disposisiActionPerformed(evt);
             }
         });
 
@@ -77,43 +138,59 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Perihal");
 
-        jTextField5.setPreferredSize(new java.awt.Dimension(40, 30));
+        Perihal.setPreferredSize(new java.awt.Dimension(40, 30));
+        Perihal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PerihalActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Catatan");
 
-        jButton2.setBackground(new java.awt.Color(125, 10, 10));
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Kirim");
-        jButton2.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton2.setPreferredSize(new java.awt.Dimension(80, 40));
-
-        jButton1.setBackground(new java.awt.Color(214, 203, 203));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Kembali");
-        jButton1.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Kirim.setBackground(new java.awt.Color(125, 10, 10));
+        Kirim.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Kirim.setForeground(new java.awt.Color(255, 255, 255));
+        Kirim.setText("Kirim");
+        Kirim.setMinimumSize(new java.awt.Dimension(83, 40));
+        Kirim.setPreferredSize(new java.awt.Dimension(80, 40));
+        Kirim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KirimMouseClicked(evt);
+            }
+        });
+        Kirim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                KirimActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Kembali.setBackground(new java.awt.Color(214, 203, 203));
+        Kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Kembali.setText("Kembali");
+        Kembali.setMinimumSize(new java.awt.Dimension(83, 40));
+        Kembali.setPreferredSize(new java.awt.Dimension(80, 40));
+        Kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KembaliMouseClicked(evt);
+            }
+        });
+        Kembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KembaliActionPerformed(evt);
+            }
+        });
+
+        Catatan.setColumns(20);
+        Catatan.setRows(5);
+        jScrollPane1.setViewportView(Catatan);
 
         jCheckBox1.setText("Wakil Kepala Kehumasan (Nama)");
 
         jCheckBox2.setText("Wakil Kepala Kurikulum");
 
         jCheckBox3.setText("Wakil Kepala Kesiswaan (Nama)");
-
-        jLabel1.setText("(Nama)");
-
-        jLabel2.setText("(Nama)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,9 +213,9 @@ public class Disposisi extends javax.swing.JPanel {
                 .addGap(130, 130, 130))
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Kembali, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addGap(211, 211, 211)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Kirim, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
@@ -147,33 +224,28 @@ public class Disposisi extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox2)
                             .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                            .addComponent(jCheckBox1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(no_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tanggal_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(80, 80, 80)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Perihal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(no_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
@@ -181,8 +253,8 @@ public class Disposisi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tanggal_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Perihal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -194,51 +266,142 @@ public class Disposisi extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jCheckBox2)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox3)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1)
-                        .addGap(12, 12, 12)
-                        .addComponent(jCheckBox1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Kirim, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tanggal_disposisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_disposisiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tanggal_disposisiActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+            kepsek.DashboardUtama.SubPanel.removeAll();
+            kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.LihatSurat(this.dataAtributs, this.fileBiner));
+            kepsek.DashboardUtama.SubPanel.revalidate();
+            kepsek.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_KembaliActionPerformed
+
+    private void KembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KembaliMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KembaliMouseClicked
+
+    private void KirimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KirimMouseClicked
+        // TODO add your handling code here:
+  
+    }//GEN-LAST:event_KirimMouseClicked
+
+    private void no_disposisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_disposisiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_no_disposisiActionPerformed
+
+    private void PerihalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerihalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PerihalActionPerformed
+
+    private void KirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KirimActionPerformed
+        // TODO add your handling code here:
+       //Get the values from the form
+  String no = no_disposisi.getText();
+        String tanggal = tanggal_disposisi.getText();
+        String perihal = Perihal.getText();
+        String catatan = Catatan.getText();
+        
+        // Get selected disposisi recipients
+        StringBuilder disposisiKepada = new StringBuilder();
+        if (jCheckBox1.isSelected()) {
+            disposisiKepada.append("Wakil Kepala Kehumasan;");
+        }
+        if (jCheckBox2.isSelected()) {
+            disposisiKepada.append("Wakil Kepala Kurikulum;");
+        }
+        if (jCheckBox3.isSelected()) {
+            disposisiKepada.append("Wakil Kepala Kesiswaan;");
+        }
+        
+        // Check if any required fields are empty
+        if (no.isEmpty() || tanggal.isEmpty() || perihal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nomor surat, tanggal, dan perihal harus diisi!", 
+                    "Validasi Error", JOptionPane.ERROR_MESSAGE);
+            return; // Exit the method if validation fails
+        }
+        
+        // Directly use JDBC to insert data
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            // Establish connection
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            
+            // Prepare SQL statement
+            String sql = "INSERT INTO disposisi (no_disposisi, tanggal_disposisi, catatan, disposisi_kepada) VALUES (?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+            
+            // Set parameters
+            stmt.setString(1, no);
+            stmt.setString(2, tanggal);
+            stmt.setString(3, perihal);
+            stmt.setString(4, catatan);
+            stmt.setString(5, disposisiKepada.toString());
+            
+            // Execute insert
+            int rowsAffected = stmt.executeUpdate();
+            
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(this, "Disposisi berhasil disimpan");
+                
+                // Navigate to the next view
+                kepsek.DashboardUtama.SubPanel.removeAll();
+                kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.TampilanSuratMasuk());
+                kepsek.DashboardUtama.SubPanel.revalidate();
+                kepsek.DashboardUtama.SubPanel.repaint();
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal menyimpan disposisi", 
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Database Error: " + ex.getMessage(), 
+                    "Database Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            // Close resources
+            try {
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_KirimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextArea Catatan;
+    private javax.swing.JButton Kembali;
+    private javax.swing.JButton Kirim;
+    private javax.swing.JTextField Perihal;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField no_disposisi;
+    private javax.swing.JTextField tanggal_disposisi;
     // End of variables declaration//GEN-END:variables
 }
