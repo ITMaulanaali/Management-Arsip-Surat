@@ -296,7 +296,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     }//GEN-LAST:event_arsipkanActionPerformed
 
     private void UploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadActionPerformed
-        // TODO add your handling code here:
+        upload_file.setText(lib.PilihFile.getPath());
     }//GEN-LAST:event_UploadActionPerformed
 
     private void pengirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengirimActionPerformed

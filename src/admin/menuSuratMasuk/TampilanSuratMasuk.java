@@ -12,8 +12,9 @@ import lib.Query;
 
 public class TampilanSuratMasuk extends javax.swing.JPanel {
 
-    Query query = new Query();
-     String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
+    private Query query = new Query();
+    private String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
+    private byte[] file;
     
     public TampilanSuratMasuk() {
         initComponents();
@@ -33,7 +34,6 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             modelTable.addColumn("pengirim");
             modelTable.addColumn("kategori");
             modelTable.addColumn("perihal");
-            modelTable.addColumn("file_surat");
             modelTable.addColumn("status_notifikasi");
             
             
@@ -43,10 +43,9 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 String pengirim = hasil.getString("pengirim");
                 String kategori = hasil.getString("kategori");
                 String perihal = hasil.getString("perihal");
-                String file_surat = hasil.getString("file_surat");
                 String status_notifikasi = hasil.getString("status_notifikasi");
                 
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, file_surat, status_notifikasi });
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
             }
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);
@@ -235,11 +234,31 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
 
     private void tabel_suratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseClicked
       
+        //Mendapatkan data di table
+        int baris = tabel_suratMasuk.getSelectedRow();
+        String[] data = new String[6];
+        
+        data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
+        data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
+        data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
+        data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
+        data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
+        data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
+        
+        
+        try {
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+            while(hasil.next()){
+                this.file = hasil.getBytes("file_surat");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat());
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data,this.file));
         admin.DashboardUtama.SubPanel.revalidate();
         admin.DashboardUtama.SubPanel.repaint();
-        
     }//GEN-LAST:event_tabel_suratMasukMouseClicked
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
