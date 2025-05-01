@@ -288,11 +288,11 @@ class CustomDesainTable extends DefaultTableCellRenderer {
         // Buat tombol hanya untuk tampilan
         JButton button = new JButton();
         button.setPreferredSize(new Dimension(100,30));
-        button.setContentAreaFilled(false);
+        button.setContentAreaFilled(true);
         button.setBorder(new EmptyBorder(3, 3, 3, 3));
         button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampah30px.png"))); // ganti dengan path ikon kamu
-        button.setEnabled(false); // karena ini hanya renderer
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampahv2-30px.png"))); // ganti dengan path ikon kamu
+        button.setEnabled(true); // karena ini hanya renderer
 
         JPanel panel = new JPanel(new GridBagLayout());
         panel.add(button);
@@ -315,13 +315,14 @@ class CustomEditTable extends DefaultCellEditor {
 
     public CustomEditTable() {
         super(new JCheckBox());
+        Query query = new Query();
 
         button = new JButton();
         button.setPreferredSize(new Dimension(100,30));
-        button.setContentAreaFilled(false);
+        button.setContentAreaFilled(true);
         button.setBorder(new EmptyBorder(3, 3, 3, 3));
         button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampah30px.png"))); // ganti dengan path ikon kamu
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampahv2-30px.png"))); // ganti dengan path ikon kamu
 
         panel = new JPanel(new GridBagLayout());
         panel.add(button);
@@ -330,15 +331,24 @@ class CustomEditTable extends DefaultCellEditor {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(admin.DashboardUtama.SubPanel,
-                        "Yakin ingin menghapus?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                int confirm = JOptionPane.showConfirmDialog(admin.DashboardUtama.SubPanel,"Lihat password?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
 
                 if (confirm == JOptionPane.YES_OPTION) {
                     DefaultTableModel model = (DefaultTableModel) currentTable.getModel();
                     if (currentRow >= 0 && currentRow < model.getRowCount()) {
-                        
-                        model.removeRow(currentRow);
-                        JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Berhasil dihapus!");
+                        try{
+                            String[] atributs = {"username","password",};
+                            ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).setWhereId("username", (String) currentTable.getValueAt(currentRow, 1)).selectWhereIdDownload();
+                            String password = "";
+                            while(hasil.next()){
+                                password = hasil.getString("password");
+                            }
+//                            model.removeRow(currentRow);
+                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "password anda: "+password);
+                        }catch(Exception ex){
+                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Gagal dihapus!");
+                            System.out.println(ex);
+                        }
                     }
                 }
 
