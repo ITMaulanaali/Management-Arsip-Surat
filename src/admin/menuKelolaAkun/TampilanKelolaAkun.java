@@ -2,6 +2,11 @@ package admin.menuKelolaAkun;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import lib.Query;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -15,11 +20,17 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JTextField;
 
 
-public class TampilanKelolaAkun extends javax.swing.JPanel {
+public class TampilanKelolaAkun extends javax.swing.JPanel{
 
     Query query = new Query();
     String[] atributs = {"nama","username","jenis_role"};
@@ -27,8 +38,13 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
     public TampilanKelolaAkun() {
         initComponents();
         menampilkanUser();
-        buttonTable();
-        klikIcon();
+        TableUser.getColumn("Aksi").setCellRenderer(new CustomDesainTable());
+        TableUser.getColumn("Aksi").setCellEditor(new CustomEditTable());
+        TableUser.getColumn("Aksi").setMaxWidth(100);
+        TableUser.getColumn("Aksi").setMinWidth(100);
+        TableUser.getColumn("Aksi").setPreferredWidth(100);
+//        buttonTable();
+//        klikIcon();
     }
 
     void menampilkanUser(){
@@ -71,97 +87,98 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
 //            });
 //    }
     
-    void buttonTable() {
-    Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
-
-    // Renderer untuk menampilkan tombol
-    TableUser.getColumn("Aksi").setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
-        JButton button = new JButton(icon);
-        button.setOpaque(true);
-        button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
-        button.setBackground(Color.WHITE); // Background normal
-        button.setBorderPainted(false);  // Menghilangkan border pada button
-
-        // Mouse listener untuk efek hover
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(Color.RED); // Mengubah warna background menjadi merah saat hover
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(Color.WHITE); // Kembalikan ke latar belakang normal saat mouse keluar
-            }
-        });
-
-        button.setHorizontalAlignment(SwingConstants.CENTER); // Set alignment ke tengah
-        button.setToolTipText("Klik untuk hapus"); // Tooltip saat hover
-
-        return button;
-    });
-
-    // Editor untuk menangani klik tombol
-    TableUser.getColumn("Aksi").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
-        private final JButton button = new JButton(icon);
-        private int currentRow;
-
-        {
-            button.setOpaque(true);
-            button.setBorderPainted(false);  // Menghilangkan border pada button
-            button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
-            button.setBackground(Color.WHITE); // Background normal
-            button.setHorizontalAlignment(SwingConstants.CENTER);
-
-            button.addActionListener(e -> {
-                System.out.println("Hallo dari baris ke-" + currentRow);
-
-                int confirm = JOptionPane.showConfirmDialog(button, "Hapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (confirm == JOptionPane.YES_OPTION) {
-                    ((DefaultTableModel) TableUser.getModel()).removeRow(currentRow);
-                }
-
-                fireEditingStopped(); // Wajib agar cell editor selesai
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-                                                     int row, int column) {
-            currentRow = row;
-            return button;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            return null;
-        }
-    });
-}
+    
+//    void buttonTable() {
+//    Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
+//
+//    // Renderer untuk menampilkan tombol
+//    TableUser.getColumn("Aksi").setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
+//        JButton button = new JButton(icon);
+//        button.setOpaque(true);
+//        button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
+//        button.setBackground(Color.WHITE); // Background normal
+//        button.setBorderPainted(false);  // Menghilangkan border pada button
+//
+//        // Mouse listener untuk efek hover
+//        button.addMouseListener(new java.awt.event.MouseAdapter() {
+//            @Override
+//            public void mouseEntered(java.awt.event.MouseEvent evt) {
+//                button.setBackground(Color.RED); // Mengubah warna background menjadi merah saat hover
+//            }
+//
+//            @Override
+//            public void mouseExited(java.awt.event.MouseEvent evt) {
+//                button.setBackground(Color.WHITE); // Kembalikan ke latar belakang normal saat mouse keluar
+//            }
+//        });
+//
+//        button.setHorizontalAlignment(SwingConstants.CENTER); // Set alignment ke tengah
+//        button.setToolTipText("Klik untuk hapus"); // Tooltip saat hover
+//
+//        return button;
+//    });
+//
+//    // Editor untuk menangani klik tombol
+//    TableUser.getColumn("Aksi").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
+//        private final JButton button = new JButton(icon);
+//        private int currentRow;
+//
+//        {
+//            button.setOpaque(true);
+//            button.setBorderPainted(false);  // Menghilangkan border pada button
+//            button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
+//            button.setBackground(Color.WHITE); // Background normal
+//            button.setHorizontalAlignment(SwingConstants.CENTER);
+//
+//            button.addActionListener(e -> {
+//                System.out.println("Hallo dari baris ke-" + currentRow);
+//
+//                int confirm = JOptionPane.showConfirmDialog(button, "Hapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+//                if (confirm == JOptionPane.YES_OPTION) {
+//                    ((DefaultTableModel) TableUser.getModel()).removeRow(currentRow);
+//                }
+//
+//                fireEditingStopped(); // Wajib agar cell editor selesai
+//            });
+//        }
+//
+//        @Override
+//        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
+//                                                     int row, int column) {
+//            currentRow = row;
+//            return button;
+//        }
+//
+//        @Override
+//        public Object getCellEditorValue() {
+//            return null;
+//        }
+//    });
+//}
 
 
 
 
     
-    void klikIcon(){
-        TableUser.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int row = TableUser.rowAtPoint(evt.getPoint());
-        int column = TableUser.columnAtPoint(evt.getPoint());
-
-        // Pastikan klik terjadi di dalam tabel
-        if (row >= 0 && column >= 0) {
-            // Cek apakah kolom yang diklik adalah kolom "Aksi"
-            int aksiColumnIndex = TableUser.getColumnModel().getColumnIndex("Aksi");
-            if (column == aksiColumnIndex) {
-                System.out.println("Hallo dari baris ke-" + row);
-            }
-        }
-    }
-});
-
-    }
+//    void klikIcon(){
+//        TableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+//    @Override
+//    public void mouseClicked(java.awt.event.MouseEvent evt) {
+//        int row = TableUser.rowAtPoint(evt.getPoint());
+//        int column = TableUser.columnAtPoint(evt.getPoint());
+//
+//        // Pastikan klik terjadi di dalam tabel
+//        if (row >= 0 && column >= 0) {
+//            // Cek apakah kolom yang diklik adalah kolom "Aksi"
+//            int aksiColumnIndex = TableUser.getColumnModel().getColumnIndex("Aksi");
+//            if (column == aksiColumnIndex) {
+//                System.out.println("Hallo dari baris ke-" + row);
+//            }
+//        }
+//    }
+//});
+//
+//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,7 +221,16 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
             new String [] {
                 "Username", "Nama", "Peran", "Aksi"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableUser.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(TableUser);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -243,11 +269,101 @@ public class TampilanKelolaAkun extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tambahActionPerformed
 
-    private javax.swing.JPanel PanelButtonTable;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableUser;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton tambah;
     // End of variables declaration//GEN-END:variables
+}
+
+class CustomDesainTable extends DefaultTableCellRenderer {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value,
+                                                   boolean isSelected, boolean hasFocus, int row, int column) {
+        // Komponen default untuk warna background
+        Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+        // Buat tombol hanya untuk tampilan
+        JButton button = new JButton();
+        button.setPreferredSize(new Dimension(100,30));
+        button.setContentAreaFilled(true);
+        button.setBorder(new EmptyBorder(3, 3, 3, 3));
+        button.setFocusPainted(false);
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampahv2-30px.png"))); // ganti dengan path ikon kamu
+        button.setEnabled(true); // karena ini hanya renderer
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.add(button);
+
+        if (!isSelected && row % 2 == 0) {
+            panel.setBackground(Color.WHITE);
+        } else {
+            panel.setBackground(comp.getBackground());
+        }
+
+        return panel;
+    }
+}
+
+class CustomEditTable extends DefaultCellEditor {
+    private final JButton button;
+    private final JPanel panel;
+    private JTable currentTable;
+    private int currentRow;
+
+    public CustomEditTable() {
+        super(new JCheckBox());
+        Query query = new Query();
+
+        button = new JButton();
+        button.setPreferredSize(new Dimension(100,30));
+        button.setContentAreaFilled(true);
+        button.setBorder(new EmptyBorder(3, 3, 3, 3));
+        button.setFocusPainted(false);
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/sampahv2-30px.png"))); // ganti dengan path ikon kamu
+
+        panel = new JPanel(new GridBagLayout());
+        panel.add(button);
+
+        // Aksi klik tombol
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirm = JOptionPane.showConfirmDialog(admin.DashboardUtama.SubPanel,"Lihat password?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    DefaultTableModel model = (DefaultTableModel) currentTable.getModel();
+                    if (currentRow >= 0 && currentRow < model.getRowCount()) {
+                        try{
+                            String[] atributs = {"username","password",};
+                            ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).setWhereId("username", (String) currentTable.getValueAt(currentRow, 1)).selectWhereIdDownload();
+                            String password = "";
+                            while(hasil.next()){
+                                password = hasil.getString("password");
+                            }
+//                            model.removeRow(currentRow);
+                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "password anda: "+password);
+                        }catch(Exception ex){
+                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Gagal dihapus!");
+                            System.out.println(ex);
+                        }
+                    }
+                }
+
+                fireEditingStopped(); // Wajib untuk menyelesaikan mode editing
+            }
+        });
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value,
+                                                 boolean isSelected, int row, int column) {
+        currentTable = table;
+        currentRow = row;
+
+        panel.setBackground(table.getSelectionBackground());
+        return panel;
+    }
 }
