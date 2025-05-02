@@ -88,6 +88,18 @@ public class DashboardUtama extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_surat_keluarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panel_surat_keluarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panel_surat_keluarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panel_surat_keluarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                panel_surat_keluarMouseReleased(evt);
+            }
         });
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
@@ -118,6 +130,18 @@ public class DashboardUtama extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelMenuSuratMasukMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseReleased(evt);
+            }
         });
 
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
@@ -147,6 +171,18 @@ public class DashboardUtama extends javax.swing.JPanel {
         panel_kelola_akun.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panel_kelola_akunMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panel_kelola_akunMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panel_kelola_akunMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panel_kelola_akunMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                panel_kelola_akunMouseReleased(evt);
             }
         });
 
@@ -290,6 +326,66 @@ public class DashboardUtama extends javax.swing.JPanel {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
       
     }//GEN-LAST:event_logoutMouseClicked
+
+    private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered
+
+    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseEntered
+
+    private void PanelMenuSuratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseExited
+
+    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseExited
+
+    private void PanelMenuSuratMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMousePressed
+    // Ubah warna saat mouse ditekan
+    PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
+    }//GEN-LAST:event_PanelMenuSuratMasukMousePressed
+
+    private void PanelMenuSuratMasukMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseReleased
+     // Kembalikan warna saat mouse dilepaskan
+    PanelMenuSuratMasuk.setBackground(Color.decode("#A0A0A0"));
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseReleased
+
+    private void panel_surat_keluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseEntered
+ 
+    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    }//GEN-LAST:event_panel_surat_keluarMouseEntered
+
+    private void panel_surat_keluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseExited
+
+    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    }//GEN-LAST:event_panel_surat_keluarMouseExited
+
+    private void panel_surat_keluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMousePressed
+     // Ubah warna saat mouse ditekan
+    panel_surat_keluar.setBackground(Color.decode("#7D0A0A"));
+    }//GEN-LAST:event_panel_surat_keluarMousePressed
+
+    private void panel_surat_keluarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseReleased
+     // Kembalikan warna saat mouse dilepaskan
+    panel_surat_keluar.setBackground(Color.decode("#A0A0A0"));
+    }//GEN-LAST:event_panel_surat_keluarMouseReleased
+
+    private void panel_kelola_akunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseEntered
+
+    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    }//GEN-LAST:event_panel_kelola_akunMouseEntered
+
+    private void panel_kelola_akunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseExited
+
+    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    }//GEN-LAST:event_panel_kelola_akunMouseExited
+
+    private void panel_kelola_akunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMousePressed
+    // Ubah warna saat mouse ditekan
+    panel_kelola_akun.setBackground(Color.decode("#7D0A0A"));
+    }//GEN-LAST:event_panel_kelola_akunMousePressed
+
+    private void panel_kelola_akunMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseReleased
+    // Kembalikan warna saat mouse dilepaskan
+    panel_kelola_akun.setBackground(Color.decode("#A0A0A0"));
+    }//GEN-LAST:event_panel_kelola_akunMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel Judul;

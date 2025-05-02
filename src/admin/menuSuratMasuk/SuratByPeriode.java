@@ -19,9 +19,26 @@ import java.util.Date;
 
 public class SuratByPeriode extends javax.swing.JPanel {
 
+    private static final String DEFAULT_SEARCH_TEXT = "Cari";
     
     public SuratByPeriode() {
         initComponents();
+        
+        // Set default text for cari JTextField
+        cari.setText(DEFAULT_SEARCH_TEXT);
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (cari.getText().equals(DEFAULT_SEARCH_TEXT)) {
+                    cari.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (cari.getText().isEmpty()) {
+                    cari.setText(DEFAULT_SEARCH_TEXT);
+                }
+            }
+        });
+        
     }
 
     
@@ -37,13 +54,13 @@ public class SuratByPeriode extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabel_periode = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        kembali = new javax.swing.JButton();
+        cetak = new javax.swing.JButton();
         total_surat = new javax.swing.JTextField();
         total_disposisi = new javax.swing.JTextField();
         tampilkan_surat = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabel_periode1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -97,38 +114,39 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        tabel_periode.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "No", "Perihal", "File", "Disposisi"
+        kembali.setBackground(new java.awt.Color(196, 196, 196));
+        kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        kembali.setText("Kembali");
+        kembali.setMinimumSize(new java.awt.Dimension(83, 40));
+        kembali.setPreferredSize(new java.awt.Dimension(80, 40));
+        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                kembaliMouseEntered(evt);
             }
-        ));
-        tabel_periode.setMinimumSize(new java.awt.Dimension(1200, 80));
-        tabel_periode.setPreferredSize(new java.awt.Dimension(1200, 80));
-        jScrollPane1.setViewportView(tabel_periode);
-
-        jButton1.setBackground(new java.awt.Color(196, 196, 196));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Kembali");
-        jButton1.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 40));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kembaliMouseExited(evt);
+            }
+        });
+        kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                kembaliActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(125, 10, 10));
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Cetak");
-        jButton4.setMinimumSize(new java.awt.Dimension(83, 40));
-        jButton4.setPreferredSize(new java.awt.Dimension(80, 40));
+        cetak.setBackground(new java.awt.Color(125, 10, 10));
+        cetak.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        cetak.setForeground(new java.awt.Color(255, 255, 255));
+        cetak.setText("Cetak");
+        cetak.setMinimumSize(new java.awt.Dimension(83, 40));
+        cetak.setPreferredSize(new java.awt.Dimension(80, 40));
+        cetak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cetakMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cetakMouseExited(evt);
+            }
+        });
 
         total_surat.setPreferredSize(new java.awt.Dimension(40, 30));
         total_surat.addActionListener(new java.awt.event.ActionListener() {
@@ -147,110 +165,138 @@ public class SuratByPeriode extends javax.swing.JPanel {
         tampilkan_surat.setBackground(new java.awt.Color(196, 196, 196));
         tampilkan_surat.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tampilkan_surat.setText("Tampilkan Surat");
+        tampilkan_surat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tampilkan_suratMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tampilkan_suratMouseExited(evt);
+            }
+        });
         tampilkan_surat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tampilkan_suratActionPerformed(evt);
             }
         });
 
+        tabel_periode1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "No Surat", "Perihal", "File Surat", "Disposisi"
+            }
+        ));
+        jScrollPane2.setViewportView(tabel_periode1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                .addGap(162, 162, 162)
-                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addGap(211, 211, 211)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addGap(115, 115, 115))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(304, 304, 304)
+                        .addComponent(cetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(107, 107, 107))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
+                                .addGap(159, 159, 159)
+                                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 670, Short.MAX_VALUE)
+                                .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
-                                .addGap(90, 90, 90)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(mulai_tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(total_surat, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                        .addGap(133, 133, 133)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addGap(28, 28, 28))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(378, 378, 378))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(selesai_tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                                .addComponent(total_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(289, 289, 289)))))))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(9, 9, 9)
+                            .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
        
         admin.DashboardUtama.SubPanel.removeAll();
         admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
         admin.DashboardUtama.SubPanel.revalidate();
         admin.DashboardUtama.SubPanel.repaint();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_kembaliActionPerformed
 
     private void tampilkan_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilkan_suratActionPerformed
-   // Ambil tanggal mulai dan selesai dari text field
+    // Ambil tanggal mulai dan selesai dari text field
     String mulaiTanggalStr = mulai_tanggal.getText();
     String selesaiTanggalStr = selesai_tanggal.getText();
 
     // Format untuk parsing tanggal
     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     try {
         // Mengonversi string tanggal ke Date
@@ -258,14 +304,14 @@ public class SuratByPeriode extends javax.swing.JPanel {
         Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
 
         // Mengonversi Date ke string dalam format yang sesuai untuk SQL
-        String mulaiTanggalSQL = outputFormat.format(mulaiTanggal);
-        String selesaiTanggalSQL = outputFormat.format(selesaiTanggal);
+        String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
+        String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
 
         // Query SQL untuk mengambil data berdasarkan rentang tanggal
         String query = "SELECT sm.no_surat, sm.perihal, sm.file_surat, " +
                        "d.status_disposisi " +
                        "FROM surat_masuk sm " +
-                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
+                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_disposisi " +
                        "WHERE sm.tanggal_surat >= ? AND sm.tanggal_surat <= ?";
 
         // Siapkan koneksi ke database
@@ -279,13 +325,11 @@ public class SuratByPeriode extends javax.swing.JPanel {
         ResultSet rs = pstmt.executeQuery();
         
         // Bersihkan tabel sebelum menampilkan data baru
-        DefaultTableModel model = (DefaultTableModel) tabel_periode.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
         model.setRowCount(0); // Menghapus semua baris
         
-        // Inisialisasi total disposisi
-        int totalDisposisi = 0; 
-        
         // Tambahkan data ke tabel
+        int totalDisposisi = 0; // Variabel untuk menghitung total disposisi
         while (rs.next()) {
             Object[] row = new Object[4];
             row[0] = rs.getString("no_surat"); 
@@ -295,16 +339,18 @@ public class SuratByPeriode extends javax.swing.JPanel {
             
             model.addRow(row);
             
-            // Hitung total disposisi jika status_disposisi adalah "terdisposisi"
-            if ("terdisposisi".equalsIgnoreCase(rs.getString("status_disposisi"))) {
+            // Hitung total disposisi jika status_disposisi tidak null
+            if (rs.getString("status_disposisi") != null) {
                 totalDisposisi++;
             }
         }
 
-        // Hitung total surat dan tampilkan di total_surat
-        int totalSurat = model.getRowCount(); // Menghitung jumlah baris
-        total_surat.setText(String.valueOf(totalSurat)); // Menampilkan total surat
-        total_disposisi.setText(String.valueOf(totalDisposisi)); // Menampilkan total disposisi
+        // Hitung total surat
+        int totalSurat = model.getRowCount(); // Jumlah baris di tabel
+
+        // Tampilkan total surat dan total disposisi
+        total_surat.setText(String.valueOf(totalSurat));
+        total_disposisi.setText(String.valueOf(totalDisposisi));
 
     } catch (ParseException e) {
         e.printStackTrace();
@@ -335,61 +381,69 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
        
-         // Ambil nilai dari cari dan pilih
-        String searchText = cari.getText();
-        String selectedItem = (String) pilih.getSelectedItem();
+    // Ambil nilai dari cari dan pilih
+    String searchText = cari.getText();
+    String selectedItem = (String) pilih.getSelectedItem();
 
-        // Query SQL berdasarkan pilihan
-        String query = "SELECT sm.no_surat, sm.perihal, sm.file_surat, " +
-                       "d.status_disposisi " +
-                       "FROM surat_masuk sm " +
-                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
-                       "WHERE ";
+    // Query SQL berdasarkan pilihan
+    String query = "SELECT sm.no_surat, sm.perihal, sm.file_surat, " +
+                   "d.status_disposisi " +
+                   "FROM surat_masuk sm " +
+                   "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
+                   "WHERE ";
 
-        // Menentukan kolom yang dicari
-        switch (selectedItem) {
-            case "No":
-                query += "sm.no_surat LIKE ?";
-                break;
-            case "Perihal":
-                query += "sm.perihal LIKE ?";
-                break;
-            case "File":
-                query += "sm.file_surat LIKE ?";
-                break;
-            case "Disposisi":
-                query += "d.status_disposisi LIKE ?";
-                break;
-            default:
-                return; // Jika tidak ada pilihan yang valid
+    // Menentukan kolom yang dicari
+    switch (selectedItem) {
+        case "No":
+            query += "sm.no_surat LIKE ?";
+            break;
+        case "Perihal":
+            query += "sm.perihal LIKE ?";
+            break;
+        case "File":
+            query += "sm.file_surat LIKE ?";
+            break;
+        case "Disposisi":
+            query += "d.status_disposisi LIKE ?";
+            break;
+        default:
+            return; // Jika tidak ada pilihan yang valid
+    }
+
+    // Siapkan koneksi ke database
+    try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
+        pstmt.setString(1, "%" + searchText + "%"); // Menambahkan wildcard untuk pencarian
+
+        // Eksekusi query
+        ResultSet rs = pstmt.executeQuery();
+
+        // Bersihkan tabel sebelum menampilkan data baru
+        DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
+        model.setRowCount(0); // Menghapus semua baris
+
+        // Tambahkan data ke tabel
+        boolean dataFound = false; // Flag untuk memeriksa apakah data ditemukan
+        while (rs.next()) {
+            dataFound = true; // Data ditemukan
+            Object[] row = new Object[4];
+            row[0] = rs.getString("no_surat");
+            row[1] = rs.getString("perihal");
+            row[2] = rs.getString("file_surat");
+            row[3] = rs.getString("status_disposisi");
+
+            model.addRow(row);
         }
 
-        // Siapkan koneksi ke database
-        try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
-            pstmt.setString(1, "%" + searchText + "%"); // Menambahkan wildcard untuk pencarian
-
-            // Eksekusi query
-            ResultSet rs = pstmt.executeQuery();
-
-            // Bersihkan tabel sebelum menampilkan data baru
-            DefaultTableModel model = (DefaultTableModel) tabel_periode.getModel();
-            model.setRowCount(0); // Menghapus semua baris
-
-            // Tambahkan data ke tabel
-            while (rs.next()) {
-                Object[] row = new Object[4];
-                row[0] = rs.getString("no_surat");
-                row[1] = rs.getString("perihal");
-                row[2] = rs.getString("file_surat");
-                row[3] = rs.getString("status_disposisi");
-
-                model.addRow(row);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        // Jika tidak ada data ditemukan, tampilkan pesan
+        if (!dataFound) {
+            JOptionPane.showMessageDialog(this, "Tidak ada data yang ditemukan.");
+            model.setRowCount(0); // Kosongkan tabel jika tidak ada data
         }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
         
     }//GEN-LAST:event_cariActionPerformed
 
@@ -397,20 +451,44 @@ public class SuratByPeriode extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_pilihActionPerformed
 
+    private void kembaliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseEntered
+    kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_kembaliMouseEntered
+
+    private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
+    kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_kembaliMouseExited
+
+    private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
+    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_cetakMouseEntered
+
+    private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
+    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_cetakMouseExited
+
+    private void tampilkan_suratMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tampilkan_suratMouseEntered
+    tampilkan_surat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_tampilkan_suratMouseEntered
+
+    private void tampilkan_suratMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tampilkan_suratMouseExited
+    tampilkan_surat.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_tampilkan_suratMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cari;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton cetak;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton kembali;
     private javax.swing.JTextField mulai_tanggal;
     private javax.swing.JComboBox<String> pilih;
     private javax.swing.JTextField selesai_tanggal;
-    private javax.swing.JTable tabel_periode;
+    private javax.swing.JTable tabel_periode1;
     private javax.swing.JButton tampilkan_surat;
     private javax.swing.JTextField total_disposisi;
     private javax.swing.JTextField total_surat;
