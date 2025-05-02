@@ -11,6 +11,10 @@ import lib.Query;
 
 
 public class ArsipkanSurat extends javax.swing.JPanel {
+         
+    private static final String DEFAULT_PENGIRIM_TEXT = "Nama Instansi";
+    private static final String DEFAULT_KATEGORI_TEXT = "Personal";
+    
 
      Query query; 
      String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
@@ -19,6 +23,52 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         initComponents();
         tampilkanTanggalDanWaktu(); // Menampilkan tanggal dan waktu otomatis
         this.query= new Query();
+        
+        // Set default text and add focus listener for pengirim
+        pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+        pengirim.addFocusListener(new java.awt.event.FocusAdapter() {
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (pengirim.getText().equals(DEFAULT_PENGIRIM_TEXT)) {
+            pengirim.setText("");
+        }
+    }
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (pengirim.getText().isEmpty()) {
+            pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+        }
+    }
+});
+
+        // Set default text and add focus listener for kategori
+        kategori.setText(DEFAULT_KATEGORI_TEXT);
+        kategori.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+        if (kategori.getText().equals(DEFAULT_KATEGORI_TEXT)) {
+            kategori.setText("");
+        }
+    }
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (kategori.getText().isEmpty()) {
+            kategori.setText(DEFAULT_KATEGORI_TEXT);
+        }
+    }
+});
+
+    // Set default text and add focus listener for jTextField8
+    pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+    pengirim.addFocusListener(new java.awt.event.FocusAdapter() {
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (pengirim.getText().equals(DEFAULT_PENGIRIM_TEXT)) {
+            pengirim.setText("");
+        }
+    }
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (pengirim.getText().isEmpty()) {
+            pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+        }
+    }
+});
+        
     }
 
      private void tampilkanTanggalDanWaktu() {
@@ -52,7 +102,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         status_notifikasi = new javax.swing.JComboBox<>();
         pengirim = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         perihal = new javax.swing.JTextArea();
         Upload = new javax.swing.JButton();
@@ -66,6 +115,11 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jLabel5.setText("Nomor Surat");
 
         nomor_surat.setPreferredSize(new java.awt.Dimension(40, 30));
+        nomor_surat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomor_suratActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -106,6 +160,14 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         arsipkan.setText("Arsipkan");
         arsipkan.setMinimumSize(new java.awt.Dimension(83, 40));
         arsipkan.setPreferredSize(new java.awt.Dimension(80, 40));
+        arsipkan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                arsipkanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                arsipkanMouseExited(evt);
+            }
+        });
         arsipkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 arsipkanActionPerformed(evt);
@@ -117,6 +179,14 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         kembali.setText("Kembali");
         kembali.setMinimumSize(new java.awt.Dimension(83, 40));
         kembali.setPreferredSize(new java.awt.Dimension(80, 40));
+        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                kembaliMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kembaliMouseExited(evt);
+            }
+        });
         kembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kembaliActionPerformed(evt);
@@ -127,19 +197,11 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Status Notifikasi");
 
-        status_notifikasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dibaca", "Sudah Terbaca", "Terdisposisi" }));
+        status_notifikasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dibaca", "Sudah Dibaca" }));
         status_notifikasi.setPreferredSize(new java.awt.Dimension(76, 30));
 
         pengirim.setText("Nama Instansi");
         pengirim.setPreferredSize(new java.awt.Dimension(40, 30));
-        pengirim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pengirimActionPerformed(evt);
-            }
-        });
-
-        jTextField8.setText("Nama Instansi");
-        jTextField8.setPreferredSize(new java.awt.Dimension(40, 30));
 
         perihal.setColumns(20);
         perihal.setRows(5);
@@ -186,8 +248,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pengirim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pengirim, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                             .addComponent(kategori, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(86, 86, 86))
                     .addGroup(layout.createSequentialGroup()
@@ -209,7 +270,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
                 .addComponent(nomor_surat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
@@ -221,19 +282,15 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pengirim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pengirim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(6, 6, 6)
@@ -256,10 +313,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                         .addGap(16, 16, 16))))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tanggal_surat_masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_surat_masukActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tanggal_surat_masukActionPerformed
 
     private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
        
@@ -299,9 +352,29 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         upload_file.setText(lib.PilihFile.getPath());
     }//GEN-LAST:event_UploadActionPerformed
 
-    private void pengirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pengirimActionPerformed
+    private void kembaliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseEntered
+    kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_kembaliMouseEntered
+
+    private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
+    kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_kembaliMouseExited
+
+    private void arsipkanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseEntered
+    arsipkan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_arsipkanMouseEntered
+
+    private void arsipkanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseExited
+    arsipkan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_arsipkanMouseExited
+
+    private void tanggal_surat_masukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_surat_masukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pengirimActionPerformed
+    }//GEN-LAST:event_tanggal_surat_masukActionPerformed
+
+    private void nomor_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomor_suratActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomor_suratActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,7 +388,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField kategori;
     private javax.swing.JButton kembali;
     private javax.swing.JTextField nomor_surat;

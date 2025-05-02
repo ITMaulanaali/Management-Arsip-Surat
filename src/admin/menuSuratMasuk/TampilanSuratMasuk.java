@@ -11,14 +11,38 @@ import javax.swing.table.DefaultTableModel;
 import lib.Query;
 
 public class TampilanSuratMasuk extends javax.swing.JPanel {
+    
 
     private Query query = new Query();
-    private String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
+    private String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","status_notifikasi"};
     private byte[] file;
     
+    private static final String DEFAULT_SEARCH_TEXT = "Cari";
+     
     public TampilanSuratMasuk() {
         initComponents();
         menampilkanSuratMasuk();
+        
+        // Set default text and add focus listener
+        cari.setText(DEFAULT_SEARCH_TEXT);
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (cari.getText().equals(DEFAULT_SEARCH_TEXT)) {
+                    cari.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (cari.getText().isEmpty()) {
+                    cari.setText(DEFAULT_SEARCH_TEXT);
+                } else {
+                    // Refresh the table when focus is lost
+                    String searchText = cari.getText();
+                    String selectedOption = (String) pilih.getSelectedItem();
+                    menampilkanSuratMasuk(searchText, selectedOption);
+                }
+            }
+        });
+        
         
     }
 
@@ -29,12 +53,12 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).select();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
-            modelTable.addColumn("no_surat");
-            modelTable.addColumn("tanggal_surat");
-            modelTable.addColumn("pengirim");
-            modelTable.addColumn("kategori");
-            modelTable.addColumn("perihal");
-            modelTable.addColumn("status_notifikasi");
+            modelTable.addColumn("No surat");
+            modelTable.addColumn("Tanggal Surat");
+            modelTable.addColumn("Pengirim");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status Notifikasi");
             
             
             while(hasil.next()){
@@ -61,12 +85,12 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
 
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
-        periode1 = new javax.swing.JPanel();
-        iconPeriode = new javax.swing.JLabel();
-        periode = new javax.swing.JLabel();
         arsipkan = new javax.swing.JPanel();
         iconPeriode1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        periode1 = new javax.swing.JPanel();
+        iconPeriode = new javax.swing.JLabel();
+        periode = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabel_suratMasuk = new javax.swing.JTable();
 
@@ -94,43 +118,23 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         });
 
-        periode1.setBackground(new java.awt.Color(217, 217, 217));
-        periode1.setPreferredSize(new java.awt.Dimension(100, 40));
-        periode1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                periode1MouseClicked(evt);
-            }
-        });
-
-        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode50px.png"))); // NOI18N
-
-        periode.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        periode.setText("Periode");
-
-        javax.swing.GroupLayout periode1Layout = new javax.swing.GroupLayout(periode1);
-        periode1.setLayout(periode1Layout);
-        periode1Layout.setHorizontalGroup(
-            periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(periode1Layout.createSequentialGroup()
-                .addComponent(iconPeriode)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(periode)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        periode1Layout.setVerticalGroup(
-            periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(periode1Layout.createSequentialGroup()
-                .addGroup(periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iconPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(periode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         arsipkan.setBackground(new java.awt.Color(217, 217, 217));
         arsipkan.setPreferredSize(new java.awt.Dimension(100, 40));
         arsipkan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arsipkanMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                arsipkanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                arsipkanMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                arsipkanMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                arsipkanMouseReleased(evt);
             }
         });
 
@@ -148,7 +152,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         arsipkanLayout.setVerticalGroup(
             arsipkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +161,50 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
+        );
+
+        periode1.setBackground(new java.awt.Color(217, 217, 217));
+        periode1.setPreferredSize(new java.awt.Dimension(100, 40));
+        periode1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                periode1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                periode1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                periode1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                periode1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                periode1MouseReleased(evt);
+            }
+        });
+
+        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode50px.png"))); // NOI18N
+
+        periode.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        periode.setText("Periode");
+
+        javax.swing.GroupLayout periode1Layout = new javax.swing.GroupLayout(periode1);
+        periode1.setLayout(periode1Layout);
+        periode1Layout.setHorizontalGroup(
+            periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(periode1Layout.createSequentialGroup()
+                .addComponent(iconPeriode)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(periode)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        periode1Layout.setVerticalGroup(
+            periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(periode1Layout.createSequentialGroup()
+                .addGroup(periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconPeriode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(periode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabel_suratMasuk.setModel(new javax.swing.table.DefaultTableModel(
@@ -171,8 +219,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         ));
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabel_suratMasukMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMousePressed(evt);
             }
         });
         jScrollPane2.setViewportView(tabel_suratMasuk);
@@ -183,18 +231,18 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(458, 458, 458)
+                                .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(periode1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(periode1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                            .addComponent(pilih, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -208,8 +256,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(periode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -232,108 +280,159 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         
     }//GEN-LAST:event_arsipkanMouseClicked
 
-    private void tabel_suratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseClicked
-      
-        //Mendapatkan data di table
-        int baris = tabel_suratMasuk.getSelectedRow();
-        String[] data = new String[6];
-        
-        data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
-        data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
-        data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
-        data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
-        data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
-        data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
-        
-        
-        try {
-            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId("no_surat", data[0]).selectWhereIdDownload();
-            while(hasil.next()){
-                this.file = hasil.getBytes("file_surat");
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data,this.file));
-        admin.DashboardUtama.SubPanel.revalidate();
-        admin.DashboardUtama.SubPanel.repaint();
-    }//GEN-LAST:event_tabel_suratMasukMouseClicked
-
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
        
         String searchText = cari.getText();
-    String selectedOption = (String) pilih.getSelectedItem();
-    menampilkanSuratMasuk(searchText, selectedOption);
+        String selectedOption = (String) pilih.getSelectedItem();
+        menampilkanSuratMasuk(searchText, selectedOption);
 }                                    
 
 void menampilkanSuratMasuk(String searchText, String selectedOption) {
     try {
+            String queryCondition = "";
+            switch (selectedOption) {
+                case "No":
+                    queryCondition = coloumn[0];
+                    break;
+                case "Tanggal Surat":
+                    queryCondition = "tanggal_surat";
+                    break;
+                case "Pengirim":
+                    queryCondition = "pengirim";
+                    break;
+                case "Kategori":
+                    queryCondition = "kategori ";
+                    break;
+                case "Perihal":
+                    queryCondition = "perihal";
+                    break;
+                case "Status Notifikasi":
+                    queryCondition = "status_notifikasi ";
+                    break;
+                default:
+                    break;
+            }
+            // Lakukan query dengan kondisi yang telah dibuat
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
 
-        String queryCondition = "";
-        switch (selectedOption) {
-            case "No":
-                queryCondition = coloumn[0];
-                break;
-            case "Tanggal Surat":
-                queryCondition = "tanggal_surat";
-                break;
-            case "Pengirim":
-                queryCondition = "pengirim";
-                break;
-            case "Kategori":
-                queryCondition = "kategori ";
-                break;
-            case "Perihal":
-                queryCondition = "perihal";
-                break;
-            case "File Surat":
-                queryCondition = "file_surat ";
-                break;
-                 case "Status Notifikasi":
-                queryCondition = "status_notifikasi ";
-                break;
-            default:
-                break;
-        }
-        // Lakukan query dengan kondisi yang telah dibuat
-        ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
+            DefaultTableModel modelTable = new DefaultTableModel(); 
+            modelTable.addColumn("No surat");
+            modelTable.addColumn("Tanggal Surat");
+            modelTable.addColumn("Pengirim");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status Notifikasi");
 
-        DefaultTableModel modelTable = new DefaultTableModel(); 
-        modelTable.addColumn("no_surat");
-        modelTable.addColumn("tanggal_surat");
-        modelTable.addColumn("pengirim");
-        modelTable.addColumn("kategori");
-        modelTable.addColumn("perihal");
-        modelTable.addColumn("file_surat");
-        modelTable.addColumn("status_notifikasi");
+            while (hasil.next()) {
+                String no = hasil.getString("no_surat");
+                String tanggal = hasil.getString("tanggal_surat");
+                String pengirim = hasil.getString("pengirim");
+                String kategori = hasil.getString("kategori");
+                String perihal = hasil.getString("perihal");
+                String status_notifikasi = hasil.getString("status_notifikasi");
 
-        while (hasil.next()) {
-            String no = hasil.getString("no_surat");
-            String tanggal = hasil.getString("tanggal_surat");
-            String pengirim = hasil.getString("pengirim");
-            String kategori = hasil.getString("kategori");
-            String perihal = hasil.getString("perihal");
-            String file_surat = hasil.getString("file_surat");
-            String status_notifikasi = hasil.getString("status_notifikasi");
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
+            }
+            tabel_suratMasuk.setRowHeight(30);
+            tabel_suratMasuk.setModel(modelTable);
 
-            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, file_surat, status_notifikasi });
-        }
-        tabel_suratMasuk.setRowHeight(30);
-        tabel_suratMasuk.setModel(modelTable);
-
-    } catch (Exception ex) {
-        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
-    } 
+        } catch (Exception ex) {
+            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    
         
     }//GEN-LAST:event_cariActionPerformed
 
     private void pilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihActionPerformed
-       
-        
-        
+           
     }//GEN-LAST:event_pilihActionPerformed
+
+    private void arsipkanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseEntered
+    arsipkan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    arsipkan.setBackground(new java.awt.Color(255, 255, 255)); // Ubah warna saat ditekan
+    }//GEN-LAST:event_arsipkanMouseEntered
+
+    private void arsipkanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseExited
+    arsipkan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Ubah warna saat ditekan
+    }//GEN-LAST:event_arsipkanMouseExited
+
+    private void arsipkanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMousePressed
+    arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Ubah warna saat ditekan
+    }//GEN-LAST:event_arsipkanMousePressed
+
+    private void arsipkanMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseReleased
+    arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Kembalikan warna saat dilepaskan
+    // Tambahkan logika untuk mengarsipkan surat
+    admin.DashboardUtama.SubPanel.removeAll();
+    admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.ArsipkanSurat());
+    admin.DashboardUtama.SubPanel.revalidate();
+    admin.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_arsipkanMouseReleased
+
+    private void periode1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MouseEntered
+    periode1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    periode1.setBackground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_periode1MouseEntered
+
+    private void periode1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MouseExited
+    periode1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    periode1.setBackground(new java.awt.Color(217, 217, 217));
+    }//GEN-LAST:event_periode1MouseExited
+
+    private void periode1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MousePressed
+    periode1.setBackground(new java.awt.Color(217, 217, 217));
+    }//GEN-LAST:event_periode1MousePressed
+
+    private void periode1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MouseReleased
+    periode1.setBackground(new java.awt.Color(217, 217, 217)); // Kembalikan warna saat dilepaskan
+    // Tambahkan logika untuk mengarsipkan surat
+    admin.DashboardUtama.SubPanel.removeAll();
+    admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.SuratByPeriode());
+    admin.DashboardUtama.SubPanel.revalidate();
+    admin.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_periode1MouseReleased
+
+    private void tabel_suratMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMousePressed
+        
+   int baris = tabel_suratMasuk.rowAtPoint(evt.getPoint());
+        if (baris < 0) {
+            return; // Clicked outside table rows
+        }
+
+        if (evt.getClickCount() == 1) {
+            // Single click: set selection on the clicked row
+            tabel_suratMasuk.setRowSelectionInterval(baris, baris);
+            // Additional logic for single click can be added here if needed
+        } else if (evt.getClickCount() == 2) {
+            // Double click: open LihatSurat panel with selected row details
+            String[] data = new String[6];
+    
+            data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
+            data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
+            data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
+            data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
+            data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
+            data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
+    
+    
+            try {
+                String[] atributs = {"no_surat","file_surat"};
+                ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+                while(hasil.next()){
+                    this.file = hasil.getBytes("file_surat");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+            admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data,this.file));
+            admin.DashboardUtama.SubPanel.revalidate();
+            admin.DashboardUtama.SubPanel.repaint(); 
+        }
+        
+    }//GEN-LAST:event_tabel_suratMasukMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
