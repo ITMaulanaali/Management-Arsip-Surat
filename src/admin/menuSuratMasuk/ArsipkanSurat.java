@@ -100,7 +100,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         arsipkan = new javax.swing.JButton();
         kembali = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        status_notifikasi = new javax.swing.JComboBox<>();
+        statusNotifikasi = new javax.swing.JComboBox<>();
         pengirim = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         perihal = new javax.swing.JTextArea();
@@ -197,8 +197,8 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Status Notifikasi");
 
-        status_notifikasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dibaca", "Sudah Dibaca" }));
-        status_notifikasi.setPreferredSize(new java.awt.Dimension(76, 30));
+        statusNotifikasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dibaca", "Sudah Dibaca" }));
+        statusNotifikasi.setPreferredSize(new java.awt.Dimension(76, 30));
 
         pengirim.setText("Nama Instansi");
         pengirim.setPreferredSize(new java.awt.Dimension(40, 30));
@@ -256,7 +256,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(status_notifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(statusNotifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +298,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(status_notifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(statusNotifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,7 +330,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
       String personalkategori = kategori.getText();
       String catatanperihal = perihal.getText();
       String file_surat = upload_file.getText();
-      String tandastatusnotifikasi = (String) status_notifikasi.getSelectedItem();
+      String tandastatusnotifikasi = (String) statusNotifikasi.getSelectedItem();
       String[] Value = {nomerSurat,tanggal,namapengirim,personalkategori,catatanperihal,file_surat,tandastatusnotifikasi};
     
          try {
@@ -393,7 +393,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     private javax.swing.JTextField nomor_surat;
     private javax.swing.JTextField pengirim;
     private javax.swing.JTextArea perihal;
-    private javax.swing.JComboBox<String> status_notifikasi;
+    private javax.swing.JComboBox<String> statusNotifikasi;
     private javax.swing.JTextField tanggal_surat_masuk;
     private javax.swing.JTextField upload_file;
     // End of variables declaration//GEN-END:variables

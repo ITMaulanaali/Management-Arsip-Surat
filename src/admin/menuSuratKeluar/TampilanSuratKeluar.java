@@ -3,6 +3,7 @@ package admin.menuSuratKeluar;
 
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import admin.menuSuratMasuk.*;
+import java.io.File;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ private String selectedPerihal;
 private String selectedStatusPengiriman;
 private String selectedAlamatTujuan;
 private String selectedFileSurat;
+private byte[] file;
 
 private String getFileSuratFromDatabase(String noSurat) {
     String fileSurat = "";
@@ -473,28 +475,43 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
     }//GEN-LAST:event_editMouseExited
 
     private void tabel_suratkeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMousePressed
-     int row = tabel_suratkeluar.getSelectedRow(); // Ambil baris yang dipilih
-    if (row != -1) { // Pastikan ada baris yang dipilih
-        if (evt.getClickCount() == 1) {
-            // Ambil data dari baris yang dipilih
-            selectedNoSurat = tabel_suratkeluar.getValueAt(row, 0).toString();
-            selectedTanggalSurat = tabel_suratkeluar.getValueAt(row, 1).toString();
-            selectedPenerima = tabel_suratkeluar.getValueAt(row, 2).toString();
-            selectedKategori = tabel_suratkeluar.getValueAt(row, 3).toString();
-            selectedPerihal = tabel_suratkeluar.getValueAt(row, 4).toString();
-            selectedStatusPengiriman = tabel_suratkeluar.getValueAt(row, 5).toString();
-            selectedAlamatTujuan = tabel_suratkeluar.getValueAt(row, 6).toString();
-            
-            // Ambil file_surat dari database
-            selectedFileSurat = getFileSuratFromDatabase(selectedNoSurat);
-        } else if (evt.getClickCount() == 2) {
-            // Tampilkan tampilan LihatSurat
-            admin.DashboardUtama.SubPanel.removeAll();
-            admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat());
-            admin.DashboardUtama.SubPanel.revalidate();
-            admin.DashboardUtama.SubPanel.repaint();
+        int baris = tabel_suratkeluar.rowAtPoint(evt.getPoint());
+        if (baris < 0) {
+            return; // Clicked outside table rows
         }
-    }
+
+        if (evt.getClickCount() == 1) {
+            // Single click: set selection on the clicked row
+            tabel_suratkeluar.setRowSelectionInterval(baris, baris);
+            // Additional logic for single click can be added here if needed
+        } else if (evt.getClickCount() == 2) {
+            // Double click: open LihatSurat panel with selected row details
+            String[] data = new String[7];
+    
+            data[0] = (String)tabel_suratkeluar.getValueAt(baris, 0);
+            data[1] = (String)tabel_suratkeluar.getValueAt(baris, 1);
+            data[2] = (String)tabel_suratkeluar.getValueAt(baris, 2);
+            data[3] = (String)tabel_suratkeluar.getValueAt(baris, 3);
+            data[4] = (String)tabel_suratkeluar.getValueAt(baris, 4);
+            data[5] = (String)tabel_suratkeluar.getValueAt(baris, 5);
+            data[6] = (String)tabel_suratkeluar.getValueAt(baris, 5);
+    
+            
+            try {
+                String[] atributs = {"no_surat","file_surat"};
+                ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+                while(hasil.next()){
+                    this.file = hasil.getBytes("file_surat");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
+            admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat(data,file));
+            admin.DashboardUtama.SubPanel.revalidate();
+            admin.DashboardUtama.SubPanel.repaint(); 
+        }
     
     }//GEN-LAST:event_tabel_suratkeluarMousePressed
 

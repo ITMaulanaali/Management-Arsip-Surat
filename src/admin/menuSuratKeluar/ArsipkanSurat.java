@@ -243,6 +243,11 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jScrollPane1.setViewportView(perihal);
 
         upload.setText("Upload File");
+        upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadActionPerformed(evt);
+            }
+        });
 
         update.setBackground(new java.awt.Color(196, 196, 196));
         update.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -529,6 +534,10 @@ private void setPlaceholder(JTextField textField, String placeholder) {
     }
     
     }//GEN-LAST:event_updateActionPerformed
+
+    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
+        file.setText(lib.PilihFile.getPath());
+    }//GEN-LAST:event_uploadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

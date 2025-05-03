@@ -1,22 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package admin.menuSuratKeluar;
 
 import admin.menuSuratMasuk.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.PdfDiJpanel;
 
-/**
- *
- * @author lan
- */
 public class LihatSurat extends javax.swing.JPanel {
 
-    public LihatSurat(String no_surat) {
-        // Inisialisasi komponen dan logika berdasarkan noSurat
-    }
-    public LihatSurat() {
+    String[] data;
+    byte[] pdfBiner;
+    public LihatSurat(String[] data, byte[] pdfBiner) {
         initComponents();
+        this.data = data;
+        try {
+            imageLabel.setIcon(new PdfDiJpanel().addByteFile(pdfBiner).getIcon());
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -36,6 +37,7 @@ public class LihatSurat extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        imageLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -66,7 +68,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +104,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         cetakLayout.setVerticalGroup(
             cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +134,8 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setViewportView(imageLabel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,8 +147,8 @@ public class LihatSurat extends javax.swing.JPanel {
                     .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                .addGap(150, 150, 150))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,6 +205,7 @@ public class LihatSurat extends javax.swing.JPanel {
     private javax.swing.JPanel hapus;
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
