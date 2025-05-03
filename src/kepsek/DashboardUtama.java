@@ -2,15 +2,32 @@ package kepsek;
 
 import admin.*;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Query;
 
 
 public class DashboardUtama extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MenuUtama
-     */
+    Query query;
     public DashboardUtama() {
         initComponents();
+        this.query = new Query();
+        
+        String[] atributs = {"status_notifikasi"};
+        int i = 0;
+        try {
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(atributs).select();
+            while(hasil.next()){
+                if(hasil.getString("status_notifikasi").equals("Belum Dibaca")){
+                    i++;
+                }
+            }
+            notif.setText(Integer.toString(i));
+        } catch (Exception ex) {
+            Logger.getLogger(DashboardUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
         LabelSuratMasuk.setForeground(Color.decode("#FFFFFF"));
@@ -40,7 +57,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         PanelMenuSuratMasuk = new javax.swing.JPanel();
         iconPeriode2 = new javax.swing.JLabel();
         LabelSuratMasuk = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        notif = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         SubPanel = new javax.swing.JPanel();
 
@@ -107,7 +124,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,8 +163,8 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
-        jLabel4.setText("4");
+        notif.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        notif.setText("4");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
@@ -168,16 +185,16 @@ public class DashboardUtama extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jLabel4))
+                        .addComponent(notif))
                     .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, Short.MAX_VALUE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jLabel4)
+                .addComponent(notif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -253,10 +270,10 @@ public class DashboardUtama extends javax.swing.JPanel {
     private javax.swing.JLabel iconPeriode2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static javax.swing.JLabel notif;
     // End of variables declaration//GEN-END:variables
 }

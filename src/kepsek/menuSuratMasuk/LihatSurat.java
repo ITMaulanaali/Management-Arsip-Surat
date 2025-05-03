@@ -1,17 +1,18 @@
 package kepsek.menuSuratMasuk;
 
+import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import java.sql.PreparedStatement;
 import lib.PdfDiJpanel;
 
 public class LihatSurat extends javax.swing.JPanel {
     private PdfDiJpanel pdf;
     private String[] data;
     private byte[] fileBiner;
-    
     
     public LihatSurat(String[] data, byte[] fileBiner) {
         initComponents();
@@ -20,7 +21,23 @@ public class LihatSurat extends javax.swing.JPanel {
         this.pdf = new PdfDiJpanel();
         
         setupContent();
+        refreshNotif();
         
+    }
+    
+    private void refreshNotif(){
+        try{
+            PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca' WHERE no_surat = ?");
+            statement.setString(1, this.data[0]);
+            boolean result = statement.execute();
+            
+                String totalNotif = kepsek.DashboardUtama.notif.getText();
+                int i = Integer.parseInt(totalNotif);
+                kepsek.DashboardUtama.notif.setText(Integer.toString(--i));
+            
+        }catch(Exception ex){
+            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void setupContent() {
