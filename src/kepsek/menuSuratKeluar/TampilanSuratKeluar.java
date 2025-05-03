@@ -9,238 +9,103 @@ import kepsek.menuSuratMasuk.*;
 import admin.menuSuratMasuk.*;
 import admin.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+import lib.Query;
+
 /**
  *
  * @author lan
  */
 public class TampilanSuratKeluar extends javax.swing.JPanel {
 
-    private DefaultTableModel tableModel;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private String selectedNoSurat;
+    private String selectedTanggalSurat;
+    private String selectedPenerima;
+    private String selectedKategori;
+    private String selectedPerihal;
+    private String selectedStatusPengiriman;
+    private String selectedAlamatTujuan;
+    private String selectedFileSurat;
+    
+    private String getFileSuratFromDatabase(String noSurat) {
+    String fileSurat = "";
+    try {
+        ResultSet hasil = query.setNamaTabel("surat_keluar")
+            .setAtribut(new String[]{"file_surat"})
+            .setWhereId("no_surat", noSurat)
+            .selectWhereLike();
+        
+        if (hasil.next()) {
+            fileSurat = hasil.getString("file_surat");
+        }
+    } catch (Exception ex) {
+        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return fileSurat;
+}
+
+    Query query = new Query();
+    String[] coloumn = {"no_surat","tanggal_surat","penerima","kategori","perihal","status_pengiriman","alamat_tujuan"};
+    
     
     public TampilanSuratKeluar() {
         initComponents();
-        setupSearchField();
-        setupTable();
-        loadDummyData();
-    }
-
-     private void setupSearchField() {
-        // Set placeholder text
+        menampilkanSuratKeluar();
         cari.setText("Cari");
-        cari.setForeground(Color.GRAY);
         
-        // Add focus listener to handle placeholder behavior
-        cari.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (cari.getText().equals("Cari")) {
-                    cari.setText("");
-                    cari.setForeground(Color.BLACK);
-                }
+        cari.setText("Cari");
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            // When the text field gains focus
+            if (cari.getText().equals("Cari")) {
+                cari.setText("");  // Clear text
             }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (cari.getText().isEmpty()) {
-                    cari.setText("Cari");
-                    cari.setForeground(Color.GRAY);
-                }
-            }
-        });
-        
-        // Add action listener for search
-        cari.addActionListener(e -> performSearch());
-    }
-        
-    private void setupTable() {
-        // Create a custom table model with correct column names
-        tableModel = new DefaultTableModel(
-            new Object [][] {},
-            new String [] {
-                "No.Surat", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File"
-            }
-        ) {
-            // Make columns have appropriate types
-            Class<?>[] types = new Class<?>[] {
-                String.class, String.class, String.class, String.class, String.class, 
-                String.class, String.class, String.class
-            };
-            
-            @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-            
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // None editable for now
-            }
-        };
-        
-        tabelsuratkeluar.setModel(tableModel);
-        
-        // Set up table appearance
-        tabelsuratkeluar.setRowHeight(40);
-        tabelsuratkeluar.setFont(new Font("Arial", Font.PLAIN, 12));
-        tabelsuratkeluar.getTableHeader().setFont(new Font("Arial", Font.BOLD, 12));
-        tabelsuratkeluar.setShowGrid(true);
-        tabelsuratkeluar.setGridColor(Color.LIGHT_GRAY);
-        
-        // Adjust column widths
-        if (tabelsuratkeluar.getColumnCount() >= 8) {
-            TableColumn noColumn = tabelsuratkeluar.getColumnModel().getColumn(0);
-            noColumn.setPreferredWidth(100);
-            
-            TableColumn perihalColumn = tabelsuratkeluar.getColumnModel().getColumn(1);
-            perihalColumn.setPreferredWidth(200);
-            
-            TableColumn kategoriColumn = tabelsuratkeluar.getColumnModel().getColumn(2);
-            kategoriColumn.setPreferredWidth(80);
-            
-            TableColumn alamatColumn = tabelsuratkeluar.getColumnModel().getColumn(3);
-            alamatColumn.setPreferredWidth(120);
-            
-            TableColumn penerimaColumn = tabelsuratkeluar.getColumnModel().getColumn(4);
-            penerimaColumn.setPreferredWidth(120);
-            
-            TableColumn tanggalColumn = tabelsuratkeluar.getColumnModel().getColumn(5);
-            tanggalColumn.setPreferredWidth(100);
-            
-            TableColumn statusColumn = tabelsuratkeluar.getColumnModel().getColumn(6);
-            statusColumn.setPreferredWidth(120);
-            
-            TableColumn fileColumn = tabelsuratkeluar.getColumnModel().getColumn(7);
-            fileColumn.setPreferredWidth(100);
         }
-        
-        // Add mouse listener to handle file opening
-        tabelsuratkeluar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int row = tabelsuratkeluar.rowAtPoint(e.getPoint());
-                int col = tabelsuratkeluar.columnAtPoint(e.getPoint());
-                
-                if (col == 7 && row >= 0) { // File column
-                    String fileName = (String) tabelsuratkeluar.getValueAt(row, col);
-                    openFile(fileName);
-                }
-            }
-        });
-    }
-           
-    private void loadDummyData() {
-        // Clear existing table data
-        tableModel.setRowCount(0);
-        
-        // Add dummy data with all 8 columns
-        //addRow("01.001.SMK.04.2025", "Undangan Rapat Dinas", "Penting", "Dinas Pendidikan", 
-             // "Kepala Dinas", "12-04-2025", "Terkirim", "undangan_rapat.pdf");//
-        
-       // addRow("02.002.SMK.04.2025", "Permohonan Bantuan Dana", "Umum", "Bank Indonesia", 
-             // "Manager CSR", "10-04-2025", "Diproses", "permohonan_dana.pdf");
-        
-        //addRow("03.003.SMK.04.2025", "Surat Keputusan Kepala Sekolah", "Rahasia", "Internal", 
-              //"Guru dan Staff", "05-04-2025", "Terkirim", "sk_kepala_sekolah.pdf");
-        
-        //addRow("04.004.SMK.04.2025", "Undangan Pertemuan Orang Tua", "Segera", "Rumah Siswa", 
-              //"Orang Tua Siswa", "03-04-2025", "Terkirim", "undangan_ortu.pdf");
-        
-       // addRow("05.005.SMK.04.2025", "Laporan Keuangan Bulanan", "Umum", "Yayasan Pendidikan", 
-              //"Bendahara Yayasan", "01-04-2025", "Terkirim", "laporan_keuangan.pdf");//
-    }
-    
-    private void addRow(String no, String perihal, String kategori, String alamat, 
-                       String penerima, String tanggal, String status, String filePath) {
-        Object[] row = {no, perihal, kategori, alamat, penerima, tanggal, status, filePath};
-        tableModel.addRow(row);
-    }
-    
-    private void performSearch() {
-        String searchText = cari.getText().trim();
-        if (searchText.equals("Cari") || searchText.isEmpty()) {
-            loadDummyData(); // Reset to show all data
-            return;
-        }
-        
-        // Create a filtered table model
-        tableModel.setRowCount(0);
-        String searchColumn = (String) pilih.getSelectedItem();
-        int columnIndex;
-        
-        // Map UI column names to column indices
-        switch (searchColumn) {
-            case "No":
-                columnIndex = 0;
-                break;
-            case "Perihal":
-                columnIndex = 1;
-                break;
-            case "Kategori":
-                columnIndex = 2;
-                break;
-            case "Alamat":
-                columnIndex = 3;
-                break;
-            case "Penerima":
-                columnIndex = 4;
-                break;
-            case "Tanggal Dikirim":
-                columnIndex = 5;
-                break;
-            case "Status Pengiriman":
-                columnIndex = 6;
-                break;
-            case "File":
-                columnIndex = 7;
-                break;
-            default:
-                columnIndex = 1; // Default to "Perihal"
-                break;
-        }
-        
-        // Load dummy data based on search
-      
-    }
-    
 
-    
-    private void openFile(String filePath) {
-        try {
-            if (filePath == null || filePath.isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "File path is empty or not available", 
-                    "File Error", 
-                    JOptionPane.ERROR_MESSAGE);
-                return;
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            // When the text field loses focus
+            if (cari.getText().isEmpty()) {
+                cari.setText("Cari");  // Restore default text
             }
-            
-            // In a real application, we would open the file
-            // Since this is a mock-up, we just show a message
-            JOptionPane.showMessageDialog(this, 
-                "Opening file: " + filePath, 
-                "File Operation", 
-                JOptionPane.INFORMATION_MESSAGE);
-            
-        } catch (Exception e) {
-            System.err.println("Error opening file: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, 
-                "Error opening file: " + e.getMessage(), 
-                "File Error", 
-                JOptionPane.ERROR_MESSAGE);
         }
+      });
+    }
+
+    void menampilkanSuratKeluar(){
+        try {
+            ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(this.coloumn).select();
+            
+            DefaultTableModel modelTable = new DefaultTableModel(); 
+            modelTable.addColumn("No Surat");
+            modelTable.addColumn("Tanggal Surat");
+            modelTable.addColumn("Penerima");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status Pengiriman");
+            modelTable.addColumn("Alamat Tujuan");
+            
+            
+            while(hasil.next()){
+                String no = hasil.getString("no_surat");
+                String tanggal = hasil.getString("tanggal_surat");
+                String penerima = hasil.getString("penerima");
+                String kategori = hasil.getString("kategori");
+                String perihal = hasil.getString("perihal");
+                String status_pengiriman = hasil.getString("status_pengiriman");
+                String alamat_tujuan = hasil.getString("alamat_tujuan");
+                
+                modelTable.addRow(new Object[]{no, tanggal, penerima, kategori, perihal,status_pengiriman, alamat_tujuan });
+            }
+            tabelsuratkeluar.setRowHeight(30);
+            tabelsuratkeluar.setModel(modelTable);
+            
+        }catch (Exception ex) {
+            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -314,9 +179,72 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
-
+    String searchText = cari.getText();
+    String selectedOption = (String) pilih.getSelectedItem();
+    menampilkanSuratKeluar(searchText, selectedOption);
+    
     }//GEN-LAST:event_cariActionPerformed
 
+    void menampilkanSuratKeluar(String searchText, String selectedOption) {
+    try {
+
+        String queryCondition = "";
+        switch (selectedOption) {
+            case "No":
+                queryCondition = coloumn[0];
+                break;
+            case "Tanggal Surat":
+                queryCondition = "tanggal_surat";
+                break;
+            case "Penerima":
+                queryCondition = "penerima";
+                break;
+            case "Kategori":
+                queryCondition = "kategori ";
+                break;
+            case "Perihal":
+                queryCondition = "perihal";
+                break;
+            case "Status Pengiriman":
+                queryCondition = "status_pengiriman ";
+                break;
+            case "Alamat Tujuan":
+                queryCondition = "alamat_tujuan ";
+                break;
+            default:
+                break;
+        }
+        // Lakukan query dengan kondisi yang telah dibuat
+        ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
+
+        DefaultTableModel modelTable = new DefaultTableModel(); 
+        modelTable.addColumn("No Surat");
+        modelTable.addColumn("Tanggal Surat");
+        modelTable.addColumn("Penerima");
+        modelTable.addColumn("Kategori");
+        modelTable.addColumn("Perihal");
+        modelTable.addColumn("Status Pengiriman");
+        modelTable.addColumn("Alamat Tujuan");
+
+        while (hasil.next()) {
+            String no = hasil.getString("no_surat");
+            String tanggal = hasil.getString("tanggal_surat");
+            String pengirim = hasil.getString("penerima");
+            String kategori = hasil.getString("kategori");
+            String perihal = hasil.getString("perihal");
+            String status_pengiriman = hasil.getString("status_pengiriman");
+            String alamat_tujuan = hasil.getString("alamat_tujuan");
+
+            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_pengiriman, alamat_tujuan });
+        }
+        tabelsuratkeluar.setRowHeight(30);
+        tabelsuratkeluar.setModel(modelTable);
+
+    } catch (Exception ex) {
+        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+    }     
+        
+    }                                    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cari;

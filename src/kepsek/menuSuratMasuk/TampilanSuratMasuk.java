@@ -19,25 +19,48 @@ import lib.Query;
  */
 public class TampilanSuratMasuk extends javax.swing.JPanel {
 
-     Query query = new Query();
-     String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","status_notifikasi"};
+    private Query query = new Query();
+    private String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","status_notifikasi"};
+    private byte[] file;
+    
+    private static final String DEFAULT_SEARCH_TEXT = "Cari";
     
     public TampilanSuratMasuk() {
-        initComponents();
+       initComponents();
         menampilkanSuratMasuk();
+        
+        // Set default text and add focus listener
+        cari.setText(DEFAULT_SEARCH_TEXT);
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (cari.getText().equals(DEFAULT_SEARCH_TEXT)) {
+                    cari.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (cari.getText().isEmpty()) {
+                    cari.setText(DEFAULT_SEARCH_TEXT);
+                } else {
+                    // Refresh the table when focus is lost
+                    String searchText = cari.getText();
+                    String selectedOption = (String) pilih.getSelectedItem();
+                    menampilkanSuratMasuk(searchText, selectedOption);
+                }
+            }
+        });
     }
     
-    void menampilkanSuratMasuk(){
+     void menampilkanSuratMasuk(){
         try {
-            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(this.coloumn[5], "Belum Dibaca").selectWhereLike();
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).select();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
-            modelTable.addColumn("no_surat");
-            modelTable.addColumn("tanggal_surat");
-            modelTable.addColumn("pengirim");
-            modelTable.addColumn("kategori");
-            modelTable.addColumn("perihal");
-            modelTable.addColumn("Status Surat");
+            modelTable.addColumn("No Surat");
+            modelTable.addColumn("Tanggal Diterima");
+            modelTable.addColumn("Pengirim");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status");
             
             
             while(hasil.next()){
@@ -46,8 +69,9 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 String pengirim = hasil.getString("pengirim");
                 String kategori = hasil.getString("kategori");
                 String perihal = hasil.getString("perihal");
+                String status_notifikasi = hasil.getString("status_notifikasi");
                 
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal,});
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
             }
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);
@@ -55,8 +79,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,7 +113,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         });
 
-        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Tanggal Diterima", "File" }));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Tanggal Diterima" }));
+        pilih.setToolTipText("");
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
         tabel_suratMasuk.setModel(new javax.swing.table.DefaultTableModel(
@@ -169,9 +193,6 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
             case "Perihal":
                 queryCondition = "perihal";
                 break;
-            case "File Surat":
-                queryCondition = "file_surat ";
-                break;
             default:
                 break;
         }
@@ -179,12 +200,12 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
         ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
 
         DefaultTableModel modelTable = new DefaultTableModel(); 
-        modelTable.addColumn("no_surat");
-        modelTable.addColumn("tanggal_surat");
-        modelTable.addColumn("pengirim");
-        modelTable.addColumn("kategori");
-        modelTable.addColumn("perihal");
-        modelTable.addColumn("Status Surat");
+            modelTable.addColumn("No Surat");
+            modelTable.addColumn("Tanggal Diterima");
+            modelTable.addColumn("Pengirim");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status");
 
         while (hasil.next()) {
             String no = hasil.getString("no_surat");
@@ -192,8 +213,9 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
             String pengirim = hasil.getString("pengirim");
             String kategori = hasil.getString("kategori");
             String perihal = hasil.getString("perihal");
+            String status_notifikasi = hasil.getString("status_notifikasi");
 
-            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal});
+            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
         }
         tabel_suratMasuk.setRowHeight(30);
         tabel_suratMasuk.setModel(modelTable);
@@ -213,17 +235,16 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
         }
         
          try {
-            byte[] fileBiner = null;
             String[] values = {"no_surat","file_surat"};
             ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(values).setWhereId("no_surat", dataKolom[0]).selectWhereIdDownload();
             
             while(hasil.next()){
-            fileBiner = hasil.getBytes("file_surat");
+            this.file = hasil.getBytes("file_surat");
             
             }
             
             kepsek.DashboardUtama.SubPanel.removeAll();
-            kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.LihatSurat(dataKolom, fileBiner));
+            kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.LihatSurat(dataKolom, this.file));
             kepsek.DashboardUtama.SubPanel.revalidate();
             kepsek.DashboardUtama.SubPanel.repaint();
             
@@ -237,69 +258,66 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
-      String searchText = cari.getText();
-    String selectedOption = (String) pilih.getSelectedItem();
-    menampilkanSuratMasuk(searchText, selectedOption);
+     String searchText = cari.getText();
+        String selectedOption = (String) pilih.getSelectedItem();
+        menampilkanSuratMasuk(searchText, selectedOption);
 }                                    
 
 void menampilkanSuratMasuk(String searchText, String selectedOption) {
     try {
+            String queryCondition = "";
+            switch (selectedOption) {
+                case "No":
+                    queryCondition = coloumn[0];
+                    break;
+                case "Tanggal Surat":
+                    queryCondition = "tanggal_surat";
+                    break;
+                case "Pengirim":
+                    queryCondition = "pengirim";
+                    break;
+                case "Kategori":
+                    queryCondition = "kategori ";
+                    break;
+                case "Perihal":
+                    queryCondition = "perihal";
+                    break;
+                case "File Surat":
+                    queryCondition = "file_surat ";
+                    break;
+                case "Status Notifikasi":
+                    queryCondition = "status_notifikasi ";
+                    break;
+                default:
+                    break;
+            }
+            // Lakukan query dengan kondisi yang telah dibuat
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
 
-        String queryCondition = "";
-        switch (selectedOption) {
-            case "No":
-                queryCondition = coloumn[0];
-                break;
-            case "Tanggal Surat":
-                queryCondition = "tanggal_surat";
-                break;
-            case "Pengirim":
-                queryCondition = "pengirim";
-                break;
-            case "Kategori":
-                queryCondition = "kategori ";
-                break;
-            case "Perihal":
-                queryCondition = "perihal";
-                break;
-            case "File Surat":
-                queryCondition = "file_surat ";
-                break;
-                 case "Status Notifikasi":
-                queryCondition = "status_notifikasi ";
-                break;
-            default:
-                break;
-        }
-        // Lakukan query dengan kondisi yang telah dibuat
-        ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
+            DefaultTableModel modelTable = new DefaultTableModel(); 
+            modelTable.addColumn("No Surat");
+            modelTable.addColumn("Tanggal Diterima");
+            modelTable.addColumn("Pengirim");
+            modelTable.addColumn("Kategori");
+            modelTable.addColumn("Perihal");
+            modelTable.addColumn("Status");
 
-        DefaultTableModel modelTable = new DefaultTableModel(); 
-        modelTable.addColumn("no_surat");
-        modelTable.addColumn("tanggal_surat");
-        modelTable.addColumn("pengirim");
-        modelTable.addColumn("kategori");
-        modelTable.addColumn("perihal");
-        modelTable.addColumn("status_notifikasi");
+            while (hasil.next()) {
+                String no = hasil.getString("no_surat");
+                String tanggal = hasil.getString("tanggal_surat");
+                String pengirim = hasil.getString("pengirim");
+                String kategori = hasil.getString("kategori");
+                String perihal = hasil.getString("perihal");
+                String status_notifikasi = hasil.getString("status_notifikasi");
 
-        while (hasil.next()) {
-            String no = hasil.getString("no_surat");
-            String tanggal = hasil.getString("tanggal_surat");
-            String pengirim = hasil.getString("pengirim");
-            String kategori = hasil.getString("kategori");
-            String perihal = hasil.getString("perihal");
-            String status_notifikasi = hasil.getString("status_notifikasi");
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
+            }
+            tabel_suratMasuk.setRowHeight(30);
+            tabel_suratMasuk.setModel(modelTable);
 
-            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
-        }
-        tabel_suratMasuk.setRowHeight(30);
-        tabel_suratMasuk.setModel(modelTable);
-
-    } catch (Exception ex) {
-        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
-    }
-       
-       
+        } catch (Exception ex) {
+            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_cariActionPerformed
 
 
