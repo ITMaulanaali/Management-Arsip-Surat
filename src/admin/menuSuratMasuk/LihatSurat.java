@@ -4,18 +4,21 @@ package admin.menuSuratMasuk;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.PdfDiJpanel;
+import lib.Query;
 
 public class LihatSurat extends javax.swing.JPanel {
 
     private PdfDiJpanel pdf;
     private String[] data;
     private byte[] binerPdf;
+    private Query query;
     
     public LihatSurat(String[] data, byte[] binerPdf) {
         initComponents();
         this.data = data;
         this.binerPdf = binerPdf;
         this.pdf = new PdfDiJpanel();
+        this.query = new Query();
         
         try {
             imagePdf.setIcon(pdf.addByteFile(this.binerPdf).getIcon());
@@ -56,6 +59,9 @@ public class LihatSurat extends javax.swing.JPanel {
         hapus.setBackground(new java.awt.Color(217, 217, 217));
         hapus.setPreferredSize(new java.awt.Dimension(100, 40));
         hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 hapusMouseEntered(evt);
             }
@@ -326,6 +332,21 @@ public class LihatSurat extends javax.swing.JPanel {
     private void zoomInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseExited
         zoomIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
     }//GEN-LAST:event_zoomInMouseExited
+
+    private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
+        
+        try {
+            query.setNamaTabel("surat_masuk").setWhereId("no_surat",data [0]).delete();
+            System.out.println(data [0]);
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data, binerPdf));
+            admin.DashboardUtama.SubPanel.revalidate();
+            admin.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_hapusMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
