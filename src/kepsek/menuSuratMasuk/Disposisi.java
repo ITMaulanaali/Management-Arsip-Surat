@@ -16,6 +16,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import lib.Query;
 
 public class Disposisi extends javax.swing.JPanel {
@@ -33,6 +37,9 @@ public class Disposisi extends javax.swing.JPanel {
     
     private String[] dataAtributs;
     private byte[] fileBiner;
+    ArrayList<String> usernameWaka;
+    ArrayList<String> roleWaka;
+    ArrayList<JCheckBox> cekBox;
     
     public Disposisi(String[] data, byte[] fileBiner) {
         this.panelUtama = panelUtama;
@@ -40,6 +47,9 @@ public class Disposisi extends javax.swing.JPanel {
         setupFormDefaults();
         tampilkanTanggalDanWaktu();
         this.query= new Query();
+        this.usernameWaka = new ArrayList<>();
+        this.roleWaka = new ArrayList<>();
+        this.cekBox = new ArrayList<>();
         generateAutoLetterNumber(); // Generate nomor surat otomatis saat inisialisasi
         
         this.fileBiner = fileBiner;
@@ -47,18 +57,18 @@ public class Disposisi extends javax.swing.JPanel {
         String nomerSurat = this.dataAtributs[0];
         String perihal = this.dataAtributs[4];
         
-        no_disposisi.setText(nomerSurat);
         Perihal.setText(perihal);
+        kumpulanWaka();
     }
     
-     private void generateAutoLetterNumber() {
+    private void generateAutoLetterNumber() {
         sequence++; // Increment nomor urut
         String year = LocalDate.now().format(YEAR_FORMATTER);
         String letterNumber = String.format("%03d/%s/%s", sequence, DIVISION, year);
-        no_disposisi.setText(letterNumber);
+//        no_disposisi.setText(letterNumber);
     }
     
-     private void tampilkanTanggalDanWaktu() {
+    private void tampilkanTanggalDanWaktu() {
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         Timer timer = new Timer(1000, e -> {
@@ -67,9 +77,9 @@ public class Disposisi extends javax.swing.JPanel {
    
         });
         timer.start();
-     }
+    }
     
-      private void setupFormDefaults() {
+    private void setupFormDefaults() {
         // Set default value for nomor surat field
         no_disposisi.setText("");
         
@@ -78,6 +88,25 @@ public class Disposisi extends javax.swing.JPanel {
     }
       
       
+    private void kumpulanWaka(){
+        String atributs[] = {"username","jenis_role"};
+        try {
+            ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).select();
+            
+            while(hasil.next()){
+                usernameWaka.add(hasil.getString("username"));
+                roleWaka.add(hasil.getString("jenis_role"));
+                cekBox.add(new JCheckBox(roleWaka.get(hasil.getRow()-1)));
+                cekBox.get(hasil.getRow()-1).setBorder(new EmptyBorder(5,2,10,0));
+                panelWaka.add(cekBox.get(hasil.getRow()-1));
+            }
+            panelWaka.add(Box.createRigidArea(new Dimension(0,10)));
+            panelWaka.setLayout(new BoxLayout(panelWaka, BoxLayout.Y_AXIS));
+        } catch (Exception ex) {
+            Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
        
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,9 +129,8 @@ public class Disposisi extends javax.swing.JPanel {
         Kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Catatan = new javax.swing.JTextArea();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        panelWaka = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -110,7 +138,7 @@ public class Disposisi extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Nomor Surat");
+        jLabel5.setText("Nomor Disposisi");
 
         no_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
         no_disposisi.addActionListener(new java.awt.event.ActionListener() {
@@ -186,11 +214,11 @@ public class Disposisi extends javax.swing.JPanel {
         Catatan.setRows(5);
         jScrollPane1.setViewportView(Catatan);
 
-        jCheckBox1.setText("Wakil Kepala Kehumasan (Nama)");
-
-        jCheckBox2.setText("Wakil Kepala Kurikulum");
-
-        jCheckBox3.setText("Wakil Kepala Kesiswaan (Nama)");
+        panelWaka.setBackground(new java.awt.Color(255, 255, 255));
+        panelWaka.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        panelWaka.setLayout(new javax.swing.BoxLayout(panelWaka, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane2.setViewportView(panelWaka);
+        panelWaka.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -202,14 +230,8 @@ public class Disposisi extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(130, 130, 130))
             .addGroup(layout.createSequentialGroup()
                 .addGap(174, 174, 174)
@@ -222,30 +244,34 @@ public class Disposisi extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(no_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(no_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(tanggal_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Perihal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(tanggal_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(80, 80, 80)
-                        .addComponent(Perihal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(130, 130, 130))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
                 .addComponent(no_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(2, 2, 2)))
@@ -263,18 +289,9 @@ public class Disposisi extends javax.swing.JPanel {
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jCheckBox2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                        .addGap(2, 2, 2)))
-                .addGap(59, 59, 59)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Kirim, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,76 +331,84 @@ public class Disposisi extends javax.swing.JPanel {
     private void KirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KirimActionPerformed
         // TODO add your handling code here:
        //Get the values from the form
-  String no = no_disposisi.getText();
+        String noDisposisi = no_disposisi.getText();
         String tanggal = tanggal_disposisi.getText();
-        String perihal = Perihal.getText();
         String catatan = Catatan.getText();
+        String status = "Terdisposisi";
+        String nomerSurat = this.dataAtributs[0];
+        
+//        for(JCheckBox i : cekBox){
+//            if(i.isSelected()){
+//                this.disposisiKepada.add(this.usernameWaka.get(i));
+//            }
+//        }
         
         // Get selected disposisi recipients
-        StringBuilder disposisiKepada = new StringBuilder();
-        if (jCheckBox1.isSelected()) {
-            disposisiKepada.append("Wakil Kepala Kehumasan;");
-        }
-        if (jCheckBox2.isSelected()) {
-            disposisiKepada.append("Wakil Kepala Kurikulum;");
-        }
-        if (jCheckBox3.isSelected()) {
-            disposisiKepada.append("Wakil Kepala Kesiswaan;");
-        }
         
         // Check if any required fields are empty
-        if (no.isEmpty() || tanggal.isEmpty() || perihal.isEmpty()) {
+        if (noDisposisi.isEmpty() || tanggal.isEmpty() || Perihal.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nomor surat, tanggal, dan perihal harus diisi!", 
                     "Validasi Error", JOptionPane.ERROR_MESSAGE);
             return; // Exit the method if validation fails
         }
         
-        // Directly use JDBC to insert data
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        try {
-            // Establish connection
-            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            
-            // Prepare SQL statement
-            String sql = "INSERT INTO disposisi (no_disposisi, tanggal_disposisi, catatan, disposisi_kepada) VALUES (?, ?, ?, ?, ?)";
-            stmt = conn.prepareStatement(sql);
-            
-            // Set parameters
-            stmt.setString(1, no);
+Connection conn = null;
+PreparedStatement stmt = null;
+
+try {
+    // 1. Ambil koneksi dan matikan auto-commit
+    conn = lib.Koneksi.Koneksi();
+    conn.setAutoCommit(false); // Mulai transaksi manual
+
+    String sql = "INSERT INTO disposisi (no_disposisi, tanggal_disposisi, catatan, status_disposisi, username, no_surat) VALUES (?, ?, ?, ?, ?, ?)";
+    stmt = conn.prepareStatement(sql);
+
+    // 2. Loop dan lakukan insert
+    for (int i = 0; i < this.cekBox.size(); i++) {
+        if (this.cekBox.get(i).isSelected()) {
+            stmt.setInt(1,  (Integer.parseInt(noDisposisi) + i));
             stmt.setString(2, tanggal);
-            stmt.setString(3, perihal);
-            stmt.setString(4, catatan);
-            stmt.setString(5, disposisiKepada.toString());
-            
-            // Execute insert
-            int rowsAffected = stmt.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(this, "Disposisi berhasil disimpan");
+            stmt.setString(3, catatan);
+            stmt.setString(4, status);
+            stmt.setString(5, this.usernameWaka.get(i));
+            stmt.setString(6, this.dataAtributs[0]);
+            stmt.addBatch(); // Tambahkan ke batch
+        }
+    }
+
+    // 3. Eksekusi batch
+    stmt.executeBatch();
+
+    // 4. Commit transaksi jika semua berhasil
+    conn.commit();
+    JOptionPane.showMessageDialog(this, "Disposisi berhasil disimpan");
                 
                 // Navigate to the next view
                 kepsek.DashboardUtama.SubPanel.removeAll();
                 kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.TampilanSuratMasuk());
                 kepsek.DashboardUtama.SubPanel.revalidate();
                 kepsek.DashboardUtama.SubPanel.repaint();
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal menyimpan disposisi", 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+} catch (SQLException ex) {
+    try {
+        if (conn != null) conn.rollback(); // Rollback kalau ada error
+        Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Database Error: " + ex.getMessage(), 
                     "Database Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            // Close resources
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+} finally {
+    // 5. Tutup koneksi & statement
+    try {
+        if (stmt != null) stmt.close();
+        if (conn != null) conn.setAutoCommit(true); // Balikkan ke mode auto
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     }//GEN-LAST:event_KirimActionPerformed
 
 
@@ -392,16 +417,15 @@ public class Disposisi extends javax.swing.JPanel {
     private javax.swing.JButton Kembali;
     private javax.swing.JButton Kirim;
     private javax.swing.JTextField Perihal;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField no_disposisi;
+    private javax.swing.JPanel panelWaka;
     private javax.swing.JTextField tanggal_disposisi;
     // End of variables declaration//GEN-END:variables
 }
