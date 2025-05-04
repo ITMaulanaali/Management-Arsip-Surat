@@ -10,7 +10,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         initComponents();
         
         SubPanel.removeAll();
-        SubPanel.add(new waka.notifikasi.TampilanSuratTerdisposisi());
+        SubPanel.add(new waka.notifikasi.TampilanSuratTerdisposisiv2());
         SubPanel.revalidate();
         SubPanel.repaint();
     }

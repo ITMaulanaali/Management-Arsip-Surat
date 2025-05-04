@@ -1,115 +1,115 @@
 
 package waka.notifikasi;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
-import javax.swing.RowFilter;
-import lib.Query;
-import java.sql.Connection; // Import Connection
-import java.sql.ResultSet; // Import ResultSet
-import java.sql.Statement; // Import Statement
-import java.sql.DriverManager;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lib.Koneksi;
+import javax.swing.border.MatteBorder;
 
 
-public class TampilanSuratTerdisposisi extends javax.swing.JPanel {
-    Query query = new Query();
-    String[] atributs = {"No_surrat","Dari","Diterima","Perihal"};
-
+public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
+    ArrayList<JPanel> panel;
+    String[][] data;
     
-    
-    public TampilanSuratTerdisposisi() {
+    public TampilanSuratTerdisposisiv2() {
         initComponents();
-        menampilkanDisposisi();
-                
-        
-        DefaultTableModel model = (DefaultTableModel) tabel_suratkeluar.getModel();
-        rowSorter = new TableRowSorter<>(model);
-        tabel_suratkeluar.setRowSorter(rowSorter);
-
-
-
-        
-    }
+        this.panel = new ArrayList();
+        this.data = getData();
+        scrollPanel.setViewportView(setupPanel());
+    }   
     
-    void menampilkanDisposisi(){
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet hasil = null;
-
+    private String[][] getData(){
+        ArrayList<String> nodisposisi = new ArrayList();
+        ArrayList<String> tgldisposisi = new ArrayList();
+        ArrayList<String> catatandisposisi = new ArrayList();
+        ArrayList<String> statusdisposisi = new ArrayList();
+        ArrayList<String> nosuratmasuk = new ArrayList();
+        ArrayList<String> perihalsuratmasuk = new ArrayList();
+        
+        String[][] data = null;
+        
         try {
-    // Menggunakan JOIN untuk menggabungkan data dari tiga tabel
-    String sql = "SELECT sm.no_surat, sm.perihal, d.tanggal_disposisi, u.username " +
-                         "FROM arsipSurat_lifegiftgo.surat_masuk AS sm " +
-                         "JOIN arsipSurat_lifegiftgo.disposisi AS d ON sm.no_surat = d.no_surat " +
-                         "JOIN arsipSurat_lifegiftgo.user AS u ON d.username = u.username"; // Pastikan ini benar
-
-    // Membuat statement untuk mengeksekusi query
-    statement = lib.Koneksi.Koneksi().createStatement();
-    hasil = statement.executeQuery(sql);
-
-    DefaultTableModel modelTable = new DefaultTableModel();
-    modelTable.addColumn("No Surat");
-    modelTable.addColumn("Dari");
-    modelTable.addColumn("Diterima");
-    modelTable.addColumn("Perihal");
-
-    if (!hasil.next()) {
-        System.out.println("Tidak ada data yang ditemukan.");
-    } else {
-        do {
-            String no = hasil.getString("no_surat");
-            String dari = hasil.getString("username");
-            String diterima = hasil.getString("tanggal_disposisi");
-            String perihal = hasil.getString("perihal");
-
-            modelTable.addRow(new Object[]{no, dari, diterima, perihal});
-        } while (hasil.next());
-    }
-
-            tabel_suratkeluar.setRowHeight(30);
-            tabel_suratkeluar.setModel(modelTable);
-
-        } catch (Exception ex) {
-            Logger.getLogger(TampilanSuratTerdisposisi.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            // Menutup koneksi dan statement
-            try {
-                if (hasil != null) hasil.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
-            } catch (Exception e) {
-                Logger.getLogger(TampilanSuratTerdisposisi.class.getName()).log(Level.SEVERE, null, e);
+            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username)");
+            ResultSet hasil = query.executeQuery();
+            
+            while(hasil.next()){
+                nodisposisi.add(hasil.getString("nodisposisi"));
+                tgldisposisi.add(hasil.getString("tanggal_disposisi"));
+                catatandisposisi.add(hasil.getString("catatan"));
+                statusdisposisi.add(hasil.getString("status_disposisi"));
+                nosuratmasuk.add(hasil.getString("nosuratmasuk"));
+                perihalsuratmasuk.add(hasil.getString("perihal"));
             }
+            
+            data = new String[6][nodisposisi.size()];
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[0][i] = nodisposisi.get(i);
+            }
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[1][i] = tgldisposisi.get(i);
+            }
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[2][i] = catatandisposisi.get(i);
+            }
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[3][i] = statusdisposisi.get(i);
+            }
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[4][i] = nosuratmasuk.get(i);
+            }
+            
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[5][i] = perihalsuratmasuk.get(i);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TampilanSuratTerdisposisiv2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return data;
     }
-        
     
+    private JPanel setupPanel(){
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        
+        for(int i=0; i<data[0].length; i++){
+        JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i]);
+        panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
+        
+        container.setBackground(new Color(158,158,158));
+        container.add(panel);
+        }
+        
+        return container;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabel_suratkeluar = new javax.swing.JTable();
+        scrollPanel = new javax.swing.JScrollPane();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No_surat", "Dari", "Diterima", "Perihal" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(80, 40));
-        jComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox1MouseClicked(evt);
-            }
-        });
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField1.setText("Cari");
@@ -121,23 +121,7 @@ public class TampilanSuratTerdisposisi extends javax.swing.JPanel {
             }
         });
 
-        tabel_suratkeluar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "No_surat", "Perihal", "Diterima", "Dari"
-            }
-        ));
-        tabel_suratkeluar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabel_suratkeluarMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tabel_suratkeluar);
+        scrollPanel.setBackground(new java.awt.Color(158, 158, 158));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,106 +129,34 @@ public class TampilanSuratTerdisposisi extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
+                    .addGap(25, 25, 25)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(423, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(80, 80, 80)
+                    .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                    .addGap(24, 24, 24)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
 
-      String text = jTextField1.getText(); // ambil teks dari input
-    int selectedColumn = jComboBox1.getSelectedIndex(); // ambil index kolom yang dipilih di combo box
-
-    if (text.trim().length() == 0) {
-        rowSorter.setRowFilter(null); // kalau teks kosong, hapus filter
-    } else {
-        rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, selectedColumn)); // filter berdasarkan input
-    }
-
     }//GEN-LAST:event_jTextField1KeyPressed
 
-    private void tabel_suratkeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseClicked
-       
-       int selectedRowView = tabel_suratkeluar.getSelectedRow();
-    
-    if (selectedRowView >= 0) {
-        int selectedRowModel = tabel_suratkeluar.convertRowIndexToModel(selectedRowView); // ini penting kalau sudah pakai filter
-        
-        String No_Surat = tabel_suratkeluar.getModel().getValueAt(selectedRowModel, 0).toString();
-        String Dari = tabel_suratkeluar.getModel().getValueAt(selectedRowModel, 1).toString();
-        String Diterima = tabel_suratkeluar.getModel().getValueAt(selectedRowModel, 2).toString();
-        String Perihal = tabel_suratkeluar.getModel().getValueAt(selectedRowModel, 3).toString();
-        
-        // Kalau mau simpan ke global variable atau lanjut ke form berikutnya, bisa disini:
-        System.out.println("Klik Surat: " + No_Surat + ", Dari: " + Dari + ", Diterima: " + Diterima + ", Perihal: " + Perihal);
-        
-        // Pindah ke panel LembarDisposisi
-        waka.DashboardUtama.SubPanel.removeAll(); 
-        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi());
-        waka.DashboardUtama.SubPanel.revalidate();
-        waka.DashboardUtama.SubPanel.repaint();
-        
-    } else {
-        System.out.println("Belum ada baris yang dipilih");
-    }
-
-    }//GEN-LAST:event_tabel_suratkeluarMouseClicked
-
-    private void jComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox1MouseClicked
-   String text = jTextField1.getText();
-    int selectedColumn = jComboBox1.getSelectedIndex() - 1; // karena index 0 = Semua
-
-    if (text.trim().length() == 0) {
-        rowSorter.setRowFilter(null);
-    } else {
-        if (selectedColumn == -1) { 
-            // Kalau pilih "Semua", filter semua kolom
-            RowFilter<DefaultTableModel, Object> rf = new RowFilter<DefaultTableModel, Object>() {
-                @Override
-                public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Object> entry) {
-                    for (int i = 0; i < entry.getValueCount(); i++) {
-                        if (entry.getStringValue(i).toLowerCase().contains(text.toLowerCase())) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            };
-            rowSorter.setRowFilter(rf);
-        } else {
-            // Kalau pilih kolom tertentu
-            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, selectedColumn));
-        }
-    }
-
-
-
-        
-    }//GEN-LAST:event_jComboBox1MouseClicked
-
-
-
-private TableRowSorter<DefaultTableModel> rowSorter;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tabel_suratkeluar;
+    private javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
 }
