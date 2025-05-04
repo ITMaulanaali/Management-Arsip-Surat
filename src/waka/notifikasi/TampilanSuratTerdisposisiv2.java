@@ -88,7 +88,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         
         for(int i=0; i<data[0].length; i++){
-        JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i]);
+        JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i]);
         panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
         
         container.setBackground(new Color(158,158,158));
