@@ -8,7 +8,7 @@ import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratMasuk.*;
 import admin.menuSuratMasuk.*;
 import admin.menuSuratKeluar.*;
-import admin.menuSuratMasuk.*;
+import java.io.File;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,16 +21,17 @@ import lib.Query;
  */
 public class TampilanSuratKeluar extends javax.swing.JPanel {
 
-    private String selectedNoSurat;
-    private String selectedTanggalSurat;
-    private String selectedPenerima;
-    private String selectedKategori;
-    private String selectedPerihal;
-    private String selectedStatusPengiriman;
-    private String selectedAlamatTujuan;
-    private String selectedFileSurat;
+private String selectedNoSurat;
+private String selectedTanggalSurat;
+private String selectedPenerima;
+private String selectedKategori;
+private String selectedPerihal;
+private String selectedStatusPengiriman;
+private String selectedAlamatTujuan;
+private String selectedFileSurat;
+private byte[] file;
     
-    private String getFileSuratFromDatabase(String noSurat) {
+  private String getFileSuratFromDatabase(String noSurat) {
     String fileSurat = "";
     try {
         ResultSet hasil = query.setNamaTabel("surat_keluar")
@@ -73,8 +74,10 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         }
       });
     }
+    
+    
 
-    void menampilkanSuratKeluar(){
+      void menampilkanSuratKeluar(){
         try {
             ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(this.coloumn).select();
             
@@ -99,8 +102,8 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 
                 modelTable.addRow(new Object[]{no, tanggal, penerima, kategori, perihal,status_pengiriman, alamat_tujuan });
             }
-            tabelsuratkeluar.setRowHeight(30);
-            tabelsuratkeluar.setModel(modelTable);
+            tableKeluar.setRowHeight(30);
+            tableKeluar.setModel(modelTable);
             
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +117,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelsuratkeluar = new javax.swing.JTable();
+        tableKeluar = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -133,7 +136,7 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tabelsuratkeluar.setModel(new javax.swing.table.DefaultTableModel(
+        tableKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -144,9 +147,14 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
                 "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File"
             }
         ));
-        tabelsuratkeluar.setMinimumSize(new java.awt.Dimension(1200, 80));
-        tabelsuratkeluar.setPreferredSize(new java.awt.Dimension(1200, 80));
-        jScrollPane1.setViewportView(tabelsuratkeluar);
+        tableKeluar.setMinimumSize(new java.awt.Dimension(1200, 80));
+        tableKeluar.setPreferredSize(new java.awt.Dimension(1200, 80));
+        tableKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableKeluarMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableKeluar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,12 +187,13 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
+  
     String searchText = cari.getText();
     String selectedOption = (String) pilih.getSelectedItem();
     menampilkanSuratKeluar(searchText, selectedOption);
     
-    }//GEN-LAST:event_cariActionPerformed
-
+    }
+    
     void menampilkanSuratKeluar(String searchText, String selectedOption) {
     try {
 
@@ -237,19 +246,65 @@ public class TampilanSuratKeluar extends javax.swing.JPanel {
 
             modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_pengiriman, alamat_tujuan });
         }
-        tabelsuratkeluar.setRowHeight(30);
-        tabelsuratkeluar.setModel(modelTable);
+        tableKeluar.setRowHeight(30);
+        tableKeluar.setModel(modelTable);
 
     } catch (Exception ex) {
         Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
-    }     
+    }
+    }//GEN-LAST:event_cariActionPerformed
+
+    private void tableKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMousePressed
+         int baris = tableKeluar.rowAtPoint(evt.getPoint());
+    if (baris < 0) {
+        return; // Clicked outside table rows
+    }
+
+    if (evt.getClickCount() == 1) {
+        // Single click: set selection on the clicked row
+        tableKeluar.setRowSelectionInterval(baris, baris);
         
-    }                                    
+        // Logika untuk klik satu kali
+        String noSurat = (String) tableKeluar.getValueAt(baris, 0);
+        // Panggil metode atau lakukan aksi yang diinginkan
+        System.out.println("Satu kali klik pada No Surat: " + noSurat);
+        // Misalnya, Anda bisa memanggil metode lain di sini
+        // ppilih(noSurat); // Contoh pemanggilan metode
+
+    } else if (evt.getClickCount() == 2) {
+        // Double click: open LihatSurat panel with selected row details
+        String[] data = new String[7];
+
+        data[0] = (String) tableKeluar.getValueAt(baris, 0);
+        data[1] = (String) tableKeluar.getValueAt(baris, 1);
+        data[2] = (String) tableKeluar.getValueAt(baris, 2);
+        data[3] = (String) tableKeluar.getValueAt(baris, 3);
+        data[4] = (String) tableKeluar.getValueAt(baris, 4);
+        data[5] = (String) tableKeluar.getValueAt(baris, 5);
+        data[6] = (String) tableKeluar.getValueAt(baris, 6); // Pastikan ini adalah kolom yang benar
+
+        try {
+            String[] atributs = {"no_surat", "file_surat"};
+            ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+            while (hasil.next()) {
+                this.file = hasil.getBytes("file_surat");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        kepsek.DashboardUtama.SubPanel.removeAll();
+        kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.LihatSurat(data, file));
+        kepsek.DashboardUtama.SubPanel.revalidate();
+        kepsek.DashboardUtama.SubPanel.repaint(); 
+    }
+    }//GEN-LAST:event_tableKeluarMousePressed
+                                 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cari;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> pilih;
-    private javax.swing.JTable tabelsuratkeluar;
+    private javax.swing.JTable tableKeluar;
     // End of variables declaration//GEN-END:variables
 }

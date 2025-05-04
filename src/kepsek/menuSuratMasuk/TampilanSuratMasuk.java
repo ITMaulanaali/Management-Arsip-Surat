@@ -129,8 +129,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         ));
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabel_suratMasukMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMousePressed(evt);
             }
         });
         jScrollPane2.setViewportView(tabel_suratMasuk);
@@ -225,37 +225,6 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
     }
     }//GEN-LAST:event_cariKeyPressed
 
-    private void tabel_suratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseClicked
-
-        int baris = tabel_suratMasuk.getSelectedRow();
-        String[] dataKolom = new String[6];
-        
-        for(int i=0; i<dataKolom.length; i++){
-            dataKolom[i] = (String)tabel_suratMasuk.getValueAt(baris, i);
-        }
-        
-         try {
-            String[] values = {"no_surat","file_surat"};
-            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(values).setWhereId("no_surat", dataKolom[0]).selectWhereIdDownload();
-            
-            while(hasil.next()){
-            this.file = hasil.getBytes("file_surat");
-            
-            }
-            
-            kepsek.DashboardUtama.SubPanel.removeAll();
-            kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.LihatSurat(dataKolom, this.file));
-            kepsek.DashboardUtama.SubPanel.revalidate();
-            kepsek.DashboardUtama.SubPanel.repaint();
-            
-         } catch (Exception ex) {
-             Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-        
-
-    }//GEN-LAST:event_tabel_suratMasukMouseClicked
-
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
      String searchText = cari.getText();
@@ -319,6 +288,52 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_cariActionPerformed
+
+    private void tabel_suratMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMousePressed
+       int baris = tabel_suratMasuk.rowAtPoint(evt.getPoint());
+    if (baris < 0) {
+        return; // Clicked outside table rows
+    }
+
+    if (evt.getClickCount() == 1) {
+        // Single click: set selection on the clicked row
+        tabel_suratMasuk.setRowSelectionInterval(baris, baris);
+        
+        // Logika untuk klik satu kali
+        String noSurat = (String) tabel_suratMasuk.getValueAt(baris, 0);
+        // Panggil metode atau lakukan aksi yang diinginkan
+        System.out.println("Satu kali klik pada No Surat: " + noSurat);
+        // Misalnya, Anda bisa memanggil metode lain di sini
+        // ppilih(noSurat); // Contoh pemanggilan metode
+
+    } else if (evt.getClickCount() == 2) {
+        // Double click: open LihatSurat panel with selected row details
+        String[] data = new String[6];
+
+        data[0] = (String) tabel_suratMasuk.getValueAt(baris, 0);
+        data[1] = (String) tabel_suratMasuk.getValueAt(baris, 1);
+        data[2] = (String) tabel_suratMasuk.getValueAt(baris, 2);
+        data[3] = (String) tabel_suratMasuk.getValueAt(baris, 3);
+        data[4] = (String) tabel_suratMasuk.getValueAt(baris, 4);
+        data[5] = (String) tabel_suratMasuk.getValueAt(baris, 5);
+
+        try {
+            String[] atributs = {"no_surat", "file_surat"};
+            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+            while (hasil.next()) {
+                this.file = hasil.getBytes("file_surat");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(admin.menuSuratMasuk.TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        kepsek.DashboardUtama.SubPanel.removeAll();
+        kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.LihatSurat(data, file));
+        kepsek.DashboardUtama.SubPanel.revalidate();
+        kepsek.DashboardUtama.SubPanel.repaint(); 
+    }
+        
+    }//GEN-LAST:event_tabel_suratMasukMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
