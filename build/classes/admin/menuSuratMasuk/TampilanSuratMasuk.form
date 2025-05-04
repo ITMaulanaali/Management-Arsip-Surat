@@ -37,7 +37,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="458" max="-2" attributes="0"/>
-                              <Component id="arsipkan" pref="0" max="32767" attributes="0"/>
+                              <Component id="arsipkan" pref="142" max="32767" attributes="0"/>
                           </Group>
                           <Component id="cari" max="32767" attributes="0"/>
                       </Group>
@@ -124,8 +124,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="arsipkanMouseClicked"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="arsipkanMouseEntered"/>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="arsipkanMouseExited"/>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="arsipkanMousePressed"/>
-        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="arsipkanMouseReleased"/>
       </Events>
 
       <Layout>
@@ -156,7 +154,7 @@
         <Component class="javax.swing.JLabel" name="iconPeriode1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/tambah-surat50px.png"/>
+              <Image iconType="3" name="/bahan/globalIcon/Arsip.png"/>
             </Property>
           </Properties>
         </Component>
@@ -183,8 +181,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="periode1MouseClicked"/>
         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="periode1MouseEntered"/>
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="periode1MouseExited"/>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="periode1MousePressed"/>
-        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="periode1MouseReleased"/>
       </Events>
 
       <Layout>
@@ -214,7 +210,7 @@
         <Component class="javax.swing.JLabel" name="iconPeriode">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/periode50px.png"/>
+              <Image iconType="3" name="/bahan/globalIcon/Periode.png"/>
             </Property>
           </Properties>
         </Component>

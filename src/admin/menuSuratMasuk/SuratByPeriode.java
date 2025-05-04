@@ -106,7 +106,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "File", "Disposisi" }));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Pengirim", "Kategori", "Perihal", "Disposisi" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
         pilih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,16 +181,19 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
         tabel_periode1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "No Surat", "Perihal", "File Surat", "Disposisi"
+                "No Surat", "Pengirim", "Kategori", "Perihal", "Disposisi"
             }
         ));
         jScrollPane2.setViewportView(tabel_periode1);
+        if (tabel_periode1.getColumnModel().getColumnCount() > 0) {
+            tabel_periode1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -261,13 +264,12 @@ public class SuratByPeriode extends javax.swing.JPanel {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -291,75 +293,77 @@ public class SuratByPeriode extends javax.swing.JPanel {
     }//GEN-LAST:event_kembaliActionPerformed
 
     private void tampilkan_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilkan_suratActionPerformed
-    // Ambil tanggal mulai dan selesai dari text field
-    String mulaiTanggalStr = mulai_tanggal.getText();
-    String selesaiTanggalStr = selesai_tanggal.getText();
+   
+        // Ambil tanggal mulai dan selesai dari text field
+        String mulaiTanggalStr = mulai_tanggal.getText();
+        String selesaiTanggalStr = selesai_tanggal.getText();
 
-    // Format untuk parsing tanggal
-    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        // Format untuk parsing tanggal
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    try {
-        // Mengonversi string tanggal ke Date
-        Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
-        Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
+        try {
+            // Mengonversi string tanggal ke Date
+            Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
+            Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
 
-        // Mengonversi Date ke string dalam format yang sesuai untuk SQL
-        String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
-        String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
+            // Mengonversi Date ke string dalam format yang sesuai untuk SQL
+            String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
+            String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
 
-        // Query SQL untuk mengambil data berdasarkan rentang tanggal
-        String query = "SELECT sm.no_surat, sm.perihal, sm.file_surat, " +
-                       "d.status_disposisi " +
-                       "FROM surat_masuk sm " +
-                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_disposisi " +
-                       "WHERE sm.tanggal_surat >= ? AND sm.tanggal_surat <= ?";
+            // Query SQL untuk mengambil data berdasarkan rentang tanggal
+            String query = "SELECT sm.no_surat, sm.pengirim, sm.kategori, sm.perihal, d.status_disposisi " +
+                           "FROM surat_masuk sm " +
+                           "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
+                           "WHERE sm.tanggal_surat >= ? AND sm.tanggal_surat <= ?";
 
-        // Siapkan koneksi ke database
-        PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query);
-        
-        // Set parameter tanggal
-        pstmt.setString(1, mulaiTanggalSQL);
-        pstmt.setString(2, selesaiTanggalSQL);
-        
-        // Eksekusi query
-        ResultSet rs = pstmt.executeQuery();
-        
-        // Bersihkan tabel sebelum menampilkan data baru
-        DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
-        model.setRowCount(0); // Menghapus semua baris
-        
-        // Tambahkan data ke tabel
-        int totalDisposisi = 0; // Variabel untuk menghitung total disposisi
-        while (rs.next()) {
-            Object[] row = new Object[4];
-            row[0] = rs.getString("no_surat"); 
-            row[1] = rs.getString("perihal");
-            row[2] = rs.getString("file_surat");
-            row[3] = rs.getString("status_disposisi"); // Ambil status_disposisi dari hasil query
-            
-            model.addRow(row);
-            
-            // Hitung total disposisi jika status_disposisi tidak null
-            if (rs.getString("status_disposisi") != null) {
-                totalDisposisi++;
-            }
-        }
+            // Siapkan koneksi ke database
+            try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
+                // Set parameter tanggal
+                pstmt.setString(1, mulaiTanggalSQL);
+                pstmt.setString(2, selesaiTanggalSQL);
 
-        // Hitung total surat
-        int totalSurat = model.getRowCount(); // Jumlah baris di tabel
+                // Eksekusi query
+                ResultSet rs = pstmt.executeQuery();
+
+                // Bersihkan tabel sebelum menampilkan data baru
+                DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
+                model.setRowCount(0); // Menghapus semua baris
+
+                // Tambahkan data ke tabel
+                int totalDisposisi = 0; // Variabel untuk menghitung total disposisi
+                while (rs.next()) {
+                    Object[] row = new Object[5]; // Adjusted to match the number of columns
+                    row[0] = rs.getString("no_surat"); 
+                    row[1] = rs.getString("pengirim");
+                    row[2] = rs.getString("kategori");
+                    row[3] = rs.getString("perihal");
+                    row[4] = rs.getString("status_disposisi"); // Ambil status_disposisi dari hasil query
+
+                    model.addRow(row);
+                    
+                    // Hitung total disposisi jika status_disposisi tidak null
+                    if (rs.getString("status_disposisi") != null) {
+                        totalDisposisi++;
+                    }
+                }
+
+                // Hitung total surat
+                int totalSurat = model.getRowCount(); // Jumlah baris di tabel
 
         // Tampilkan total surat dan total disposisi
-        total_surat.setText(String.valueOf(totalSurat));
-        total_disposisi.setText(String.valueOf(totalDisposisi));
+        // Tampilkan total surat dan total disposisi
+                total_surat.setText(String.valueOf(totalSurat));
+                total_disposisi.setText(String.valueOf(totalDisposisi));
 
-    } catch (ParseException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
-    } catch (SQLException e) {
-        e.printStackTrace();
-        // Tampilkan pesan kesalahan jika ada
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
+        }
         
     }//GEN-LAST:event_tampilkan_suratActionPerformed
 
@@ -381,69 +385,72 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
        
-    // Ambil nilai dari cari dan pilih
-    String searchText = cari.getText();
-    String selectedItem = (String) pilih.getSelectedItem();
+   // Ambil nilai dari cari dan pilih
+        String searchText = cari.getText();
+        String selectedItem = (String) pilih.getSelectedItem();
 
-    // Query SQL berdasarkan pilihan
-    String query = "SELECT sm.no_surat, sm.perihal, sm.file_surat, " +
-                   "d.status_disposisi " +
-                   "FROM surat_masuk sm " +
-                   "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
-                   "WHERE ";
+        // Query SQL berdasarkan pilihan
+        String query = "SELECT sm.no_surat, sm.pengirim, sm.kategori, sm.perihal, d.status_disposisi " +
+                       "FROM surat_masuk sm " +
+                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
+                       "WHERE ";
 
-    // Menentukan kolom yang dicari
-    switch (selectedItem) {
-        case "No":
-            query += "sm.no_surat LIKE ?";
-            break;
-        case "Perihal":
-            query += "sm.perihal LIKE ?";
-            break;
-        case "File":
-            query += "sm.file_surat LIKE ?";
-            break;
-        case "Disposisi":
-            query += "d.status_disposisi LIKE ?";
-            break;
-        default:
-            return; // Jika tidak ada pilihan yang valid
-    }
-
-    // Siapkan koneksi ke database
-    try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
-        pstmt.setString(1, "%" + searchText + "%"); // Menambahkan wildcard untuk pencarian
-
-        // Eksekusi query
-        ResultSet rs = pstmt.executeQuery();
-
-        // Bersihkan tabel sebelum menampilkan data baru
-        DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
-        model.setRowCount(0); // Menghapus semua baris
-
-        // Tambahkan data ke tabel
-        boolean dataFound = false; // Flag untuk memeriksa apakah data ditemukan
-        while (rs.next()) {
-            dataFound = true; // Data ditemukan
-            Object[] row = new Object[4];
-            row[0] = rs.getString("no_surat");
-            row[1] = rs.getString("perihal");
-            row[2] = rs.getString("file_surat");
-            row[3] = rs.getString("status_disposisi");
-
-            model.addRow(row);
+        // Menentukan kolom yang dicari
+        switch (selectedItem) {
+            case "No Surat":
+                query += "sm.no_surat LIKE ?";
+                break;
+            case "Pengirim":
+                query += "sm.pengirim LIKE ?";
+                break;
+            case "Kategori":
+                query += "sm.kategori LIKE ?";
+                break;
+            case "Perihal":
+                query += "sm.perihal LIKE ?";
+                break;
+            case "Disposisi":
+                query += "d.status_disposisi LIKE ?";
+                break;
+            default:
+                return; // Jika tidak ada pilihan yang valid
         }
 
-        // Jika tidak ada data ditemukan, tampilkan pesan
-        if (!dataFound) {
-            JOptionPane.showMessageDialog(this, "Tidak ada data yang ditemukan.");
-            model.setRowCount(0); // Kosongkan tabel jika tidak ada data
-        }
+        // Siapkan koneksi ke database
+        try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
+            pstmt.setString(1, "%" + searchText + "%"); // Menambahkan wildcard untuk pencarian
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+            // Eksekusi query
+            ResultSet rs = pstmt.executeQuery();
+
+            // Bersihkan tabel sebelum menampilkan data baru
+            DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
+            model.setRowCount(0); // Menghapus semua baris
+
+            // Tambahkan data ke tabel
+            boolean dataFound = false; // Flag untuk memeriksa apakah data ditemukan
+            while (rs.next()) {
+                dataFound = true; // Data ditemukan
+                Object[] row = new Object[5]; // Adjusted to match the number of columns
+                row[0] = rs.getString("no_surat");
+                row[1] = rs.getString("pengirim");
+                row[2] = rs.getString("kategori");
+                row[3] = rs.getString("perihal");
+                row[4] = rs.getString("status_disposisi");
+
+                model.addRow(row);
+            }
+
+            // Jika tidak ada data ditemukan, tampilkan pesan
+            if (!dataFound) {
+                JOptionPane.showMessageDialog(this, "Tidak ada data yang ditemukan.");
+                model.setRowCount(0); // Kosongkan tabel jika tidak ada data
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
         
     }//GEN-LAST:event_cariActionPerformed
 

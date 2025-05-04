@@ -130,15 +130,9 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 arsipkanMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                arsipkanMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                arsipkanMouseReleased(evt);
-            }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Arsip.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Arsipkan");
@@ -175,15 +169,9 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 periode1MouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                periode1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                periode1MouseReleased(evt);
-            }
         });
 
-        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode50px.png"))); // NOI18N
+        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Periode.png"))); // NOI18N
 
         periode.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         periode.setText("Periode");
@@ -237,7 +225,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(458, 458, 458)
-                                .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(arsipkan, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
                             .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,19 +345,6 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
     arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Ubah warna saat ditekan
     }//GEN-LAST:event_arsipkanMouseExited
 
-    private void arsipkanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMousePressed
-    arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Ubah warna saat ditekan
-    }//GEN-LAST:event_arsipkanMousePressed
-
-    private void arsipkanMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arsipkanMouseReleased
-    arsipkan.setBackground(new java.awt.Color(217, 217, 217)); // Kembalikan warna saat dilepaskan
-    // Tambahkan logika untuk mengarsipkan surat
-    admin.DashboardUtama.SubPanel.removeAll();
-    admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.ArsipkanSurat());
-    admin.DashboardUtama.SubPanel.revalidate();
-    admin.DashboardUtama.SubPanel.repaint();
-    }//GEN-LAST:event_arsipkanMouseReleased
-
     private void periode1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MouseEntered
     periode1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
     periode1.setBackground(new java.awt.Color(255, 255, 255));
@@ -379,19 +354,6 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
     periode1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
     periode1.setBackground(new java.awt.Color(217, 217, 217));
     }//GEN-LAST:event_periode1MouseExited
-
-    private void periode1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MousePressed
-    periode1.setBackground(new java.awt.Color(217, 217, 217));
-    }//GEN-LAST:event_periode1MousePressed
-
-    private void periode1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_periode1MouseReleased
-    periode1.setBackground(new java.awt.Color(217, 217, 217)); // Kembalikan warna saat dilepaskan
-    // Tambahkan logika untuk mengarsipkan surat
-    admin.DashboardUtama.SubPanel.removeAll();
-    admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.SuratByPeriode());
-    admin.DashboardUtama.SubPanel.revalidate();
-    admin.DashboardUtama.SubPanel.repaint();
-    }//GEN-LAST:event_periode1MouseReleased
 
     private void tabel_suratMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMousePressed
         

@@ -46,6 +46,9 @@ public class LihatSurat extends javax.swing.JPanel {
         hapus.setBackground(new java.awt.Color(217, 217, 217));
         hapus.setPreferredSize(new java.awt.Dimension(100, 40));
         hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 hapusMouseEntered(evt);
             }
@@ -68,7 +71,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +107,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         cetakLayout.setVerticalGroup(
             cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +201,10 @@ public class LihatSurat extends javax.swing.JPanel {
     private void hapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseExited
     hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
     }//GEN-LAST:event_hapusMouseExited
+
+    private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hapusMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

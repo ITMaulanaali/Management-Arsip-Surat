@@ -94,12 +94,6 @@ public class DashboardUtama extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 panel_surat_keluarMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panel_surat_keluarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                panel_surat_keluarMouseReleased(evt);
-            }
         });
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
@@ -114,14 +108,15 @@ public class DashboardUtama extends javax.swing.JPanel {
         panel_surat_keluarLayout.setHorizontalGroup(
             panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_surat_keluarLayout.createSequentialGroup()
-                .addComponent(iconPeriode1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addComponent(iconPeriode1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(surat_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panel_surat_keluarLayout.setVerticalGroup(
             panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconPeriode1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(surat_keluar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(iconPeriode1)
+            .addComponent(surat_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         PanelMenuSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
@@ -135,12 +130,6 @@ public class DashboardUtama extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 PanelMenuSuratMasukMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PanelMenuSuratMasukMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                PanelMenuSuratMasukMouseReleased(evt);
             }
         });
 
@@ -156,14 +145,14 @@ public class DashboardUtama extends javax.swing.JPanel {
         PanelMenuSuratMasukLayout.setHorizontalGroup(
             PanelMenuSuratMasukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMenuSuratMasukLayout.createSequentialGroup()
-                .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PanelMenuSuratMasukLayout.setVerticalGroup(
             PanelMenuSuratMasukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconPeriode2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(iconPeriode2)
+            .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panel_kelola_akun.setBackground(new java.awt.Color(217, 217, 217));
@@ -177,12 +166,6 @@ public class DashboardUtama extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 panel_kelola_akunMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panel_kelola_akunMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                panel_kelola_akunMouseReleased(evt);
             }
         });
 
@@ -198,14 +181,15 @@ public class DashboardUtama extends javax.swing.JPanel {
         panel_kelola_akunLayout.setHorizontalGroup(
             panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_kelola_akunLayout.createSequentialGroup()
-                .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kelola_akun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(iconPeriode3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(kelola_akun, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panel_kelola_akunLayout.setVerticalGroup(
             panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconPeriode3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(kelola_akun, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(iconPeriode3)
+            .addComponent(kelola_akun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         logout.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -223,13 +207,12 @@ public class DashboardUtama extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(logout)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(panel_surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                        .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(panel_kelola_akun, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(panel_surat_keluar, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(panel_kelola_akun, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,64 +311,37 @@ public class DashboardUtama extends javax.swing.JPanel {
     }//GEN-LAST:event_logoutMouseClicked
 
     private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered
-
-    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    PanelMenuSuratMasuk.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseEntered
 
     private void PanelMenuSuratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseExited
-
-    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    PanelMenuSuratMasuk.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseExited
-
-    private void PanelMenuSuratMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMousePressed
-    // Ubah warna saat mouse ditekan
-    PanelMenuSuratMasuk.setBackground(Color.decode("#7D0A0A"));
-    }//GEN-LAST:event_PanelMenuSuratMasukMousePressed
-
-    private void PanelMenuSuratMasukMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseReleased
-     // Kembalikan warna saat mouse dilepaskan
-    PanelMenuSuratMasuk.setBackground(Color.decode("#A0A0A0"));
-    }//GEN-LAST:event_PanelMenuSuratMasukMouseReleased
 
     private void panel_surat_keluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseEntered
  
-    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    panel_surat_keluar.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_surat_keluarMouseEntered
 
     private void panel_surat_keluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseExited
-
-    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    panel_surat_keluar.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_surat_keluarMouseExited
-
-    private void panel_surat_keluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMousePressed
-     // Ubah warna saat mouse ditekan
-    panel_surat_keluar.setBackground(Color.decode("#7D0A0A"));
-    }//GEN-LAST:event_panel_surat_keluarMousePressed
-
-    private void panel_surat_keluarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseReleased
-     // Kembalikan warna saat mouse dilepaskan
-    panel_surat_keluar.setBackground(Color.decode("#A0A0A0"));
-    }//GEN-LAST:event_panel_surat_keluarMouseReleased
 
     private void panel_kelola_akunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseEntered
 
-    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor menjadi klik
+    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    panel_kelola_akun.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_kelola_akunMouseEntered
 
     private void panel_kelola_akunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseExited
 
-    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor
+    panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    panel_kelola_akun.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_kelola_akunMouseExited
-
-    private void panel_kelola_akunMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMousePressed
-    // Ubah warna saat mouse ditekan
-    panel_kelola_akun.setBackground(Color.decode("#7D0A0A"));
-    }//GEN-LAST:event_panel_kelola_akunMousePressed
-
-    private void panel_kelola_akunMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseReleased
-    // Kembalikan warna saat mouse dilepaskan
-    panel_kelola_akun.setBackground(Color.decode("#A0A0A0"));
-    }//GEN-LAST:event_panel_kelola_akunMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JLabel Judul;
