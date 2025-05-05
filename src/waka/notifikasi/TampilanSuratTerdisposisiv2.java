@@ -3,6 +3,7 @@ package waka.notifikasi;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ import javax.swing.border.LineBorder;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.border.MatteBorder;
@@ -35,11 +37,12 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         ArrayList<String> statusdisposisi = new ArrayList();
         ArrayList<String> nosuratmasuk = new ArrayList();
         ArrayList<String> perihalsuratmasuk = new ArrayList();
+        ArrayList<byte[]> fileBiner = new ArrayList();
         
         String[][] data = null;
         
         try {
-            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username)");
+            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal, surat_masuk.file_surat from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username)");
             ResultSet hasil = query.executeQuery();
             
             while(hasil.next()){
@@ -49,9 +52,10 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                 statusdisposisi.add(hasil.getString("status_disposisi"));
                 nosuratmasuk.add(hasil.getString("nosuratmasuk"));
                 perihalsuratmasuk.add(hasil.getString("perihal"));
+                fileBiner.add(hasil.getBytes("surat_masuk.file_surat"));
             }
             
-            data = new String[6][nodisposisi.size()];
+            data = new String[7][nodisposisi.size()];
             
             for(int i=0; i<nodisposisi.size(); i++){
                 data[0][i] = nodisposisi.get(i);
@@ -77,6 +81,11 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                 data[5][i] = perihalsuratmasuk.get(i);
             }
             
+            for(int i=0; i<nodisposisi.size(); i++){
+                String s = Base64.getEncoder().encodeToString(fileBiner.get(i));
+                data[6][i] = s;
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(TampilanSuratTerdisposisiv2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,7 +97,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         
         for(int i=0; i<data[0].length; i++){
-        JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i]);
+        JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i], this.data[6][i]);
         panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
         
         container.setBackground(new Color(158,158,158));

@@ -9,14 +9,16 @@ public class subNotifikasi extends javax.swing.JPanel {
     private String perihall;
     private String tglDisposisi;
     private String catatanDisposisi;
+    private String fileBiner;
 
-    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi) {
+    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner) {
         initComponents();
         this.noDis = noDisposisi;
         this.noSurat = noSurat;
         this.perihall = perihal;
         this.tglDisposisi = tanggalDisposisi;
         this.catatanDisposisi = catatanDisposisi;
+        this.fileBiner = fileBiner;
         setupData();
     }
     
@@ -147,7 +149,7 @@ public class subNotifikasi extends javax.swing.JPanel {
         buttonLihat.setBackground(new Color(206,31,31));
         
         waka.DashboardUtama.SubPanel.removeAll();
-        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi));
+        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner));
         waka.DashboardUtama.SubPanel.revalidate();
         waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_buttonLihatMouseClicked
