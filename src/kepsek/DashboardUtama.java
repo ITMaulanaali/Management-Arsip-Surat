@@ -58,7 +58,8 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode2 = new javax.swing.JLabel();
         LabelSuratMasuk = new javax.swing.JLabel();
         notif = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        logout = new javax.swing.JLabel();
         SubPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(158, 158, 158));
@@ -166,14 +167,35 @@ public class DashboardUtama extends javax.swing.JPanel {
         notif.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
         notif.setText("4");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
-        jLabel2.setText("Logout");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanel3.setBackground(new java.awt.Color(189, 189, 189));
+
+        logout.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
+        logout.setText("Logout");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                logoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(logout)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(logout))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,13 +203,14 @@ public class DashboardUtama extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(notif))
-                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addComponent(notif))
+                        .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,7 +223,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -256,9 +279,22 @@ public class DashboardUtama extends javax.swing.JPanel {
         SubPanel.repaint();
     }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseClicked
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        jPanel3.setBackground(new Color(189,189,189));
+
+        login.Main.PanelWadah.removeAll();
+        login.Main.PanelWadah.add(new login.Login());
+        login.Main.PanelWadah.revalidate();
+        login.Main.PanelWadah.repaint();
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        jPanel3.setBackground(new Color(158,158,158));
+    }//GEN-LAST:event_logoutMouseEntered
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        jPanel3.setBackground(new Color(189,189,189));
+    }//GEN-LAST:event_logoutMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -269,11 +305,12 @@ public class DashboardUtama extends javax.swing.JPanel {
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel logout;
     public static javax.swing.JLabel notif;
     // End of variables declaration//GEN-END:variables
 }
