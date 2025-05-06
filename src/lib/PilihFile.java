@@ -10,6 +10,7 @@ public class PilihFile {
     
     public static String getPath(){
         String pathFile = "";
+        String originalLAF = UIManager.getLookAndFeel().getClass().getName();
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -30,8 +31,16 @@ public class PilihFile {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             pathFile = selectedFile.getAbsolutePath();
+            
+            try {
+                UIManager.setLookAndFeel(originalLAF);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } 
+            
             return pathFile;
         }
+        
         return pathFile;
     }
 }
