@@ -29,7 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="tanggal_surat_keluar" min="-2" pref="360" max="-2" attributes="0"/>
                       <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
@@ -61,8 +61,8 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="status" min="-2" pref="188" max="-2" attributes="0"/>
-                      <EmptySpace min="474" pref="474" max="-2" attributes="0"/>
-                      <Component id="upload" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="474" max="-2" attributes="0"/>
+                      <Component id="upload" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="update" min="-2" max="-2" attributes="0"/>
@@ -338,7 +338,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="upload">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Upload File"/>
+        <Property name="text" type="java.lang.String" value="Pilih File"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadActionPerformed"/>

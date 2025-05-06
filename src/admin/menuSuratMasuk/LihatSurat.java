@@ -3,8 +3,12 @@ package admin.menuSuratMasuk;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.sql.SQLException; // Untuk SQLException
+import java.sql.SQLIntegrityConstraintViolationException; // Untuk SQLIntegrityConstraintViolationException
 import lib.PdfDiJpanel;
 import lib.Query;
+
 
 public class LihatSurat extends javax.swing.JPanel {
 
@@ -337,15 +341,18 @@ public class LihatSurat extends javax.swing.JPanel {
         
         try {
             query.setNamaTabel("surat_masuk").setWhereId("no_surat",data [0]).delete();
-            System.out.println(data [0]);
-        } catch (Exception ex) {
-            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        admin.DashboardUtama.SubPanel.removeAll();
-            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data, binerPdf));
+            admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
             admin.DashboardUtama.SubPanel.revalidate();
             admin.DashboardUtama.SubPanel.repaint();
+            } catch (SQLIntegrityConstraintViolationException ex){
+            JOptionPane.showMessageDialog(this, "Surat Yang Sudah Terdisposisi Tidak Boleh Di Hapus !", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+          
+        } catch (Exception e) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, e);
+        
+        }  
+            
     }//GEN-LAST:event_hapusMouseClicked
 
 

@@ -377,7 +377,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
             data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
     
-    
+            
             try {
                 String[] atributs = {"no_surat","file_surat"};
                 ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
@@ -407,6 +407,6 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
     private javax.swing.JLabel periode;
     private javax.swing.JPanel periode1;
     private javax.swing.JComboBox<String> pilih;
-    private javax.swing.JTable tabel_suratMasuk;
+    public static javax.swing.JTable tabel_suratMasuk;
     // End of variables declaration//GEN-END:variables
 }

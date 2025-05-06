@@ -10,9 +10,9 @@ public class Koneksi {
 //    private static String username = "aku";
 //    private static String password = "123";
     
-    private static String url = "jdbc:mysql://4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
-    private static String username = "arsipSurat_lifegiftgo";
-    private static String password = "ef1d669241e7179cc85c533f83b03598be77ed66";
+    private static String url = "jdbc:mysql://rfav1.h.filess.io:3307/lana_truckseems";
+    private static String username = "lana_truckseems";
+    private static String password = "38b4ac22207989615e9a4f5f2153e78fb19ac0a5";
     
 //    private static String url = "jdbc:postgresql://eo591.h.filess.io:5432/postgrearsipsurat_coffeeiron";
 //    private static String username = "postgrearsipsurat_coffeeiron";

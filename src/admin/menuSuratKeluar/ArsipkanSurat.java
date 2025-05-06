@@ -74,11 +74,12 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     status.setSelectedItem(statusPengiriman); // Set status pengiriman
     alamat.setText(alamatTujuan); // Fill alamat tujuan
     // Do not set the file field
-    // file.setText(fileSurat); // This line is removed
+//     file.setText(fileSurat); // This line is removed
 }
-    
-     Query query; 
-     String[] coloumn = {"no_surat","tanggal_surat","penerima","kategori","perihal","file_surat","status_pengiriman","alamat_tujuan"};
+     
+    String lokasiFileLengkap;
+    Query query; 
+    String[] coloumn = {"no_surat","tanggal_surat","penerima","kategori","perihal","file_surat","status_pengiriman","alamat_tujuan"};
     
     
     public ArsipkanSurat() {
@@ -101,18 +102,22 @@ public class ArsipkanSurat extends javax.swing.JPanel {
 }
 
 private void setPlaceholder(JTextField textField, String placeholder) {
+
     textField.setText(placeholder);
-    
+    textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks menjadi abu-abu gelap
+
     textField.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
             if (textField.getText().equals(placeholder)) {
                 textField.setText("");
+                textField.setForeground(java.awt.Color.BLACK); // Kembalikan warna teks ke hitam saat fokus
             }
         }
-        
+
         public void focusLost(java.awt.event.FocusEvent evt) {
             if (textField.getText().isEmpty()) {
                 textField.setText(placeholder);
+                textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks kembali menjadi abu-abu gelap
             }
         }
     });
@@ -121,12 +126,9 @@ private void setPlaceholder(JTextField textField, String placeholder) {
    private void tampilkanTanggalDanWaktu() {
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        Timer timer = new Timer(1000, e -> {
             LocalDateTime sekarang = LocalDateTime.now();
             tanggal_surat_keluar.setText(sekarang.format(formatTanggal));
-   
-        });
-        timer.start();
+
         
      }
    
@@ -243,7 +245,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         perihal.setRows(5);
         jScrollPane1.setViewportView(perihal);
 
-        upload.setText("Upload File");
+        upload.setText("Pilih File");
         upload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadActionPerformed(evt);
@@ -419,7 +421,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tanggal_surat_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
@@ -445,7 +447,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(474, 474, 474)
-                        .addComponent(upload))
+                        .addComponent(upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
@@ -554,7 +556,11 @@ private void setPlaceholder(JTextField textField, String placeholder) {
     }//GEN-LAST:event_fileActionPerformed
 
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-        file.setText(lib.PilihFile.getPath());
+        
+        this.lokasiFileLengkap = lib.PilihFile.getPath();
+        String namaFilePdf = lokasiFileLengkap.substring(lokasiFileLengkap.lastIndexOf('\\') + 1);
+        file.setText(namaFilePdf);
+       
     }//GEN-LAST:event_uploadActionPerformed
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
@@ -566,7 +572,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
     String namapenerima = penerima.getText();
     String personalkategori = kategori.getText();
     String catatanperihal = perihal.getText();
-    String file_surat = file.getText();
+    String file_surat = this.lokasiFileLengkap;
     String tandastatuspengiriman = (String) status.getSelectedItem();
     String namaalamat = alamat.getText();
 
