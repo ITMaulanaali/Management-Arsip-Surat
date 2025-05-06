@@ -402,28 +402,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(garis_miring3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(garis_miring4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(tahun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(273, 273, 273)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -436,7 +414,33 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(225, 225, 225)
                                 .addComponent(Upload))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(garis_miring3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(garis_miring4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(tahun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(205, 205, 205)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -530,39 +534,41 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
         
     // Mengambil nilai dari setiap field
-    String nomerSurat = urutan_surat.getText() + "/" + kode_lembaga.getText() + "/" + nama_instansi.getText() 
-                        + "/" + bulan.getText() + "/" + tahun.getText();
-    String tanggal = tanggal_surat_masuk.getText();
-    String namapengirim = pengirim.getText();
-    String personalkategori = kategori.getText();
-    String catatanperihal = perihal.getText();
-    String file_surat = upload_file.getText();
-    String tandastatusnotifikasi = statusNotifikasi.getText();
+        String nomerSurat = urutan_surat.getText().trim() + "/" + kode_lembaga.getText().trim() + "/" + nama_instansi.getText().trim() 
+                            + "/" + bulan.getText().trim() + "/" + tahun.getText().trim();
+        String tanggal = tanggal_surat_masuk.getText().trim();
+        String namapengirim = pengirim.getText().trim();
+        String personalkategori = kategori.getText().trim();
+        String catatanperihal = perihal.getText().trim();
+        String file_surat = upload_file.getText().trim();
+        String tandastatusnotifikasi = statusNotifikasi.getText().trim();
 
-    // Validasi: Cek apakah ada field yang kosong
-    if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT) || 
-        personalkategori.equals(DEFAULT_KATEGORI_TEXT) || catatanperihal.isEmpty() || 
-        file_surat.isEmpty()) {
-        
-        // Tampilkan pesan kesalahan jika ada field yang kosong
-        JOptionPane.showMessageDialog(this, "Data Harus Diisi Semua!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
-    }
+        // Validasi: Cek apakah ada field yang kosong dan file berformat PDF
+        if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT) || 
+            personalkategori.equals(DEFAULT_KATEGORI_TEXT) || catatanperihal.isEmpty() || 
+            file_surat.isEmpty() || !file_surat.toLowerCase().endsWith(".pdf")) {
+            
+            // Tampilkan pesan kesalahan jika ada field yang kosong atau file bukan pdf
+            JOptionPane.showMessageDialog(this, "Data Harus Diisi Semua dan file harus berformat PDF!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return; // Keluar dari metode jika ada kesalahan validasi
+        }
 
-    String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
+        String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
 
-    try {
-        query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
-        JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
-        admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
-        admin.DashboardUtama.SubPanel.revalidate();
-        admin.DashboardUtama.SubPanel.repaint();
-        
-    } catch (Exception ex) {
-        Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
-    }
+        try {
+            query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
+
+            // Memperbarui tampilan dengan menampilkan TampilanSuratMasuk
+            admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
+            admin.DashboardUtama.SubPanel.revalidate();
+            admin.DashboardUtama.SubPanel.repaint();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, "Gagal memasukkan data: " + ex.getMessage(), ex);
+            JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
+        }
         
     }//GEN-LAST:event_simpanMouseClicked
 

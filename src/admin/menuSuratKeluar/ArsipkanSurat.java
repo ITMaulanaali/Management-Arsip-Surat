@@ -421,34 +421,12 @@ private void setPlaceholder(JTextField textField, String placeholder) {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(garis_miring3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(garis_miring4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(tahun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(273, 273, 273)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(tanggal_surat_keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(penerima, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(322, 322, 322)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(299, 299, 299)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +452,33 @@ private void setPlaceholder(JTextField textField, String placeholder) {
                         .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
                         .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(garis_miring3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(bulan, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(garis_miring4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(tahun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(240, 240, 240)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,7 +558,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
     }//GEN-LAST:event_uploadActionPerformed
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
-
+                                 
     // Ambil nilai dari field input
     String nomerSurat = urutan_surat.getText() + "/" + kode_lembaga.getText() + "/" + nama_instansi.getText() 
                         + "/" + bulan.getText() + "/" + tahun.getText();
@@ -587,14 +591,14 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         int tahunValue = Integer.parseInt(tahun.getText());
         if (tahunValue < 0) {
            JOptionPane.showMessageDialog(this, "Tahun harus berupa angka positif.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
+           return; // Keluar dari metode jika ada field yang kosong
         }
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(this, "Tahun harus berupa angka.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         return; // Keluar dari metode jika ada field yang kosong
     }
 
-    // Siapkan array value untuk insert/update
+    // Siapkan array value untuk insert
     String[] Value = {nomerSurat, tanggal, namapenerima, personalkategori, catatanperihal, file_surat, tandastatuspengiriman, namaalamat};
 
     try {
@@ -606,7 +610,9 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         // Simpan data ke tabel surat_keluar (asumsi insert)
         query.setNamaTabel("surat_keluar").setAtribut(coloumn).setValue(Value).insert();
 
-        JOptionPane.showMessageDialog(this, "Berhasil Ditambahkan");
+        // Pesan yang konsisten
+        String successMessage = "Data berhasil disimpan.";
+        JOptionPane.showMessageDialog(this, successMessage);
 
         // Kembali ke tampilan surat keluar
         admin.DashboardUtama.SubPanel.removeAll();
@@ -617,7 +623,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         Logger.getLogger(admin.menuSuratMasuk.ArsipkanSurat.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(this, "Gagal Ditambahkan!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         return; // Keluar dari metode jika ada field yang kosong
-    }   
+    }     
 
     }//GEN-LAST:event_simpanMouseClicked
 
@@ -680,7 +686,6 @@ private void setPlaceholder(JTextField textField, String placeholder) {
     String namapenerima = penerima.getText();
     String personalkategori = kategori.getText();
     String catatanperihal = perihal.getText();
-    String file_surat = file.getText(); // This can be empty
     String tandastatuspengiriman = (String) status.getSelectedItem();
     String namaalamat = alamat.getText();
 
@@ -691,7 +696,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         personalkategori.isEmpty() || catatanperihal.isEmpty() ||
         tandastatuspengiriman == null) { // Remove file_surat from validation
 
-        JOptionPane.showMessageDialog(this, "Harap Lengkapi Semua Data sebelum Update !", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Harap Lengkapi Semua Data sebelum Update!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         return; // Keluar dari metode jika ada field yang kosong
     }
 
@@ -703,21 +708,15 @@ private void setPlaceholder(JTextField textField, String placeholder) {
 
         // Siapkan array value untuk update
         String[] Value = {
-            tanggal, 
-            namapenerima, 
-            personalkategori, 
-            catatanperihal, 
-            file_surat, // This can be empty
-            tandastatuspengiriman, 
-            namaalamat
+            tandastatuspengiriman // Hanya status pengiriman yang diupdate
         };
 
         // Log the SQL statement for debugging
-        System.out.println("Updating surat_keluar with values: " + Arrays.toString(Value));
+        System.out.println("Updating surat_keluar with status: " + Arrays.toString(Value));
 
         // Update data di tabel surat_keluar berdasarkan nomor surat
         query.setNamaTabel("surat_keluar")
-             .setAtribut(new String[]{"tanggal_surat", "penerima", "kategori", "perihal", "file_surat", "status_pengiriman", "alamat_tujuan"})
+             .setAtribut(new String[]{"status_pengiriman"}) // Hanya update status_pengiriman
              .setValue(Value)
              .setWhereId("no_surat", nomerSurat)
              .update();
@@ -734,7 +733,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         JOptionPane.showMessageDialog(this, "Gagal mengupdate data: " + ex.getMessage());
         // Print the stack trace for debugging
         ex.printStackTrace();
-    }     
+    }    
         
     }//GEN-LAST:event_updateMouseClicked
 
