@@ -43,6 +43,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         jLabel20.setText(this.perihall);
         isiCatatan.setText(this.catatanDisposisi);
         tanggalDisposisi.setText(this.tglDisposisi);
+        nomordisposisi.setText(this.noDis);
     }
     
 
@@ -51,7 +52,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel11 = new javax.swing.JLabel();
+        nomordisposisi = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nosurat = new javax.swing.JLabel();
         tanggalDisposisi = new javax.swing.JLabel();
@@ -60,7 +61,8 @@ public class LembarDisposisi extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        isiCatatan = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        isiCatatan = new javax.swing.JTextArea();
         buttonLihat = new javax.swing.JButton();
         buttonLihat1 = new javax.swing.JButton();
 
@@ -68,9 +70,9 @@ public class LembarDisposisi extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(860, 480));
         setPreferredSize(new java.awt.Dimension(860, 480));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText(" Lembar disposisi");
+        nomordisposisi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nomordisposisi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nomordisposisi.setText(" Lembar disposisi");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setText("No Surat.");
@@ -111,8 +113,9 @@ public class LembarDisposisi extends javax.swing.JPanel {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel21.setText("Catatan");
 
-        isiCatatan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        isiCatatan.setText("Harap bapak/Ibu Waka mempersiapkan muridnya untuk lomba LKS...");
+        isiCatatan.setColumns(20);
+        isiCatatan.setRows(5);
+        jScrollPane1.setViewportView(isiCatatan);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -121,18 +124,18 @@ public class LembarDisposisi extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(isiCatatan)
+                    .addComponent(jScrollPane1)
                     .addComponent(jLabel21))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(isiCatatan)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         buttonLihat.setBackground(new java.awt.Color(206, 31, 31));
@@ -197,14 +200,14 @@ public class LembarDisposisi extends javax.swing.JPanel {
                                 .addComponent(buttonLihat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(69, 69, 69)))
                         .addGap(12, 12, 12))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
+                    .addComponent(nomordisposisi, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
                 .addGap(8, 8, 8))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomordisposisi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -215,7 +218,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonLihat, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonLihat1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,14 +268,15 @@ public class LembarDisposisi extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLihat;
     private javax.swing.JButton buttonLihat1;
-    private javax.swing.JLabel isiCatatan;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JTextArea isiCatatan;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nomordisposisi;
     private javax.swing.JLabel nosurat;
     private javax.swing.JLabel tanggalDisposisi;
     // End of variables declaration//GEN-END:variables
