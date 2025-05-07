@@ -45,6 +45,7 @@ public class subNotifikasi extends javax.swing.JPanel {
         buttonLihat = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(217, 217, 217));
+        setMaximumSize(new java.awt.Dimension(8000, 110));
         setPreferredSize(new java.awt.Dimension(800, 110));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
