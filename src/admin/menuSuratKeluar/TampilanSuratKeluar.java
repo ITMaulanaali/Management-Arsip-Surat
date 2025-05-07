@@ -472,7 +472,7 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
                
     if (selectedNoSurat != null) {
         admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new ArsipkanSurat(
+        admin.DashboardUtama.SubPanel.add(new EditSurat(
             selectedNoSurat,
             selectedTanggalSurat,
             selectedPenerima,
@@ -513,6 +513,6 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
     private javax.swing.JPanel panel_arsipkan;
     private javax.swing.JPanel panel_periode;
     private javax.swing.JComboBox<String> pilih;
-    private javax.swing.JTable tabel_suratkeluar;
+    public static javax.swing.JTable tabel_suratkeluar;
     // End of variables declaration//GEN-END:variables
 }

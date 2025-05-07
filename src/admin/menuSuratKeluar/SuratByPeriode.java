@@ -17,7 +17,10 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
 
     public SuratByPeriode() {
-        initComponents();
+    initComponents();
+    // Set total_surat dan total_disposisi menjadi tidak dapat diedit
+    total_surat.setEditable(false);
+    total_disposisi.setEditable(false);
         
         
  // Tambahkan event listener di constructor atau initComponents
