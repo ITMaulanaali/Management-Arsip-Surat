@@ -31,10 +31,6 @@ public class Disposisi extends javax.swing.JPanel {
     Query query; 
     String[] coloumn = {"No Surat Perihal", "Catatan"};
     
-    private static final String DB_URL = "jdbc:mysql://4yxru.h.filess.io:61002/arsipSurat_lifegiftgo";
-    private static final String DB_USER = "arsipSurat_lifegiftgo";
-    private static final String DB_PASSWORD = "ef1d669241e7179cc85c533f83b03598be77ed66";
-    
     private String[] dataAtributs;
     private byte[] fileBiner;
     ArrayList<String> usernameWaka;
@@ -94,11 +90,14 @@ public class Disposisi extends javax.swing.JPanel {
             ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).select();
             
             while(hasil.next()){
-                usernameWaka.add(hasil.getString("username"));
-                roleWaka.add(hasil.getString("jenis_role"));
-                cekBox.add(new JCheckBox(roleWaka.get(hasil.getRow()-1)));
-                cekBox.get(hasil.getRow()-1).setBorder(new EmptyBorder(5,2,10,0));
-                panelWaka.add(cekBox.get(hasil.getRow()-1));
+                if(!hasil.getString("jenis_role").equals("admin") || !hasil.getString("jenis_role").equals("kepala sekolah")){
+                    usernameWaka.add(hasil.getString("username"));
+                    roleWaka.add(hasil.getString("jenis_role"));
+                    cekBox.add(new JCheckBox(roleWaka.get(hasil.getRow()-1)));
+                    cekBox.get(hasil.getRow()-1).setBorder(new EmptyBorder(5,2,10,0));
+                    panelWaka.add(cekBox.get(hasil.getRow()-1));
+                }
+                
             }
             panelWaka.add(Box.createRigidArea(new Dimension(0,10)));
             panelWaka.setLayout(new BoxLayout(panelWaka, BoxLayout.Y_AXIS));

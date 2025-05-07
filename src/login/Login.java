@@ -1,20 +1,29 @@
 package login;
 
 
+import java.awt.event.KeyEvent;
 import lib.Query;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
 
 public class Login extends javax.swing.JPanel {
     
     Query query = new Query();
+    String[] data;
     
     public Login() {
         initComponents();
+        
     }
 
-    String[] cekUser(String user, String password){
+    private void cekUser(String user, String password){
         String[] atributs = {"username","password","nama","jenis_role"};
         String nama = null;
         String kredensial = null;
@@ -26,13 +35,54 @@ public class Login extends javax.swing.JPanel {
                 nama = hasil.getString("username");
                 kredensial = hasil.getString("password");
                 peran = hasil.getString("jenis_role");
+                
+                if(user.equals(nama) && password.equals(kredensial)){
+                    if(peran.equals("Waka Kurikulum")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("Waka Humas")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("Waka Kesiswaan")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("Waka Sarana dan Prasarana")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("Waka Manajemen Mutu")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("admin")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new admin.DashboardUtama());
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }else if(peran.equals("kepala sekolah")){
+                        Main.PanelWadah.removeAll();
+                        Main.PanelWadah.add(new kepsek.DashboardUtama());
+                        Main.PanelWadah.revalidate();
+                        Main.PanelWadah.repaint();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this, "User atau Password salah");
+                    return;
+                }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Terjadi Kesalahan");
         }
-        
-        return new String[]{nama,kredensial,peran};
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,6 +124,11 @@ public class Login extends javax.swing.JPanel {
 
         TexField_password.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         TexField_password.setPreferredSize(new java.awt.Dimension(64, 35));
+        TexField_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TexField_passwordKeyPressed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(125, 10, 10));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
@@ -216,26 +271,30 @@ public class Login extends javax.swing.JPanel {
         String user = TextField_username.getText();
         String password = TexField_password.getText();
 
-        switch(user){
-            case "tu":
-            Main.PanelWadah.removeAll();
-            Main.PanelWadah.add(new admin.DashboardUtama());
-            Main.PanelWadah.revalidate();
-            Main.PanelWadah.repaint();
-            break;
-            case "ks":
-            Main.PanelWadah.removeAll();
-            Main.PanelWadah.add(new kepsek.DashboardUtama());
-            Main.PanelWadah.revalidate();
-            Main.PanelWadah.repaint();
-            break;
-            case "wk":
-            Main.PanelWadah.removeAll();
-            Main.PanelWadah.add(new waka.DashboardUtama());
-            Main.PanelWadah.revalidate();
-            Main.PanelWadah.repaint();
-            break;
-        }
+        cekUser(user,password);
+
+
+        
+//        switch(user){
+//            case "tu":
+//            Main.PanelWadah.removeAll();
+//            Main.PanelWadah.add(new admin.DashboardUtama());
+//            Main.PanelWadah.revalidate();
+//            Main.PanelWadah.repaint();
+//            break;
+//            case "ks":
+//            Main.PanelWadah.removeAll();
+//            Main.PanelWadah.add(new kepsek.DashboardUtama());
+//            Main.PanelWadah.revalidate();
+//            Main.PanelWadah.repaint();
+//            break;
+//            case "wk":
+//            Main.PanelWadah.removeAll();
+//            Main.PanelWadah.add(new waka.DashboardUtama());
+//            Main.PanelWadah.revalidate();
+//            Main.PanelWadah.repaint();
+//            break;
+//        }
 
         //String[] dataLogin = cekUser(user,password);
         //String nama = dataLogin[0];
@@ -253,8 +312,16 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TextField_usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextField_usernameKeyPressed
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jButton1.doClick();
+        }
     }//GEN-LAST:event_TextField_usernameKeyPressed
+
+    private void TexField_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TexField_passwordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+               jButton1.doClick();
+           }
+    }//GEN-LAST:event_TexField_passwordKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -18,8 +18,11 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
     ArrayList<JPanel> panel;
     String[][] data;
     
-    public TampilanSuratTerdisposisiv2() {
+    private String role;
+    
+    public TampilanSuratTerdisposisiv2(String role) {
         initComponents();
+        this.role = role;
         this.panel = new ArrayList();
         this.data = getData();
         scrollPanel.setViewportView(setupPanel());
@@ -43,7 +46,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         String[][] data = null;
         
         try {
-            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal, surat_masuk.file_surat from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username)");
+            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal, surat_masuk.file_surat from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username) WHERE user.jenis_role = '"+this.role+"'");
             ResultSet hasil = query.executeQuery();
             
             while(hasil.next()){
@@ -99,7 +102,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
             
              
         for(int i=0; i<data[0].length; i++){
-            JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i], this.data[6][i]);
+            JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i], this.data[6][i], this.role);
             panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
         
             container.setBackground(new Color(158,158,158));
@@ -197,7 +200,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
             if (data[kolom][i].toLowerCase().contains(keyword)) {
                 JPanel panel = new subNotifikasi(
                     data[0][i], data[4][i], data[5][i],
-                    data[1][i], data[2][i], data[6][i]
+                    data[1][i], data[2][i], data[6][i], this.role
                 );
                 panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
                 container.add(panel);

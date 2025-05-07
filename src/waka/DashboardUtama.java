@@ -6,11 +6,14 @@ import java.awt.event.*;
 
 public class DashboardUtama extends javax.swing.JPanel {
 
-    public DashboardUtama() {
+    String role;
+    public DashboardUtama(String role) {
         initComponents();
         
+        this.role = role;
+        
         SubPanel.removeAll();
-        SubPanel.add(new waka.notifikasi.TampilanSuratTerdisposisiv2());
+        SubPanel.add(new waka.notifikasi.TampilanSuratTerdisposisiv2(this.role));
         SubPanel.revalidate();
         SubPanel.repaint();
     }

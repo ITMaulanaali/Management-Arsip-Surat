@@ -72,7 +72,7 @@ public class TambahUser extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Role");
 
-        CmBox_kepalaSekolah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kepala Sekolah", "Waka Kurikulum", "Waka Kesiswaan", "Waka SarPras", "Waka Humas" }));
+        CmBox_kepalaSekolah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Waka Kurikulum", "Waka Humas", "Waka Kesiswaan", "Waka Sarana dan Prasarana", "Waka Manajemen Mutu", "kepala sekolah" }));
         CmBox_kepalaSekolah.setPreferredSize(new java.awt.Dimension(76, 30));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
