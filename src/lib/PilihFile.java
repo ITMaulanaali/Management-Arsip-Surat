@@ -40,7 +40,11 @@ public class PilihFile {
             
             return pathFile;
         }
-        
+        try {
+                UIManager.setLookAndFeel(originalLAF);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } 
         return pathFile;
     }
 }
