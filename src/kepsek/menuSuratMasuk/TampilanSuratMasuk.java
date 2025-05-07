@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import lib.Query;
 /**
  *
@@ -52,7 +54,8 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
     
      void menampilkanSuratMasuk(){
         try {
-            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).select();
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
             modelTable.addColumn("No Surat");
@@ -64,12 +67,12 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             
             
             while(hasil.next()){
-                String no = hasil.getString("no_surat");
+                String no = hasil.getString("surat_masuk.no_surat");
                 String tanggal = hasil.getString("tanggal_surat");
                 String pengirim = hasil.getString("pengirim");
                 String kategori = hasil.getString("kategori");
                 String perihal = hasil.getString("perihal");
-                String status_notifikasi = hasil.getString("status_notifikasi");
+                String status_notifikasi = hasil.getString("status_disposisi");
                 
                 modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
             }
@@ -197,28 +200,31 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
                 break;
         }
         // Lakukan query dengan kondisi yang telah dibuat
-        ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
-
-        DefaultTableModel modelTable = new DefaultTableModel(); 
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            ResultSet hasil = stm.executeQuery();
+            
+            DefaultTableModel modelTable = new DefaultTableModel(); 
             modelTable.addColumn("No Surat");
             modelTable.addColumn("Tanggal Diterima");
             modelTable.addColumn("Pengirim");
             modelTable.addColumn("Kategori");
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status");
-
-        while (hasil.next()) {
-            String no = hasil.getString("no_surat");
-            String tanggal = hasil.getString("tanggal_surat");
-            String pengirim = hasil.getString("pengirim");
-            String kategori = hasil.getString("kategori");
-            String perihal = hasil.getString("perihal");
-            String status_notifikasi = hasil.getString("status_notifikasi");
-
-            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
-        }
-        tabel_suratMasuk.setRowHeight(30);
-        tabel_suratMasuk.setModel(modelTable);
+            
+            
+            while(hasil.next()){
+                String no = hasil.getString("surat_masuk.no_surat");
+                String tanggal = hasil.getString("tanggal_surat");
+                String pengirim = hasil.getString("pengirim");
+                String kategori = hasil.getString("kategori");
+                String perihal = hasil.getString("perihal");
+                String status_notifikasi = hasil.getString("status_disposisi");
+                
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+            }
+            tabel_suratMasuk.setRowHeight(30);
+            tabel_suratMasuk.setModel(modelTable);
+            
 
     } catch (Exception ex) {
         Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,8 +267,9 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                     break;
             }
             // Lakukan query dengan kondisi yang telah dibuat
-            ResultSet hasil = query.setNamaTabel("surat_masuk").setAtribut(this.coloumn).setWhereId(queryCondition, searchText).selectWhereLike();
-
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            ResultSet hasil = stm.executeQuery();
+            
             DefaultTableModel modelTable = new DefaultTableModel(); 
             modelTable.addColumn("No Surat");
             modelTable.addColumn("Tanggal Diterima");
@@ -270,19 +277,21 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             modelTable.addColumn("Kategori");
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status");
-
-            while (hasil.next()) {
-                String no = hasil.getString("no_surat");
+            
+            
+            while(hasil.next()){
+                String no = hasil.getString("surat_masuk.no_surat");
                 String tanggal = hasil.getString("tanggal_surat");
                 String pengirim = hasil.getString("pengirim");
                 String kategori = hasil.getString("kategori");
                 String perihal = hasil.getString("perihal");
-                String status_notifikasi = hasil.getString("status_notifikasi");
-
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
+                String status_notifikasi = hasil.getString("status_disposisi");
+                
+                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
             }
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);
+            
 
         } catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);

@@ -41,6 +41,10 @@ public class Disposisi extends javax.swing.JPanel {
     ArrayList<String> roleWaka;
     ArrayList<JCheckBox> cekBox;
     
+    private String bulanAngka;
+    private int tahun;
+    private int naikan;
+    
     public Disposisi(String[] data, byte[] fileBiner) {
         this.panelUtama = panelUtama;
         initComponents();
@@ -59,6 +63,7 @@ public class Disposisi extends javax.swing.JPanel {
         
         Perihal.setText(perihal);
         kumpulanWaka();
+        getLastNoDisposisi();
     }
     
     private void generateAutoLetterNumber() {
@@ -70,13 +75,8 @@ public class Disposisi extends javax.swing.JPanel {
     
     private void tampilkanTanggalDanWaktu() {
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        Timer timer = new Timer(1000, e -> {
             LocalDateTime sekarang = LocalDateTime.now();
             tanggal_disposisi.setText(sekarang.format(formatTanggal));
-   
-        });
-        timer.start();
     }
     
     private void setupFormDefaults() {
@@ -107,7 +107,40 @@ public class Disposisi extends javax.swing.JPanel {
         }
         
     }
-       
+    
+    void getLastNoDisposisi(){
+        String noDis = "";
+        try {
+            ResultSet hasil = query.setNamaTabel("disposisi").setAtribut(new String[]{"no_disposisi"}).select();
+            
+            while(hasil.next()){
+                noDis = hasil.getString("no_disposisi");
+            }
+
+             // Ambil data dari kolom "No Surat"
+            // Misalkan kolom "No Surat" adalah kolom ke-0
+            if(!noDis.equals("")){
+                String data = noDis;
+                String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
+                String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
+                int angkaInt = Integer.parseInt(angka);
+                // Jika Anda ingin mengonversi ke integer
+                String angkaString;
+                if (angkaInt + 1 < 100) {
+                    // Jika angka kurang dari 100, format dengan leading zeros
+                    angkaString = String.format("%03d", angkaInt + 1);
+                    no_disposisi.setText(angkaString);
+                } else {
+                    // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
+                angkaString = Integer.toString(angkaInt + 1);
+                no_disposisi.setText(angkaString);
+                }
+        }
+        
+    }   catch (Exception ex) {
+            Logger.getLogger(Disposisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -243,22 +276,22 @@ public class Disposisi extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(tanggal_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(no_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2)
-                                    .addComponent(tanggal_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Perihal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(Perihal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))))
+                        .addGap(130, 130, 130))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(no_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,11 +360,47 @@ public class Disposisi extends javax.swing.JPanel {
     private void PerihalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerihalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PerihalActionPerformed
-
+private String convertToRoman(int month) {
+    switch (month) {
+        case 1: return "I";
+        case 2: return "II";
+        case 3: return "III";
+        case 4: return "IV";
+        case 5: return "V";
+        case 6: return "VI";
+        case 7: return "VII";
+        case 8: return "VIII";
+        case 9: return "IX";
+        case 10: return "X";
+        case 11: return "XI";
+        case 12: return "XII";
+        default: return ""; // Jika bulan tidak valid
+    }
+}
     private void KirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KirimActionPerformed
         // TODO add your handling code here:
        //Get the values from the form
-        String noDisposisi = no_disposisi.getText();
+       
+       boolean anySelected = false;
+    for (JCheckBox checkBox : this.cekBox) {
+        if (checkBox.isSelected()) {
+            anySelected = true;
+            break;
+        }
+    }
+
+    // Show error message if no checkbox is selected
+    if (!anySelected) {
+        JOptionPane.showMessageDialog(this, "Pilih minimal satu tujuan disposisi!", 
+                "Validasi Error", JOptionPane.ERROR_MESSAGE);
+        return; // Exit the method if no checkbox is selected
+    }
+       
+        String tahun = tanggal_disposisi.getText().substring(0, 4);
+        String bulan = tanggal_disposisi.getText().substring(5, 7);
+        this.naikan = Integer.parseInt(no_disposisi.getText());
+               
+        String noDisposisi = this.naikan + "/DISP-KS" + "/" + convertToRoman(Integer.parseInt(bulan)) + "/" + tahun;
         String tanggal = tanggal_disposisi.getText();
         String catatan = Catatan.getText();
         String status = "Terdisposisi";
@@ -366,13 +435,17 @@ try {
     // 2. Loop dan lakukan insert
     for (int i = 0; i < this.cekBox.size(); i++) {
         if (this.cekBox.get(i).isSelected()) {
-            stmt.setInt(1,  (Integer.parseInt(noDisposisi) + i));
+            String angkaFormatted = String.format("%03d", this.naikan);
+            String noDis = angkaFormatted + "/DISP-KS/" + convertToRoman(Integer.parseInt(bulan)) + "/" + tahun;
+            
+            stmt.setString(1, noDis);
             stmt.setString(2, tanggal);
             stmt.setString(3, catatan);
             stmt.setString(4, status);
             stmt.setString(5, this.usernameWaka.get(i));
             stmt.setString(6, this.dataAtributs[0]);
             stmt.addBatch(); // Tambahkan ke batch
+            this.naikan++;
         }
     }
 

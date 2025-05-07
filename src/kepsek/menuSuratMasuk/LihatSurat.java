@@ -65,8 +65,8 @@ public class LihatSurat extends javax.swing.JPanel {
         contentPanel.add(contentLabel, java.awt.BorderLayout.CENTER);
         
         // Set the content panel as the view for the scroll pane
-        jScrollPane1.setViewportView(contentPanel);
-        jScrollPane1.setBorder(null);
+        imagePdf.setViewportView(contentPanel);
+        imagePdf.setBorder(null);
     }
     
     
@@ -83,7 +83,13 @@ public class LihatSurat extends javax.swing.JPanel {
         iconPeriode1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Kembali = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        imagePdf = new javax.swing.JScrollPane();
+        Diperbesar = new javax.swing.JPanel();
+        iconPeriode2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        Diperkecil = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        iconPeriode3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -111,7 +117,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         DisposisiLayout.setVerticalGroup(
             DisposisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,6 +144,73 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
+        Diperbesar.setBackground(new java.awt.Color(217, 217, 217));
+        Diperbesar.setPreferredSize(new java.awt.Dimension(100, 40));
+        Diperbesar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DiperbesarMouseClicked(evt);
+            }
+        });
+
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memeperbesar (1).png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel7.setText("Diperbesar");
+
+        javax.swing.GroupLayout DiperbesarLayout = new javax.swing.GroupLayout(Diperbesar);
+        Diperbesar.setLayout(DiperbesarLayout);
+        DiperbesarLayout.setHorizontalGroup(
+            DiperbesarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DiperbesarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconPeriode2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
+        );
+        DiperbesarLayout.setVerticalGroup(
+            DiperbesarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DiperbesarLayout.createSequentialGroup()
+                .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+            .addGroup(DiperbesarLayout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Diperkecil.setBackground(new java.awt.Color(217, 217, 217));
+        Diperkecil.setPreferredSize(new java.awt.Dimension(100, 40));
+        Diperkecil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DiperkecilMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel8.setText("Diperkecil");
+
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memperkecil 50 (1).png"))); // NOI18N
+
+        javax.swing.GroupLayout DiperkecilLayout = new javax.swing.GroupLayout(Diperkecil);
+        Diperkecil.setLayout(DiperkecilLayout);
+        DiperkecilLayout.setHorizontalGroup(
+            DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DiperkecilLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconPeriode3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+        DiperkecilLayout.setVerticalGroup(
+            DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DiperkecilLayout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addGroup(DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,10 +218,13 @@ public class LihatSurat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Diperbesar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Diperkecil, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imagePdf, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,9 +234,13 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Diperbesar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Diperkecil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(imagePdf))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -186,12 +266,38 @@ public class LihatSurat extends javax.swing.JPanel {
             kepsek.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_KembaliMouseClicked
 
+    private void DiperbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiperbesarMouseClicked
+        // TODO add your handling code here:
+         try {
+            this.pdf.zoomOut();
+            setupContent();
+        } catch (Exception ex) {
+            Logger.getLogger(admin.menuSuratMasuk.LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_DiperbesarMouseClicked
+
+    private void DiperkecilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiperkecilMouseClicked
+        // TODO add your handling code here:
+         try {
+            this.pdf.zoomIn();
+             setupContent();
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_DiperkecilMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Diperbesar;
+    private javax.swing.JPanel Diperkecil;
     private javax.swing.JPanel Disposisi;
     private javax.swing.JButton Kembali;
     private javax.swing.JLabel iconPeriode1;
+    private javax.swing.JLabel iconPeriode2;
+    private javax.swing.JLabel iconPeriode3;
+    private javax.swing.JScrollPane imagePdf;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

@@ -116,7 +116,7 @@ private byte[] file;
 
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tableKeluar = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(158, 158, 158));
@@ -138,23 +138,16 @@ private byte[] file;
 
         tableKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableKeluar.setMinimumSize(new java.awt.Dimension(1200, 80));
-        tableKeluar.setPreferredSize(new java.awt.Dimension(1200, 80));
-        tableKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tableKeluarMousePressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tableKeluar);
+        jScrollPane2.setViewportView(tableKeluar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -162,13 +155,15 @@ private byte[] file;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(98, 98, 98)
-                        .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE))
+                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                .addGap(98, 98, 98)
+                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(31, 31, 31)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                    .addGap(29, 29, 29)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,9 +174,12 @@ private byte[] file;
                         .addGap(1, 1, 1)
                         .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                .addGap(64, 64, 64))
+                .addContainerGap(423, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addGap(28, 28, 28)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,57 +251,11 @@ private byte[] file;
         Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_cariActionPerformed
-
-    private void tableKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMousePressed
-         int baris = tableKeluar.rowAtPoint(evt.getPoint());
-    if (baris < 0) {
-        return; // Clicked outside table rows
-    }
-
-    if (evt.getClickCount() == 1) {
-        // Single click: set selection on the clicked row
-        tableKeluar.setRowSelectionInterval(baris, baris);
-        
-        // Logika untuk klik satu kali
-        String noSurat = (String) tableKeluar.getValueAt(baris, 0);
-        // Panggil metode atau lakukan aksi yang diinginkan
-        System.out.println("Satu kali klik pada No Surat: " + noSurat);
-        // Misalnya, Anda bisa memanggil metode lain di sini
-        // ppilih(noSurat); // Contoh pemanggilan metode
-
-    } else if (evt.getClickCount() == 2) {
-        // Double click: open LihatSurat panel with selected row details
-        String[] data = new String[7];
-
-        data[0] = (String) tableKeluar.getValueAt(baris, 0);
-        data[1] = (String) tableKeluar.getValueAt(baris, 1);
-        data[2] = (String) tableKeluar.getValueAt(baris, 2);
-        data[3] = (String) tableKeluar.getValueAt(baris, 3);
-        data[4] = (String) tableKeluar.getValueAt(baris, 4);
-        data[5] = (String) tableKeluar.getValueAt(baris, 5);
-        data[6] = (String) tableKeluar.getValueAt(baris, 6); // Pastikan ini adalah kolom yang benar
-
-        try {
-            String[] atributs = {"no_surat", "file_surat"};
-            ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
-            while (hasil.next()) {
-                this.file = hasil.getBytes("file_surat");
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        kepsek.DashboardUtama.SubPanel.removeAll();
-        kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.LihatSurat(data, file));
-        kepsek.DashboardUtama.SubPanel.revalidate();
-        kepsek.DashboardUtama.SubPanel.repaint(); 
-    }
-    }//GEN-LAST:event_tableKeluarMousePressed
                                  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cari;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> pilih;
     private javax.swing.JTable tableKeluar;
     // End of variables declaration//GEN-END:variables
