@@ -23,6 +23,9 @@ public class SuratByPeriode extends javax.swing.JPanel {
     
     public SuratByPeriode() {
         initComponents();
+        // Set total_surat dan total_disposisi menjadi tidak dapat diedit
+        total_surat.setEditable(false);
+        total_disposisi.setEditable(false);
         
         // Set default text for cari JTextField
         cari.setText(DEFAULT_SEARCH_TEXT);

@@ -1,6 +1,10 @@
 
 package admin.menuSuratMasuk;
 
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -8,6 +12,8 @@ import java.sql.SQLException; // Untuk SQLException
 import java.sql.SQLIntegrityConstraintViolationException; // Untuk SQLIntegrityConstraintViolationException
 import lib.PdfDiJpanel;
 import lib.Query;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 
 
 public class LihatSurat extends javax.swing.JPanel {
@@ -102,6 +108,9 @@ public class LihatSurat extends javax.swing.JPanel {
         cetak.setBackground(new java.awt.Color(217, 217, 217));
         cetak.setPreferredSize(new java.awt.Dimension(100, 40));
         cetak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cetakMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cetakMouseEntered(evt);
             }
@@ -354,6 +363,34 @@ public class LihatSurat extends javax.swing.JPanel {
         }  
             
     }//GEN-LAST:event_hapusMouseClicked
+
+    private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
+    
+     try {
+        // Membuat InputStream dari byte array PDF
+        ByteArrayInputStream bais = new ByteArrayInputStream(this.binerPdf);
+
+        // Memuat dokumen PDF menggunakan PDFBox
+        PDDocument document = new PDDocument();
+
+        // Menyiapkan PrinterJob
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPageable(new PDFPageable(document));
+
+        // Menampilkan dialog cetak
+        if (job.printDialog()) {
+            // Jika Anda ingin menyimpan ke file PDF, Anda bisa menggunakan printer virtual
+            job.print();
+        }
+
+        // Menutup dokumen setelah pencetakan
+        document.close();
+    } catch (IOException | PrinterException ex) {
+        Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mencetak dokumen.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+    }    
+        
+    }//GEN-LAST:event_cetakMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
