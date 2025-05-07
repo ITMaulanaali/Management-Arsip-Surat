@@ -1,22 +1,43 @@
 
 package admin.menuSuratKeluar;
 
-import admin.menuSuratMasuk.*;
+import admin.menuSuratKeluar.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.PdfDiJpanel;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import java.sql.SQLException; // Untuk SQLException
+import java.sql.SQLIntegrityConstraintViolationException; // Untuk SQLIntegrityConstraintViolationException
+import lib.PdfDiJpanel;
+import lib.Query;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.printing.PDFPageable;
 
 public class LihatSurat extends javax.swing.JPanel {
 
-    String[] data;
-    byte[] pdfBiner;
+    private PdfDiJpanel pdf;
+    private String[] data;
+    private byte[] binerPdf;
+    private Query query;
+   
     public LihatSurat(String[] data, byte[] pdfBiner) {
+        
         initComponents();
         this.data = data;
+        this.binerPdf = pdfBiner;
+        this.pdf = new PdfDiJpanel();
+        this.query = new Query();
+        
         try {
-            imageLabel.setIcon(new PdfDiJpanel().addByteFile(pdfBiner).getIcon());
+            imagePdf.setIcon(pdf.addByteFile(this.binerPdf).getIcon());
         } catch (Exception ex) {
-            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(admin.menuSuratKeluar.LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -29,19 +50,146 @@ public class LihatSurat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        hapus = new javax.swing.JPanel();
-        iconPeriode1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        imagePdf = new javax.swing.JLabel();
+        zoomIn = new javax.swing.JPanel();
+        iconPeriode4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        zoomOut = new javax.swing.JPanel();
+        iconPeriode3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         cetak = new javax.swing.JPanel();
         iconPeriode2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        kembali = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        imageLabel = new javax.swing.JLabel();
+        hapus = new javax.swing.JPanel();
+        iconPeriode1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        kembali = new java.awt.Panel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
+
+        jScrollPane1.setViewportView(imagePdf);
+
+        zoomIn.setBackground(new java.awt.Color(217, 217, 217));
+        zoomIn.setPreferredSize(new java.awt.Dimension(100, 40));
+        zoomIn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zoomInMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                zoomInMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                zoomInMouseExited(evt);
+            }
+        });
+
+        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memperkecil 50 (1).png"))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel9.setText("Perkecil");
+
+        javax.swing.GroupLayout zoomInLayout = new javax.swing.GroupLayout(zoomIn);
+        zoomIn.setLayout(zoomInLayout);
+        zoomInLayout.setHorizontalGroup(
+            zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(zoomInLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconPeriode4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        zoomInLayout.setVerticalGroup(
+            zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(zoomInLayout.createSequentialGroup()
+                .addGroup(zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconPeriode4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
+        );
+
+        zoomOut.setBackground(new java.awt.Color(217, 217, 217));
+        zoomOut.setPreferredSize(new java.awt.Dimension(100, 40));
+        zoomOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zoomOutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                zoomOutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                zoomOutMouseExited(evt);
+            }
+        });
+
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memeperbesar (1).png"))); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel8.setText("Perlebar");
+
+        javax.swing.GroupLayout zoomOutLayout = new javax.swing.GroupLayout(zoomOut);
+        zoomOut.setLayout(zoomOutLayout);
+        zoomOutLayout.setHorizontalGroup(
+            zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(zoomOutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconPeriode3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        zoomOutLayout.setVerticalGroup(
+            zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(zoomOutLayout.createSequentialGroup()
+                .addGroup(zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
+        );
+
+        cetak.setBackground(new java.awt.Color(217, 217, 217));
+        cetak.setPreferredSize(new java.awt.Dimension(100, 40));
+        cetak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cetakMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cetakMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cetakMouseExited(evt);
+            }
+        });
+
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Print (2).png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel7.setText("Cetak");
+
+        javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
+        cetak.setLayout(cetakLayout);
+        cetakLayout.setHorizontalGroup(
+            cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cetakLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconPeriode2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+        cetakLayout.setVerticalGroup(
+            cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cetakLayout.createSequentialGroup()
+                .addGroup(cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
+        );
 
         hapus.setBackground(new java.awt.Color(217, 217, 217));
         hapus.setPreferredSize(new java.awt.Dimension(100, 40));
@@ -57,7 +205,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Hapus.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Hapus");
@@ -71,7 +219,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,48 +230,11 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(14, 14, 14))
         );
 
-        cetak.setBackground(new java.awt.Color(217, 217, 217));
-        cetak.setPreferredSize(new java.awt.Dimension(100, 40));
-        cetak.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                cetakMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                cetakMouseExited(evt);
-            }
-        });
-
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel7.setText("Cetak");
-
-        javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
-        cetak.setLayout(cetakLayout);
-        cetakLayout.setHorizontalGroup(
-            cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cetakLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPeriode2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        cetakLayout.setVerticalGroup(
-            cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cetakLayout.createSequentialGroup()
-                .addGroup(cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
-        );
-
-        kembali.setBackground(new java.awt.Color(214, 203, 203));
-        kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        kembali.setText("Kembali");
-        kembali.setMinimumSize(new java.awt.Dimension(83, 40));
-        kembali.setPreferredSize(new java.awt.Dimension(80, 40));
+        kembali.setBackground(new java.awt.Color(196, 196, 196));
         kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 kembaliMouseEntered(evt);
             }
@@ -131,13 +242,31 @@ public class LihatSurat extends javax.swing.JPanel {
                 kembaliMouseExited(evt);
             }
         });
-        kembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembaliActionPerformed(evt);
-            }
-        });
 
-        jScrollPane1.setViewportView(imageLabel);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // NOI18N
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel13.setText("Kembali");
+
+        javax.swing.GroupLayout kembaliLayout = new javax.swing.GroupLayout(kembali);
+        kembali.setLayout(kembaliLayout);
+        kembaliLayout.setHorizontalGroup(
+            kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kembaliLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        kembaliLayout.setVerticalGroup(
+            kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(kembaliLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,65 +275,162 @@ public class LihatSurat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(zoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
-                        .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(zoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliActionPerformed
-     
+    private void zoomInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseClicked
+        try {
+            this.pdf.zoomIn();
+            imagePdf.setIcon(this.pdf.getIcon());
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_zoomInMouseClicked
+
+    private void zoomInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseEntered
+        zoomIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_zoomInMouseEntered
+
+    private void zoomInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseExited
+        zoomIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_zoomInMouseExited
+
+    private void zoomOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseClicked
+        try {
+            this.pdf.zoomOut();
+            imagePdf.setIcon(this.pdf.getIcon());
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_zoomOutMouseClicked
+
+    private void zoomOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseEntered
+        zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_zoomOutMouseEntered
+
+    private void zoomOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseExited
+        zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_zoomOutMouseExited
+
+    private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
+
+        try {
+            // Membuat InputStream dari byte array PDF
+            ByteArrayInputStream bais = new ByteArrayInputStream(this.binerPdf);
+
+            // Memuat dokumen PDF menggunakan PDFBox
+            PDDocument document = new PDDocument();
+
+            // Menyiapkan PrinterJob
+            PrinterJob job = PrinterJob.getPrinterJob();
+            job.setPageable(new PDFPageable(document));
+
+            // Menampilkan dialog cetak
+            if (job.printDialog()) {
+                // Jika Anda ingin menyimpan ke file PDF, Anda bisa menggunakan printer virtual
+                job.print();
+            }
+
+            // Menutup dokumen setelah pencetakan
+            document.close();
+        } catch (IOException | PrinterException ex) {
+            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mencetak dokumen.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_cetakMouseClicked
+
+    private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
+        cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_cetakMouseEntered
+
+    private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
+        cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_cetakMouseExited
+
+    private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
+
+        // Menampilkan dialog konfirmasi
+        int response = JOptionPane.showConfirmDialog(this,
+            "Apakah Anda yakin ingin menghapus surat ini?",
+            "Konfirmasi Hapus",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+        // Jika pengguna memilih "Yes"
+        if (response == JOptionPane.YES_OPTION) {
+            try {
+                query.setNamaTabel("surat_keluar").setWhereId("no_surat", data[0]).delete();
+                
+                JOptionPane.showMessageDialog(this,"Data Berhasil Dihapus");
+                    admin.DashboardUtama.SubPanel.removeAll();
+                    admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.TampilanSuratKeluar());
+                    admin.DashboardUtama.SubPanel.revalidate();
+                    admin.DashboardUtama.SubPanel.repaint();
+                
+            } catch (SQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(this, "Surat Yang Sudah Terdisposisi Tidak Boleh Di Hapus!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        // Jika pengguna memilih "No", tidak melakukan apa-apa
+
+    }//GEN-LAST:event_hapusMouseClicked
+
+    private void hapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseEntered
+        hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_hapusMouseEntered
+
+    private void hapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseExited
+        hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_hapusMouseExited
+
+    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
+
         admin.DashboardUtama.SubPanel.removeAll();
         admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.TampilanSuratKeluar());
         admin.DashboardUtama.SubPanel.revalidate();
         admin.DashboardUtama.SubPanel.repaint();
-        
-    }//GEN-LAST:event_kembaliActionPerformed
+    }//GEN-LAST:event_kembaliMouseClicked
 
     private void kembaliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseEntered
-       kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        kembali.setBackground(new java.awt.Color(217, 217, 217));
     }//GEN-LAST:event_kembaliMouseEntered
 
     private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
         kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        kembali.setBackground(new java.awt.Color(196, 196, 196)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_kembaliMouseExited
-
-    private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
-    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    }//GEN-LAST:event_cetakMouseEntered
-
-    private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
-    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    }//GEN-LAST:event_cetakMouseExited
-
-    private void hapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseEntered
-    hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    }//GEN-LAST:event_hapusMouseEntered
-
-    private void hapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseExited
-    hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    }//GEN-LAST:event_hapusMouseExited
-
-    private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hapusMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,10 +438,18 @@ public class LihatSurat extends javax.swing.JPanel {
     private javax.swing.JPanel hapus;
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
-    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel iconPeriode3;
+    private javax.swing.JLabel iconPeriode4;
+    private javax.swing.JLabel imagePdf;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton kembali;
+    private java.awt.Panel kembali;
+    private javax.swing.JPanel zoomIn;
+    private javax.swing.JPanel zoomOut;
     // End of variables declaration//GEN-END:variables
 }

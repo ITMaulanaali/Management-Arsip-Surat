@@ -74,8 +74,16 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
                 int angkaInt = Integer.parseInt(angka);
                 // Jika Anda ingin mengonversi ke integer
-                String angkaString = Integer.toString(angkaInt + 1);
+                String angkaString;
+                if (angkaInt + 1 < 100) {
+                    // Jika angka kurang dari 100, format dengan leading zeros
+                    angkaString = String.format("%03d", angkaInt + 1);
+                    urutan_surat.setText(angkaString);
+                } else {
+                    // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
+                angkaString = Integer.toString(angkaInt + 1);
                 urutan_surat.setText(angkaString);
+                }
             }
 
     tanggal_surat_masuk.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -272,7 +280,7 @@ private String convertToRoman(int month) {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("File");
 
-        upload_file.setText("Upload pdf");
+        upload_file.setEditable(false);
         upload_file.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -287,7 +295,9 @@ private String convertToRoman(int month) {
         pengirim.setPreferredSize(new java.awt.Dimension(40, 30));
 
         perihal.setColumns(20);
+        perihal.setLineWrap(true);
         perihal.setRows(5);
+        perihal.setWrapStyleWord(true);
         jScrollPane1.setViewportView(perihal);
 
         Upload.setText("Pilih File");
@@ -415,7 +425,7 @@ private String convertToRoman(int month) {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, Short.MAX_VALUE)
                                 .addComponent(statusNotifikasi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(95, 95, 95)
                         .addComponent(jScrollPane1))
@@ -543,14 +553,18 @@ private String convertToRoman(int month) {
     }//GEN-LAST:event_nama_instansiActionPerformed
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
-            // Mengambil nilai dari setiap field
+        
+// Mengambil nilai dari setiap field
         String nomerSurat = urutan_surat.getText().trim() + "/" + kode_lembaga.getText().trim() + "/" + nama_instansi.getText().trim() 
                             + "/" + this.bulanRomawi + "/" + this.tahunAngka;
         String tanggal = tanggal_surat_masuk.getText().trim();
         String namapengirim = pengirim.getText().trim();
         String personalkategori = kategori.getText().trim();
         String catatanperihal = perihal.getText().trim();
-        String file_surat = this.lokasiFileLengkap.trim();
+        String file_surat = "";
+        if(this.lokasiFileLengkap != null){
+            file_surat = this.lokasiFileLengkap;
+        }
         String tandastatusnotifikasi = statusNotifikasi.getText().trim();
 
         // Validasi: Cek apakah ada field yang kosong dan file berformat PDF

@@ -20,7 +20,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
     initComponents();
     // Set total_surat dan total_disposisi menjadi tidak dapat diedit
     total_surat.setEditable(false);
-    total_disposisi.setEditable(false);
         
         
  // Tambahkan event listener di constructor atau initComponents
@@ -46,11 +45,9 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         jLabel8 = new javax.swing.JLabel();
         selesai_tanggal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
         total_surat = new javax.swing.JTextField();
-        total_disposisi = new javax.swing.JTextField();
         tampilkan = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabel_periode = new javax.swing.JTable();
@@ -81,10 +78,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Total Surat :");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("Total Disposisi :");
-
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -95,12 +88,10 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         });
 
-        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Penerima", "Kategori", "Perihal", "Disposisi" }));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Penerima", "Kategori", "Perihal" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
         total_surat.setPreferredSize(new java.awt.Dimension(40, 30));
-
-        total_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
 
         tampilkan.setBackground(new java.awt.Color(196, 196, 196));
         tampilkan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -121,13 +112,13 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
         tabel_periode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No Surat", "Penerima", "Kategori", "Perihal", "Disposisi"
+                "No Surat", "Penerima", "Kategori", "Perihal"
             }
         ));
         jScrollPane2.setViewportView(tabel_periode);
@@ -222,7 +213,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                                         .addGap(169, 169, 169))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -234,15 +225,10 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                                         .addGap(40, 40, 40))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                                        .addGap(158, 158, 158))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(selesai_tanggal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(total_disposisi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                                        .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
@@ -273,18 +259,15 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                     .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                .addComponent(jLabel6)
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(tampilkan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,20 +329,14 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                     row[1] = rs.getString("penerima");
                     row[2] = rs.getString("kategori");
                     row[3] = rs.getString("perihal");
-                    row[4] = rs.getString("status_disposisi"); // Ambil status_disposisi dari hasil query
-
+                    
                     model.addRow(row);
                     
-                    // Hitung total disposisi jika status_disposisi tidak null
-                    if (rs.getString("status_disposisi") != null) {
-                        totalDisposisi++;
-                    }
                 }
 
                 // Hitung total surat dan tampilkan di total_surat
                 int totalSurat = model.getRowCount(); // Menghitung jumlah baris
                 total_surat.setText(String.valueOf(totalSurat)); // Menampilkan total surat
-                total_disposisi.setText(String.valueOf(totalDisposisi)); // Menampilkan total disposisi
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -403,9 +380,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             case "Perihal":
                 query += "sk.perihal LIKE ?";
                 break;
-            case "Disposisi":
-                query += "d.status_disposisi LIKE ?";
-                break;
             default:
                 return; // Jika tidak ada pilihan yang valid, keluar dari metode
         }
@@ -425,7 +399,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                 row[1] = rs.getString("penerima");
                 row[2] = rs.getString("kategori");
                 row[3] = rs.getString("perihal");
-                row[4] = rs.getString("status_disposisi");
 
                 model.addRow(row);
             }
@@ -510,7 +483,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Panel kembali;
@@ -519,7 +491,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JTextField selesai_tanggal;
     private javax.swing.JTable tabel_periode;
     private javax.swing.JButton tampilkan;
-    private javax.swing.JTextField total_disposisi;
     private javax.swing.JTextField total_surat;
     // End of variables declaration//GEN-END:variables
 }

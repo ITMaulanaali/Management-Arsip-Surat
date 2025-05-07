@@ -231,6 +231,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("File");
 
+        file.setEditable(false);
         file.setPreferredSize(new java.awt.Dimension(40, 30));
         file.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -499,7 +500,10 @@ this.tahunAngka = sekarang.getYear();
     String namapenerima = penerima.getText();
     String personalkategori = kategori.getText();
     String catatanperihal = perihal.getText();
-    String file_surat = this.lokasiFileLengkap;
+    String file_surat = "";
+    if(this.lokasiFileLengkap != null){
+        file_surat = this.lokasiFileLengkap;
+    }
     String tandastatuspengiriman = (String) status.getSelectedItem();
     String namaalamat = alamat.getText();
 

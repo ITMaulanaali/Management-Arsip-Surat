@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import lib.Query;
 
@@ -417,54 +418,62 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
     }//GEN-LAST:event_cariActionPerformed
 
     private void tabel_suratkeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMousePressed
-        int baris = tabel_suratkeluar.rowAtPoint(evt.getPoint());
+                                                                                    
+    int baris = tabel_suratkeluar.rowAtPoint(evt.getPoint());
     if (baris < 0) {
         return; // Clicked outside table rows
     }
 
+    // Simpan data yang dipilih
+    selectedNoSurat = (String) tabel_suratkeluar.getValueAt(baris, 0);
+    selectedTanggalSurat = (String) tabel_suratkeluar.getValueAt(baris, 1);
+    selectedPenerima = (String) tabel_suratkeluar.getValueAt(baris, 2);
+    selectedKategori = (String) tabel_suratkeluar.getValueAt(baris, 3);
+    selectedPerihal = (String) tabel_suratkeluar.getValueAt(baris, 4);
+    selectedStatusPengiriman = (String) tabel_suratkeluar.getValueAt(baris, 5);
+    selectedAlamatTujuan = (String) tabel_suratkeluar.getValueAt(baris, 6);
+    
+    // Menangani klik tunggal
     if (evt.getClickCount() == 1) {
-        // Single click: set selection on the clicked row
-        tabel_suratkeluar.setRowSelectionInterval(baris, baris);
-        
-        // Simpan data yang dipilih
-        selectedNoSurat = (String) tabel_suratkeluar.getValueAt(baris, 0);
-        selectedTanggalSurat = (String) tabel_suratkeluar.getValueAt(baris, 1);
-        selectedPenerima = (String) tabel_suratkeluar.getValueAt(baris, 2);
-        selectedKategori = (String) tabel_suratkeluar.getValueAt(baris, 3);
-        selectedPerihal = (String) tabel_suratkeluar.getValueAt(baris, 4);
-        selectedStatusPengiriman = (String) tabel_suratkeluar.getValueAt(baris, 5);
-        selectedAlamatTujuan = (String) tabel_suratkeluar.getValueAt(baris, 6);
-        // Ambil file surat jika diperlukan
-        selectedFileSurat = getFileSuratFromDatabase(selectedNoSurat);
-        
-        } else if (evt.getClickCount() == 2) {
-            // Double click: open LihatSurat panel with selected row details
-            String[] data = new String[7];
+        // Jalankan program untuk memilih data
+        // Misalnya, Anda bisa menampilkan informasi di status bar atau melakukan tindakan lain
+        System.out.println("Data dipilih: " + selectedNoSurat);
+        // Anda bisa menambahkan logika lain di sini jika diperlukan
+    }
     
-            data[0] = (String)tabel_suratkeluar.getValueAt(baris, 0);
-            data[1] = (String)tabel_suratkeluar.getValueAt(baris, 1);
-            data[2] = (String)tabel_suratkeluar.getValueAt(baris, 2);
-            data[3] = (String)tabel_suratkeluar.getValueAt(baris, 3);
-            data[4] = (String)tabel_suratkeluar.getValueAt(baris, 4);
-            data[5] = (String)tabel_suratkeluar.getValueAt(baris, 5);
-            data[6] = (String)tabel_suratkeluar.getValueAt(baris, 5);
-    
-            
+    // Menangani klik ganda
+    if (evt.getClickCount() == 2) {
+        // Ambil file surat dari database di thread terpisah
+        new Thread(() -> {
             try {
-                String[] atributs = {"no_surat","file_surat"};
+                String[] data = new String[7];
+                data[0] = selectedNoSurat;
+                data[1] = selectedTanggalSurat;
+                data[2] = selectedPenerima;
+                data[3] = selectedKategori;
+                data[4] = selectedPerihal;
+                data[5] = selectedStatusPengiriman;
+                data[6] = selectedAlamatTujuan;
+
+                // Ambil file surat dari database
+                String[] atributs = {"no_surat", "file_surat"};
                 ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
-                while(hasil.next()){
+                if (hasil.next()) {
                     this.file = hasil.getBytes("file_surat");
                 }
+
+                // Update UI di thread utama
+                SwingUtilities.invokeLater(() -> {
+                admin.DashboardUtama.SubPanel.removeAll();
+                admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat(data, file));
+                admin.DashboardUtama.SubPanel.revalidate();
+                admin.DashboardUtama.SubPanel.repaint();
+                });
             } catch (Exception ex) {
-                Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
             }
-    
-            admin.DashboardUtama.SubPanel.removeAll();
-            admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat(data,file));
-            admin.DashboardUtama.SubPanel.revalidate();
-            admin.DashboardUtama.SubPanel.repaint(); 
-        }
+        }).start();
+    }
     
     }//GEN-LAST:event_tabel_suratkeluarMousePressed
 
