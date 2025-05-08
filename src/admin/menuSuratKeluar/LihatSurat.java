@@ -102,7 +102,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         zoomInLayout.setVerticalGroup(
             zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +141,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         zoomOutLayout.setVerticalGroup(
             zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         cetakLayout.setVerticalGroup(
             cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +219,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

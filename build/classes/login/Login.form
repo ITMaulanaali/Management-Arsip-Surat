@@ -189,6 +189,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="TexField_password">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TexField_passwordKeyPressed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

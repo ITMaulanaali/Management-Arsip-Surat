@@ -205,6 +205,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Perihal");
 
+        Perihal.setEditable(false);
         Perihal.setPreferredSize(new java.awt.Dimension(40, 30));
         Perihal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

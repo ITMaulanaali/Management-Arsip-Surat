@@ -37,50 +37,61 @@ public class Login extends javax.swing.JPanel {
                 peran = hasil.getString("jenis_role");
                 
                 if(user.equals(nama) && password.equals(kredensial)){
-                    if(peran.equals("Waka Kurikulum")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("Waka Humas")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("Waka Kesiswaan")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("Waka Sarana dan Prasarana")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("Waka Manajemen Mutu")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("admin")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new admin.DashboardUtama());
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }else if(peran.equals("kepala sekolah")){
-                        Main.PanelWadah.removeAll();
-                        Main.PanelWadah.add(new kepsek.DashboardUtama());
-                        Main.PanelWadah.revalidate();
-                        Main.PanelWadah.repaint();
-                    }
+                    switch (peran) {
+                        case "Waka Kurikulum":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            return;
+                        case "Waka Humas":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            break;
+                        case "Waka Kesiswaan":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            break;
+                        case "Waka Sarana dan Prasarana":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            return;
+                        case "Waka Manajemen Mutu":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            return;
+                        case "admin":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new admin.DashboardUtama());
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            return;
+                        case "kepala sekolah":
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new kepsek.DashboardUtama());
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
+                            return;
+                        default:
+                            JOptionPane.showMessageDialog(this, "Pasword Salah");
+                            return;
+                        }
                 }else{
-                    JOptionPane.showMessageDialog(this, "User atau Password salah");
+                    JOptionPane.showMessageDialog(this, "Username  Salah");
                     return;
                 }
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Terjadi Kesalahan");
-        }
+        } 
     }
     
     
@@ -142,6 +153,12 @@ public class Login extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Username");
+
+        TexField_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TexField_passwordKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -308,6 +325,13 @@ public class Login extends javax.swing.JPanel {
             jButton1.doClick();
         }
     }//GEN-LAST:event_TextField_usernameKeyPressed
+
+    private void TexField_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TexField_passwordKeyPressed
+      
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jButton1.doClick();
+        }
+    }//GEN-LAST:event_TexField_passwordKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
