@@ -4,16 +4,25 @@ package admin.menuSuratMasuk;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.SQLException; // Untuk SQLException
 import java.sql.SQLIntegrityConstraintViolationException; // Untuk SQLIntegrityConstraintViolationException
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 import lib.PdfDiJpanel;
 import lib.Query;
+import login.PdfBoxLoader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPageable;
+import org.apache.pdfbox.printing.PDFPrintable;
 
 
 public class LihatSurat extends javax.swing.JPanel {
@@ -384,31 +393,46 @@ public class LihatSurat extends javax.swing.JPanel {
     }//GEN-LAST:event_hapusMouseClicked
 
     private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
+        try {
+    // 1. Tulis biner PDF ke file sementara
+    File tempFile = File.createTempFile("pdfbox_temp", ".pdf");
+    try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+        fos.write(this.binerPdf);
+    }
+
+    // 2. Muat PDDocument via PdfBoxLoader
+    Object pdDocument = login.PdfBoxLoader.loadDocument(tempFile);
+
+    // 3. Ambil kelas PDFPrintable dari PdfBoxLoader
+    Class<?> pdfPrintableClass = login.PdfBoxLoader.getPdfPrinterClass();
+    Class<?> pdDocumentClass = login.PdfBoxLoader.getPdDocumentClass();
+
+    // 4. Buat instance PDFPrintable menggunakan reflection
+    Constructor<?> constructor = pdfPrintableClass.getConstructor(pdDocumentClass);
+    Object printable = constructor.newInstance(pdDocument);
+
+    // 5. Siapkan PrinterJob
+    PrinterJob printerJob = PrinterJob.getPrinterJob();
+    printerJob.setJobName("PDF Print Job");
+
+    // 6. Set PDFPrintable sebagai Printable
+    printerJob.setPrintable((java.awt.print.Printable) printable); // cast via interface
+
+    // 7. Tampilkan dialog dan cetak
+    if (printerJob.printDialog()) {
+        printerJob.print();
+    } else {
+        System.out.println("Print cancelled by user.");
+    }
+
+    // 8. Tutup dokumen
+    login.PdfBoxLoader.closeDocument(pdDocument);
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
+
     
-     try {
-        // Membuat InputStream dari byte array PDF
-        ByteArrayInputStream bais = new ByteArrayInputStream(this.binerPdf);
-
-        // Memuat dokumen PDF menggunakan PDFBox
-        PDDocument document = new PDDocument();
-
-        // Menyiapkan PrinterJob
-        PrinterJob job = PrinterJob.getPrinterJob();
-        job.setPageable(new PDFPageable(document));
-
-        // Menampilkan dialog cetak
-        if (job.printDialog()) {
-            // Jika Anda ingin menyimpan ke file PDF, Anda bisa menggunakan printer virtual
-            job.print();
-        }
-
-        // Menutup dokumen setelah pencetakan
-        document.close();
-    } catch (IOException | PrinterException ex) {
-        Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
-        JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mencetak dokumen.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-    }    
-        
     }//GEN-LAST:event_cetakMouseClicked
 
     private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked

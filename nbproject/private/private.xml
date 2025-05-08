@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Downloads/Management-Arsip-Surat-master/src/bahan/globalIcon/icons8-logout-50.png</file>
-            <file>file:/C:/Users/USER/Downloads/Management-Arsip-Surat-master/src/bahan/globalIcon/Kembali%20(1).png</file>
-            <file>file:/C:/Users/USER/Downloads/Management-Arsip-Surat-master/src/admin/menuKelolaAkun/TampilanKelolaAkun.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/admin/menuSuratMasuk/LihatSurat.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/login/Main.java</file>
+            <file>file:/home/lan/Documents/Management-Arsip-Surat/src/login/PdfBoxLoader.java</file>
         </group>
     </open-files>
 </project-private>
