@@ -90,15 +90,21 @@ public class Disposisi extends javax.swing.JPanel {
             ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).select();
             
             while(hasil.next()){
-                if(!hasil.getString("jenis_role").equals("admin")){
-                    if(!hasil.getString("jenis_role").equals("kepala sekolah")){
-                        usernameWaka.add(hasil.getString("username"));
-                        roleWaka.add(hasil.getString("jenis_role"));
-                        cekBox.add(new JCheckBox(roleWaka.get(hasil.getRow()-1)));
-                        cekBox.get(hasil.getRow()-1).setBorder(new EmptyBorder(5,2,10,0));
-                        panelWaka.add(cekBox.get(hasil.getRow()-1));
-                    }
-                }
+                 String role = hasil.getString("jenis_role");
+    String username = hasil.getString("username");
+
+    if (role.equals("admin") || role.equals("kepala sekolah")) {
+        continue;
+    }
+
+    usernameWaka.add(username);
+    roleWaka.add(role);
+
+    JCheckBox cb = new JCheckBox(role); // gunakan langsung variabel 'role'
+    cb.setBorder(new EmptyBorder(5, 2, 10, 0));
+
+    cekBox.add(cb);
+    panelWaka.add(cb);
             }
             panelWaka.add(Box.createRigidArea(new Dimension(0,10)));
             panelWaka.setLayout(new BoxLayout(panelWaka, BoxLayout.Y_AXIS));

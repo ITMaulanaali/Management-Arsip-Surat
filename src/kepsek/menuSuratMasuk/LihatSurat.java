@@ -26,7 +26,7 @@ public class LihatSurat extends javax.swing.JPanel {
     }
     
     private void refreshNotif(){
-        if(!this.data[5].equals("Sudah Dibaca")){
+        if(!this.data[5].equals("Sudah Dibaca") && !this.data[5].equals("Terdisposisi")){
             try{
             PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca' WHERE no_surat = ?");
             statement.setString(1, this.data[0]);
