@@ -54,7 +54,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
     
      void menampilkanSuratMasuk(){
         try {
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
@@ -200,7 +200,7 @@ void TampilanSuratMasuk(String searchText, String selectedOption) {
                 break;
         }
         // Lakukan query dengan kondisi yang telah dibuat
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
@@ -267,7 +267,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                     break;
             }
             // Lakukan query dengan kondisi yang telah dibuat
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.no_surat,tanggal_surat,pengirim,kategori,perihal,disposisi.no_surat,IFNULL(status_disposisi,'Belum Terdisposisi') AS status_disposisi from surat_masuk left join disposisi on (surat_masuk.no_surat = disposisi.no_surat)");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi;");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
