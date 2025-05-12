@@ -112,7 +112,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memeperbesar (1).png"))); // NOI18N
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Diperbesar");
@@ -124,7 +124,7 @@ public class LihatSurat extends javax.swing.JPanel {
             .addGroup(DiperbesarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(iconPeriode2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addContainerGap())
         );
@@ -149,7 +149,7 @@ public class LihatSurat extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Diperkecil");
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memperkecil 50 (1).png"))); // NOI18N
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
 
         javax.swing.GroupLayout DiperkecilLayout = new javax.swing.GroupLayout(Diperkecil);
         Diperkecil.setLayout(DiperkecilLayout);
@@ -160,7 +160,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DiperkecilLayout.setVerticalGroup(
             DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

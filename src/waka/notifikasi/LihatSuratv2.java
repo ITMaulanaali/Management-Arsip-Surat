@@ -96,7 +96,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Perlebar");
@@ -135,7 +135,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/tambah-surat50px.png"))); // NOI18N
+        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setText("Perkecil");

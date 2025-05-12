@@ -132,7 +132,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Arsip.png"))); // NOI18N
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/arsip-30px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Arsipkan");
@@ -171,7 +171,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Periode.png"))); // NOI18N
+        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode-30px.png"))); // NOI18N
 
         periode.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         periode.setText("Periode");

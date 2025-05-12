@@ -121,6 +121,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                 "No Surat", "Penerima", "Kategori", "Perihal"
             }
         ));
+        tabel_periode.setRowHeight(30);
         jScrollPane2.setViewportView(tabel_periode);
 
         cetak.setBackground(new java.awt.Color(125, 10, 10));
@@ -136,7 +137,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Print (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/print-30px.png"))); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -175,7 +176,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N

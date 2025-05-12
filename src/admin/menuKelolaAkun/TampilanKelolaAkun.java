@@ -291,7 +291,7 @@ class CustomDesainTable extends DefaultTableCellRenderer {
         button.setContentAreaFilled(true);
         button.setBorder(new EmptyBorder(3, 3, 3, 3));
         button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // ganti dengan path ikon kamu
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // ganti dengan path ikon kamu
         button.setEnabled(true); // karena ini hanya renderer
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -322,7 +322,7 @@ class CustomEditTable extends DefaultCellEditor {
         button.setContentAreaFilled(true);
         button.setBorder(new EmptyBorder(3, 3, 3, 3));
         button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // ganti dengan path ikon kamu
+        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // ganti dengan path ikon kamu
 
         panel = new JPanel(new GridBagLayout());
         panel.add(button);

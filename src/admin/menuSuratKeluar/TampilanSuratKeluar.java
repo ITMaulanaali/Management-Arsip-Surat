@@ -154,7 +154,7 @@ private String getFileSuratFromDatabase(String noSurat) {
             }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Arsip.png"))); // NOI18N
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/arsip-30px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Arsipkan");
@@ -190,7 +190,7 @@ private String getFileSuratFromDatabase(String noSurat) {
             }
         });
 
-        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Periode.png"))); // NOI18N
+        iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode-30px.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Periode");
@@ -246,7 +246,7 @@ private String getFileSuratFromDatabase(String noSurat) {
             }
         });
 
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/background/Edit.png"))); // NOI18N
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Edit");
