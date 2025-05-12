@@ -8,7 +8,10 @@ import lib.PdfDiJpanel;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -88,7 +91,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memperkecil 50 (1).png"))); // NOI18N
+        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setText("Perkecil");
@@ -102,7 +105,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         zoomInLayout.setVerticalGroup(
             zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +130,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memeperbesar (1).png"))); // NOI18N
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Perlebar");
@@ -141,7 +144,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         zoomOutLayout.setVerticalGroup(
             zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +169,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Print (2).png"))); // NOI18N
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/print-30px.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Cetak");
@@ -180,7 +183,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         cetakLayout.setVerticalGroup(
             cetakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +208,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Hapus.png"))); // NOI18N
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/hapus-30px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Hapus");
@@ -219,7 +222,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +246,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
@@ -341,31 +344,44 @@ public class LihatSurat extends javax.swing.JPanel {
     }//GEN-LAST:event_zoomOutMouseExited
 
     private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
-
         try {
-            // Membuat InputStream dari byte array PDF
-            ByteArrayInputStream bais = new ByteArrayInputStream(this.binerPdf);
+    // 1. Tulis biner PDF ke file sementara
+    File tempFile = File.createTempFile("pdfbox_temp", ".pdf");
+    try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+        fos.write(this.binerPdf);
+    }
 
-            // Memuat dokumen PDF menggunakan PDFBox
-            PDDocument document = new PDDocument();
+    // 2. Muat PDDocument via PdfBoxLoader
+    Object pdDocument = login.PdfBoxLoader.loadDocument(tempFile);
 
-            // Menyiapkan PrinterJob
-            PrinterJob job = PrinterJob.getPrinterJob();
-            job.setPageable(new PDFPageable(document));
+    // 3. Ambil kelas PDFPrintable dari PdfBoxLoader
+    Class<?> pdfPrintableClass = login.PdfBoxLoader.getPdfPrinterClass();
+    Class<?> pdDocumentClass = login.PdfBoxLoader.getPdDocumentClass();
 
-            // Menampilkan dialog cetak
-            if (job.printDialog()) {
-                // Jika Anda ingin menyimpan ke file PDF, Anda bisa menggunakan printer virtual
-                job.print();
-            }
+    // 4. Buat instance PDFPrintable menggunakan reflection
+    Constructor<?> constructor = pdfPrintableClass.getConstructor(pdDocumentClass);
+    Object printable = constructor.newInstance(pdDocument);
 
-            // Menutup dokumen setelah pencetakan
-            document.close();
-        } catch (IOException | PrinterException ex) {
-            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat mencetak dokumen.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        }
+    // 5. Siapkan PrinterJob
+    PrinterJob printerJob = PrinterJob.getPrinterJob();
+    printerJob.setJobName("PDF Print Job");
 
+    // 6. Set PDFPrintable sebagai Printable
+    printerJob.setPrintable((java.awt.print.Printable) printable); // cast via interface
+
+    // 7. Tampilkan dialog dan cetak
+    if (printerJob.printDialog()) {
+        printerJob.print();
+    } else {
+        System.out.println("Print cancelled by user.");
+    }
+
+    // 8. Tutup dokumen
+    login.PdfBoxLoader.closeDocument(pdDocument);
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
     }//GEN-LAST:event_cetakMouseClicked
 
     private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered

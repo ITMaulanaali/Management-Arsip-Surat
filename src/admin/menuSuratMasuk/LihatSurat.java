@@ -91,7 +91,8 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Hapus.png"))); // NOI18N
+        iconPeriode1.setBackground(new java.awt.Color(255, 0, 0));
+        iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/hapus-30px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Hapus");
@@ -105,7 +106,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         hapusLayout.setVerticalGroup(
             hapusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +131,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Print (2).png"))); // NOI18N
+        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/print-30px.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Cetak");
@@ -171,7 +172,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memeperbesar (1).png"))); // NOI18N
+        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Perlebar");
@@ -185,7 +186,7 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addComponent(iconPeriode3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         zoomOutLayout.setVerticalGroup(
             zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +211,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Memperkecil 50 (1).png"))); // NOI18N
+        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel9.setText("Perkecil");
@@ -248,7 +249,7 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/Kembali (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N

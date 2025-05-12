@@ -127,8 +127,8 @@
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="206" max="32767" attributes="0"/>
-              <EmptySpace min="17" pref="18" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" pref="209" max="32767" attributes="0"/>
+              <EmptySpace min="17" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="kembali" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="cetak" min="-2" max="-2" attributes="0"/>
@@ -315,6 +315,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="rowHeight" type="int" value="30"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
@@ -360,7 +361,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/Kembali (1).png"/>
+              <Image iconType="3" name="/bahan/globalIcon/kembali-30px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -415,7 +416,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/Print (2).png"/>
+              <Image iconType="3" name="/bahan/globalIcon/print-30px.png"/>
             </Property>
           </Properties>
         </Component>

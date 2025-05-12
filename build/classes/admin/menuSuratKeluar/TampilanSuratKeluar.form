@@ -155,7 +155,7 @@
         <Component class="javax.swing.JLabel" name="iconPeriode1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/Arsip.png"/>
+              <Image iconType="3" name="/bahan/globalIcon/arsip-30px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -211,7 +211,7 @@
         <Component class="javax.swing.JLabel" name="iconPeriode">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/globalIcon/Periode.png"/>
+              <Image iconType="3" name="/bahan/globalIcon/periode-30px.png"/>
             </Property>
           </Properties>
         </Component>
@@ -317,7 +317,7 @@
         <Component class="javax.swing.JLabel" name="iconPeriode2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/bahan/background/Edit.png"/>
+              <Image iconType="3" name="/bahan/globalIcon/edit-30px.png"/>
             </Property>
           </Properties>
         </Component>
