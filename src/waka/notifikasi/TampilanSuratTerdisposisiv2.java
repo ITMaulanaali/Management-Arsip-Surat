@@ -2,6 +2,7 @@
 package waka.notifikasi;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.border.MatteBorder;
 
 
@@ -33,6 +35,13 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
     "Diterima"        // data[1]
 }));
     }   
+    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
     
     private String[][] getData(){
         ArrayList<String> nodisposisi = new ArrayList();

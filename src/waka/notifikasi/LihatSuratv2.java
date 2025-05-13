@@ -1,10 +1,12 @@
 
 package waka.notifikasi;
 
+import java.awt.Graphics;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import lib.PdfDiJpanel;
 import lib.Query;
 
@@ -36,6 +38,13 @@ public class LihatSuratv2 extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(LihatSuratv2.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
 
     /**
