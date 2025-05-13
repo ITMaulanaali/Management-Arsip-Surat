@@ -1,8 +1,10 @@
 package admin.menuKelolaAkun;
 
+import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -27,7 +29,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
+import javax.swing.table.TableColumn;
 
 
 public class TampilanKelolaAkun extends javax.swing.JPanel{
@@ -38,14 +42,167 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
     public TampilanKelolaAkun() {
         initComponents();
         menampilkanUser();
-        TableUser.getColumn("Aksi").setCellRenderer(new CustomDesainTable());
-        TableUser.getColumn("Aksi").setCellEditor(new CustomEditTable());
+        kustomTable();
         TableUser.getColumn("Aksi").setMaxWidth(100);
         TableUser.getColumn("Aksi").setMinWidth(100);
         TableUser.getColumn("Aksi").setPreferredWidth(100);
 //        buttonTable();
 //        klikIcon();
     }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+
+private void kustomTable() {
+    // === KONFIGURASI DASAR TABEL & TRANSPARANSI ===
+    TableUser.setOpaque(false);
+    TableUser.setFocusable(true); // AGAR BISA DISELEKSI DENGAN KEYBOARD
+    TableUser.setRowSelectionAllowed(true); // Mengizinkan seleksi baris
+    TableUser.setColumnSelectionAllowed(false); // Tidak ada seleksi kolom
+    TableUser.setCellSelectionEnabled(false); // Tidak ada seleksi sel
+    TableUser.setShowGrid(false); // Hilangkan grid di dalam tabel
+    TableUser.setShowHorizontalLines(false); // Hilangkan garis horizontal
+    TableUser.setShowVerticalLines(false); // Hilangkan garis vertikal
+    TableUser.setIntercellSpacing(new Dimension(0, 0)); // Tidak ada jarak antar sel
+    TableUser.setSelectionBackground(new Color(100, 10, 10)); // Warna seleksi baris
+    TableUser.setSelectionForeground(Color.WHITE); // Warna font seleksi
+
+    ((DefaultTableCellRenderer) TableUser.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    TableUser.setBorder(null);
+
+    // === RENDERER UNTUK TRANSPARANSI DAN TOMBOL ===
+    TableUser.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (column == table.getColumnCount() - 1) {
+                // TOMBOL (KOLUM TERAKHIR) untuk "Lihat"
+                JButton buttonLihat = new JButton();
+                buttonLihat.setPreferredSize(new Dimension(100, 30));
+                buttonLihat.setContentAreaFilled(true);
+                buttonLihat.setBorder(new EmptyBorder(3, 3, 3, 3));
+                buttonLihat.setFocusPainted(false);
+                buttonLihat.setOpaque(true);
+                buttonLihat.setBackground(Color.WHITE);
+                buttonLihat.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png")));
+
+                JButton buttonUpdate = new JButton();
+                buttonUpdate.setPreferredSize(new Dimension(100, 30));
+                buttonUpdate.setContentAreaFilled(true);
+                buttonUpdate.setBorder(new EmptyBorder(3, 3, 3, 3));
+                buttonUpdate.setFocusPainted(false);
+                buttonUpdate.setOpaque(true);
+                buttonUpdate.setBackground(Color.WHITE);
+                buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png"))); // Ganti dengan ikon Update
+
+                JPanel panel = new JPanel(new GridBagLayout());
+                panel.add(buttonLihat);
+                panel.add(buttonUpdate); // Menambahkan tombol Update
+
+                panel.setOpaque(true);
+                // Menetapkan warna latar belakang berdasarkan status seleksi baris
+                panel.setBackground(isSelected ? new Color(100, 10, 10)
+                                               : (row % 2 == 0 ? new Color(255, 255, 255, 150)
+                                                               : new Color(255, 255, 255, 180)));
+
+                // Mengatur aksi pada tombol Lihat
+                buttonLihat.addActionListener(e -> {
+                    // Tambahkan kode untuk aksi tombol "Lihat" di sini
+                    JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Lihat diklik");
+                });
+
+                // Mengatur aksi pada tombol Update
+                buttonUpdate.addActionListener(e -> {
+                    // Tambahkan kode untuk aksi tombol "Update" di sini
+                    JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Update diklik");
+                    // Misalnya, membuka dialog untuk melakukan update data
+                });
+
+                return panel;
+            }
+
+            // RENDERER UNTUK KOLOM LAIN
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10)); // Warna merah saat dipilih
+                c.setForeground(Color.WHITE); // Teks putih
+            } else {
+                c.setBackground(new Color(255, 255, 255, 150)); // Transparan jika tidak dipilih
+                c.setForeground(Color.BLACK); // Teks hitam jika tidak dipilih
+            }
+
+            if (c instanceof JComponent jc) {
+                jc.setBorder(null); // Hilangkan border
+            }
+
+            return c;
+        }
+    });
+
+    // === EDITOR UNTUK TOMBOL SAAT DIKLIK ===
+    class ButtonCellEditor extends DefaultCellEditor {
+        private final JButton buttonLihat = new JButton();
+        private final JButton buttonUpdate = new JButton();
+        private final JPanel panel = new JPanel(new GridBagLayout());
+        private JTable currentTable;
+        private int currentRow;
+
+        public ButtonCellEditor() {
+            super(new JCheckBox()); // dummy
+            buttonLihat.setPreferredSize(new Dimension(100, 30));
+            buttonLihat.setContentAreaFilled(true);
+            buttonLihat.setBorder(new EmptyBorder(3, 3, 3, 3));
+            buttonLihat.setFocusPainted(false);
+            buttonLihat.setOpaque(true);
+            buttonLihat.setBackground(Color.WHITE);
+            buttonLihat.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png")));
+
+            buttonUpdate.setPreferredSize(new Dimension(100, 30));
+            buttonUpdate.setContentAreaFilled(true);
+            buttonUpdate.setBorder(new EmptyBorder(3, 3, 3, 3));
+            buttonUpdate.setFocusPainted(false);
+            buttonUpdate.setOpaque(true);
+            buttonUpdate.setBackground(Color.WHITE);
+            buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png"))); // Ganti dengan ikon Update
+
+            panel.setOpaque(true);
+            panel.add(buttonLihat);
+            panel.add(buttonUpdate); // Menambahkan tombol Update
+
+            // Menambahkan aksi pada tombol Lihat
+            buttonLihat.addActionListener(e -> {
+                JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Lihat diklik");
+            });
+
+            // Menambahkan aksi pada tombol Update
+            buttonUpdate.addActionListener(e -> {
+                JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Update diklik");
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            this.currentTable = table;
+            this.currentRow = row;
+
+            panel.setBackground(new Color(100, 10, 10)); // SESUAI WARNA SELEKSI
+            return panel;
+        }
+    }
+
+    // === PASANG EDITOR KE KOLOM TOMBOL (TERAKHIR) ===
+    int kolomTombol = TableUser.getColumnCount() - 1;
+    TableColumn tombolColumn = TableUser.getColumnModel().getColumn(kolomTombol);
+    tombolColumn.setCellEditor(new ButtonCellEditor());
+}
+
+
 
     void menampilkanUser(){
         try {
@@ -276,94 +433,4 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton tambah;
     // End of variables declaration//GEN-END:variables
-}
-
-class CustomDesainTable extends DefaultTableCellRenderer {
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value,
-                                                   boolean isSelected, boolean hasFocus, int row, int column) {
-        // Komponen default untuk warna background
-        Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-        // Buat tombol hanya untuk tampilan
-        JButton button = new JButton();
-        button.setPreferredSize(new Dimension(100,30));
-        button.setContentAreaFilled(true);
-        button.setBorder(new EmptyBorder(3, 3, 3, 3));
-        button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // ganti dengan path ikon kamu
-        button.setEnabled(true); // karena ini hanya renderer
-
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.add(button);
-
-        if (!isSelected && row % 2 == 0) {
-            panel.setBackground(Color.WHITE);
-        } else {
-            panel.setBackground(comp.getBackground());
-        }
-
-        return panel;
-    }
-}
-
-class CustomEditTable extends DefaultCellEditor {
-    private final JButton button;
-    private final JPanel panel;
-    private JTable currentTable;
-    private int currentRow;
-
-    public CustomEditTable() {
-        super(new JCheckBox());
-        Query query = new Query();
-
-        button = new JButton();
-        button.setPreferredSize(new Dimension(100,30));
-        button.setContentAreaFilled(true);
-        button.setBorder(new EmptyBorder(3, 3, 3, 3));
-        button.setFocusPainted(false);
-        button.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // ganti dengan path ikon kamu
-
-        panel = new JPanel(new GridBagLayout());
-        panel.add(button);
-
-        // Aksi klik tombol
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(admin.DashboardUtama.SubPanel,"Lihat password?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    DefaultTableModel model = (DefaultTableModel) currentTable.getModel();
-                    if (currentRow >= 0 && currentRow < model.getRowCount()) {
-                        try{
-                            String[] atributs = {"username","password",};
-                            ResultSet hasil = query.setNamaTabel("user").setAtribut(atributs).setWhereId("username", (String) currentTable.getValueAt(currentRow, 1)).selectWhereIdDownload();
-                            String password = "";
-                            while(hasil.next()){
-                                password = hasil.getString("password");
-                            }
-//                            model.removeRow(currentRow);
-                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "password anda: "+password);
-                        }catch(Exception ex){
-                            JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Gagal dihapus!");
-                            System.out.println(ex);
-                        }
-                    }
-                }
-
-                fireEditingStopped(); // Wajib untuk menyelesaikan mode editing
-            }
-        });
-    }
-
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-                                                 boolean isSelected, int row, int column) {
-        currentTable = table;
-        currentRow = row;
-
-        panel.setBackground(table.getSelectionBackground());
-        return panel;
-    }
 }
