@@ -40,6 +40,13 @@ public class LembarDisposisi extends javax.swing.JPanel {
         setLembar();
     }
     
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+    
     private void setLembar(){
         nosurat.setText(this.noSurat);
         jLabel20.setText(this.perihall);
@@ -85,6 +92,8 @@ public class LembarDisposisi extends javax.swing.JPanel {
         tanggalDisposisi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tanggalDisposisi.setText("12 Maret 2024");
 
+        jPanel6.setBackground(new java.awt.Color(196, 196, 196));
+
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Perihal");
 
@@ -112,10 +121,13 @@ public class LembarDisposisi extends javax.swing.JPanel {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(196, 196, 196));
+
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel21.setText("Catatan");
 
         isiCatatan.setEditable(false);
+        isiCatatan.setBackground(new java.awt.Color(196, 196, 196));
         isiCatatan.setColumns(20);
         isiCatatan.setLineWrap(true);
         isiCatatan.setRows(5);
@@ -144,7 +156,6 @@ public class LembarDisposisi extends javax.swing.JPanel {
                 .addGap(16, 16, 16))
         );
 
-        buttonLihat.setBackground(new java.awt.Color(206, 31, 31));
         buttonLihat.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         buttonLihat.setText("Lihat Surat");
         buttonLihat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,7 +170,6 @@ public class LembarDisposisi extends javax.swing.JPanel {
             }
         });
 
-        buttonLihat1.setBackground(new java.awt.Color(206, 31, 31));
         buttonLihat1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         buttonLihat1.setText("Kembali");
         buttonLihat1.addMouseListener(new java.awt.event.MouseAdapter() {

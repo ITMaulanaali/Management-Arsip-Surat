@@ -179,6 +179,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Nomor Disposisi");
 
+        no_disposisi.setBackground(new java.awt.Color(196, 196, 196));
         no_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
         no_disposisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +191,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Disposisi");
 
+        tanggal_disposisi.setBackground(new java.awt.Color(196, 196, 196));
         tanggal_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
         tanggal_disposisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +208,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel8.setText("Perihal");
 
         Perihal.setEditable(false);
+        Perihal.setBackground(new java.awt.Color(196, 196, 196));
         Perihal.setPreferredSize(new java.awt.Dimension(40, 30));
         Perihal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,9 +220,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Catatan");
 
-        Kirim.setBackground(new java.awt.Color(125, 10, 10));
         Kirim.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Kirim.setForeground(new java.awt.Color(255, 255, 255));
         Kirim.setText("Kirim");
         Kirim.setMinimumSize(new java.awt.Dimension(83, 40));
         Kirim.setPreferredSize(new java.awt.Dimension(80, 40));
@@ -234,7 +235,6 @@ public class Disposisi extends javax.swing.JPanel {
             }
         });
 
-        Kembali.setBackground(new java.awt.Color(214, 203, 203));
         Kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         Kembali.setText("Kembali");
         Kembali.setMinimumSize(new java.awt.Dimension(83, 40));
@@ -250,11 +250,12 @@ public class Disposisi extends javax.swing.JPanel {
             }
         });
 
+        Catatan.setBackground(new java.awt.Color(196, 196, 196));
         Catatan.setColumns(20);
         Catatan.setRows(5);
         jScrollPane1.setViewportView(Catatan);
 
-        panelWaka.setBackground(new java.awt.Color(255, 255, 255));
+        panelWaka.setBackground(new java.awt.Color(196, 196, 196));
         panelWaka.setBorder(javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3));
         panelWaka.setLayout(new javax.swing.BoxLayout(panelWaka, javax.swing.BoxLayout.LINE_AXIS));
         jScrollPane2.setViewportView(panelWaka);
