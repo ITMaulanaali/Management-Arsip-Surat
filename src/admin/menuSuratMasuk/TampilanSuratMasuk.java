@@ -4,9 +4,18 @@ package admin.menuSuratMasuk;
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import admin.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import lib.Query;
 
@@ -21,8 +30,55 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
      
     public TampilanSuratMasuk() {
         initComponents();
+        kustomTable();
         menampilkanSuratMasuk();
+        fokus();
         
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+
+private void kustomTable() {
+    // Transparansi JTable
+    tabel_suratMasuk.setOpaque(false);
+    ((DefaultTableCellRenderer) tabel_suratMasuk.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    tabel_suratMasuk.setBorder(null);
+    tabel_suratMasuk.setShowGrid(false);
+    tabel_suratMasuk.setRowSelectionAllowed(true);
+    tabel_suratMasuk.setColumnSelectionAllowed(false);
+
+    // Custom renderer untuk transparansi per baris
+    tabel_suratMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Background transparan default
+            c.setBackground(new Color(255, 255, 255, 150));
+
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10));
+            }
+
+            if (c instanceof JComponent) {
+                ((JComponent) c).setBorder(null);
+            }
+
+            return c;
+        }
+    });
+}
+
+    
+    private void fokus(){
         // Set default text and add focus listener
         cari.setText(DEFAULT_SEARCH_TEXT);
         cari.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -42,8 +98,6 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
                 }
             }
         });
-        
-        
     }
 
    
@@ -209,6 +263,11 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratMasukMousePressed(evt);
+            }
+        });
+        tabel_suratMasuk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tabel_suratMasukKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tabel_suratMasuk);
@@ -395,6 +454,47 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
         }
         
     }//GEN-LAST:event_tabel_suratMasukMousePressed
+
+    private void tabel_suratMasukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabel_suratMasukKeyPressed
+        tabel_suratMasuk.addKeyListener(new KeyAdapter() {
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            e.consume(); // Mencegah enter berpindah ke baris bawah
+
+            int baris = tabel_suratMasuk.getSelectedRow();
+            if (baris >= 0) {
+                String[] data = new String[6];
+                data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
+                data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
+                data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
+                data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
+                data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
+                data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
+
+                byte[] file = null;
+                try {
+                    String[] atributs = {"no_surat","file_surat"};
+                    ResultSet hasil = query.setNamaTabel("surat_masuk")
+                                           .setAtribut(atributs)
+                                           .setWhereId("no_surat", data[0])
+                                           .selectWhereIdDownload();
+                    while (hasil.next()) {
+                        file = hasil.getBytes("file_surat");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(TampilanSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                admin.DashboardUtama.SubPanel.removeAll();
+                admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.LihatSurat(data, file));
+                admin.DashboardUtama.SubPanel.revalidate();
+                admin.DashboardUtama.SubPanel.repaint();
+            }
+        }
+    }
+});
+    }//GEN-LAST:event_tabel_suratMasukKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
