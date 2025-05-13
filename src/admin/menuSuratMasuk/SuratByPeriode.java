@@ -61,7 +61,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
     private void kustomTable() {
     // Transparansi JTable
     tabel_periode1.setOpaque(false);
-    ((DefaultTableCellRenderer) tabel_suratMasuk.getDefaultRenderer(Object.class)).setOpaque(false);
+    ((DefaultTableCellRenderer) tabel_periode1.getDefaultRenderer(Object.class)).setOpaque(false);
     jScrollPane2.setOpaque(false);
     jScrollPane2.getViewport().setOpaque(false);
     jScrollPane2.setBorder(null);

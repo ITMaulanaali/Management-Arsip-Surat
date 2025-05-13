@@ -5,11 +5,13 @@
 package admin.menuSuratKeluar;
 
 import admin.menuSuratMasuk.*;
+import java.awt.Graphics;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -70,6 +72,13 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 }
                 
             }
+    }
+    
+            @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
     
     private void initializePlaceholders() {
@@ -185,6 +194,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Surat Keluar");
 
+        tanggal_surat_keluar.setBackground(new java.awt.Color(196, 196, 196));
         tanggal_surat_keluar.setPreferredSize(new java.awt.Dimension(40, 30));
         tanggal_surat_keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +210,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
 
+        kategori.setBackground(new java.awt.Color(196, 196, 196));
         kategori.setText("Lomba");
         kategori.setPreferredSize(new java.awt.Dimension(40, 30));
 
@@ -207,6 +218,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Penerima");
 
+        penerima.setBackground(new java.awt.Color(196, 196, 196));
         penerima.setText("Nama Penerima");
         penerima.setPreferredSize(new java.awt.Dimension(40, 30));
         penerima.addActionListener(new java.awt.event.ActionListener() {
@@ -219,6 +231,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Status Pengiriman");
 
+        status.setBackground(new java.awt.Color(196, 196, 196));
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dikirim", "Sedang Dikirim", "Sampai Ditujuan" }));
         status.setToolTipText("");
         status.setPreferredSize(new java.awt.Dimension(76, 30));
@@ -232,6 +245,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel12.setText("File");
 
         file.setEditable(false);
+        file.setBackground(new java.awt.Color(196, 196, 196));
         file.setPreferredSize(new java.awt.Dimension(40, 30));
         file.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,9 +253,11 @@ this.tahunAngka = sekarang.getYear();
             }
         });
 
+        alamat.setBackground(new java.awt.Color(196, 196, 196));
         alamat.setText("Alamat Lengkap");
         alamat.setPreferredSize(new java.awt.Dimension(40, 30));
 
+        perihal.setBackground(new java.awt.Color(196, 196, 196));
         perihal.setColumns(20);
         perihal.setRows(5);
         jScrollPane1.setViewportView(perihal);
@@ -253,7 +269,7 @@ this.tahunAngka = sekarang.getYear();
             }
         });
 
-        simpan.setBackground(new java.awt.Color(125, 10, 10));
+        simpan.setBackground(new java.awt.Color(255, 255, 255));
         simpan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 simpanMouseClicked(evt);
@@ -270,7 +286,6 @@ this.tahunAngka = sekarang.getYear();
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Simpan");
 
         javax.swing.GroupLayout simpanLayout = new javax.swing.GroupLayout(simpan);
@@ -292,7 +307,7 @@ this.tahunAngka = sekarang.getYear();
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        kembali.setBackground(new java.awt.Color(196, 196, 196));
+        kembali.setBackground(new java.awt.Color(255, 255, 255));
         kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kembaliMouseClicked(evt);
@@ -330,6 +345,7 @@ this.tahunAngka = sekarang.getYear();
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        urutan_surat.setBackground(new java.awt.Color(196, 196, 196));
         urutan_surat.setText("001");
         urutan_surat.setPreferredSize(new java.awt.Dimension(40, 30));
         urutan_surat.addActionListener(new java.awt.event.ActionListener() {
@@ -341,6 +357,7 @@ this.tahunAngka = sekarang.getYear();
         garis_miring1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring1.setText("/");
 
+        kode_lembaga.setBackground(new java.awt.Color(196, 196, 196));
         kode_lembaga.setText("HY");
         kode_lembaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,6 +368,7 @@ this.tahunAngka = sekarang.getYear();
         garis_miring2.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring2.setText("/");
 
+        nama_instansi.setBackground(new java.awt.Color(196, 196, 196));
         nama_instansi.setText("SMK");
         nama_instansi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
