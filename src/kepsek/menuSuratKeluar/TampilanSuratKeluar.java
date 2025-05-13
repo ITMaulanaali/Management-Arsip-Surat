@@ -1,24 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package kepsek.menuSuratKeluar;
 
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratMasuk.*;
 import admin.menuSuratMasuk.*;
 import admin.menuSuratKeluar.*;
+import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 import java.io.File;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import lib.Query;
 
-/**
- *
- * @author lan
- */
+
 public class TampilanSuratKeluar extends javax.swing.JPanel {
 
 private String selectedNoSurat;
@@ -54,6 +56,7 @@ private byte[] file;
     
     public TampilanSuratKeluar() {
         initComponents();
+        kustomTable();
         menampilkanSuratKeluar();
         cari.setText("Cari");
         
@@ -75,7 +78,46 @@ private byte[] file;
       });
     }
     
-    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+
+private void kustomTable() {
+    // Transparansi JTable
+    tableKeluar.setOpaque(false);
+    ((DefaultTableCellRenderer) tableKeluar.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    tableKeluar.setBorder(null);
+    tableKeluar.setShowGrid(false);
+    tableKeluar.setRowSelectionAllowed(true);
+    tableKeluar.setColumnSelectionAllowed(false);
+
+    // Custom renderer untuk transparansi per baris
+    tableKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Background transparan default
+            c.setBackground(new Color(255, 255, 255, 150));
+
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10));
+            }
+
+            if (c instanceof JComponent) {
+                ((JComponent) c).setBorder(null);
+            }
+
+            return c;
+        }
+    });
+}
 
       void menampilkanSuratKeluar(){
         try {
