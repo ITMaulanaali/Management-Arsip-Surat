@@ -1,11 +1,13 @@
 
 package admin.menuSuratMasuk;
 
+import java.awt.Graphics;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import lib.Query;
@@ -154,6 +156,13 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     
     }
     
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+    
     private void setPlaceholder(javax.swing.JTextField textField, String placeholder) {
     textField.setText(placeholder);
     textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks menjadi abu-abu gelap
@@ -247,6 +256,7 @@ private String convertToRoman(int month) {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Nomor Surat");
 
+        urutan_surat.setBackground(new java.awt.Color(196, 196, 196));
         urutan_surat.setPreferredSize(new java.awt.Dimension(40, 30));
         urutan_surat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,6 +268,7 @@ private String convertToRoman(int month) {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Surat Masuk");
 
+        tanggal_surat_masuk.setBackground(new java.awt.Color(196, 196, 196));
         tanggal_surat_masuk.setPreferredSize(new java.awt.Dimension(40, 30));
         tanggal_surat_masuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +284,7 @@ private String convertToRoman(int month) {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
 
+        kategori.setBackground(new java.awt.Color(196, 196, 196));
         kategori.setText("Personal");
         kategori.setPreferredSize(new java.awt.Dimension(40, 30));
 
@@ -281,6 +293,7 @@ private String convertToRoman(int month) {
         jLabel8.setText("File");
 
         upload_file.setEditable(false);
+        upload_file.setBackground(new java.awt.Color(196, 196, 196));
         upload_file.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -291,9 +304,11 @@ private String convertToRoman(int month) {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Status Notifikasi");
 
+        pengirim.setBackground(new java.awt.Color(196, 196, 196));
         pengirim.setText("Nama Instansi");
         pengirim.setPreferredSize(new java.awt.Dimension(40, 30));
 
+        perihal.setBackground(new java.awt.Color(196, 196, 196));
         perihal.setColumns(20);
         perihal.setLineWrap(true);
         perihal.setRows(5);
@@ -310,6 +325,7 @@ private String convertToRoman(int month) {
         garis_miring1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring1.setText("/");
 
+        kode_lembaga.setBackground(new java.awt.Color(196, 196, 196));
         kode_lembaga.setText("HY");
         kode_lembaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,6 +336,7 @@ private String convertToRoman(int month) {
         garis_miring2.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring2.setText("/");
 
+        nama_instansi.setBackground(new java.awt.Color(196, 196, 196));
         nama_instansi.setText("SMK");
         nama_instansi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,7 +347,7 @@ private String convertToRoman(int month) {
         statusNotifikasi.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         statusNotifikasi.setText("Belum Dibaca");
 
-        simpan.setBackground(new java.awt.Color(125, 10, 10));
+        simpan.setBackground(new java.awt.Color(255, 255, 255));
         simpan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 simpanMouseClicked(evt);
@@ -347,7 +364,6 @@ private String convertToRoman(int month) {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Simpan");
 
         javax.swing.GroupLayout simpanLayout = new javax.swing.GroupLayout(simpan);
@@ -369,7 +385,7 @@ private String convertToRoman(int month) {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        kembali.setBackground(new java.awt.Color(196, 196, 196));
+        kembali.setBackground(new java.awt.Color(255, 255, 255));
         kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kembaliMouseClicked(evt);

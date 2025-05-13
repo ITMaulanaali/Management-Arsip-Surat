@@ -4,6 +4,10 @@ package admin.menuSuratMasuk;
 import admin.menuSuratKeluar.*;
 import admin.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
+import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,6 +19,10 @@ import lib.Koneksi;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 
 public class SuratByPeriode extends javax.swing.JPanel {
@@ -23,9 +31,8 @@ public class SuratByPeriode extends javax.swing.JPanel {
     
     public SuratByPeriode() {
         initComponents();
+        kustomTable();
         // Set total_surat dan total_disposisi menjadi tidak dapat diedit
-        total_surat.setEditable(false);
-        total_disposisi.setEditable(false);
         
         // Set default text for cari JTextField
         cari.setText(DEFAULT_SEARCH_TEXT);
@@ -43,7 +50,47 @@ public class SuratByPeriode extends javax.swing.JPanel {
         });
         
     }
+    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
 
+    private void kustomTable() {
+    // Transparansi JTable
+    tabel_periode1.setOpaque(false);
+    ((DefaultTableCellRenderer) tabel_suratMasuk.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    tabel_periode1.setBorder(null);
+    tabel_periode1.setShowGrid(false);
+    tabel_periode1.setRowSelectionAllowed(true);
+    tabel_periode1.setColumnSelectionAllowed(false);
+
+    // Custom renderer untuk transparansi per baris
+    tabel_periode1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Background transparan default
+            c.setBackground(new Color(255, 255, 255, 150));
+
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10));
+            }
+
+            if (c instanceof JComponent) {
+                ((JComponent) c).setBorder(null);
+            }
+
+            return c;
+        }
+    });
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,12 +100,8 @@ public class SuratByPeriode extends javax.swing.JPanel {
         mulai_tanggal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         selesai_tanggal = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
-        total_surat = new javax.swing.JTextField();
-        total_disposisi = new javax.swing.JTextField();
         tampilkan_surat = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabel_periode1 = new javax.swing.JTable();
@@ -95,14 +138,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Total Surat :");
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("Total Disposisi :");
-
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -121,21 +156,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        total_surat.setPreferredSize(new java.awt.Dimension(40, 30));
-        total_surat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                total_suratActionPerformed(evt);
-            }
-        });
-
-        total_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
-        total_disposisi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                total_disposisiActionPerformed(evt);
-            }
-        });
-
-        tampilkan_surat.setBackground(new java.awt.Color(196, 196, 196));
         tampilkan_surat.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tampilkan_surat.setText("Tampilkan Surat");
         tampilkan_surat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,14 +182,19 @@ public class SuratByPeriode extends javax.swing.JPanel {
             new String [] {
                 "No Surat", "Pengirim", "Kategori", "Perihal", "Disposisi"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabel_periode1.setRowHeight(30);
         jScrollPane2.setViewportView(tabel_periode1);
-        if (tabel_periode1.getColumnModel().getColumnCount() > 0) {
-            tabel_periode1.getColumnModel().getColumn(2).setResizable(false);
-        }
 
-        kembali.setBackground(new java.awt.Color(196, 196, 196));
+        kembali.setBackground(new java.awt.Color(255, 255, 255));
         kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kembaliMouseClicked(evt);
@@ -207,7 +232,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        cetak.setBackground(new java.awt.Color(125, 10, 10));
+        cetak.setBackground(new java.awt.Color(255, 255, 255));
         cetak.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cetakMouseClicked(evt);
@@ -224,7 +249,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cetak");
 
         javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
@@ -250,12 +274,12 @@ public class SuratByPeriode extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(700, Short.MAX_VALUE)
-                        .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tampilkan_surat))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -265,27 +289,15 @@ public class SuratByPeriode extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(mulai_tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(total_surat, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                                        .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                        .addGap(133, 133, 133)))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(378, 378, 378))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(selesai_tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                                .addComponent(total_disposisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGap(289, 289, 289))))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -308,23 +320,11 @@ public class SuratByPeriode extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(total_disposisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addGap(12, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -390,10 +390,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
                 // Hitung total surat
                 int totalSurat = model.getRowCount(); // Jumlah baris di tabel
 
-        // Tampilkan total surat dan total disposisi
-        // Tampilkan total surat dan total disposisi
-                total_surat.setText(String.valueOf(totalSurat));
-                total_disposisi.setText(String.valueOf(totalDisposisi));
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -411,17 +407,9 @@ public class SuratByPeriode extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_mulai_tanggalActionPerformed
 
-    private void total_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total_suratActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_total_suratActionPerformed
-
     private void selesai_tanggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selesai_tanggalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selesai_tanggalActionPerformed
-
-    private void total_disposisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total_disposisiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_total_disposisiActionPerformed
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
        
@@ -547,8 +535,6 @@ public class SuratByPeriode extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Panel kembali;
@@ -557,7 +543,5 @@ public class SuratByPeriode extends javax.swing.JPanel {
     private javax.swing.JTextField selesai_tanggal;
     private javax.swing.JTable tabel_periode1;
     private javax.swing.JButton tampilkan_surat;
-    private javax.swing.JTextField total_disposisi;
-    private javax.swing.JTextField total_surat;
     // End of variables declaration//GEN-END:variables
 }
