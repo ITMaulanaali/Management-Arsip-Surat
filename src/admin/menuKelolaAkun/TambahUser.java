@@ -1,9 +1,11 @@
 package admin.menuKelolaAkun;
 
+import java.awt.Graphics;
 import javax.swing.JOptionPane;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import lib.Query;
 
 public class TambahUser extends javax.swing.JPanel {
@@ -22,11 +24,17 @@ public class TambahUser extends javax.swing.JPanel {
         TextField_passwd.setText("");
     }
     
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         TextField_nama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -38,13 +46,9 @@ public class TambahUser extends javax.swing.JPanel {
         batal = new javax.swing.JButton();
         Button_simpan = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(195, 184, 184));
+        setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Tambahkan User");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -81,7 +85,6 @@ public class TambahUser extends javax.swing.JPanel {
 
         TextField_passwd.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        batal.setBackground(new java.awt.Color(196, 196, 196));
         batal.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         batal.setText("Batal");
         batal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -93,9 +96,7 @@ public class TambahUser extends javax.swing.JPanel {
             }
         });
 
-        Button_simpan.setBackground(new java.awt.Color(125, 10, 10));
         Button_simpan.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        Button_simpan.setForeground(new java.awt.Color(255, 255, 255));
         Button_simpan.setText("Simpan");
         Button_simpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         Button_simpan.setMaximumSize(new java.awt.Dimension(83, 40));
@@ -110,10 +111,6 @@ public class TambahUser extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(208, 208, 208))
             .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,9 +141,7 @@ public class TambahUser extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                 .addGap(7, 7, 7)
                 .addComponent(TextField_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +217,6 @@ public class TambahUser extends javax.swing.JPanel {
     private javax.swing.JTextField TextField_passwd;
     private javax.swing.JTextField TextField_username;
     private javax.swing.JButton batal;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -6,10 +6,12 @@ package kepsek.menuSuratKeluar;
 
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import admin.menuSuratMasuk.*;
+import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import java.sql.PreparedStatement;
+import javax.swing.ImageIcon;
 import lib.PdfDiJpanel;
 
 public class LihatSurat extends javax.swing.JPanel {
@@ -25,6 +27,13 @@ public class LihatSurat extends javax.swing.JPanel {
         
         setupContent();
         refreshNotif();
+    }
+    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
     
     private void refreshNotif(){
@@ -77,11 +86,7 @@ public class LihatSurat extends javax.swing.JPanel {
 
         Kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Diperbesar = new javax.swing.JPanel();
         iconPeriode2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        Diperkecil = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         iconPeriode3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
@@ -104,72 +109,14 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        Diperbesar.setBackground(new java.awt.Color(217, 217, 217));
-        Diperbesar.setPreferredSize(new java.awt.Dimension(100, 40));
-        Diperbesar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DiperbesarMouseClicked(evt);
-            }
-        });
-
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel7.setText("Diperbesar");
-
-        javax.swing.GroupLayout DiperbesarLayout = new javax.swing.GroupLayout(Diperbesar);
-        Diperbesar.setLayout(DiperbesarLayout);
-        DiperbesarLayout.setHorizontalGroup(
-            DiperbesarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DiperbesarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPeriode2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap())
-        );
-        DiperbesarLayout.setVerticalGroup(
-            DiperbesarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DiperbesarLayout.createSequentialGroup()
-                .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-            .addGroup(DiperbesarLayout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        Diperkecil.setBackground(new java.awt.Color(217, 217, 217));
-        Diperkecil.setPreferredSize(new java.awt.Dimension(100, 40));
-        Diperkecil.addMouseListener(new java.awt.event.MouseAdapter() {
+        iconPeriode2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DiperkecilMouseClicked(evt);
+                iconPeriode2MouseClicked(evt);
             }
         });
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel8.setText("Diperkecil");
 
         iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
-
-        javax.swing.GroupLayout DiperkecilLayout = new javax.swing.GroupLayout(Diperkecil);
-        Diperkecil.setLayout(DiperkecilLayout);
-        DiperkecilLayout.setHorizontalGroup(
-            DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DiperkecilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPeriode3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        DiperkecilLayout.setVerticalGroup(
-            DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DiperkecilLayout.createSequentialGroup()
-                .addGap(0, 4, Short.MAX_VALUE)
-                .addGroup(DiperkecilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,8 +126,8 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Diperbesar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Diperkecil, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iconPeriode2)
+                    .addComponent(iconPeriode3))
                 .addGap(90, 90, 90)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addGap(150, 150, 150))
@@ -191,10 +138,10 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Diperbesar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Diperkecil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                        .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                         .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addGap(23, 23, 23))
@@ -213,7 +160,7 @@ public class LihatSurat extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_KembaliMouseClicked
 
-    private void DiperbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiperbesarMouseClicked
+    private void iconPeriode2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode2MouseClicked
         // TODO add your handling code here:
        try {
             this.pdf.zoomOut();
@@ -221,27 +168,13 @@ public class LihatSurat extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(kepsek.menuSuratKeluar.LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_DiperbesarMouseClicked
-
-    private void DiperkecilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DiperkecilMouseClicked
-        // TODO add your handling code here:
-        try {
-            this.pdf.zoomIn();
-            setupContent();
-        } catch (Exception ex) {
-            Logger.getLogger(LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_DiperkecilMouseClicked
+    }//GEN-LAST:event_iconPeriode2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Diperbesar;
-    private javax.swing.JPanel Diperkecil;
     private javax.swing.JButton Kembali;
     private javax.swing.JLabel iconPeriode2;
     private javax.swing.JLabel iconPeriode3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
