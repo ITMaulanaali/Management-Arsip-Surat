@@ -5,11 +5,13 @@
 package admin.menuSuratKeluar;
 
 import admin.menuSuratMasuk.*;
+import java.awt.Graphics;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -54,6 +56,14 @@ public class EditSurat extends javax.swing.JPanel {
     this.perihal.setEditable(false); // Atau gunakan this.perihal.setEnabled(false);
 
 }
+    
+                  @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+    
     private void disableFields() {
     // Disable all fields except for the status field
     urutan_surat.setEditable(false);
@@ -195,6 +205,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Tanggal Surat Keluar");
 
+        tanggal_surat_keluar.setBackground(new java.awt.Color(196, 196, 196));
         tanggal_surat_keluar.setPreferredSize(new java.awt.Dimension(40, 30));
         tanggal_surat_keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,6 +221,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
 
+        kategori.setBackground(new java.awt.Color(196, 196, 196));
         kategori.setText("Lomba");
         kategori.setPreferredSize(new java.awt.Dimension(40, 30));
 
@@ -217,6 +229,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Penerima");
 
+        penerima.setBackground(new java.awt.Color(196, 196, 196));
         penerima.setText("Nama Penerima");
         penerima.setPreferredSize(new java.awt.Dimension(40, 30));
         penerima.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +242,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Status Pengiriman");
 
+        status.setBackground(new java.awt.Color(196, 196, 196));
         status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Dikirim", "Sedang Dikirim", "Sampai Ditujuan" }));
         status.setToolTipText("");
         status.setPreferredSize(new java.awt.Dimension(76, 30));
@@ -237,6 +251,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Perihal");
 
+        perihal.setBackground(new java.awt.Color(196, 196, 196));
         perihal.setPreferredSize(new java.awt.Dimension(40, 30));
         perihal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,9 +259,11 @@ private void setPlaceholder(JTextField textField, String placeholder) {
             }
         });
 
+        alamat.setBackground(new java.awt.Color(196, 196, 196));
         alamat.setText("Nama Instansi");
         alamat.setPreferredSize(new java.awt.Dimension(40, 30));
 
+        urutan_surat.setBackground(new java.awt.Color(196, 196, 196));
         urutan_surat.setText("001");
         urutan_surat.setPreferredSize(new java.awt.Dimension(40, 30));
         urutan_surat.addActionListener(new java.awt.event.ActionListener() {
@@ -258,6 +275,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         garis_miring1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring1.setText("/");
 
+        kode_lembaga.setBackground(new java.awt.Color(196, 196, 196));
         kode_lembaga.setText("HY");
         kode_lembaga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,6 +286,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         garis_miring2.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring2.setText("/");
 
+        nama_instansi.setBackground(new java.awt.Color(196, 196, 196));
         nama_instansi.setText("SMK");
         nama_instansi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,6 +297,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         garis_miring3.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring3.setText("/");
 
+        bulan.setBackground(new java.awt.Color(196, 196, 196));
         bulan.setText("II");
         bulan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +308,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
         garis_miring4.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
         garis_miring4.setText("/");
 
+        tahun.setBackground(new java.awt.Color(196, 196, 196));
         tahun.setText("2025");
         tahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,7 +316,7 @@ private void setPlaceholder(JTextField textField, String placeholder) {
             }
         });
 
-        update.setBackground(new java.awt.Color(196, 196, 196));
+        update.setBackground(new java.awt.Color(255, 255, 255));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateMouseClicked(evt);

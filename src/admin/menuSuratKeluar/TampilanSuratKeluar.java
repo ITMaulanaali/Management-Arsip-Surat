@@ -3,12 +3,22 @@ package admin.menuSuratKeluar;
 
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import admin.menuSuratMasuk.*;
+import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import lib.Query;
 
@@ -47,6 +57,7 @@ private String getFileSuratFromDatabase(String noSurat) {
     
     public TampilanSuratKeluar() {
         initComponents();
+        kustomTable();
         menampilkanSuratKeluar();
         cari.setText("Cari");
         
@@ -68,6 +79,47 @@ private String getFileSuratFromDatabase(String noSurat) {
     });
 
     }
+    
+        @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+
+private void kustomTable() {
+    // Transparansi JTable
+    tabel_suratkeluar.setOpaque(false);
+    ((DefaultTableCellRenderer) tabel_suratMasuk.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    tabel_suratkeluar.setBorder(null);
+    tabel_suratkeluar.setShowGrid(false);
+    tabel_suratkeluar.setRowSelectionAllowed(true);
+    tabel_suratkeluar.setColumnSelectionAllowed(false);
+
+    // Custom renderer untuk transparansi per baris
+    tabel_suratkeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Background transparan default
+            c.setBackground(new Color(255, 255, 255, 150));
+
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10));
+            }
+
+            if (c instanceof JComponent) {
+                ((JComponent) c).setBorder(null);
+            }
+
+            return c;
+        }
+    });
+}
     
     void menampilkanSuratKeluar(){
         try {
@@ -224,10 +276,23 @@ private String getFileSuratFromDatabase(String noSurat) {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabel_suratkeluar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratkeluarMousePressed(evt);
+            }
+        });
+        tabel_suratkeluar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tabel_suratkeluarKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tabel_suratkeluar);
@@ -507,6 +572,49 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
     edit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
     edit.setBackground(new java.awt.Color(217, 217, 217));
     }//GEN-LAST:event_editMouseExited
+
+    private void tabel_suratkeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabel_suratkeluarKeyPressed
+ tabel_suratkeluar.addKeyListener(new KeyAdapter() {
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            e.consume(); // Cegah ENTER berpindah ke baris bawah
+
+            int baris = tabel_suratkeluar.getSelectedRow();
+            if (baris >= 0) {
+                String[] data = new String[7];
+                data[0] = (String) tabel_suratkeluar.getValueAt(baris, 0); // no_surat
+                data[1] = (String) tabel_suratkeluar.getValueAt(baris, 1); // tanggal_surat
+                data[2] = (String) tabel_suratkeluar.getValueAt(baris, 2); // penerima
+                data[3] = (String) tabel_suratkeluar.getValueAt(baris, 3); // kategori
+                data[4] = (String) tabel_suratkeluar.getValueAt(baris, 4); // perihal
+                data[5] = (String) tabel_suratkeluar.getValueAt(baris, 5); // status_pengiriman
+                data[6] = (String) tabel_suratkeluar.getValueAt(baris, 6); // alamat_tujuan
+
+                byte[] file = null;
+                try {
+                    String[] atributs = {"no_surat", "file_surat"};
+                    ResultSet hasil = query.setNamaTabel("surat_keluar")
+                                           .setAtribut(atributs)
+                                           .setWhereId("no_surat", data[0])
+                                           .selectWhereIdDownload();
+                    if (hasil.next()) {
+                        file = hasil.getBytes("file_surat");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // Tampilkan panel lihat surat keluar
+                admin.DashboardUtama.SubPanel.removeAll();
+                admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.LihatSurat(data, file));
+                admin.DashboardUtama.SubPanel.revalidate();
+                admin.DashboardUtama.SubPanel.repaint();
+            }
+        }
+    }
+});
+    }//GEN-LAST:event_tabel_suratkeluarKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

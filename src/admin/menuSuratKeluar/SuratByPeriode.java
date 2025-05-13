@@ -3,13 +3,21 @@ package admin.menuSuratKeluar;
 
 import admin.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
+import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -18,8 +26,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     public SuratByPeriode() {
     initComponents();
-    // Set total_surat dan total_disposisi menjadi tidak dapat diedit
-    total_surat.setEditable(false);
+    kustomTable();
         
         
  // Tambahkan event listener di constructor atau initComponents
@@ -35,6 +42,47 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     }
     });  
     }
+    
+                @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
+        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
+    }
+    
+        private void kustomTable() {
+    // Transparansi JTable
+    tabel_periode.setOpaque(false);
+    ((DefaultTableCellRenderer) tabel_periode.getDefaultRenderer(Object.class)).setOpaque(false);
+    jScrollPane2.setOpaque(false);
+    jScrollPane2.getViewport().setOpaque(false);
+    jScrollPane2.setBorder(null);
+    tabel_periode.setBorder(null);
+    tabel_periode.setShowGrid(false);
+    tabel_periode.setRowSelectionAllowed(true);
+    tabel_periode.setColumnSelectionAllowed(false);
+
+    // Custom renderer untuk transparansi per baris
+    tabel_periode.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Background transparan default
+            c.setBackground(new Color(255, 255, 255, 150));
+
+            if (isSelected) {
+                c.setBackground(new Color(100, 10, 10));
+            }
+
+            if (c instanceof JComponent) {
+                ((JComponent) c).setBorder(null);
+            }
+
+            return c;
+        }
+    });
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,10 +92,8 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         mulai_tanggal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         selesai_tanggal = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         pilih = new javax.swing.JComboBox<>();
-        total_surat = new javax.swing.JTextField();
         tampilkan = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabel_periode = new javax.swing.JTable();
@@ -66,17 +112,15 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Mulai Tanggal :");
 
+        mulai_tanggal.setBackground(new java.awt.Color(196, 196, 196));
         mulai_tanggal.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Selesai Tanggal :");
 
+        selesai_tanggal.setBackground(new java.awt.Color(196, 196, 196));
         selesai_tanggal.setPreferredSize(new java.awt.Dimension(40, 30));
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Total Surat :");
 
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
@@ -91,9 +135,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Penerima", "Kategori", "Perihal" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        total_surat.setPreferredSize(new java.awt.Dimension(40, 30));
-
-        tampilkan.setBackground(new java.awt.Color(196, 196, 196));
         tampilkan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         tampilkan.setText("Tampilkan Surat");
         tampilkan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,11 +161,19 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             new String [] {
                 "No Surat", "Penerima", "Kategori", "Perihal"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabel_periode.setRowHeight(30);
         jScrollPane2.setViewportView(tabel_periode);
 
-        cetak.setBackground(new java.awt.Color(125, 10, 10));
+        cetak.setBackground(new java.awt.Color(255, 255, 255));
         cetak.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cetakMouseClicked(evt);
@@ -141,7 +190,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cetak");
 
         javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
@@ -163,7 +211,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        kembali.setBackground(new java.awt.Color(196, 196, 196));
+        kembali.setBackground(new java.awt.Color(255, 255, 255));
         kembali.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kembaliMouseClicked(evt);
@@ -214,16 +262,11 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                        .addGap(169, 169, 169))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(89, 89, 89))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
@@ -259,14 +302,8 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel6)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(tampilkan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(total_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(tampilkan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(6, 6, 6)
@@ -337,7 +374,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
                 // Hitung total surat dan tampilkan di total_surat
                 int totalSurat = model.getRowCount(); // Menghitung jumlah baris
-                total_surat.setText(String.valueOf(totalSurat)); // Menampilkan total surat
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -483,7 +519,6 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.Panel kembali;
@@ -492,6 +527,5 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     private javax.swing.JTextField selesai_tanggal;
     private javax.swing.JTable tabel_periode;
     private javax.swing.JButton tampilkan;
-    private javax.swing.JTextField total_surat;
     // End of variables declaration//GEN-END:variables
 }
