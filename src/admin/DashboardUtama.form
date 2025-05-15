@@ -137,13 +137,13 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="panel_surat_keluar" alignment="0" pref="252" max="32767" attributes="0"/>
-                          <Component id="panel_kelola_akun" alignment="0" pref="252" max="32767" attributes="0"/>
-                          <Component id="PanelMenuSuratMasuk" alignment="0" pref="252" max="32767" attributes="0"/>
+                          <Component id="panel_surat_keluar" alignment="0" pref="254" max="32767" attributes="0"/>
+                          <Component id="panel_kelola_akun" alignment="0" pref="254" max="32767" attributes="0"/>
+                          <Component id="PanelMenuSuratMasuk" alignment="0" pref="254" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
               <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -187,8 +187,8 @@
                   <Group type="102" attributes="0">
                       <Component id="iconPeriode1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="surat_keluar" min="-2" pref="161" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="surat_keluar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -241,8 +241,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="iconPeriode2" min="-2" pref="79" max="-2" attributes="0"/>
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="LabelSuratMasuk" min="-2" pref="154" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Component id="LabelSuratMasuk" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -297,8 +297,8 @@
                   <Group type="102" attributes="0">
                       <Component id="iconPeriode3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="kelola_akun" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="kelola_akun" min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

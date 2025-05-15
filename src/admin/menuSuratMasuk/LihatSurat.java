@@ -73,7 +73,6 @@ public class LihatSurat extends javax.swing.JPanel {
         iconPeriode2 = new javax.swing.JLabel();
         iconPeriode3 = new javax.swing.JLabel();
         iconPeriode4 = new javax.swing.JLabel();
-        iconPeriode5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -108,15 +107,15 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jLabel13)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         kembaliLayout.setVerticalGroup(
             kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(kembaliLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kembaliLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         iconPeriode1.setBackground(new java.awt.Color(255, 0, 0));
@@ -148,13 +147,6 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/filter40px.png"))); // NOI18N
-        iconPeriode5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconPeriode5MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,8 +158,7 @@ public class LihatSurat extends javax.swing.JPanel {
                     .addComponent(iconPeriode1)
                     .addComponent(iconPeriode2)
                     .addComponent(iconPeriode3)
-                    .addComponent(iconPeriode4)
-                    .addComponent(iconPeriode5))
+                    .addComponent(iconPeriode4))
                 .addGap(80, 80, 80)
                 .addComponent(panelLihatsurat, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
@@ -185,9 +176,7 @@ public class LihatSurat extends javax.swing.JPanel {
                         .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(iconPeriode4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(iconPeriode5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                         .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelLihatsurat))
                 .addGap(23, 23, 23))
@@ -300,17 +289,12 @@ public class LihatSurat extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_iconPeriode4MouseClicked
 
-    private void iconPeriode5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_iconPeriode5MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconPeriode1;
     private javax.swing.JLabel iconPeriode2;
     private javax.swing.JLabel iconPeriode3;
     private javax.swing.JLabel iconPeriode4;
-    private javax.swing.JLabel iconPeriode5;
     private javax.swing.JLabel imagePdf;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
