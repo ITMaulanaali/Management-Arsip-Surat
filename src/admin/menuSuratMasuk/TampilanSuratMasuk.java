@@ -249,6 +249,7 @@ private void kustomTable() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tabel_suratMasuk.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         tabel_suratMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -32,6 +32,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
+import login.Main;
 
 
 public class TampilanKelolaAkun extends javax.swing.JPanel{
@@ -60,16 +61,16 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
 private void kustomTable() {
     // === KONFIGURASI DASAR TABEL & TRANSPARANSI ===
     TableUser.setOpaque(false);
-    TableUser.setFocusable(true); // AGAR BISA DISELEKSI DENGAN KEYBOARD
-    TableUser.setRowSelectionAllowed(true); // Mengizinkan seleksi baris
-    TableUser.setColumnSelectionAllowed(false); // Tidak ada seleksi kolom
-    TableUser.setCellSelectionEnabled(false); // Tidak ada seleksi sel
-    TableUser.setShowGrid(false); // Hilangkan grid di dalam tabel
-    TableUser.setShowHorizontalLines(false); // Hilangkan garis horizontal
-    TableUser.setShowVerticalLines(false); // Hilangkan garis vertikal
-    TableUser.setIntercellSpacing(new Dimension(0, 0)); // Tidak ada jarak antar sel
-    TableUser.setSelectionBackground(new Color(100, 10, 10)); // Warna seleksi baris
-    TableUser.setSelectionForeground(Color.WHITE); // Warna font seleksi
+    TableUser.setFocusable(true);
+    TableUser.setRowSelectionAllowed(true);
+    TableUser.setColumnSelectionAllowed(false);
+    TableUser.setCellSelectionEnabled(false);
+    TableUser.setShowGrid(false);
+    TableUser.setShowHorizontalLines(false);
+    TableUser.setShowVerticalLines(false);
+    TableUser.setIntercellSpacing(new Dimension(0, 0));
+    TableUser.setSelectionBackground(new Color(100, 10, 10));
+    TableUser.setSelectionForeground(Color.WHITE);
 
     ((DefaultTableCellRenderer) TableUser.getDefaultRenderer(Object.class)).setOpaque(false);
     jScrollPane2.setOpaque(false);
@@ -77,21 +78,11 @@ private void kustomTable() {
     jScrollPane2.setBorder(null);
     TableUser.setBorder(null);
 
-    // === RENDERER UNTUK TRANSPARANSI DAN TOMBOL ===
+    // === RENDERER UNTUK KOLOM TOMBOL ===
     TableUser.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             if (column == table.getColumnCount() - 1) {
-                // TOMBOL (KOLUM TERAKHIR) untuk "Lihat"
-                JButton buttonLihat = new JButton();
-                buttonLihat.setPreferredSize(new Dimension(100, 30));
-                buttonLihat.setContentAreaFilled(true);
-                buttonLihat.setBorder(new EmptyBorder(3, 3, 3, 3));
-                buttonLihat.setFocusPainted(false);
-                buttonLihat.setOpaque(true);
-                buttonLihat.setBackground(Color.WHITE);
-                buttonLihat.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png")));
-
                 JButton buttonUpdate = new JButton();
                 buttonUpdate.setPreferredSize(new Dimension(100, 30));
                 buttonUpdate.setContentAreaFilled(true);
@@ -99,99 +90,71 @@ private void kustomTable() {
                 buttonUpdate.setFocusPainted(false);
                 buttonUpdate.setOpaque(true);
                 buttonUpdate.setBackground(Color.WHITE);
-                buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png"))); // Ganti dengan ikon Update
+                buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png")));
 
                 JPanel panel = new JPanel(new GridBagLayout());
-                panel.add(buttonLihat);
-                panel.add(buttonUpdate); // Menambahkan tombol Update
-
+                panel.add(buttonUpdate);
                 panel.setOpaque(true);
-                // Menetapkan warna latar belakang berdasarkan status seleksi baris
                 panel.setBackground(isSelected ? new Color(100, 10, 10)
                                                : (row % 2 == 0 ? new Color(255, 255, 255, 150)
                                                                : new Color(255, 255, 255, 180)));
 
-                // Mengatur aksi pada tombol Lihat
-                buttonLihat.addActionListener(e -> {
-                    // Tambahkan kode untuk aksi tombol "Lihat" di sini
-                    JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Lihat diklik");
-                });
-
-                // Mengatur aksi pada tombol Update
                 buttonUpdate.addActionListener(e -> {
-                    // Tambahkan kode untuk aksi tombol "Update" di sini
-                    JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Update diklik");
-                    // Misalnya, membuka dialog untuk melakukan update data
+                        admin.DashboardUtama.SubPanel.removeAll();
+                        admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.EditUser());
+                        admin.DashboardUtama.SubPanel.revalidate();
+                        admin.DashboardUtama.SubPanel.repaint();
                 });
 
                 return panel;
             }
 
-            // RENDERER UNTUK KOLOM LAIN
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (isSelected) {
-                c.setBackground(new Color(100, 10, 10)); // Warna merah saat dipilih
-                c.setForeground(Color.WHITE); // Teks putih
+                c.setBackground(new Color(100, 10, 10));
+                c.setForeground(Color.WHITE);
             } else {
-                c.setBackground(new Color(255, 255, 255, 150)); // Transparan jika tidak dipilih
-                c.setForeground(Color.BLACK); // Teks hitam jika tidak dipilih
+                c.setBackground(new Color(255, 255, 255, 150));
+                c.setForeground(Color.BLACK);
             }
 
             if (c instanceof JComponent jc) {
-                jc.setBorder(null); // Hilangkan border
+                jc.setBorder(null);
             }
 
             return c;
         }
     });
 
-    // === EDITOR UNTUK TOMBOL SAAT DIKLIK ===
+    // === EDITOR UNTUK TOMBOL EDIT SAJA ===
     class ButtonCellEditor extends DefaultCellEditor {
-        private final JButton buttonLihat = new JButton();
         private final JButton buttonUpdate = new JButton();
         private final JPanel panel = new JPanel(new GridBagLayout());
-        private JTable currentTable;
-        private int currentRow;
 
         public ButtonCellEditor() {
             super(new JCheckBox()); // dummy
-            buttonLihat.setPreferredSize(new Dimension(100, 30));
-            buttonLihat.setContentAreaFilled(true);
-            buttonLihat.setBorder(new EmptyBorder(3, 3, 3, 3));
-            buttonLihat.setFocusPainted(false);
-            buttonLihat.setOpaque(true);
-            buttonLihat.setBackground(Color.WHITE);
-            buttonLihat.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png")));
-
             buttonUpdate.setPreferredSize(new Dimension(100, 30));
             buttonUpdate.setContentAreaFilled(true);
             buttonUpdate.setBorder(new EmptyBorder(3, 3, 3, 3));
             buttonUpdate.setFocusPainted(false);
             buttonUpdate.setOpaque(true);
             buttonUpdate.setBackground(Color.WHITE);
-            buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png"))); // Ganti dengan ikon Update
+            buttonUpdate.setIcon(new ImageIcon(getClass().getResource("/bahan/globalIcon/edit-30px.png")));
 
             panel.setOpaque(true);
-            panel.add(buttonLihat);
-            panel.add(buttonUpdate); // Menambahkan tombol Update
+            panel.add(buttonUpdate);
 
-            // Menambahkan aksi pada tombol Lihat
-            buttonLihat.addActionListener(e -> {
-                JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Lihat diklik");
-            });
-
-            // Menambahkan aksi pada tombol Update
             buttonUpdate.addActionListener(e -> {
-                JOptionPane.showMessageDialog(admin.DashboardUtama.SubPanel, "Tombol Update diklik");
+                    admin.DashboardUtama.SubPanel.removeAll();
+                    admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.EditUser());
+                    admin.DashboardUtama.SubPanel.revalidate();
+                    admin.DashboardUtama.SubPanel.repaint();
             });
         }
 
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            this.currentTable = table;
-            this.currentRow = row;
-
-            panel.setBackground(new Color(100, 10, 10)); // SESUAI WARNA SELEKSI
+            panel.setBackground(new Color(100, 10, 10));
             return panel;
         }
     }
@@ -201,8 +164,6 @@ private void kustomTable() {
     TableColumn tombolColumn = TableUser.getColumnModel().getColumn(kolomTombol);
     tombolColumn.setCellEditor(new ButtonCellEditor());
 }
-
-
 
     void menampilkanUser(){
         try {
@@ -227,115 +188,6 @@ private void kustomTable() {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    //versi label biasa
-//    void buttonTable(){
-//        TableUser.getColumn("Aksi").setCellRenderer((table1, value, isSelected, hasFocus, row, column) -> {
-//                JLabel label = new JLabel();
-//
-//                label.setHorizontalAlignment(SwingConstants.CENTER);
-//                label.setOpaque(true);
-//                label.setBackground(isSelected ? table1.getSelectionBackground() : Color.WHITE);
-//                label.setToolTipText("Klik untuk hapus");
-//
-//                Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
-//                label.setIcon(icon);
-//                return label;
-//            });
-//    }
-    
-    
-//    void buttonTable() {
-//    Icon icon = new ImageIcon(getClass().getResource("/bahan/globalIcon/cari40px.png"));
-//
-//    // Renderer untuk menampilkan tombol
-//    TableUser.getColumn("Aksi").setCellRenderer((table, value, isSelected, hasFocus, row, column) -> {
-//        JButton button = new JButton(icon);
-//        button.setOpaque(true);
-//        button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
-//        button.setBackground(Color.WHITE); // Background normal
-//        button.setBorderPainted(false);  // Menghilangkan border pada button
-//
-//        // Mouse listener untuk efek hover
-//        button.addMouseListener(new java.awt.event.MouseAdapter() {
-//            @Override
-//            public void mouseEntered(java.awt.event.MouseEvent evt) {
-//                button.setBackground(Color.RED); // Mengubah warna background menjadi merah saat hover
-//            }
-//
-//            @Override
-//            public void mouseExited(java.awt.event.MouseEvent evt) {
-//                button.setBackground(Color.WHITE); // Kembalikan ke latar belakang normal saat mouse keluar
-//            }
-//        });
-//
-//        button.setHorizontalAlignment(SwingConstants.CENTER); // Set alignment ke tengah
-//        button.setToolTipText("Klik untuk hapus"); // Tooltip saat hover
-//
-//        return button;
-//    });
-//
-//    // Editor untuk menangani klik tombol
-//    TableUser.getColumn("Aksi").setCellEditor(new DefaultCellEditor(new JCheckBox()) {
-//        private final JButton button = new JButton(icon);
-//        private int currentRow;
-//
-//        {
-//            button.setOpaque(true);
-//            button.setBorderPainted(false);  // Menghilangkan border pada button
-//            button.setContentAreaFilled(true); // Isi area tombol agar lebih terlihat
-//            button.setBackground(Color.WHITE); // Background normal
-//            button.setHorizontalAlignment(SwingConstants.CENTER);
-//
-//            button.addActionListener(e -> {
-//                System.out.println("Hallo dari baris ke-" + currentRow);
-//
-//                int confirm = JOptionPane.showConfirmDialog(button, "Hapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-//                if (confirm == JOptionPane.YES_OPTION) {
-//                    ((DefaultTableModel) TableUser.getModel()).removeRow(currentRow);
-//                }
-//
-//                fireEditingStopped(); // Wajib agar cell editor selesai
-//            });
-//        }
-//
-//        @Override
-//        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
-//                                                     int row, int column) {
-//            currentRow = row;
-//            return button;
-//        }
-//
-//        @Override
-//        public Object getCellEditorValue() {
-//            return null;
-//        }
-//    });
-//}
-
-
-
-
-    
-//    void klikIcon(){
-//        TableUser.addMouseListener(new java.awt.event.MouseAdapter() {
-//    @Override
-//    public void mouseClicked(java.awt.event.MouseEvent evt) {
-//        int row = TableUser.rowAtPoint(evt.getPoint());
-//        int column = TableUser.columnAtPoint(evt.getPoint());
-//
-//        // Pastikan klik terjadi di dalam tabel
-//        if (row >= 0 && column >= 0) {
-//            // Cek apakah kolom yang diklik adalah kolom "Aksi"
-//            int aksiColumnIndex = TableUser.getColumnModel().getColumnIndex("Aksi");
-//            if (column == aksiColumnIndex) {
-//                System.out.println("Hallo dari baris ke-" + row);
-//            }
-//        }
-//    }
-//});
-//
-//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -368,6 +220,7 @@ private void kustomTable() {
             }
         });
 
+        TableUser.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         TableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -396,13 +249,13 @@ private void kustomTable() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(83, 83, 83)
                         .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
