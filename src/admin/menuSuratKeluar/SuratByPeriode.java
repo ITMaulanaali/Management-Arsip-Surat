@@ -163,17 +163,17 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
         tabel_periode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "No Surat", "Penerima", "Kategori", "Perihal"
+                "No", "No Surat", "Penerima", "Kategori", "Perihal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -355,65 +355,65 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     private void tampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilkanActionPerformed
      
     // Ambil tanggal mulai dan selesai dari text field
-        String mulaiTanggalStr = mulai_tanggal.getText();
-        String selesaiTanggalStr = selesai_tanggal.getText();
+    String mulaiTanggalStr = mulai_tanggal.getText();
+    String selesaiTanggalStr = selesai_tanggal.getText();
 
-        // Format untuk parsing tanggal
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // Format untuk parsing tanggal
+    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try {
-            // Mengonversi string tanggal ke Date
-            Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
-            Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
+    try {
+        // Mengonversi string tanggal ke Date
+        Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
+        Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
 
-            // Mengonversi Date ke string dalam format yang sesuai untuk SQL
-            String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
-            String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
+        // Mengonversi Date ke string dalam format yang sesuai untuk SQL
+        String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
+        String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
 
-            // Query SQL untuk mengambil data berdasarkan rentang tanggal
-            String query = "SELECT sk.no_surat, sk.penerima, sk.kategori, sk.perihal, d.status_disposisi " +
-                           "FROM surat_keluar sk " +
-                           "LEFT JOIN disposisi d ON sk.no_surat = d.no_disposisi " +
-                           "WHERE sk.tanggal_surat >= ? AND sk.tanggal_surat <= ?";
+        // Query SQL untuk mengambil data berdasarkan rentang tanggal
+        String query = "SELECT sk.no_surat, sk.penerima, sk.kategori, sk.perihal, d.status_disposisi " +
+                       "FROM surat_keluar sk " +
+                       "LEFT JOIN disposisi d ON sk.no_surat = d.no_disposisi " +
+                       "WHERE sk.tanggal_surat >= ? AND sk.tanggal_surat <= ?";
 
-            // Siapkan koneksi ke database
-            try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
-                // Set parameter tanggal
-                pstmt.setString(1, mulaiTanggalSQL);
-                pstmt.setString(2, selesaiTanggalSQL);
+        // Siapkan koneksi ke database
+        try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
+            // Set parameter tanggal
+            pstmt.setString(1, mulaiTanggalSQL);
+            pstmt.setString(2, selesaiTanggalSQL);
 
-                // Eksekusi query
-                ResultSet rs = pstmt.executeQuery();
+            // Eksekusi query
+            ResultSet rs = pstmt.executeQuery();
 
-                // Bersihkan tabel sebelum menampilkan data baru
-                DefaultTableModel model = (DefaultTableModel) tabel_periode.getModel();
-                model.setRowCount(0); // Menghapus semua baris
+            // Bersihkan tabel sebelum menampilkan data baru
+            DefaultTableModel model = (DefaultTableModel) tabel_periode.getModel();
+            model.setRowCount(0); // Menghapus semua baris
 
-                // Tambahkan data ke tabel
-                int totalDisposisi = 0; // Variabel untuk menghitung total disposisi
-                while (rs.next()) {
-                    Object[] row = new Object[5]; // Adjusted to match the number of columns
-                    row[0] = rs.getString("no_surat"); 
-                    row[1] = rs.getString("penerima");
-                    row[2] = rs.getString("kategori");
-                    row[3] = rs.getString("perihal");
-                    
-                    model.addRow(row);
-                    
-                }
-
-                // Hitung total surat dan tampilkan di total_surat
-                int totalSurat = model.getRowCount(); // Menghitung jumlah baris
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            // Tambahkan data ke tabel
+            int no = 1; // Nomor urut
+            while (rs.next()) {
+                Object[] row = new Object[5]; // Adjusted to match the number of columns
+                row[0] = no++; // Menambahkan nomor urut
+                row[1] = rs.getString("no_surat"); 
+                row[2] = rs.getString("penerima");
+                row[3] = rs.getString("kategori");
+                row[4] = rs.getString("perihal");
+                
+                model.addRow(row);
             }
 
-        } catch (ParseException e) {
-       e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
+            // Hitung total surat dan tampilkan di total_surat
+            int totalSurat = model.getRowCount(); // Menghitung jumlah baris
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
+
+    } catch (ParseException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
+    }
     
     }//GEN-LAST:event_tampilkanActionPerformed
 
@@ -514,12 +514,12 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
     private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
         cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-        cetak.setBackground(new java.awt.Color(172, 10, 10));
+        cetak.setBackground(new java.awt.Color(217, 217, 217));
     }//GEN-LAST:event_cetakMouseEntered
 
     private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
         cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        cetak.setBackground(new java.awt.Color(125, 10, 10));
+        cetak.setBackground(new java.awt.Color(255,255,255));
     }//GEN-LAST:event_cetakMouseExited
 
     private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
@@ -537,7 +537,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
 
     private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
         kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        kembali.setBackground(new java.awt.Color(196, 196, 196)); // Kembalikan warna saat dilepaskan
+        kembali.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_kembaliMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -86,8 +86,8 @@ public class LihatSurat extends javax.swing.JPanel {
 
         Kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        iconPeriode2 = new javax.swing.JLabel();
-        iconPeriode3 = new javax.swing.JLabel();
+        perbesar = new javax.swing.JLabel();
+        perkecil = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -109,14 +109,31 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
-        iconPeriode2.addMouseListener(new java.awt.event.MouseAdapter() {
+        perbesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
+        perbesar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconPeriode2MouseClicked(evt);
+                perbesarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                perbesarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                perbesarMouseExited(evt);
             }
         });
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
+        perkecil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
+        perkecil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                perkecilMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                perkecilMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                perkecilMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,8 +143,8 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(iconPeriode2)
-                    .addComponent(iconPeriode3))
+                    .addComponent(perbesar)
+                    .addComponent(perkecil))
                 .addGap(90, 90, 90)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addGap(150, 150, 150))
@@ -138,9 +155,9 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(perbesar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(perkecil, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                         .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
@@ -160,7 +177,7 @@ public class LihatSurat extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_KembaliMouseClicked
 
-    private void iconPeriode2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode2MouseClicked
+    private void perbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseClicked
         // TODO add your handling code here:
        try {
             this.pdf.zoomOut();
@@ -168,13 +185,39 @@ public class LihatSurat extends javax.swing.JPanel {
         } catch (Exception ex) {
             Logger.getLogger(kepsek.menuSuratKeluar.LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_iconPeriode2MouseClicked
+    }//GEN-LAST:event_perbesarMouseClicked
+
+    private void perbesarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseEntered
+    perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_perbesarMouseEntered
+
+    private void perbesarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseExited
+    perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_perbesarMouseExited
+
+    private void perkecilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseClicked
+    
+        try {
+            this.pdf.zoomIn();
+             setupContent();
+        } catch (Exception ex) {
+            Logger.getLogger(kepsek.menuSuratMasuk.LihatSurat.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }//GEN-LAST:event_perkecilMouseClicked
+
+    private void perkecilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseEntered
+    perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_perkecilMouseEntered
+
+    private void perkecilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseExited
+    perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse
+    }//GEN-LAST:event_perkecilMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Kembali;
-    private javax.swing.JLabel iconPeriode2;
-    private javax.swing.JLabel iconPeriode3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel perbesar;
+    private javax.swing.JLabel perkecil;
     // End of variables declaration//GEN-END:variables
 }

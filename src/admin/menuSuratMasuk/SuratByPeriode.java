@@ -32,22 +32,24 @@ public class SuratByPeriode extends javax.swing.JPanel {
     public SuratByPeriode() {
         initComponents();
         kustomTable();
-        // Set total_surat dan total_disposisi menjadi tidak dapat diedit
-        
-        // Set default text for cari JTextField
-        cari.setText(DEFAULT_SEARCH_TEXT);
-        cari.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                if (cari.getText().equals(DEFAULT_SEARCH_TEXT)) {
-                    cari.setText("");
-                }
+    
+    // Set default text for cari JTextField
+    cari.setText(DEFAULT_SEARCH_TEXT);
+    cari.setForeground(Color.GRAY); // Set the text color to gray for the placeholder
+    cari.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (cari.getText().equals(DEFAULT_SEARCH_TEXT)) {
+                cari.setText(""); // Clear the text when focused
+                cari.setForeground(Color.BLACK); // Change text color to black
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                if (cari.getText().isEmpty()) {
-                    cari.setText(DEFAULT_SEARCH_TEXT);
-                }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (cari.getText().isEmpty()) {
+                cari.setText(DEFAULT_SEARCH_TEXT); // Reset to default text if empty
+                cari.setForeground(Color.GRAY); // Change text color back to gray
             }
-        });
+        }
+    });
         
     }
     
@@ -115,6 +117,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         selesai_tanggal = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        ganti_tabel = new javax.swing.JComboBox<>();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(mulai_tanggal);
@@ -170,17 +173,17 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
         tabel_periode1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "No Surat", "Pengirim", "Kategori", "Perihal", "Disposisi"
+                "No", "No Surat", "Pengirim", "Tanggal Surat", "Kategori", "Perihal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -286,6 +289,13 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
+        ganti_tabel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surat Masuk", "Disposisi" }));
+        ganti_tabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ganti_tabelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,32 +308,36 @@ public class SuratByPeriode extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
-                                .addGap(159, 159, 159)
-                                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(39, 39, 39))
+                                        .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
+                                        .addGap(159, 159, 159))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(47, 47, 47)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(39, 39, 39))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(47, 47, 47)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 199, Short.MAX_VALUE)))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)))
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ganti_tabel, 0, 121, Short.MAX_VALUE)
+                                    .addComponent(pilih, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
@@ -334,20 +348,21 @@ public class SuratByPeriode extends javax.swing.JPanel {
                     .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selesai_tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ganti_tabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(tampilkan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                .addGap(13, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addGap(14, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -357,142 +372,195 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     private void tampilkan_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilkan_suratActionPerformed
    
-        // Ambil tanggal mulai dan selesai dari text field
-        String mulaiTanggalStr = mulai_tanggal.getText();
-        String selesaiTanggalStr = selesai_tanggal.getText();
+    // Ambil tanggal mulai dan selesai dari text field
+    String mulaiTanggalStr = mulai_tanggal.getText();
+    String selesaiTanggalStr = selesai_tanggal.getText();
 
-        // Format untuk parsing tanggal
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+    // Format untuk parsing tanggal
+    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try {
-            // Mengonversi string tanggal ke Date
-            Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
-            Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
+    try {
+        // Mengonversi string tanggal ke Date
+        Date mulaiTanggal = inputFormat.parse(mulaiTanggalStr);
+        Date selesaiTanggal = inputFormat.parse(selesaiTanggalStr);
 
-            // Mengonversi Date ke string dalam format yang sesuai untuk SQL
-            String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
-            String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
+        // Mengonversi Date ke string dalam format yang sesuai untuk SQL
+        String mulaiTanggalSQL = inputFormat.format(mulaiTanggal);
+        String selesaiTanggalSQL = inputFormat.format(selesaiTanggal);
 
-            // Query SQL untuk mengambil data berdasarkan rentang tanggal
-            String query = "SELECT sm.no_surat, sm.pengirim, sm.kategori, sm.perihal, d.status_disposisi " +
-                           "FROM surat_masuk sm " +
-                           "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
-                           "WHERE sm.tanggal_surat >= ? AND sm.tanggal_surat <= ?";
+        // Ambil pilihan dari ganti_tabel
+        String selectedTable = (String) ganti_tabel.getSelectedItem();
 
-            // Siapkan koneksi ke database
-            try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
-                // Set parameter tanggal
-                pstmt.setString(1, mulaiTanggalSQL);
-                pstmt.setString(2, selesaiTanggalSQL);
+        String query;
+        DefaultTableModel model;
 
-                // Eksekusi query
-                ResultSet rs = pstmt.executeQuery();
+        if ("Surat Masuk".equals(selectedTable)) {
+            // Siapkan model tabel untuk Surat Masuk
+            String[] columnNames = {"No", "No Surat", "Tanggal Surat", "Pengirim", "Kategori", "Perihal"};
+            model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Tabel tidak bisa diedit
+                }
+            };
+            tabel_periode1.setModel(model);
 
-                // Bersihkan tabel sebelum menampilkan data baru
-                DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
-                model.setRowCount(0); // Menghapus semua baris
+            // Query untuk data surat_masuk tanpa join
+            query = "SELECT no_surat,tanggal_surat, pengirim, kategori, perihal FROM surat_masuk WHERE tanggal_surat >= ? AND tanggal_surat <= ?";
 
-                // Tambahkan data ke tabel
-                int totalDisposisi = 0; // Variabel untuk menghitung total disposisi
-                while (rs.next()) {
-                    Object[] row = new Object[5]; // Adjusted to match the number of columns
-                    row[0] = rs.getString("no_surat"); 
-                    row[1] = rs.getString("pengirim");
-                    row[2] = rs.getString("kategori");
-                    row[3] = rs.getString("perihal");
-                    row[4] = rs.getString("status_disposisi"); // Ambil status_disposisi dari hasil query
+        } else if ("Disposisi".equals(selectedTable)) {
+            // Siapkan model tabel untuk Disposisi
+            String[] columnNames = {"No", "No Disposisi", "Tanggal Disposisi", "Catatan", "Status Disposisi"};
+            model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Tabel tidak bisa diedit
+                }
+            };
+            tabel_periode1.setModel(model);
 
-                    model.addRow(row);
-                    
-                    // Hitung total disposisi jika status_disposisi tidak null
-                    if (rs.getString("status_disposisi") != null) {
-                        totalDisposisi++;
-                    }
+            // Query untuk data disposisi tanpa join
+            query = "SELECT no_disposisi, tanggal_disposisi, catatan, status_disposisi FROM disposisi WHERE tanggal_disposisi >= ? AND tanggal_disposisi <= ?";
+
+        } else {
+            // Jika pilihan tidak valid, tampilkan pesan dan keluar
+            JOptionPane.showMessageDialog(this, "Pilih tipe data yang benar!");
+            return;
+        }
+
+        // Jalankan query dan isi data ke tabel
+        try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
+            pstmt.setString(1, mulaiTanggalSQL);
+            pstmt.setString(2, selesaiTanggalSQL);
+
+            ResultSet rs = pstmt.executeQuery();
+            int no = 1;
+
+            while (rs.next()) {
+                Object[] row = new Object[6];
+                row[0] = no++; // Nomor urut
+
+                if ("Surat Masuk".equals(selectedTable)) {
+                    row[1] = rs.getString("no_surat");
+                    row[2] = rs.getString("tanggal_surat");
+                    row[3] = rs.getString("pengirim");
+                    row[4] = rs.getString("kategori");
+                    row[5] = rs.getString("perihal");
+                } else {
+                    row[1] = rs.getString("no_disposisi");
+                    row[2] = rs.getString("tanggal_disposisi");
+                    row[3] = rs.getString("catatan");
+                    row[4] = rs.getString("status_disposisi");
                 }
 
-                // Hitung total surat
-                int totalSurat = model.getRowCount(); // Jumlah baris di tabel
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+                model.addRow(row);
             }
 
-        } catch (ParseException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
+            JOptionPane.showMessageDialog(this, "Error saat mengambil data: " + e.getMessage());
         }
-        
+
+    } catch (ParseException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Format tanggal tidak valid. Harap gunakan format yyyy-MM-dd.");
+    }
+      
     }//GEN-LAST:event_tampilkan_suratActionPerformed
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
        
-   // Ambil nilai dari cari dan pilih
+     // Ambil nilai dari cari dan pilih
         String searchText = cari.getText();
         String selectedItem = (String) pilih.getSelectedItem();
+        String selectedTable = (String) ganti_tabel.getSelectedItem();
 
         // Query SQL berdasarkan pilihan
-        String query = "SELECT sm.no_surat, sm.pengirim, sm.kategori, sm.perihal, d.status_disposisi " +
-                       "FROM surat_masuk sm " +
-                       "LEFT JOIN disposisi d ON sm.no_surat = d.no_surat " +
-                       "WHERE ";
-
-        // Menentukan kolom yang dicari
-        switch (selectedItem) {
-            case "No Surat":
-                query += "sm.no_surat LIKE ?";
-                break;
-            case "Pengirim":
-                query += "sm.pengirim LIKE ?";
-                break;
-            case "Kategori":
-                query += "sm.kategori LIKE ?";
-                break;
-            case "Perihal":
-                query += "sm.perihal LIKE ?";
-                break;
-            case "Disposisi":
-                query += "d.status_disposisi LIKE ?";
-                break;
-            default:
-                return; // Jika tidak ada pilihan yang valid
+        String query = "";
+        
+        if ("Surat Masuk".equals(selectedTable)) {
+            query = "SELECT no_surat, tanggal_surat, pengirim, kategori, perihal FROM surat_masuk WHERE ";
+        } else if ("Disposisi".equals(selectedTable)) {
+            query = "SELECT no_disposisi, tanggal_disposisi, catatan, status_disposisi FROM disposisi WHERE ";
+        } else {
+            // Tidak ada pilihan yang valid
+            JOptionPane.showMessageDialog(this, "Pilih tipe data yang benar!");
+            return;
         }
 
-        // Siapkan koneksi ke database
+        // Menentukan kolom yang dicari berdasarkan pilih
+        switch (selectedItem) {
+            case "No Surat":
+                query += "no_surat LIKE ?";
+                break;
+            case "Pengirim":
+                query += "pengirim LIKE ?";
+                break;
+            case "Kategori":
+                query += "kategori LIKE ?";
+                break;
+            case "Perihal":
+                query += "perihal LIKE ?";
+                break;
+            case "No Disposisi":
+                query += "no_disposisi LIKE ?";
+                break;
+            case "Tanggal Disposisi":
+                query += "tanggal_disposisi LIKE ?";
+                break;
+            case "Catatan":
+                query += "catatan LIKE ?";
+                break;
+            case "Status Disposisi":
+                query += "status_disposisi LIKE ?";
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Pilih kriteria pencarian yang valid!");
+                return;
+        }
+
+        // Siapkan koneksi ke database dan eksekusi query
         try (PreparedStatement pstmt = lib.Koneksi.Koneksi().prepareStatement(query)) {
             pstmt.setString(1, "%" + searchText + "%"); // Menambahkan wildcard untuk pencarian
 
-            // Eksekusi query
             ResultSet rs = pstmt.executeQuery();
 
             // Bersihkan tabel sebelum menampilkan data baru
             DefaultTableModel model = (DefaultTableModel) tabel_periode1.getModel();
-            model.setRowCount(0); // Menghapus semua baris
+            model.setRowCount(0); // Hapus semua baris
 
-            // Tambahkan data ke tabel
-            boolean dataFound = false; // Flag untuk memeriksa apakah data ditemukan
+            boolean dataFound = false;
             while (rs.next()) {
-                dataFound = true; // Data ditemukan
-                Object[] row = new Object[5]; // Adjusted to match the number of columns
-                row[0] = rs.getString("no_surat");
-                row[1] = rs.getString("pengirim");
-                row[2] = rs.getString("kategori");
-                row[3] = rs.getString("perihal");
-                row[4] = rs.getString("status_disposisi");
+                dataFound = true;
+                Object[] row;
 
+                if ("Surat Masuk".equals(selectedTable)) {
+                    row = new Object[6];
+                    row[0] = model.getRowCount() + 1; // Nomor urut
+                    row[1] = rs.getString("no_surat");
+                    row[2] = rs.getString("tanggal_surat");
+                    row[3] = rs.getString("pengirim");
+                    row[4] = rs.getString("kategori");
+                    row[5] = rs.getString("perihal");
+                } else {
+                    row = new Object[5];
+                    row[0] = model.getRowCount() + 1; // Nomor urut
+                    row[1] = rs.getString("no_disposisi");
+                    row[2] = rs.getString("tanggal_disposisi");
+                    row[3] = rs.getString("catatan");
+                    row[4] = rs.getString("status_disposisi");
+                }
                 model.addRow(row);
             }
 
             // Jika tidak ada data ditemukan, tampilkan pesan
             if (!dataFound) {
                 JOptionPane.showMessageDialog(this, "Tidak ada data yang ditemukan.");
-                model.setRowCount(0); // Kosongkan tabel jika tidak ada data
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error saat mencari data: " + e.getMessage());
         }
         
     }//GEN-LAST:event_cariActionPerformed
@@ -524,7 +592,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
         kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        kembali.setBackground(new java.awt.Color(196, 196, 196)); // Kembalikan warna saat dilepaskan
+        kembali.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_kembaliMouseExited
 
     private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
@@ -533,12 +601,12 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
         cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-        cetak.setBackground(new java.awt.Color(172, 10, 10));
+        cetak.setBackground(new java.awt.Color(217, 217, 217));
     }//GEN-LAST:event_cetakMouseEntered
 
     private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
         cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        cetak.setBackground(new java.awt.Color(125, 10, 10));
+        cetak.setBackground(new java.awt.Color(255,255,255));
     }//GEN-LAST:event_cetakMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -549,12 +617,49 @@ public class SuratByPeriode extends javax.swing.JPanel {
         dateChooser2.showPopup();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void ganti_tabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ganti_tabelActionPerformed
+     
+    // Set the table model based on the selected option
+        String selectedTable = (String) ganti_tabel.getSelectedItem();
+        DefaultTableModel model = null;
+
+        if ("Surat Masuk".equals(selectedTable)) {
+            // Set model for Surat Masuk
+            String[] columnNames = {"No", "No Surat", "Tanggal Surat", "Pengirim", "Kategori", "Perihal"};
+            model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Make the table non-editable
+                }
+            };
+            // Update the 'pilih' JComboBox for Surat Masuk
+            pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Pengirim", "Kategori", "Perihal" }));
+        } else if ("Disposisi".equals(selectedTable)) {
+            // Set model for Disposisi
+            String[] columnNames = {"No", "No Disposisi", "Tanggal Disposisi", "Catatan", "Status Disposisi"};
+            model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Make the table non-editable
+                }
+            };
+            // Update the 'pilih' JComboBox for Disposisi
+            pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Disposisi", "Tanggal Disposisi", "Catatan", "Status Disposisi" }));
+        }
+
+        // Set the new model to the table
+        tabel_periode1.setModel(model);
+        pilih.setSelectedIndex(-1); // Clear previous selection
+ 
+    }//GEN-LAST:event_ganti_tabelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cari;
     private java.awt.Panel cetak;
     private com.raven.datechooser.DateChooser dateChooser1;
     private com.raven.datechooser.DateChooser dateChooser2;
+    private javax.swing.JComboBox<String> ganti_tabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
