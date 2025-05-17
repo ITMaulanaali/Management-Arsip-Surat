@@ -264,6 +264,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         LabelSuratMasuk.setForeground(Color.decode("#FFFFFF"));
         jPanel2.setBackground(Color.decode("#D9D9D9"));
         jLabel6.setForeground(Color.decode("#000000"));
+        notif.setForeground(Color.WHITE);
         
         SubPanel.removeAll();
         SubPanel.add(new kepsek.menuSuratMasuk.TampilanSuratMasuk());
@@ -273,10 +274,11 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         // TODO add your handling code here:
-       jPanel2.setBackground(Color.decode("#7D0A0A"));
+        jPanel2.setBackground(Color.decode("#7D0A0A"));
         jLabel6.setForeground(Color.decode("#FFFFFF"));
         PanelMenuSuratMasuk.setBackground(Color.decode("#D9D9D9"));
         LabelSuratMasuk.setForeground(Color.decode("#000000"));
+        notif.setForeground(Color.BLACK);
         
         SubPanel.removeAll();
         SubPanel.add(new kepsek.menuSuratKeluar.TampilanSuratKeluar());
@@ -286,6 +288,7 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         jPanel3.setBackground(new Color(189,189,189));
+        
 
         login.Main.PanelWadah.removeAll();
         login.Main.PanelWadah.add(new login.Login());
