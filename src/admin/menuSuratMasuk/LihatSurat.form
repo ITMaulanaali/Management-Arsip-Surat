@@ -31,10 +31,10 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="kembali" min="-2" max="-2" attributes="0"/>
-                  <Component id="iconPeriode1" min="-2" max="-2" attributes="0"/>
-                  <Component id="iconPeriode2" min="-2" max="-2" attributes="0"/>
-                  <Component id="iconPeriode3" min="-2" max="-2" attributes="0"/>
-                  <Component id="iconPeriode4" min="-2" max="-2" attributes="0"/>
+                  <Component id="hapus" min="-2" max="-2" attributes="0"/>
+                  <Component id="cetak" min="-2" max="-2" attributes="0"/>
+                  <Component id="perbesar" min="-2" max="-2" attributes="0"/>
+                  <Component id="perkecil" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Component id="panelLihatsurat" min="-2" pref="420" max="-2" attributes="0"/>
@@ -48,13 +48,13 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="iconPeriode1" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="hapus" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="iconPeriode2" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="cetak" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="iconPeriode3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="perbesar" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="iconPeriode4" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="perkecil" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace pref="220" max="32767" attributes="0"/>
                       <Component id="kembali" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -129,7 +129,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="iconPeriode1">
+    <Component class="javax.swing.JLabel" name="hapus">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -139,37 +139,45 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconPeriode1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hapusMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hapusMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="hapusMouseExited"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="iconPeriode2">
+    <Component class="javax.swing.JLabel" name="cetak">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/bahan/globalIcon/print-30px.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconPeriode2MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cetakMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cetakMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cetakMouseExited"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="iconPeriode3">
+    <Component class="javax.swing.JLabel" name="perbesar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/bahan/globalIcon/memperbesar-30px.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconPeriode3MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseExited"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="iconPeriode4">
+    <Component class="javax.swing.JLabel" name="perkecil">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/bahan/globalIcon/memperkecil-30px.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconPeriode4MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseExited"/>
       </Events>
     </Component>
   </SubComponents>

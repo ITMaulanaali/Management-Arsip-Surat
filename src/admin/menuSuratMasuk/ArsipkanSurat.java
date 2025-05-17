@@ -60,7 +60,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         
         // Set placeholder untuk setiap JTextField
     setPlaceholder(pengirim, DEFAULT_PENGIRIM_TEXT);
-    setPlaceholder(kategori, DEFAULT_KATEGORI_TEXT);
     setPlaceholder(kode_lembaga, DEFAULT_KODE_LEMBAGA_TEXT);
     setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
 
@@ -109,20 +108,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         }
     });
 
-    // Set default text and add focus listener for kategori
-    kategori.setText(DEFAULT_KATEGORI_TEXT);
-    kategori.addFocusListener(new java.awt.event.FocusAdapter() {
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (kategori.getText().equals(DEFAULT_KATEGORI_TEXT)) {
-                kategori.setText("");
-            }
-        }
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (kategori.getText().isEmpty()) {
-                kategori.setText(DEFAULT_KATEGORI_TEXT);
-            }
-        }
-    });
 
     // Set default text and add focus listener for kode_lembaga
     kode_lembaga.setText(DEFAULT_KODE_LEMBAGA_TEXT);
@@ -227,7 +212,6 @@ private String convertToRoman(int month) {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        kategori = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         upload_file = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -249,6 +233,7 @@ private String convertToRoman(int month) {
         jLabel11 = new javax.swing.JLabel();
         tanggal_surat_masuk = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        kategori = new javax.swing.JComboBox<>();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(tanggal_surat_masuk);
@@ -280,10 +265,6 @@ private String convertToRoman(int month) {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
-
-        kategori.setBackground(new java.awt.Color(196, 196, 196));
-        kategori.setText("Personal");
-        kategori.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -372,7 +353,7 @@ private String convertToRoman(int month) {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         simpanLayout.setVerticalGroup(
             simpanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,12 +374,6 @@ private String convertToRoman(int month) {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 kembaliMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                kembaliMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                kembaliMouseReleased(evt);
-            }
         });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
@@ -416,7 +391,7 @@ private String convertToRoman(int month) {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         kembaliLayout.setVerticalGroup(
             kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,71 +411,63 @@ private String convertToRoman(int month) {
             }
         });
 
+        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Umum" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(220, 220, 220)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(382, 382, 382)
-                        .addComponent(simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pengirim, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, Short.MAX_VALUE)
-                                        .addComponent(statusNotifikasi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(95, 95, 95)
-                                .addComponent(jScrollPane1))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(25, 25, 25)
-                                        .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(220, 220, 220)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(pengirim, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(311, 311, 311)
-                                                .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(87, 87, 87)
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(95, 95, 95)
-                                        .addComponent(upload_file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                .addGap(50, 50, 50))
+                        .addGap(224, 224, 224)
+                        .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusNotifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(313, 313, 313)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(kembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(382, 382, 382)
+                .addComponent(simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,19 +485,21 @@ private String convertToRoman(int month) {
                             .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel4))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tanggal_surat_masuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(7, 7, 7)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(upload_file, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,14 +507,14 @@ private String convertToRoman(int month) {
                         .addComponent(pengirim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel9)))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
@@ -556,8 +525,7 @@ private String convertToRoman(int month) {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13))
+                    .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -582,57 +550,57 @@ private String convertToRoman(int month) {
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
         
-// Mengambil nilai dari setiap field
-        String nomerSurat = urutan_surat.getText().trim() + "/" + kode_lembaga.getText().trim() + "/" + nama_instansi.getText().trim() 
-                            + "/" + this.bulanRomawi + "/" + this.tahunAngka;
-        String tanggal = tanggal_surat_masuk.getText().trim();
-        String namapengirim = pengirim.getText().trim();
-        String personalkategori = kategori.getText().trim();
-        String catatanperihal = perihal.getText().trim();
-        String file_surat = "";
-        if(this.lokasiFileLengkap != null){
-            file_surat = this.lokasiFileLengkap;
-        }
-        String tandastatusnotifikasi = statusNotifikasi.getText().trim();
+    // Mengambil nilai dari setiap field
+    String nomerSurat = urutan_surat.getText().trim() + "/" + kode_lembaga.getText().trim() + "/" + nama_instansi.getText().trim() 
+                        + "/" + this.bulanRomawi + "/" + this.tahunAngka;
+    String tanggal = tanggal_surat_masuk.getText().trim();
+    String namapengirim = pengirim.getText().trim();
+    String personalkategori = kategori.getSelectedItem().toString().trim(); // Mengambil kategori dari JComboBox
+    String catatanperihal = perihal.getText().trim();
+    String file_surat = "";
+    if(this.lokasiFileLengkap != null){
+        file_surat = this.lokasiFileLengkap;
+    }
+    String tandastatusnotifikasi = statusNotifikasi.getText().trim();
 
-        // Validasi: Cek apakah ada field yang kosong dan file berformat PDF
-        if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT) || 
-            personalkategori.equals(DEFAULT_KATEGORI_TEXT) || catatanperihal.isEmpty() || 
-            file_surat.isEmpty() || !file_surat.toLowerCase().endsWith(".pdf")) {
-            
-            // Tampilkan pesan kesalahan jika ada field yang kosong atau file bukan pdf
-            JOptionPane.showMessageDialog(this, "Data Harus Diisi Semua dan file harus berformat PDF!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-            return; // Keluar dari metode jika ada kesalahan validasi
-        }
+    // Validasi: Cek apakah ada field yang kosong dan file berformat PDF
+    if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT) || 
+        personalkategori.equals(DEFAULT_KATEGORI_TEXT) || catatanperihal.isEmpty() || 
+        file_surat.isEmpty() || !file_surat.toLowerCase().endsWith(".pdf")) {
+        
+        // Tampilkan pesan kesalahan jika ada field yang kosong atau file bukan pdf
+        JOptionPane.showMessageDialog(this, "Data Harus Diisi Semua dan file harus berformat PDF!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        return; // Keluar dari metode jika ada kesalahan validasi
+    }
 
-        String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
+    String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
 
-        try {
-            query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
-            JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
+    try {
+        query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
+        JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
 
-            // Memperbarui tampilan dengan menampilkan TampilanSuratMasuk
-            admin.DashboardUtama.SubPanel.removeAll();
-            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
-            admin.DashboardUtama.SubPanel.revalidate();
-            admin.DashboardUtama.SubPanel.repaint();
+        // Memperbarui tampilan dengan menampilkan TampilanSuratMasuk
+        admin.DashboardUtama.SubPanel.removeAll();
+        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
+        admin.DashboardUtama.SubPanel.revalidate();
+        admin.DashboardUtama.SubPanel.repaint();
 
-        } catch (Exception ex) {
-            Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, "Gagal memasukkan data: " + ex.getMessage(), ex);
-            JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
-        }
+    } catch (Exception ex) {
+        Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, "Gagal memasukkan data: " + ex.getMessage(), ex);
+        JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
+    }
         
     }//GEN-LAST:event_simpanMouseClicked
 
     private void simpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseEntered
     simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    simpan.setBackground(new java.awt.Color(172, 10, 10));
+    simpan.setBackground(new java.awt.Color(217, 217, 217));
     
     }//GEN-LAST:event_simpanMouseEntered
 
     private void simpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseExited
     simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    simpan.setBackground(new java.awt.Color(125, 10, 10));
+    simpan.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_simpanMouseExited
 
     private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
@@ -651,16 +619,8 @@ private String convertToRoman(int month) {
 
     private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
     kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    kembali.setBackground(new java.awt.Color(196, 196, 196)); // Kembalikan warna saat dilepaskan
+    kembali.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_kembaliMouseExited
-
-    private void kembaliMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMousePressed
-
-    }//GEN-LAST:event_kembaliMousePressed
-
-    private void kembaliMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseReleased
-  
-    }//GEN-LAST:event_kembaliMouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dateChooser1.showPopup();
@@ -685,7 +645,7 @@ private String convertToRoman(int month) {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kategori;
+    private javax.swing.JComboBox<String> kategori;
     private java.awt.Panel kembali;
     private javax.swing.JTextField kode_lembaga;
     private javax.swing.JTextField nama_instansi;
