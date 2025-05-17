@@ -31,8 +31,8 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Kembali" min="-2" pref="180" max="-2" attributes="0"/>
-                  <Component id="iconPeriode2" min="-2" max="-2" attributes="0"/>
-                  <Component id="iconPeriode3" min="-2" max="-2" attributes="0"/>
+                  <Component id="perbesar" min="-2" max="-2" attributes="0"/>
+                  <Component id="perkecil" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="420" max="32767" attributes="0"/>
@@ -46,9 +46,9 @@
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="iconPeriode2" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="perbesar" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="iconPeriode3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="perkecil" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace pref="322" max="32767" attributes="0"/>
                       <Component id="Kembali" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -85,22 +85,29 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
-    <Component class="javax.swing.JLabel" name="iconPeriode2">
+    <Component class="javax.swing.JLabel" name="perbesar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/bahan/globalIcon/memperbesar-30px.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="iconPeriode2MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perbesarMouseExited"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="iconPeriode3">
+    <Component class="javax.swing.JLabel" name="perkecil">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/bahan/globalIcon/memperkecil-30px.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="perkecilMouseExited"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
