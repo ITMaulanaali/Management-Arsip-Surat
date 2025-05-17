@@ -20,10 +20,13 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import lib.Query;
 /**
  *
@@ -36,11 +39,15 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
     private byte[] file;
     
     private static final String DEFAULT_SEARCH_TEXT = "Cari";
+    private ArrayList<String> status_notifikasi_surat;
+    private ArrayList<Object[]> baris;
     
     public TampilanSuratMasuk() {
+       this.status_notifikasi_surat = new ArrayList();
+       this.baris = new ArrayList();
        initComponents();
        kustomTable();
-        menampilkanSuratMasuk();
+       menampilkanSuratMasuk();
         
         // Set default text and add focus listener
         cari.setText(DEFAULT_SEARCH_TEXT);
@@ -103,10 +110,57 @@ private void kustomTable() {
         }
     });
 }
+
+private void setWarnaBaris() {
+    TableCellRenderer customRenderer = new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus,
+                                                       int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Cek kolom status
+            int statusCol = -1;
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                if ("Status".equalsIgnoreCase(table.getColumnName(i))) {
+                    statusCol = i;
+                    break;
+                }
+            }
+
+            if (statusCol != -1) {
+                Object statusValue = status_notifikasi_surat.get(row);
+                if ("Belum Dibaca".equalsIgnoreCase(String.valueOf(statusValue))) {
+                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.BOLD, 14));
+                    c.setForeground(Color.BLACK); // Tetap hitam, tapi bisa kamu ubah kalau mau
+                } else {
+                    // Default font untuk baris lain
+                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.PLAIN, 14));
+                    c.setForeground(Color.BLACK);
+                }
+            }
+
+            if (!isSelected) {
+                c.setBackground(new Color(255, 255, 255, 150)); // transparan putih
+            } else {
+                c.setBackground(new Color(100, 10, 10));
+                c.setForeground(table.getSelectionForeground());
+            }
+
+            return c;
+        }
+    };
+
+    // Terapkan renderer ke semua kolom
+    for (int i = 0; i < tabel_suratMasuk.getColumnCount(); i++) {
+        tabel_suratMasuk.getColumnModel().getColumn(i).setCellRenderer(customRenderer);
+    }
+}
+
     
      void menampilkanSuratMasuk(){
         try {
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
@@ -117,19 +171,28 @@ private void kustomTable() {
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status");
             
-            
+            int index = 0;
             while(hasil.next()){
                 String no = hasil.getString("surat_masuk.no_surat");
                 String tanggal = hasil.getString("tanggal_surat");
                 String pengirim = hasil.getString("pengirim");
                 String kategori = hasil.getString("kategori");
                 String perihal = hasil.getString("perihal");
-                String status_notifikasi = hasil.getString("status_disposisi");
+                String status_notifikasi_disposisi = hasil.getString("status_disposisi");
                 
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+                this.status_notifikasi_surat.add(hasil.getString("surat_masuk.status_notifikasi"));
+                this.baris.add(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi_disposisi});
+                index++;
             }
+            Collections.reverse(this.baris);
+            Collections.reverse(this.status_notifikasi_surat);
+            for (Object[] row : this.baris) {
+                modelTable.addRow(row);
+            }
+            
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);
+            setWarnaBaris();
             
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
