@@ -85,7 +85,6 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         
     setPlaceholder(penerima, "Nama Penerima");
     setPlaceholder(alamat, "Nama Instansi");
-    setPlaceholder(kategori, "Lomba");
 //    setPlaceholder(urutan_surat, DEFAULT_URUTAN_TEXT);
     setPlaceholder(kode_lembaga, DEFAULT_KODE_LEMBAGA_TEXT);
     setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
@@ -158,7 +157,6 @@ this.tahunAngka = sekarang.getYear();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        kategori = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         penerima = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -183,6 +181,7 @@ this.tahunAngka = sekarang.getYear();
         nama_instansi = new javax.swing.JTextField();
         tanggal_surat_keluar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        kategori = new javax.swing.JComboBox<>();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(tanggal_surat_keluar);
@@ -206,10 +205,6 @@ this.tahunAngka = sekarang.getYear();
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Kategori");
-
-        kategori.setBackground(new java.awt.Color(196, 196, 196));
-        kategori.setText("Lomba");
-        kategori.setPreferredSize(new java.awt.Dimension(40, 30));
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -384,6 +379,8 @@ this.tahunAngka = sekarang.getYear();
             }
         });
 
+        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Umum" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -397,9 +394,9 @@ this.tahunAngka = sekarang.getYear();
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(281, 281, 281)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(file, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -486,9 +483,9 @@ this.tahunAngka = sekarang.getYear();
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addGap(5, 5, 5)
+                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
@@ -528,10 +525,12 @@ this.tahunAngka = sekarang.getYear();
                         + "/" + convertToRoman(Integer.parseInt(this.bulanAngka)) + "/" + this.tahunAngka;
     String tanggal = tanggal_surat_keluar.getText();
     String namapenerima = penerima.getText();
-    String personalkategori = kategori.getText();
+    
+    // Ambil kategori dari JComboBox
+    String personalkategori = (String) kategori.getSelectedItem(); // Mengambil kategori yang dipilih
     String catatanperihal = perihal.getText();
     String file_surat = "";
-    if(this.lokasiFileLengkap != null){
+    if (this.lokasiFileLengkap != null) {
         file_surat = this.lokasiFileLengkap;
     }
     String tandastatuspengiriman = (String) status.getSelectedItem();
@@ -539,29 +538,10 @@ this.tahunAngka = sekarang.getYear();
 
     // Validasi input
     if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapenerima.equals("Nama Penerima") ||
-        namaalamat.equals("Nama Instansi") || personalkategori.isEmpty() || catatanperihal.isEmpty() ||
+        namaalamat.equals("Nama Instansi") || personalkategori == null || catatanperihal.isEmpty() ||
         file_surat.isEmpty() || tandastatuspengiriman == null) {
 
        JOptionPane.showMessageDialog(this, "Harap lengkapi semua data sebelum arsipkan.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
-    }
-
-    // Validasi bulan romawi
-    String[] bulanRomawi = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"};
-    if (!Arrays.asList(bulanRomawi).contains(convertToRoman(Integer.parseInt(this.bulanAngka)))) {
-        JOptionPane.showMessageDialog(this, "Bulan harus dalam bentuk romawi (I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII)", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
-    }
-
-    // Validasi tahun harus angka
-    try {
-        int tahunValue = this.tahunAngka;
-        if (tahunValue < 0) {
-           JOptionPane.showMessageDialog(this, "Tahun harus berupa angka positif.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-           return; // Keluar dari metode jika ada field yang kosong
-        }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Tahun harus berupa angka.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         return; // Keluar dari metode jika ada field yang kosong
     }
 
@@ -590,19 +570,19 @@ this.tahunAngka = sekarang.getYear();
         Logger.getLogger(admin.menuSuratMasuk.ArsipkanSurat.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(this, "Gagal Ditambahkan!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
         return; // Keluar dari metode jika ada field yang kosong
-    }     
+    }    
 
     }//GEN-LAST:event_simpanMouseClicked
 
     private void simpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseEntered
         simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-        simpan.setBackground(new java.awt.Color(172, 10, 10));
+        simpan.setBackground(new java.awt.Color(217, 217, 217));
 
     }//GEN-LAST:event_simpanMouseEntered
 
     private void simpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseExited
         simpan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        simpan.setBackground(new java.awt.Color(125, 10, 10));
+        simpan.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_simpanMouseExited
 
     private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
@@ -621,7 +601,7 @@ this.tahunAngka = sekarang.getYear();
 
     private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
         kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-        kembali.setBackground(new java.awt.Color(196, 196, 196)); // Kembalikan warna saat dilepaskan
+        kembali.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
     }//GEN-LAST:event_kembaliMouseExited
 
     private void urutan_suratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urutan_suratActionPerformed
@@ -661,7 +641,7 @@ this.tahunAngka = sekarang.getYear();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField kategori;
+    private javax.swing.JComboBox<String> kategori;
     private java.awt.Panel kembali;
     private javax.swing.JTextField kode_lembaga;
     private javax.swing.JTextField nama_instansi;
