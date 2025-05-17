@@ -178,6 +178,9 @@ private void kustomTable() {
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        jScrollPane2.setMinimumSize(new java.awt.Dimension(60, 80));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 80));
+
         tableKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

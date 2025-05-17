@@ -266,7 +266,7 @@ private void kustomTable() {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        tabel_suratkeluar.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        tabel_suratkeluar.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         tabel_suratkeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -220,7 +220,7 @@ private void kustomTable() {
             }
         });
 
-        TableUser.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        TableUser.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         TableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
