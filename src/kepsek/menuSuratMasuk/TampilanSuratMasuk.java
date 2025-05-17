@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package kepsek.menuSuratMasuk;
 
 import admin.menuKelolaAkun.TampilanKelolaAkun;
@@ -437,7 +433,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
 
     } else if (evt.getClickCount() == 2) {
         // Double click: open LihatSurat panel with selected row details
-        String[] data = new String[6];
+        String[] data = new String[7];
 
         data[0] = (String) tabel_suratMasuk.getValueAt(baris, 0);
         data[1] = (String) tabel_suratMasuk.getValueAt(baris, 1);
@@ -445,6 +441,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
         data[3] = (String) tabel_suratMasuk.getValueAt(baris, 3);
         data[4] = (String) tabel_suratMasuk.getValueAt(baris, 4);
         data[5] = (String) tabel_suratMasuk.getValueAt(baris, 5);
+        data[6] = (String) this.status_notifikasi_surat.get(baris);
 
         try {
             String[] atributs = {"no_surat", "file_surat"};

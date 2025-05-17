@@ -55,9 +55,9 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         PanelMenuSuratMasuk = new javax.swing.JPanel();
+        notif = new javax.swing.JLabel();
         iconPeriode2 = new javax.swing.JLabel();
         LabelSuratMasuk = new javax.swing.JLabel();
-        notif = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         logout = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -142,15 +142,15 @@ public class DashboardUtama extends javax.swing.JPanel {
             }
         });
 
+        notif.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        notif.setText("4");
+
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
         LabelSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
         LabelSuratMasuk.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         LabelSuratMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelSuratMasuk.setText("Surat Masuk");
-
-        notif.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
-        notif.setText("4");
 
         javax.swing.GroupLayout PanelMenuSuratMasukLayout = new javax.swing.GroupLayout(PanelMenuSuratMasuk);
         PanelMenuSuratMasuk.setLayout(PanelMenuSuratMasukLayout);
@@ -212,12 +212,11 @@ public class DashboardUtama extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
