@@ -115,39 +115,49 @@ private void setWarnaBaris() {
                                                        int row, int column) {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-            // Cek kolom status
+            c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.PLAIN, 15));
+            c.setForeground(Color.BLACK);
+            c.setBackground(new Color(255, 255, 255, 150)); // default
+
             int statusCol = -1;
+            int kategoriCol = -1;
             for (int i = 0; i < table.getColumnCount(); i++) {
                 if ("Status".equalsIgnoreCase(table.getColumnName(i))) {
                     statusCol = i;
-                    break;
+                }
+                if ("Kategori".equalsIgnoreCase(table.getColumnName(i))) {
+                    kategoriCol = i;
                 }
             }
 
-            if (statusCol != -1) {
+            if (statusCol != -1 && kategoriCol != -1) {
                 Object statusValue = status_notifikasi_surat.get(row);
-                if ("Belum Dibaca".equalsIgnoreCase(String.valueOf(statusValue))) {
-                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.BOLD, 14));
-                    c.setForeground(Color.BLACK); // Tetap hitam, tapi bisa kamu ubah kalau mau
-                } else {
-                    // Default font untuk baris lain
-                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.PLAIN, 14));
-                    c.setForeground(Color.BLACK);
+                Object kategoriValue = table.getValueAt(row, kategoriCol);
+
+                if ("Belum Dibaca".equalsIgnoreCase(String.valueOf(statusValue)) && "Penting".equalsIgnoreCase(String.valueOf(kategoriValue))) {
+                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.BOLD, 15));
+                    c.setBackground(new Color(200,10,10,200));
+                    c.setForeground(Color.WHITE);
+                } else if ("Belum Dibaca".equalsIgnoreCase(String.valueOf(statusValue)) && "Segera".equalsIgnoreCase(String.valueOf(kategoriValue))) {
+                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.BOLD, 15));
+                    c.setBackground(new Color(200, 200, 10, 200));
+                    c.setForeground(Color.WHITE);
+                }else if ("Belum Dibaca".equalsIgnoreCase(String.valueOf(statusValue))) {
+                    c.setFont(new java.awt.Font("Liberation Sans", java.awt.Font.BOLD, 15));
+                    // Tetap background default
                 }
             }
 
-            if (!isSelected) {
-                c.setBackground(new Color(255, 255, 255, 150)); // transparan putih
-            } else {
+            // Handle warna jika dipilih
+            if (isSelected) {
                 c.setBackground(new Color(100, 10, 10));
-                c.setForeground(table.getSelectionForeground());
+                c.setForeground(Color.WHITE);
             }
 
             return c;
         }
     };
 
-    // Terapkan renderer ke semua kolom
     for (int i = 0; i < tabel_suratMasuk.getColumnCount(); i++) {
         tabel_suratMasuk.getColumnModel().getColumn(i).setCellRenderer(customRenderer);
     }
@@ -241,7 +251,15 @@ private void setWarnaBaris() {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratMasukMousePressed(evt);
