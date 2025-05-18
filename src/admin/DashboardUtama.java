@@ -347,35 +347,29 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered
     PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    PanelMenuSuratMasuk.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseEntered
 
     private void PanelMenuSuratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseExited
     PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    PanelMenuSuratMasuk.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseExited
 
     private void panel_surat_keluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseEntered
  
     panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    panel_surat_keluar.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_surat_keluarMouseEntered
 
     private void panel_surat_keluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseExited
     panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    panel_surat_keluar.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_surat_keluarMouseExited
 
     private void panel_kelola_akunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseEntered
 
     panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    panel_kelola_akun.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_kelola_akunMouseEntered
 
     private void panel_kelola_akunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseExited
 
     panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    panel_kelola_akun.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_kelola_akunMouseExited
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
