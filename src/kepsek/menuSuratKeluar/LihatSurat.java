@@ -9,8 +9,6 @@ import admin.menuSuratMasuk.*;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JPanel;
-import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
 import lib.PdfDiJpanel;
 
@@ -22,11 +20,11 @@ public class LihatSurat extends javax.swing.JPanel {
     public LihatSurat(String[] data, byte[] pdfBiner) {
        initComponents();
         this.data = data;
-        this.fileBiner = fileBiner;
+        this.fileBiner = pdfBiner;
         this.pdf = new PdfDiJpanel();
         
         setupContent();
-        refreshNotif();
+//        refreshNotif();
     }
     
         @Override
@@ -36,22 +34,22 @@ public class LihatSurat extends javax.swing.JPanel {
         g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
     
-    private void refreshNotif(){
-        if(!this.data[5].equals("Sudah Dibaca")){
-            try{
-            PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca' WHERE no_surat = ?");
-            statement.setString(1, this.data[0]);
-            boolean result = statement.execute();
-            
-                String totalNotif = kepsek.DashboardUtama.notif.getText();
-                int i = Integer.parseInt(totalNotif);
-                kepsek.DashboardUtama.notif.setText(Integer.toString(--i));
-            
-        }catch(Exception ex){
-            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-    }
+//    private void refreshNotif(){
+//        if(!this.data[5].equals("Sudah Dibaca")){
+//            try{
+//            PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca' WHERE no_surat = ?");
+//            statement.setString(1, this.data[0]);
+//            boolean result = statement.execute();
+//            
+//                String totalNotif = kepsek.DashboardUtama.notif.getText();
+//                int i = Integer.parseInt(totalNotif);
+//                kepsek.DashboardUtama.notif.setText(Integer.toString(--i));
+//            
+//        }catch(Exception ex){
+//            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        }
+//    }
 
     private void setupContent() {
         // Create a panel to hold the content
@@ -84,30 +82,16 @@ public class LihatSurat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Kembali = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         perbesar = new javax.swing.JLabel();
         perkecil = new javax.swing.JLabel();
+        kembali = new java.awt.Panel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
-
-        Kembali.setBackground(new java.awt.Color(214, 203, 203));
-        Kembali.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Kembali.setText("Kembali");
-        Kembali.setMinimumSize(new java.awt.Dimension(83, 40));
-        Kembali.setPreferredSize(new java.awt.Dimension(80, 40));
-        Kembali.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KembaliMouseClicked(evt);
-            }
-        });
-        Kembali.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KembaliActionPerformed(evt);
-            }
-        });
 
         perbesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
         perbesar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,6 +119,44 @@ public class LihatSurat extends javax.swing.JPanel {
             }
         });
 
+        kembali.setBackground(new java.awt.Color(255, 255, 255));
+        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                kembaliMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kembaliMouseExited(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel13.setText("Kembali");
+
+        javax.swing.GroupLayout kembaliLayout = new javax.swing.GroupLayout(kembali);
+        kembali.setLayout(kembaliLayout);
+        kembaliLayout.setHorizontalGroup(
+            kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kembaliLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel13)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        kembaliLayout.setVerticalGroup(
+            kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kembaliLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,10 +164,10 @@ public class LihatSurat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(perbesar)
-                    .addComponent(perkecil))
-                .addGap(90, 90, 90)
+                    .addComponent(perkecil)
+                    .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(101, 101, 101)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addGap(150, 150, 150))
         );
@@ -159,23 +181,11 @@ public class LihatSurat extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(perkecil, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
-                        .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
-        // TODO add your handling code here:
-        kepsek.DashboardUtama.SubPanel.removeAll();
-        kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.TampilanSuratKeluar());
-        kepsek.DashboardUtama.SubPanel.revalidate();
-        kepsek.DashboardUtama.SubPanel.repaint();
-    }//GEN-LAST:event_KembaliActionPerformed
-
-    private void KembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KembaliMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KembaliMouseClicked
 
     private void perbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseClicked
         // TODO add your handling code here:
@@ -213,10 +223,30 @@ public class LihatSurat extends javax.swing.JPanel {
     perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse
     }//GEN-LAST:event_perkecilMouseExited
 
+    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
+
+        kepsek.DashboardUtama.SubPanel.removeAll();
+        kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.TampilanSuratKeluar());
+        kepsek.DashboardUtama.SubPanel.revalidate();
+        kepsek.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_kembaliMouseClicked
+
+    private void kembaliMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseEntered
+        kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        kembali.setBackground(new java.awt.Color(217, 217, 217));
+    }//GEN-LAST:event_kembaliMouseEntered
+
+    private void kembaliMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseExited
+        kembali.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        kembali.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
+    }//GEN-LAST:event_kembaliMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Kembali;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.Panel kembali;
     private javax.swing.JLabel perbesar;
     private javax.swing.JLabel perkecil;
     // End of variables declaration//GEN-END:variables

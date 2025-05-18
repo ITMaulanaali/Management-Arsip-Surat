@@ -56,43 +56,21 @@ public class LihatSuratv2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        kembali1 = new javax.swing.JButton();
         panelLihatsurat = new javax.swing.JScrollPane();
         imagePdf = new javax.swing.JLabel();
-        zoomOut = new javax.swing.JPanel();
-        iconPeriode3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        zoomIn = new javax.swing.JPanel();
+        zoomOut = new javax.swing.JLabel();
         iconPeriode4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        kembali1 = new java.awt.Panel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
-        kembali1.setBackground(new java.awt.Color(214, 203, 203));
-        kembali1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        kembali1.setText("Kembali");
-        kembali1.setMinimumSize(new java.awt.Dimension(83, 40));
-        kembali1.setPreferredSize(new java.awt.Dimension(80, 40));
-        kembali1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                kembali1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                kembali1MouseExited(evt);
-            }
-        });
-        kembali1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembali1ActionPerformed(evt);
-            }
-        });
-
         panelLihatsurat.setViewportView(imagePdf);
 
-        zoomOut.setBackground(new java.awt.Color(217, 217, 217));
-        zoomOut.setPreferredSize(new java.awt.Dimension(100, 40));
+        zoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
         zoomOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 zoomOutMouseClicked(evt);
@@ -105,68 +83,55 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             }
         });
 
-        iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperbesar-30px.png"))); // NOI18N
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel8.setText("Perlebar");
-
-        javax.swing.GroupLayout zoomOutLayout = new javax.swing.GroupLayout(zoomOut);
-        zoomOut.setLayout(zoomOutLayout);
-        zoomOutLayout.setHorizontalGroup(
-            zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(zoomOutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPeriode3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        zoomOutLayout.setVerticalGroup(
-            zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(zoomOutLayout.createSequentialGroup()
-                .addGroup(zoomOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iconPeriode3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
-        );
-
-        zoomIn.setBackground(new java.awt.Color(217, 217, 217));
-        zoomIn.setPreferredSize(new java.awt.Dimension(100, 40));
-        zoomIn.addMouseListener(new java.awt.event.MouseAdapter() {
+        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
+        iconPeriode4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                zoomInMouseClicked(evt);
+                iconPeriode4MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                zoomInMouseEntered(evt);
+                iconPeriode4MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                zoomInMouseExited(evt);
+                iconPeriode4MouseExited(evt);
             }
         });
 
-        iconPeriode4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/memperkecil-30px.png"))); // NOI18N
+        kembali1.setBackground(new java.awt.Color(255, 255, 255));
+        kembali1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembali1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                kembali1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kembali1MouseExited(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel9.setText("Perkecil");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
-        javax.swing.GroupLayout zoomInLayout = new javax.swing.GroupLayout(zoomIn);
-        zoomIn.setLayout(zoomInLayout);
-        zoomInLayout.setHorizontalGroup(
-            zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(zoomInLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(iconPeriode4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel14.setText("Kembali");
+
+        javax.swing.GroupLayout kembali1Layout = new javax.swing.GroupLayout(kembali1);
+        kembali1.setLayout(kembali1Layout);
+        kembali1Layout.setHorizontalGroup(
+            kembali1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kembali1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        zoomInLayout.setVerticalGroup(
-            zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(zoomInLayout.createSequentialGroup()
-                .addGroup(zoomInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(iconPeriode4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
+        kembali1Layout.setVerticalGroup(
+            kembali1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kembali1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -175,11 +140,11 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(kembali1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(zoomOut, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(zoomIn, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(zoomOut)
+                    .addComponent(iconPeriode4)
+                    .addComponent(kembali1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(101, 101, 101)
                 .addComponent(panelLihatsurat, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
@@ -188,26 +153,16 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(zoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(zoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(iconPeriode4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                         .addComponent(kembali1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelLihatsurat))
                 .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void kembali1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembali1ActionPerformed
-       
-            waka.DashboardUtama.SubPanel.removeAll();
-            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(tglDisposisi, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role));
-            waka.DashboardUtama.SubPanel.revalidate();
-            waka.DashboardUtama.SubPanel.repaint();
-        
-    }//GEN-LAST:event_kembali1ActionPerformed
 
     private void zoomOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseClicked
         try {
@@ -215,8 +170,16 @@ public class LihatSuratv2 extends javax.swing.JPanel {
             imagePdf.setIcon(this.pdf.getIcon());
         } catch (Exception ex) {
             Logger.getLogger(LihatSuratv2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
     }//GEN-LAST:event_zoomOutMouseClicked
+
+    private void zoomOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseEntered
+        zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_zoomOutMouseEntered
+
+    private void zoomOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseExited
+        zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_zoomOutMouseExited
 
     private void zoomInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseClicked
         try {
@@ -227,40 +190,61 @@ public class LihatSuratv2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_zoomInMouseClicked
 
-    private void kembali1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembali1MouseEntered
-       kembali1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    }//GEN-LAST:event_kembali1MouseEntered
-
-    private void kembali1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembali1MouseExited
-       kembali1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    }//GEN-LAST:event_kembali1MouseExited
-
-    private void zoomOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseEntered
-       zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    }//GEN-LAST:event_zoomOutMouseEntered
-
-    private void zoomOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseExited
-        zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    }//GEN-LAST:event_zoomOutMouseExited
-
     private void zoomInMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseEntered
-        zoomIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
     }//GEN-LAST:event_zoomInMouseEntered
 
     private void zoomInMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseExited
-        zoomIn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
     }//GEN-LAST:event_zoomInMouseExited
+
+    private void kembali1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembali1MouseClicked
+
+              
+            waka.DashboardUtama.SubPanel.removeAll();
+            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(tglDisposisi, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role));
+            waka.DashboardUtama.SubPanel.revalidate();
+            waka.DashboardUtama.SubPanel.repaint();
+    }//GEN-LAST:event_kembali1MouseClicked
+
+    private void kembali1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembali1MouseEntered
+        kembali1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        kembali1.setBackground(new java.awt.Color(217, 217, 217));
+    }//GEN-LAST:event_kembali1MouseEntered
+
+    private void kembali1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembali1MouseExited
+        kembali1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        kembali1.setBackground(new java.awt.Color(255,255,255)); // Kembalikan warna saat dilepaskan
+    }//GEN-LAST:event_kembali1MouseExited
+
+    private void iconPeriode4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseExited
+        iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    }//GEN-LAST:event_iconPeriode4MouseExited
+
+    private void iconPeriode4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseEntered
+        iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    }//GEN-LAST:event_iconPeriode4MouseEntered
+
+    private void iconPeriode4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseClicked
+          try {
+            this.pdf.zoomIn();
+            imagePdf.setIcon(this.pdf.getIcon());
+        } catch (Exception ex) {
+            Logger.getLogger(LihatSuratv2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_iconPeriode4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel iconPeriode3;
     private javax.swing.JLabel iconPeriode4;
     private javax.swing.JLabel imagePdf;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton kembali1;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private java.awt.Panel kembali;
+    private java.awt.Panel kembali1;
     private javax.swing.JScrollPane panelLihatsurat;
-    private javax.swing.JPanel zoomIn;
-    private javax.swing.JPanel zoomOut;
+    private javax.swing.JLabel zoomOut;
     // End of variables declaration//GEN-END:variables
 }

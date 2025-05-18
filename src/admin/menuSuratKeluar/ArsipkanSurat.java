@@ -165,8 +165,6 @@ this.tahunAngka = sekarang.getYear();
         jLabel12 = new javax.swing.JLabel();
         file = new javax.swing.JTextField();
         alamat = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        perihal = new javax.swing.JTextArea();
         upload = new javax.swing.JButton();
         simpan = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
@@ -182,6 +180,7 @@ this.tahunAngka = sekarang.getYear();
         tanggal_surat_keluar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         kategori = new javax.swing.JComboBox<>();
+        perihal = new javax.swing.JTextField();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(tanggal_surat_keluar);
@@ -248,11 +247,6 @@ this.tahunAngka = sekarang.getYear();
         alamat.setBackground(new java.awt.Color(196, 196, 196));
         alamat.setText("Alamat Lengkap");
         alamat.setPreferredSize(new java.awt.Dimension(40, 30));
-
-        perihal.setBackground(new java.awt.Color(196, 196, 196));
-        perihal.setColumns(20);
-        perihal.setRows(5);
-        jScrollPane1.setViewportView(perihal);
 
         upload.setText("Pilih File");
         upload.addActionListener(new java.awt.event.ActionListener() {
@@ -381,12 +375,21 @@ this.tahunAngka = sekarang.getYear();
 
         kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Segera", "Umum" }));
 
+        perihal.setEditable(false);
+        perihal.setBackground(new java.awt.Color(196, 196, 196));
+        perihal.setPreferredSize(new java.awt.Dimension(40, 30));
+        perihal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perihalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,14 +440,17 @@ this.tahunAngka = sekarang.getYear();
                                 .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(penerima, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(penerima, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(491, Short.MAX_VALUE)
+                    .addComponent(perihal, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(49, 49, 49)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5)
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,12 +480,9 @@ this.tahunAngka = sekarang.getYear();
                     .addComponent(jLabel6)
                     .addComponent(jLabel11))
                 .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -499,6 +502,11 @@ this.tahunAngka = sekarang.getYear();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(199, Short.MAX_VALUE)
+                    .addComponent(perihal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(254, 254, 254)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -620,6 +628,10 @@ this.tahunAngka = sekarang.getYear();
         dateChooser1.showPopup();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void perihalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perihalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_perihalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamat;
@@ -640,13 +652,12 @@ this.tahunAngka = sekarang.getYear();
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> kategori;
     private java.awt.Panel kembali;
     private javax.swing.JTextField kode_lembaga;
     private javax.swing.JTextField nama_instansi;
     private javax.swing.JTextField penerima;
-    private javax.swing.JTextArea perihal;
+    private javax.swing.JTextField perihal;
     private java.awt.Panel simpan;
     private javax.swing.JComboBox<String> status;
     private javax.swing.JTextField tanggal_surat_keluar;
