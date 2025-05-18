@@ -7,6 +7,7 @@ import admin.menuSuratMasuk.*;
 import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -261,6 +262,12 @@ private void setWarnaBaris() {
             }
         });
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratMasukMousePressed(evt);
             }
@@ -478,21 +485,20 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
     }//GEN-LAST:event_tabel_suratMasukMousePressed
 
     private void tabel_suratMasukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabel_suratMasukKeyPressed
-                tabel_suratMasuk.addKeyListener(new KeyAdapter() {
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            e.consume(); // Mencegah enter berpindah ke baris bawah
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            evt.consume(); // Mencegah enter berpindah ke baris bawah
 
             int baris = tabel_suratMasuk.getSelectedRow();
             if (baris >= 0) {
-                String[] data = new String[6];
+                String[] data = new String[7];
                 data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
                 data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
                 data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
                 data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
                 data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
                 data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
+                data[6] = (String) status_notifikasi_surat.get(baris);
 
                 byte[] file = null;
                 try {
@@ -514,9 +520,16 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                 kepsek.DashboardUtama.SubPanel.repaint();
             }
         }
-    }
-});
+    
     }//GEN-LAST:event_tabel_suratMasukKeyPressed
+
+    private void tabel_suratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseEntered
+        tabel_suratMasuk.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tabel_suratMasukMouseEntered
+
+    private void tabel_suratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseExited
+        tabel_suratMasuk.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tabel_suratMasukMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

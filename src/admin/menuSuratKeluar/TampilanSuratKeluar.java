@@ -6,6 +6,7 @@ import admin.menuSuratMasuk.*;
 import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -220,7 +221,7 @@ private void kustomTable() {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         panel_arsipkanLayout.setVerticalGroup(
             panel_arsipkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +256,7 @@ private void kustomTable() {
                 .addComponent(iconPeriode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panel_periodeLayout.setVerticalGroup(
             panel_periodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,6 +288,12 @@ private void kustomTable() {
             }
         });
         tabel_suratkeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabel_suratkeluarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabel_suratkeluarMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratkeluarMousePressed(evt);
             }
@@ -326,7 +333,7 @@ private void kustomTable() {
                 .addComponent(iconPeriode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         editLayout.setVerticalGroup(
             editLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +348,7 @@ private void kustomTable() {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(22, 22, 22)
                         .addComponent(jScrollPane2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -349,14 +356,14 @@ private void kustomTable() {
                                 .addGap(22, 22, 22)
                                 .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(310, 310, 310)
-                                .addComponent(edit, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
-                                .addComponent(panel_arsipkan, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
+                                .addComponent(panel_arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pilih, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panel_periode, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))))
+                            .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panel_periode, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -371,8 +378,8 @@ private void kustomTable() {
                     .addComponent(panel_periode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -575,11 +582,9 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
     }//GEN-LAST:event_editMouseExited
 
     private void tabel_suratkeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabel_suratkeluarKeyPressed
- tabel_suratkeluar.addKeyListener(new KeyAdapter() {
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            e.consume(); // Cegah ENTER berpindah ke baris bawah
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            evt.consume(); // Cegah ENTER berpindah ke baris bawah
 
             int baris = tabel_suratkeluar.getSelectedRow();
             if (baris >= 0) {
@@ -613,9 +618,15 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
                 admin.DashboardUtama.SubPanel.repaint();
             }
         }
-    }
-});
     }//GEN-LAST:event_tabel_suratkeluarKeyPressed
+
+    private void tabel_suratkeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseEntered
+        tabel_suratkeluar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tabel_suratkeluarMouseEntered
+
+    private void tabel_suratkeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseExited
+        tabel_suratkeluar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tabel_suratkeluarMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

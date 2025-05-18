@@ -36,13 +36,6 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
 }));
     }   
     
-        @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
-        g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
-    }
-    
     private String[][] getData(){
         ArrayList<String> nodisposisi = new ArrayList();
         ArrayList<String> tgldisposisi = new ArrayList();

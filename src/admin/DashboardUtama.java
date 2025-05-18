@@ -1,6 +1,7 @@
 package admin;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class DashboardUtama extends javax.swing.JPanel {
 
@@ -347,43 +348,39 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered
     PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    PanelMenuSuratMasuk.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseEntered
 
     private void PanelMenuSuratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseExited
     PanelMenuSuratMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    PanelMenuSuratMasuk.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_PanelMenuSuratMasukMouseExited
 
     private void panel_surat_keluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseEntered
  
     panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    panel_surat_keluar.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_surat_keluarMouseEntered
 
     private void panel_surat_keluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_surat_keluarMouseExited
     panel_surat_keluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    panel_surat_keluar.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_surat_keluarMouseExited
 
     private void panel_kelola_akunMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseEntered
 
     panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
-    panel_kelola_akun.setBackground(new java.awt.Color(172, 10, 10));
     }//GEN-LAST:event_panel_kelola_akunMouseEntered
 
     private void panel_kelola_akunMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_kelola_akunMouseExited
 
     panel_kelola_akun.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
-    panel_kelola_akun.setBackground(new java.awt.Color(217,217,217));
     }//GEN-LAST:event_panel_kelola_akunMouseExited
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
-                jPanel2.setBackground(new Color(158,158,158));
+        jPanel2.setBackground(new Color(158,158,158));
+        logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_logoutMouseEntered
 
     private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
         jPanel2.setBackground(new Color(189,189,189));
+        logout.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_logoutMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,9 +2,12 @@ package kepsek;
 
 import admin.*;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import lib.Query;
 
 
@@ -14,6 +17,7 @@ public class DashboardUtama extends javax.swing.JPanel {
     public DashboardUtama() {
         initComponents();
         this.query = new Query();
+        notif.setForeground(Color.WHITE);
         
         String[] atributs = {"status_notifikasi"};
         int i = 0;
@@ -79,7 +83,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Sub Menu");
+        jLabel5.setText("Home");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -88,7 +92,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18))
         );
@@ -108,6 +112,12 @@ public class DashboardUtama extends javax.swing.JPanel {
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel2MouseExited(evt);
             }
         });
 
@@ -140,10 +150,18 @@ public class DashboardUtama extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelMenuSuratMasukMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PanelMenuSuratMasukMouseExited(evt);
+            }
         });
 
         notif.setFont(new java.awt.Font("C059", 1, 18)); // NOI18N
+        notif.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         notif.setText("4");
+        notif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
@@ -161,8 +179,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LabelSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notif)
-                .addContainerGap())
+                .addComponent(notif, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PanelMenuSuratMasukLayout.setVerticalGroup(
             PanelMenuSuratMasukLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,9 +231,9 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -298,11 +315,29 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
         jPanel3.setBackground(new Color(158,158,158));
+        logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_logoutMouseEntered
 
     private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
         jPanel3.setBackground(new Color(189,189,189));
+        logout.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_logoutMouseExited
+
+    private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered
+        PanelMenuSuratMasuk.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseEntered
+
+    private void PanelMenuSuratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseExited
+        PanelMenuSuratMasuk.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_PanelMenuSuratMasukMouseExited
+
+    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
+        jPanel2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jPanel2MouseEntered
+
+    private void jPanel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseExited
+        jPanel2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_jPanel2MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

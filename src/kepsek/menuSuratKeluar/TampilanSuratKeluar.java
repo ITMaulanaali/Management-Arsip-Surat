@@ -5,9 +5,9 @@ import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratMasuk.*;
 import admin.menuSuratMasuk.*;
 import admin.menuSuratKeluar.*;
-import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.io.File;
 import java.sql.ResultSet;
@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import lib.Query;
@@ -56,8 +57,8 @@ private byte[] file;
     
     public TampilanSuratKeluar() {
         initComponents();
-        kustomTable();
         menampilkanSuratKeluar();
+        kustomTable();
         cari.setText("Cari");
         
         cari.setText("Cari");
@@ -178,9 +179,6 @@ private void kustomTable() {
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        jScrollPane2.setMinimumSize(new java.awt.Dimension(60, 80));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 80));
-
         tableKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -200,23 +198,32 @@ private void kustomTable() {
                 return canEdit [columnIndex];
             }
         });
+        tableKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableKeluarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tableKeluarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tableKeluarMouseExited(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableKeluar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
-                .addGap(98, 98, 98)
-                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                        .addGap(98, 98, 98)
+                        .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(31, 31, 31)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-                    .addGap(29, 29, 29)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,12 +234,9 @@ private void kustomTable() {
                         .addGap(1, 1, 1)
                         .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(423, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(78, 78, 78)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                    .addGap(28, 28, 28)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -304,6 +308,64 @@ private void kustomTable() {
         Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_cariActionPerformed
+
+    private void tableKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseClicked
+                                                                                            
+    int baris = tableKeluar.rowAtPoint(evt.getPoint());
+    if (baris < 0) {
+        return; // Clicked outside table rows
+    }
+
+    // Simpan data yang dipilih
+    selectedNoSurat = (String) tableKeluar.getValueAt(baris, 0);
+    selectedTanggalSurat = (String) tableKeluar.getValueAt(baris, 1);
+    selectedPenerima = (String) tableKeluar.getValueAt(baris, 2);
+    selectedKategori = (String) tableKeluar.getValueAt(baris, 3);
+    selectedPerihal = (String) tableKeluar.getValueAt(baris, 4);
+    selectedStatusPengiriman = (String) tableKeluar.getValueAt(baris, 5);
+    selectedAlamatTujuan = (String) tableKeluar.getValueAt(baris, 6);
+
+    if (evt.getClickCount() == 2) {
+        // Ambil file surat dari database di thread terpisah
+        new Thread(() -> {
+            try {
+                String[] data = new String[7];
+                data[0] = selectedNoSurat;
+                data[1] = selectedTanggalSurat;
+                data[2] = selectedPenerima;
+                data[3] = selectedKategori;
+                data[4] = selectedPerihal;
+                data[5] = selectedStatusPengiriman;
+                data[6] = selectedAlamatTujuan;
+
+                // Ambil file surat dari database
+                String[] atributs = {"no_surat", "file_surat"};
+                ResultSet hasil = query.setNamaTabel("surat_keluar").setAtribut(atributs).setWhereId("no_surat", data[0]).selectWhereIdDownload();
+                if (hasil.next()) {
+                    this.file = hasil.getBytes("file_surat");
+                }
+
+                // Update UI di thread utama
+                SwingUtilities.invokeLater(() -> {
+                kepsek.DashboardUtama.SubPanel.removeAll();
+                kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.LihatSurat(data, file));
+                kepsek.DashboardUtama.SubPanel.revalidate();
+                kepsek.DashboardUtama.SubPanel.repaint();
+                });
+            } catch (Exception ex) {
+                Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+    }//GEN-LAST:event_tableKeluarMouseClicked
+
+    private void tableKeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseEntered
+        tableKeluar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tableKeluarMouseEntered
+
+    private void tableKeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseExited
+        tableKeluar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tableKeluarMouseExited
                                  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

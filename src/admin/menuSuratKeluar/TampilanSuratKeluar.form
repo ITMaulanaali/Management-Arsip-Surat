@@ -32,7 +32,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -42,16 +42,16 @@
                               <Component id="cari" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="310" max="-2" attributes="0"/>
-                              <Component id="edit" pref="130" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="edit" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="panel_arsipkan" pref="142" max="32767" attributes="0"/>
+                              <Component id="panel_arsipkan" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pilih" max="32767" attributes="0"/>
-                          <Component id="panel_periode" pref="131" max="32767" attributes="0"/>
+                          <Component id="pilih" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="panel_periode" min="-2" pref="131" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -73,8 +73,8 @@
                   <Component id="panel_arsipkan" min="-2" max="-2" attributes="0"/>
                   <Component id="edit" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="330" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="327" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -140,7 +140,7 @@
                   <Component id="iconPeriode1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -191,7 +191,7 @@
                   <Component id="iconPeriode" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel5" max="-2" attributes="0"/>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -274,6 +274,8 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabel_suratkeluarMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabel_suratkeluarMouseExited"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabel_suratkeluarMousePressed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tabel_suratkeluarKeyPressed"/>
           </Events>
@@ -306,7 +308,7 @@
                   <Component id="iconPeriode2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="54" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
