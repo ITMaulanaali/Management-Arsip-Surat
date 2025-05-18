@@ -188,10 +188,12 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
         jPanel3.setBackground(new Color(158,158,158));
+        jLabel2.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jLabel2MouseEntered
 
     private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
         jPanel3.setBackground(new Color(189,189,189));
+        jLabel2.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_jLabel2MouseExited
 
 

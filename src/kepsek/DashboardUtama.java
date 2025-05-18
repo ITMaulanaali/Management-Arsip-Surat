@@ -315,10 +315,12 @@ public class DashboardUtama extends javax.swing.JPanel {
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
         jPanel3.setBackground(new Color(158,158,158));
+        logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_logoutMouseEntered
 
     private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
         jPanel3.setBackground(new Color(189,189,189));
+        logout.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_logoutMouseExited
 
     private void PanelMenuSuratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMenuSuratMasukMouseEntered

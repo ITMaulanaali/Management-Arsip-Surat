@@ -6,6 +6,7 @@ import admin.menuSuratMasuk.*;
 import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -287,6 +288,12 @@ private void kustomTable() {
             }
         });
         tabel_suratkeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabel_suratkeluarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabel_suratkeluarMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratkeluarMousePressed(evt);
             }
@@ -612,6 +619,14 @@ void menampilkanSuratKeluar(String searchText, String selectedOption) {
             }
         }
     }//GEN-LAST:event_tabel_suratkeluarKeyPressed
+
+    private void tabel_suratkeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseEntered
+        tabel_suratkeluar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tabel_suratkeluarMouseEntered
+
+    private void tabel_suratkeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratkeluarMouseExited
+        tabel_suratkeluar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tabel_suratkeluarMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,7 @@
 package admin;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class DashboardUtama extends javax.swing.JPanel {
 
@@ -373,11 +374,13 @@ public class DashboardUtama extends javax.swing.JPanel {
     }//GEN-LAST:event_panel_kelola_akunMouseExited
 
     private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
-                jPanel2.setBackground(new Color(158,158,158));
+        jPanel2.setBackground(new Color(158,158,158));
+        logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_logoutMouseEntered
 
     private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
         jPanel2.setBackground(new Color(189,189,189));
+        logout.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_logoutMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

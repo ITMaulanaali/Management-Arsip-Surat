@@ -6,6 +6,7 @@ import admin.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -262,6 +263,12 @@ private void kustomTable() {
             }
         ));
         tabel_suratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tabel_suratMasukMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabel_suratMasukMousePressed(evt);
             }
@@ -283,10 +290,10 @@ private void kustomTable() {
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(arsipkan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(periode1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,6 +499,14 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             }
         }
     }//GEN-LAST:event_tabel_suratMasukKeyPressed
+
+    private void tabel_suratMasukMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseEntered
+        tabel_suratMasuk.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tabel_suratMasukMouseEntered
+
+    private void tabel_suratMasukMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_suratMasukMouseExited
+        tabel_suratMasuk.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tabel_suratMasukMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
