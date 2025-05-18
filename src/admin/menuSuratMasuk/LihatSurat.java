@@ -1,6 +1,7 @@
 
 package admin.menuSuratMasuk;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -19,6 +20,7 @@ import javax.print.PrintServiceLookup;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 import lib.PdfDiJpanel;
 import lib.Query;
 import login.PdfBoxLoader;
@@ -315,34 +317,42 @@ public class LihatSurat extends javax.swing.JPanel {
 
     private void hapusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseEntered
     hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    hapus.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_hapusMouseEntered
 
     private void hapusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseExited
     hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    hapus.setBorder(null); // Remove border
     }//GEN-LAST:event_hapusMouseExited
 
     private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered
-    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk       
+    cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    cetak.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_cetakMouseEntered
 
     private void cetakMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseExited
     cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar 
+    cetak.setBorder(null); // Remove border
     }//GEN-LAST:event_cetakMouseExited
 
     private void perbesarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseEntered
     perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    perbesar.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_perbesarMouseEntered
 
     private void perbesarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseExited
     perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    perbesar.setBorder(null); // Remove border
     }//GEN-LAST:event_perbesarMouseExited
 
     private void perkecilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseEntered
     perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    perkecil.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_perkecilMouseEntered
 
     private void perkecilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseExited
     perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse kelu
+    perkecil.setBorder(null); // Remove border
     }//GEN-LAST:event_perkecilMouseExited
 
 
