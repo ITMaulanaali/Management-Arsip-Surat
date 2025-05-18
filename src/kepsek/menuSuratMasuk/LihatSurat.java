@@ -3,10 +3,12 @@ package kepsek.menuSuratMasuk;
 import admin.menuKelolaAkun.TampilanKelolaAkun;
 import kepsek.menuSuratKeluar.*;
 import admin.menuSuratMasuk.*;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import java.sql.PreparedStatement;
+import javax.swing.border.LineBorder;
 import lib.PdfDiJpanel;
 
 public class LihatSurat extends javax.swing.JPanel {
@@ -234,26 +236,32 @@ public class LihatSurat extends javax.swing.JPanel {
 
     private void disposisiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disposisiMouseEntered
     disposisi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    disposisi.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_disposisiMouseEntered
 
     private void disposisiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disposisiMouseExited
     disposisi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    disposisi.setBorder(null); // Remove border
     }//GEN-LAST:event_disposisiMouseExited
 
     private void perbesarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseEntered
     perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    perbesar.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_perbesarMouseEntered
 
     private void perbesarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseExited
     perbesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    perbesar.setBorder(null); // Remove border
     }//GEN-LAST:event_perbesarMouseExited
 
     private void perkecilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseEntered
     perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+    perkecil.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_perkecilMouseEntered
 
     private void perkecilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkecilMouseExited
     perkecil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+    perkecil.setBorder(null); // Remove border
     }//GEN-LAST:event_perkecilMouseExited
 
     private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked

@@ -7,12 +7,15 @@ import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.print.PrinterException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -508,8 +511,11 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
     }//GEN-LAST:event_cariActionPerformed
 
     private void cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseClicked
-
-        
+         try {
+            tabel_periode.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(admin.menuSuratMasuk.SuratByPeriode.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cetakMouseClicked
 
     private void cetakMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cetakMouseEntered

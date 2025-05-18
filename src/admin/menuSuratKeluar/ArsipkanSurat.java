@@ -379,7 +379,7 @@ this.tahunAngka = sekarang.getYear();
             }
         });
 
-        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Umum" }));
+        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Segera", "Umum" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
