@@ -99,12 +99,6 @@ private void kustomTable() {
                                                : (row % 2 == 0 ? new Color(255, 255, 255, 150)
                                                                : new Color(255, 255, 255, 180)));
 
-                buttonUpdate.addActionListener(e -> {
-                        admin.DashboardUtama.SubPanel.removeAll();
-                        admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.EditUser());
-                        admin.DashboardUtama.SubPanel.revalidate();
-                        admin.DashboardUtama.SubPanel.repaint();
-                });
 
                 return panel;
             }
@@ -145,11 +139,20 @@ private void kustomTable() {
             panel.add(buttonUpdate);
 
             buttonUpdate.addActionListener(e -> {
-                    admin.DashboardUtama.SubPanel.removeAll();
-                    admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.EditUser());
-                    admin.DashboardUtama.SubPanel.revalidate();
-                    admin.DashboardUtama.SubPanel.repaint();
+                int row = TableUser.getSelectedRow();
+                if (row >= 0) {
+                String nama = (String) TableUser.getValueAt(row, 0);
+                String username = (String) TableUser.getValueAt(row, 1);
+                String peran = (String) TableUser.getValueAt(row, 2);
+
+                // Kirim data ke form EditUser
+                admin.DashboardUtama.SubPanel.removeAll();
+                admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.EditUser(nama, username, peran));
+                admin.DashboardUtama.SubPanel.revalidate();
+                admin.DashboardUtama.SubPanel.repaint();
+                }
             });
+
         }
 
         @Override

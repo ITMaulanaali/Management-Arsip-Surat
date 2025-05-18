@@ -160,7 +160,7 @@ public class Query {
 //            }
             
         for(int i=0; i<this.atribut.size(); i++){
-            if(this.valueString.get(i).equals("path")){
+            if(("path".equals(this.valueString.get(i)))){
                 byte[] dataByte = new byte[(int) this.path.length()];
                 FileInputStream inputStream = new FileInputStream(this.file);
                 inputStream.read(dataByte);
