@@ -218,7 +218,7 @@ public class Login extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 28)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("SMKS Antartika 1 Sidoarjo");
+        jLabel8.setText("SMK Antartika 1 Sidoarjo");
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

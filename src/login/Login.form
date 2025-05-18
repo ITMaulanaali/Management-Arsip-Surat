@@ -255,7 +255,7 @@
               <Font name="Times New Roman" size="28" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="SMKS Antartika 1 Sidoarjo"/>
+            <Property name="text" type="java.lang.String" value="SMK Antartika 1 Sidoarjo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">

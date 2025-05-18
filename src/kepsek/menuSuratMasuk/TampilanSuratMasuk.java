@@ -478,21 +478,20 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
     }//GEN-LAST:event_tabel_suratMasukMousePressed
 
     private void tabel_suratMasukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabel_suratMasukKeyPressed
-                tabel_suratMasuk.addKeyListener(new KeyAdapter() {
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            e.consume(); // Mencegah enter berpindah ke baris bawah
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            evt.consume(); // Mencegah enter berpindah ke baris bawah
 
             int baris = tabel_suratMasuk.getSelectedRow();
             if (baris >= 0) {
-                String[] data = new String[6];
+                String[] data = new String[7];
                 data[0] = (String)tabel_suratMasuk.getValueAt(baris, 0);
                 data[1] = (String)tabel_suratMasuk.getValueAt(baris, 1);
                 data[2] = (String)tabel_suratMasuk.getValueAt(baris, 2);
                 data[3] = (String)tabel_suratMasuk.getValueAt(baris, 3);
                 data[4] = (String)tabel_suratMasuk.getValueAt(baris, 4);
                 data[5] = (String)tabel_suratMasuk.getValueAt(baris, 5);
+                data[6] = (String) status_notifikasi_surat.get(baris);
 
                 byte[] file = null;
                 try {
@@ -514,8 +513,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                 kepsek.DashboardUtama.SubPanel.repaint();
             }
         }
-    }
-});
+    
     }//GEN-LAST:event_tabel_suratMasukKeyPressed
 
 
