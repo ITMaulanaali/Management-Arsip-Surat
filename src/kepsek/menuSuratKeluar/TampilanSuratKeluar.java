@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.ResultSet;
 import java.util.logging.Level;
@@ -31,7 +32,6 @@ private String selectedKategori;
 private String selectedPerihal;
 private String selectedStatusPengiriman;
 private String selectedAlamatTujuan;
-private String selectedFileSurat;
 private byte[] file;
     
   private String getFileSuratFromDatabase(String noSurat) {
@@ -176,9 +176,12 @@ private void kustomTable() {
             }
         });
 
-        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Perihal", "Kategori", "Alamat", "Penerima", "Tanggal Dikirim", "Status Pengiriman", "File" }));
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Tanggal Surat", "Penerima", "Kategori", "Perihal", "Status Pengiriman", "Alamat Tujuan" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        jScrollPane2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+
+        tableKeluar.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tableKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -199,14 +202,19 @@ private void kustomTable() {
             }
         });
         tableKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableKeluarMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tableKeluarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tableKeluarMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableKeluarMousePressed(evt);
+            }
+        });
+        tableKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableKeluarKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(tableKeluar);
@@ -241,7 +249,7 @@ private void kustomTable() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
-        // TODO add your handling code here:
+    // TODO add your handling code here:
   
     String searchText = cari.getText();
     String selectedOption = (String) pilih.getSelectedItem();
@@ -309,8 +317,16 @@ private void kustomTable() {
     }
     }//GEN-LAST:event_cariActionPerformed
 
-    private void tableKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseClicked
-                                                                                            
+    private void tableKeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseEntered
+        tableKeluar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_tableKeluarMouseEntered
+
+    private void tableKeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseExited
+        tableKeluar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_tableKeluarMouseExited
+
+    private void tableKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMousePressed
+                                                                                      
     int baris = tableKeluar.rowAtPoint(evt.getPoint());
     if (baris < 0) {
         return; // Clicked outside table rows
@@ -356,16 +372,46 @@ private void kustomTable() {
                 Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }).start();
-    }
-    }//GEN-LAST:event_tableKeluarMouseClicked
+    }   
+        
+    }//GEN-LAST:event_tableKeluarMousePressed
 
-    private void tableKeluarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseEntered
-        tableKeluar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_tableKeluarMouseEntered
+    private void tableKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableKeluarKeyPressed
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            evt.consume(); // Mencegah enter berpindah ke baris bawah
 
-    private void tableKeluarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableKeluarMouseExited
-        tableKeluar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }//GEN-LAST:event_tableKeluarMouseExited
+            int baris = tableKeluar.getSelectedRow();
+            if (baris >= 0) {
+                String[] data = new String[6];
+                data[0] = (String)tableKeluar.getValueAt(baris, 0);
+                data[1] = (String)tableKeluar.getValueAt(baris, 1);
+                data[2] = (String)tableKeluar.getValueAt(baris, 2);
+                data[3] = (String)tableKeluar.getValueAt(baris, 3);
+                data[4] = (String)tableKeluar.getValueAt(baris, 4);
+                data[5] = (String)tableKeluar.getValueAt(baris, 5);
+
+                byte[] file = null;
+                try {
+                    String[] atributs = {"no_surat","file_surat"};
+                    ResultSet hasil = query.setNamaTabel("surat_keluar")
+                                           .setAtribut(atributs)
+                                           .setWhereId("no_surat", data[0])
+                                           .selectWhereIdDownload();
+                    while (hasil.next()) {
+                        file = hasil.getBytes("file_surat");
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(TampilanSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                kepsek.DashboardUtama.SubPanel.removeAll();
+                kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratKeluar.LihatSurat(data, file));
+                kepsek.DashboardUtama.SubPanel.revalidate();
+                kepsek.DashboardUtama.SubPanel.repaint();
+            }
+        }
+    }//GEN-LAST:event_tableKeluarKeyPressed
                                  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

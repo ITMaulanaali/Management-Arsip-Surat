@@ -40,7 +40,9 @@ public class LihatSurat extends javax.swing.JPanel {
             
         }catch(Exception ex){
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }finally{
+                this.data[6] = "Sudah Dibaca";
+            }
         }
     }
 
