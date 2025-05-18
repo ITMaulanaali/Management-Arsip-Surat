@@ -217,8 +217,6 @@ private String convertToRoman(int month) {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         pengirim = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        perihal = new javax.swing.JTextArea();
         Upload = new javax.swing.JButton();
         garis_miring1 = new javax.swing.JLabel();
         kode_lembaga = new javax.swing.JTextField();
@@ -234,6 +232,7 @@ private String convertToRoman(int month) {
         tanggal_surat_masuk = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         kategori = new javax.swing.JComboBox<>();
+        perihal = new javax.swing.JTextField();
 
         dateChooser1.setDateFormat("yyyy-MM-dd");
         dateChooser1.setTextRefernce(tanggal_surat_masuk);
@@ -286,13 +285,6 @@ private String convertToRoman(int month) {
         pengirim.setText("Nama Instansi");
         pengirim.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        perihal.setBackground(new java.awt.Color(196, 196, 196));
-        perihal.setColumns(20);
-        perihal.setLineWrap(true);
-        perihal.setRows(5);
-        perihal.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(perihal);
-
         Upload.setText("Pilih File");
         Upload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,6 +293,7 @@ private String convertToRoman(int month) {
         });
 
         garis_miring1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        garis_miring1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         garis_miring1.setText("/");
 
         kode_lembaga.setBackground(new java.awt.Color(196, 196, 196));
@@ -312,6 +305,7 @@ private String convertToRoman(int month) {
         });
 
         garis_miring2.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        garis_miring2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         garis_miring2.setText("/");
 
         nama_instansi.setBackground(new java.awt.Color(196, 196, 196));
@@ -354,7 +348,7 @@ private String convertToRoman(int month) {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel2)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         simpanLayout.setVerticalGroup(
             simpanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,7 +387,7 @@ private String convertToRoman(int month) {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         kembaliLayout.setVerticalGroup(
             kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,6 +408,10 @@ private String convertToRoman(int month) {
         });
 
         kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Segera", "Umum" }));
+
+        perihal.setEditable(false);
+        perihal.setBackground(new java.awt.Color(196, 196, 196));
+        perihal.setPreferredSize(new java.awt.Dimension(40, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -448,13 +446,14 @@ private String convertToRoman(int month) {
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9)))
+                                        .addGap(368, 368, 368)
+                                        .addComponent(jLabel9))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(350, 350, 350)
-                                        .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(Upload, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(perihal, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 439, Short.MAX_VALUE)
@@ -463,14 +462,14 @@ private String convertToRoman(int month) {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(urutan_surat, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addComponent(urutan_surat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(20, 20, 20)
                                         .addComponent(garis_miring1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(25, 25, 25)
                                 .addComponent(kode_lembaga, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
-                                .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
+                                .addComponent(garis_miring2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(nama_instansi, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(1, 1, 1)))
                 .addGap(30, 30, 30))
@@ -522,17 +521,18 @@ private String convertToRoman(int month) {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(statusNotifikasi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel9)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1)))
-                .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(perihal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -651,13 +651,12 @@ private String convertToRoman(int month) {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> kategori;
     private java.awt.Panel kembali;
     private javax.swing.JTextField kode_lembaga;
     private javax.swing.JTextField nama_instansi;
     private javax.swing.JTextField pengirim;
-    private javax.swing.JTextArea perihal;
+    private javax.swing.JTextField perihal;
     private java.awt.Panel simpan;
     private javax.swing.JLabel statusNotifikasi;
     private javax.swing.JTextField tanggal_surat_masuk;
