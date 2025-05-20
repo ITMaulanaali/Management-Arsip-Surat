@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import lib.Query;
+import java.sql.ResultSet;
 
 public class TambahUser extends javax.swing.JPanel {
 
@@ -14,14 +15,26 @@ public class TambahUser extends javax.swing.JPanel {
     
     public TambahUser() {
         initComponents();
+        setItem();
+    }
+    
+    private void setItem(){
+        try {
+            ResultSet hasil = query.setNamaTabel("user").setAtribut(new String[]{"username","jenis_role"}).select();
+            while(hasil.next()){
+               CmBox_kepalaSekolah.removeItem(hasil.getString("jenis_role"));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TambahUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    void clean(){
-        TextField_nama.setText("");
-        TextField_username.setText("");
-        CmBox_kepalaSekolah.setSelectedIndex(0);
-        TextField_passwd.setText("");
-    }
+//    void clean(){
+//        TextField_nama.setText("");
+//        TextField_username.setText("");
+//        CmBox_kepalaSekolah.setSelectedIndex(0);
+//        TextField_passwd.setText("");
+//    }
     
     @Override
     protected void paintComponent(Graphics g) {
