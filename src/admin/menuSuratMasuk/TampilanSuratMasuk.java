@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -28,9 +30,13 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
     private byte[] file;
     
     private static final String DEFAULT_SEARCH_TEXT = "Cari";
+    private ArrayList<String> status_notifikasi_surat;
+    private ArrayList<Object[]> baris;
      
     public TampilanSuratMasuk() {
         initComponents();
+        this.status_notifikasi_surat = new ArrayList();
+        this.baris = new ArrayList();
         kustomTable();
         menampilkanSuratMasuk();
         fokus();
@@ -115,6 +121,10 @@ private void kustomTable() {
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status Notifikasi");
             
+            this.baris.clear();
+            this.status_notifikasi_surat.clear();
+            
+            int index = 0;
             
             while(hasil.next()){
                 String no = hasil.getString("no_surat");
@@ -124,7 +134,15 @@ private void kustomTable() {
                 String perihal = hasil.getString("perihal");
                 String status_notifikasi = hasil.getString("status_notifikasi");
                 
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+                this.status_notifikasi_surat.add(hasil.getString("status_notifikasi"));
+                this.baris.add(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+                index++;
+//                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+            }
+            Collections.reverse(this.baris);
+            Collections.reverse(this.status_notifikasi_surat);
+            for (Object[] row : this.baris) {
+                modelTable.addRow(row);
             }
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);
@@ -378,6 +396,10 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status Notifikasi");
 
+            this.baris.clear();
+            this.status_notifikasi_surat.clear();
+            
+            int index = 0;
             while (hasil.next()) {
                 String no = hasil.getString("no_surat");
                 String tanggal = hasil.getString("tanggal_surat");
@@ -386,7 +408,15 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                 String perihal = hasil.getString("perihal");
                 String status_notifikasi = hasil.getString("status_notifikasi");
 
-                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
+                this.status_notifikasi_surat.add(hasil.getString("status_notifikasi"));
+                this.baris.add(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
+                index++;
+//                modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi });
+            }
+            Collections.reverse(this.baris);
+            Collections.reverse(this.status_notifikasi_surat);
+            for (Object[] row : this.baris) {
+                modelTable.addRow(row);
             }
             tabel_suratMasuk.setRowHeight(30);
             tabel_suratMasuk.setModel(modelTable);

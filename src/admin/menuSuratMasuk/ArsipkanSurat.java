@@ -64,7 +64,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
 
    
-    int lastRowIndex = admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getRowCount() - 1;
+    int lastRowIndex = 0;
 
              // Ambil data dari kolom "No Surat"
             // Misalkan kolom "No Surat" adalah kolom ke-0
