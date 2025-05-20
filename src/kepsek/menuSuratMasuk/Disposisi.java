@@ -44,7 +44,6 @@ public class Disposisi extends javax.swing.JPanel {
     public Disposisi(String[] data, byte[] fileBiner) {
         this.panelUtama = panelUtama;
         initComponents();
-        no_disposisi.setText("001");
         tampilkanTanggalDanWaktu();
         this.query= new Query();
         this.usernameWaka = new ArrayList<>();
@@ -113,7 +112,11 @@ public class Disposisi extends javax.swing.JPanel {
             ResultSet hasil = stm.executeQuery();
             
             while(hasil.next()){
-                noDis = hasil.getString("no_disposisi");
+                if(hasil.next() != false){
+                    noDis = hasil.getString("no_disposisi");
+                }else{
+                    no_disposisi.setText("001");                    
+                }
             }
 
              // Ambil data dari kolom "No Surat"
