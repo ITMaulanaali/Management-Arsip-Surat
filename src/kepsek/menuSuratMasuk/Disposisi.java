@@ -44,7 +44,7 @@ public class Disposisi extends javax.swing.JPanel {
     public Disposisi(String[] data, byte[] fileBiner) {
         this.panelUtama = panelUtama;
         initComponents();
-        setupFormDefaults();
+        no_disposisi.setText("001");
         tampilkanTanggalDanWaktu();
         this.query= new Query();
         this.usernameWaka = new ArrayList<>();
@@ -73,14 +73,6 @@ public class Disposisi extends javax.swing.JPanel {
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDateTime sekarang = LocalDateTime.now();
             tanggal_disposisi.setText(sekarang.format(formatTanggal));
-    }
-    
-    private void setupFormDefaults() {
-        // Set default value for nomor surat field
-        no_disposisi.setText("");
-        
-        // Set default format for tanggal field
-        tanggal_disposisi.setText("");
     }
       
       

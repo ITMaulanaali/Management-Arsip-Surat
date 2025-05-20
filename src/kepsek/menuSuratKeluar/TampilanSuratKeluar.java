@@ -12,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -33,6 +35,9 @@ private String selectedPerihal;
 private String selectedStatusPengiriman;
 private String selectedAlamatTujuan;
 private byte[] file;
+
+private ArrayList<String> status_notifikasi_surat;
+private ArrayList<Object[]> baris;
     
   private String getFileSuratFromDatabase(String noSurat) {
     String fileSurat = "";
@@ -57,6 +62,8 @@ private byte[] file;
     
     public TampilanSuratKeluar() {
         initComponents();
+        this.status_notifikasi_surat = new ArrayList();
+        this.baris = new ArrayList();
         menampilkanSuratKeluar();
         kustomTable();
         cari.setText("Cari");
@@ -133,7 +140,9 @@ private void kustomTable() {
             modelTable.addColumn("Status Pengiriman");
             modelTable.addColumn("Alamat Tujuan");
             
-            
+            this.baris.clear();
+            this.status_notifikasi_surat.clear();
+            int index = 0;
             while(hasil.next()){
                 String no = hasil.getString("no_surat");
                 String tanggal = hasil.getString("tanggal_surat");
@@ -143,7 +152,15 @@ private void kustomTable() {
                 String status_pengiriman = hasil.getString("status_pengiriman");
                 String alamat_tujuan = hasil.getString("alamat_tujuan");
                 
-                modelTable.addRow(new Object[]{no, tanggal, penerima, kategori, perihal,status_pengiriman, alamat_tujuan });
+                this.status_notifikasi_surat.add(hasil.getString("status_pengiriman"));
+                this.baris.add(new Object[]{no, tanggal, penerima, kategori, perihal, status_pengiriman, alamat_tujuan});
+                index++;
+//                modelTable.addRow(new Object[]{no, tanggal, penerima, kategori, perihal,status_pengiriman, alamat_tujuan });
+            }
+            Collections.reverse(this.baris);
+            Collections.reverse(this.status_notifikasi_surat);
+            for (Object[] row : this.baris) {
+                modelTable.addRow(row);
             }
             tableKeluar.setRowHeight(30);
             tableKeluar.setModel(modelTable);
@@ -298,17 +315,28 @@ private void kustomTable() {
         modelTable.addColumn("Status Pengiriman");
         modelTable.addColumn("Alamat Tujuan");
 
-        while (hasil.next()) {
-            String no = hasil.getString("no_surat");
-            String tanggal = hasil.getString("tanggal_surat");
-            String pengirim = hasil.getString("penerima");
-            String kategori = hasil.getString("kategori");
-            String perihal = hasil.getString("perihal");
-            String status_pengiriman = hasil.getString("status_pengiriman");
-            String alamat_tujuan = hasil.getString("alamat_tujuan");
-
-            modelTable.addRow(new Object[]{no, tanggal, pengirim, kategori, perihal, status_pengiriman, alamat_tujuan });
-        }
+        this.baris.clear();
+            this.status_notifikasi_surat.clear();
+            int index = 0;
+            while(hasil.next()){
+                String no = hasil.getString("no_surat");
+                String tanggal = hasil.getString("tanggal_surat");
+                String penerima = hasil.getString("penerima");
+                String kategori = hasil.getString("kategori");
+                String perihal = hasil.getString("perihal");
+                String status_pengiriman = hasil.getString("status_pengiriman");
+                String alamat_tujuan = hasil.getString("alamat_tujuan");
+                
+                this.status_notifikasi_surat.add(hasil.getString("status_pengiriman"));
+                this.baris.add(new Object[]{no, tanggal, penerima, kategori, perihal, status_pengiriman, alamat_tujuan});
+                index++;
+//                modelTable.addRow(new Object[]{no, tanggal, penerima, kategori, perihal,status_pengiriman, alamat_tujuan });
+            }
+            Collections.reverse(this.baris);
+            Collections.reverse(this.status_notifikasi_surat);
+            for (Object[] row : this.baris) {
+                modelTable.addRow(row);
+            }
         tableKeluar.setRowHeight(30);
         tableKeluar.setModel(modelTable);
 

@@ -178,6 +178,8 @@ private void setWarnaBaris() {
             modelTable.addColumn("Perihal");
             modelTable.addColumn("Status");
             
+            this.baris.clear();
+            this.status_notifikasi_surat.clear();
             int index = 0;
             while(hasil.next()){
                 String no = hasil.getString("surat_masuk.no_surat");
