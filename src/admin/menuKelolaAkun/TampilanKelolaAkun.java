@@ -1,5 +1,6 @@
 package admin.menuKelolaAkun;
 
+import static admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar;
 import static admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,6 +14,7 @@ import lib.Query;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
@@ -43,10 +45,6 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
     public TampilanKelolaAkun() {
         initComponents();
         menampilkanUser();
-        kustomTable();
-        TableUser.getColumn("Aksi").setMaxWidth(100);
-        TableUser.getColumn("Aksi").setMinWidth(100);
-        TableUser.getColumn("Aksi").setPreferredWidth(100);
 //        buttonTable();
 //        klikIcon();
     }
@@ -186,7 +184,10 @@ private void kustomTable() {
             }
             TableUser.setRowHeight(30);
             TableUser.setModel(modelTable);
-            
+            kustomTable();
+            TableUser.getColumn("Aksi").setMaxWidth(100);
+            TableUser.getColumn("Aksi").setMinWidth(100);
+            TableUser.getColumn("Aksi").setPreferredWidth(100);
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -196,10 +197,11 @@ private void kustomTable() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        tambah = new javax.swing.JButton();
+        cari = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableUser = new javax.swing.JTable();
+        tambah1 = new javax.swing.JButton();
+        pilih = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(158, 158, 158));
         setMinimumSize(new java.awt.Dimension(860, 483));
@@ -207,19 +209,14 @@ private void kustomTable() {
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
-        jTextField1.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Cari");
-        jTextField1.setMinimumSize(new java.awt.Dimension(0, 40));
-        jTextField1.setPreferredSize(new java.awt.Dimension(600, 40));
-
-        tambah.setBackground(new java.awt.Color(238, 238, 238));
-        tambah.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
-        tambah.setText("Tambah");
-        tambah.setPreferredSize(new java.awt.Dimension(131, 40));
-        tambah.addActionListener(new java.awt.event.ActionListener() {
+        cari.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cari.setText("Cari");
+        cari.setMinimumSize(new java.awt.Dimension(0, 40));
+        cari.setPreferredSize(new java.awt.Dimension(600, 40));
+        cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahActionPerformed(evt);
+                cariActionPerformed(evt);
             }
         });
 
@@ -246,18 +243,36 @@ private void kustomTable() {
         TableUser.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(TableUser);
 
+        tambah1.setBackground(new java.awt.Color(238, 238, 238));
+        tambah1.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        tambah1.setText("Tambah");
+        tambah1.setPreferredSize(new java.awt.Dimension(131, 40));
+        tambah1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambah1ActionPerformed(evt);
+            }
+        });
+
+        pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Username", "Nama", "Peran", "Aksi" }));
+        pilih.setPreferredSize(new java.awt.Dimension(80, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(79, 79, 79)
-                        .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tambah1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(80, 80, 80)
+                                .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -265,28 +280,77 @@ private void kustomTable() {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                .addGap(26, 26, 26))
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tambah1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
+    private void tambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tambah1ActionPerformed
+
+    private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
+             
+    String searchText = cari.getText();
+    String selectedOption = (String) pilih.getSelectedItem();
+    menampilkanSuratKeluar(searchText, selectedOption);
+}                                    
+
+void menampilkanSuratKeluar(String searchText, String selectedOption) {
+    try {
+
+        String queryCondition = "";
+        switch (selectedOption) {
+            case "Username":
+                queryCondition = "username";
+                break;
+            case "Nama":
+                queryCondition = "nama";
+                break;
+            case "Peran":
+                queryCondition = "jenis_role";
+                break;
+            default:
+                break;
+        }
+        // Lakukan query dengan kondisi yang telah dibuat
+        ResultSet hasil = query.setNamaTabel("user").setAtribut(this.atributs).setWhereId(queryCondition, searchText).selectWhereLike();
+
+        DefaultTableModel modelTable = new DefaultTableModel(); 
+        modelTable.addColumn("Nama");
+        modelTable.addColumn("Username");
+        modelTable.addColumn("Peran");
+        modelTable.addColumn("Aksi");
+
+        while(hasil.next()){
+                String nama = hasil.getString("nama");
+                String username = hasil.getString("username");
+                String peran = hasil.getString("jenis_role");
+                modelTable.addRow(new Object[]{nama, username, peran, "Aksi"});
+            }
+        TableUser.setRowHeight(30);
+        TableUser.setModel(modelTable);
+        kustomTable();
+        TableUser.getColumn("Aksi").setMaxWidth(100);
+        TableUser.getColumn("Aksi").setMinWidth(100);
+        TableUser.getColumn("Aksi").setPreferredWidth(100);
+    } catch (Exception ex) {
+        Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+    }     
         
-        admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.TambahUser());
-        admin.DashboardUtama.SubPanel.revalidate();
-        admin.DashboardUtama.SubPanel.repaint();
-        
-    }//GEN-LAST:event_tambahActionPerformed
+    }//GEN-LAST:event_cariActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableUser;
+    private javax.swing.JTextField cari;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton tambah;
+    private javax.swing.JComboBox<String> pilih;
+    private javax.swing.JButton tambah1;
     // End of variables declaration//GEN-END:variables
 }
