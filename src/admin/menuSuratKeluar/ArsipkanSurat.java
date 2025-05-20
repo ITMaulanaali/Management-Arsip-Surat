@@ -235,7 +235,6 @@ this.tahunAngka = sekarang.getYear();
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("File");
 
-        file.setEditable(false);
         file.setBackground(new java.awt.Color(196, 196, 196));
         file.setPreferredSize(new java.awt.Dimension(40, 30));
         file.addActionListener(new java.awt.event.ActionListener() {
@@ -375,7 +374,6 @@ this.tahunAngka = sekarang.getYear();
 
         kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penting", "Segera", "Umum" }));
 
-        perihal.setEditable(false);
         perihal.setBackground(new java.awt.Color(196, 196, 196));
         perihal.setPreferredSize(new java.awt.Dimension(40, 30));
         perihal.addActionListener(new java.awt.event.ActionListener() {

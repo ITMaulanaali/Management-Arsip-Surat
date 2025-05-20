@@ -117,7 +117,8 @@ public class Disposisi extends javax.swing.JPanel {
     void getLastNoDisposisi(){
         String noDis = "";
         try {
-            ResultSet hasil = query.setNamaTabel("disposisi").setAtribut(new String[]{"no_disposisi"}).select();
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT * from disposisi");
+            ResultSet hasil = stm.executeQuery();
             
             while(hasil.next()){
                 noDis = hasil.getString("no_disposisi");
