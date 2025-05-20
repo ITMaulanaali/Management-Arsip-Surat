@@ -51,7 +51,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         tampilkanTanggalDanWaktu(); // Menampilkan tanggal dan waktu otomatis
          this.query= new Query();
          initializePlaceholders(); // Initialize the placeholders
-         int lastRowIndex = admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar.getRowCount() - 1;
+         int lastRowIndex = 0;
     if(lastRowIndex != -1){
                 this.urutanTerakhirNoSurat = (String) admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
                 String data = this.urutanTerakhirNoSurat;
@@ -235,6 +235,7 @@ this.tahunAngka = sekarang.getYear();
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("File");
 
+        file.setEditable(false);
         file.setBackground(new java.awt.Color(196, 196, 196));
         file.setPreferredSize(new java.awt.Dimension(40, 30));
         file.addActionListener(new java.awt.event.ActionListener() {
