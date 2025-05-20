@@ -312,6 +312,8 @@ private void setWarnaBaris() {
 void menampilkanSuratMasuk(String searchText, String selectedOption) {
     try {
         String queryCondition = "";
+        boolean isStatusSearch = false;
+        
         switch (selectedOption) {
             case "No Surat":
                 queryCondition = "surat_masuk.no_surat"; // Pastikan menggunakan alias tabel
@@ -329,7 +331,8 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                 queryCondition = "surat_masuk.perihal"; // Pastikan menggunakan alias tabel
                 break;
             case "Status":
-                queryCondition = "disposisi.status_disposisi"; // Pastikan menggunakan alias tabel
+                queryCondition = "IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi')"; // Pastikan menggunakan alias tabel
+               isStatusSearch = true;
                 break;
             default:
                 break;
@@ -346,15 +349,29 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
                    + "LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi ";
 
         // Tambahkan kondisi pencarian jika ada
+        PreparedStatement stm;
         if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
-            sql += " WHERE " + queryCondition + " LIKE ?";
-        }
-
-        PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement(sql);
-        
-        // Set parameter pencarian jika ada
-        if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
-            stm.setString(1, "%" + searchText + "%");
+            // Special handling for status search
+            if (isStatusSearch) {
+                if (searchText.equalsIgnoreCase("Belum Terdisposisi")) {
+                    sql += " WHERE disposisi.no_disposisi IS NULL";
+                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+                } else if (searchText.equalsIgnoreCase("Terdisposisi")) {
+                    sql += " WHERE disposisi.status_disposisi = 'terdisposisi'";
+                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+                } else {
+                    // For other status searches
+                    sql += " WHERE IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') LIKE ?";
+                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+                    stm.setString(1, "%" + searchText + "%");
+                }
+            } else {
+                sql += " WHERE " + queryCondition + " LIKE ?";
+                stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+                stm.setString(1, "%" + searchText + "%");
+            }
+        } else {
+            stm = lib.Koneksi.Koneksi().prepareStatement(sql);
         }
 
         ResultSet hasil = stm.executeQuery();
@@ -385,7 +402,7 @@ void menampilkanSuratMasuk(String searchText, String selectedOption) {
             this.baris.add(new Object[]{no, tanggal, pengirim, kategori, perihal, status_notifikasi});
             index++;
         }
-        Collections.reverse(this.baris);
+            Collections.reverse(this.baris);
             Collections.reverse(this.status_notifikasi_surat);
             for (Object[] row : this.baris) {
                 modelTable.addRow(row);
