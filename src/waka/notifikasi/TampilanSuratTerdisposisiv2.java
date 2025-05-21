@@ -24,6 +24,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
     
     public TampilanSuratTerdisposisiv2(String role) {
         initComponents();
+        diKlikHilang();
         this.role = role;
         this.panel = new ArrayList();
         this.data = getData();
@@ -44,11 +45,12 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         ArrayList<String> nosuratmasuk = new ArrayList();
         ArrayList<String> perihalsuratmasuk = new ArrayList();
         ArrayList<byte[]> fileBiner = new ArrayList();
+        ArrayList<String> statusBaca = new ArrayList();
         
         String[][] data = null;
         
         try {
-            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal, surat_masuk.file_surat from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username) WHERE user.jenis_role = '"+this.role+"'");
+            PreparedStatement query = lib.Koneksi.Koneksi().prepareStatement("select disposisi.no_disposisi as nodisposisi, disposisi.tanggal_disposisi, disposisi.catatan, disposisi.status_disposisi, surat_masuk.no_surat as nosuratmasuk, surat_masuk.perihal, surat_masuk.file_surat, surat_masuk.status_notifikasi from disposisi inner join surat_masuk on(disposisi.no_surat = surat_masuk.no_surat) inner join user on(disposisi.username = user.username) WHERE user.jenis_role = '"+this.role+"'");
             ResultSet hasil = query.executeQuery();
             
             while(hasil.next()){
@@ -59,9 +61,10 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                 nosuratmasuk.add(hasil.getString("nosuratmasuk"));
                 perihalsuratmasuk.add(hasil.getString("perihal"));
                 fileBiner.add(hasil.getBytes("surat_masuk.file_surat"));
+                statusBaca.add(hasil.getString("surat_masuk.status_notifikasi"));
             }
             
-            data = new String[7][nodisposisi.size()];
+            data = new String[8][nodisposisi.size()];
             
             for(int i=0; i<nodisposisi.size(); i++){
                 data[0][i] = nodisposisi.get(i);
@@ -92,6 +95,10 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                 data[6][i] = s;
             }
             
+            for(int i=0; i<nodisposisi.size(); i++){
+                data[7][i] = statusBaca.get(i);
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(TampilanSuratTerdisposisiv2.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,8 +110,9 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
             
              
-        for(int i=0; i<data[0].length; i++){
-            JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i], this.data[6][i], this.role);
+        for(int i= data[0].length -1; i>=0; i--){
+            JPanel panel = new subNotifikasi(this.data[0][i], this.data[4][i], this.data[5][i], this.data[1][i], this.data[2][i], this.data[6][i], this.role, this.data[7][i]);
+            System.out.println(this.data[7][i]);
             panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
         
             container.setBackground(new Color(158,158,158));
@@ -174,7 +182,24 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                     .addGap(24, 24, 24)))
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void diKlikHilang(){
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+    @Override
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (cari.getText().equals("Cari")) {
+            cari.setText("");
+        }
+    }
 
+    @Override
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (cari.getText().trim().isEmpty()) {
+            cari.setText("Cari");
+        }
+    }
+});
+
+    }
     private void cariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyPressed
      
      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -202,7 +227,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
             if (data[kolom][i].toLowerCase().contains(keyword)) {
                 JPanel panel = new subNotifikasi(
                     data[0][i], data[4][i], data[5][i],
-                    data[1][i], data[2][i], data[6][i], this.role
+                    data[1][i], data[2][i], data[6][i], this.role, this.data[7][i]
                 );
                 panel.setBorder(new MatteBorder(0, 0, 10, 0, new Color(158,158,158)));
                 container.add(panel);

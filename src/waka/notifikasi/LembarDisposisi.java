@@ -4,6 +4,7 @@
  */
 package waka.notifikasi;
 
+import admin.menuKelolaAkun.TampilanKelolaAkun;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,9 +16,13 @@ import java.awt.Insets;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lib.Query;
 
 public class LembarDisposisi extends javax.swing.JPanel {
+    Query query;
     
     private String noDis;
     private String noSurat;
@@ -26,9 +31,10 @@ public class LembarDisposisi extends javax.swing.JPanel {
     private String catatanDisposisi;
     private String fileBiner;
     private String role;
+    private String statusBaca;
 
     // Constructor
-    public LembarDisposisi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role) {
+    public LembarDisposisi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
         initComponents();
         this.noDis = noDisposisi;
         this.noSurat = noSurat;
@@ -37,6 +43,9 @@ public class LembarDisposisi extends javax.swing.JPanel {
         this.catatanDisposisi = catatanDisposisi;
         this.fileBiner = fileBiner;
         this.role = role;
+        this.statusBaca = statusBaca;
+        this.query = new Query();
+        setStatus();
         setLembar();
     }
     
@@ -55,6 +64,24 @@ public class LembarDisposisi extends javax.swing.JPanel {
         nomordisposisi.setText(this.noDis);
     }
     
+    private void setStatus(){
+        if("Sudah Dibaca".equals(this.statusBaca) && this.noDis != null){
+            try{
+            PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca Waka' WHERE no_surat = ?");
+            statement.setString(1, this.noSurat);
+            boolean result = statement.execute();
+            
+                String totalNotif = waka.DashboardUtama.notifWaka.getText();
+                int i = Integer.parseInt(totalNotif);
+                waka.DashboardUtama.notifWaka.setText(Integer.toString(--i));
+            
+        }catch(Exception ex){
+            Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+                this.statusBaca = "Sudah Dibaca";
+            }
+        }
+    }
 
    
     @SuppressWarnings("unchecked")
@@ -156,6 +183,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
                 .addGap(16, 16, 16))
         );
 
+        buttonLihat.setBackground(new java.awt.Color(206, 31, 31));
         buttonLihat.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         buttonLihat.setText("Lihat Surat");
         buttonLihat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,7 +276,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         buttonLihat.setBackground(new Color(206,31,31));
 
         waka.DashboardUtama.SubPanel.removeAll();
-        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LihatSuratv2(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role));
+        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LihatSuratv2(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role, this.statusBaca));
         waka.DashboardUtama.SubPanel.revalidate();
         waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_buttonLihatMouseClicked

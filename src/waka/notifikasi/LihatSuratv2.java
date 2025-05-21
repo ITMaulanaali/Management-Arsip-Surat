@@ -1,12 +1,14 @@
 
 package waka.notifikasi;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
 import lib.PdfDiJpanel;
 import lib.Query;
 
@@ -20,8 +22,9 @@ public class LihatSuratv2 extends javax.swing.JPanel {
     private String fileBiner;
     private PdfDiJpanel pdf;
     private String role;
+    private String statusBaca;
     
-    public LihatSuratv2(String noDis, String noSurat, String perihall, String tglDisposisi, String catatanDisposisi, String fileBiner, String role) {
+    public LihatSuratv2(String noDis, String noSurat, String perihall, String tglDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
         initComponents();
         this.noDis = noDis;
         this.noSurat = noSurat;
@@ -30,6 +33,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
         this.catatanDisposisi = catatanDisposisi;
         this.fileBiner = fileBiner;
         this.role = role;
+        this.statusBaca = statusBaca;
         this.pdf = new PdfDiJpanel();
         
         try {
@@ -175,10 +179,12 @@ public class LihatSuratv2 extends javax.swing.JPanel {
 
     private void zoomOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseEntered
         zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        zoomOut.setBorder(new LineBorder(Color.BLACK, 1)); // Add black border
     }//GEN-LAST:event_zoomOutMouseEntered
 
     private void zoomOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomOutMouseExited
         zoomOut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        zoomOut.setBorder(null);
     }//GEN-LAST:event_zoomOutMouseExited
 
     private void zoomInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoomInMouseClicked
@@ -202,7 +208,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
 
               
             waka.DashboardUtama.SubPanel.removeAll();
-            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(tglDisposisi, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role));
+            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(tglDisposisi, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role, this.statusBaca));
             waka.DashboardUtama.SubPanel.revalidate();
             waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_kembali1MouseClicked
@@ -219,10 +225,12 @@ public class LihatSuratv2 extends javax.swing.JPanel {
 
     private void iconPeriode4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseExited
         iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Kembalikan kursor saat mouse keluar
+        iconPeriode4.setBorder(null);
     }//GEN-LAST:event_iconPeriode4MouseExited
 
     private void iconPeriode4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseEntered
         iconPeriode4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Ubah kursor saat mouse masuk
+        iconPeriode4.setBorder(new LineBorder(Color.BLACK,1));
     }//GEN-LAST:event_iconPeriode4MouseEntered
 
     private void iconPeriode4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconPeriode4MouseClicked
