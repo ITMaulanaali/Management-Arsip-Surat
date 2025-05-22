@@ -246,6 +246,7 @@ private String convertToRoman(int month) {
         jLabel5.setText("Nomor Surat");
 
         urutan_surat.setBackground(new java.awt.Color(196, 196, 196));
+        urutan_surat.setText("001");
         urutan_surat.setPreferredSize(new java.awt.Dimension(40, 30));
         urutan_surat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
