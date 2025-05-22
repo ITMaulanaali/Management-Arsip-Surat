@@ -44,6 +44,7 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
     
     public TampilanKelolaAkun() {
         initComponents();
+        diKlikHilang();
         menampilkanUser();
 //        buttonTable();
 //        klikIcon();
@@ -191,6 +192,24 @@ private void kustomTable() {
         }catch (Exception ex) {
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void diKlikHilang(){
+        cari.addFocusListener(new java.awt.event.FocusAdapter() {
+    @Override
+    public void focusGained(java.awt.event.FocusEvent evt) {
+        if (cari.getText().equals("Cari")) {
+            cari.setText("");
+        }
+    }
+
+    @Override
+    public void focusLost(java.awt.event.FocusEvent evt) {
+        if (cari.getText().trim().isEmpty()) {
+            cari.setText("Cari");
+        }
+    }
+});
     }
     
     @SuppressWarnings("unchecked")
