@@ -13,7 +13,7 @@ public class subNotifikasi extends javax.swing.JPanel {
     private String role;
     private String statusBaca;
 
-    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statuBaca) {
+    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
         initComponents();
         this.noDis = noDisposisi;
         this.noSurat = noSurat;
@@ -31,6 +31,9 @@ public class subNotifikasi extends javax.swing.JPanel {
         noSuratMasuk.setText(this.noSurat);
         perihal.setText(this.perihall);
         tanggalDisposisi.setText(this.tglDisposisi);
+        if(this.statusBaca.equals("Sudah Dibaca")){
+            this.setBackground(Color.WHITE);
+        }
     }
 
     

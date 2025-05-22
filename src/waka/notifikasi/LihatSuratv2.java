@@ -208,7 +208,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
 
               
             waka.DashboardUtama.SubPanel.removeAll();
-            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(tglDisposisi, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role, this.statusBaca));
+            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(noDis, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role, this.statusBaca));
             waka.DashboardUtama.SubPanel.revalidate();
             waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_kembali1MouseClicked

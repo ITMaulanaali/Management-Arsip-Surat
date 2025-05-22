@@ -69,7 +69,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 737, Short.MAX_VALUE)
                 .addComponent(Judul)
                 .addGap(19, 19, 19))
         );
@@ -112,9 +112,9 @@ public class DashboardUtama extends javax.swing.JPanel {
             panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_surat_keluarLayout.createSequentialGroup()
                 .addComponent(iconPeriode1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(surat_keluar)
-                .addGap(7, 7, 7))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         panel_surat_keluarLayout.setVerticalGroup(
             panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +186,9 @@ public class DashboardUtama extends javax.swing.JPanel {
             panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_kelola_akunLayout.createSequentialGroup()
                 .addComponent(iconPeriode3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(kelola_akun, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(kelola_akun)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_kelola_akunLayout.setVerticalGroup(
             panel_kelola_akunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

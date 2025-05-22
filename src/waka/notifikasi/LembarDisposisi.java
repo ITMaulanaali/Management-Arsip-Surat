@@ -78,7 +78,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         }catch(Exception ex){
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
-                this.statusBaca = "Sudah Dibaca";
+                this.statusBaca = "Sudah Dibaca Waka";
             }
         }
     }
