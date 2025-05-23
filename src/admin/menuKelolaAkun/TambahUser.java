@@ -24,9 +24,18 @@ public class TambahUser extends javax.swing.JPanel {
             ResultSet hasil = query.setNamaTabel("user").setAtribut(new String[]{"username","jenis_role"}).select();
             while(hasil.next()){
                CmBox_kepalaSekolah.removeItem(hasil.getString("jenis_role"));
+               
             }
         } catch (Exception ex) {
             Logger.getLogger(TambahUser.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if(CmBox_kepalaSekolah.getItemCount() == 0){
+                   TextField_nama.setEnabled(false);
+                   TextField_username.setEnabled(false);
+                   CmBox_kepalaSekolah.setEnabled(false);
+                   TextField_passwd.setEnabled(false);
+                   Button_simpan.setEnabled(false);
+               }
         }
     }
 
