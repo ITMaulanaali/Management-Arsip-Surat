@@ -38,6 +38,7 @@ public class LihatSurat extends javax.swing.JPanel {
     
     public LihatSurat(String[] data, byte[] binerPdf) {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Lihat Surat Masuk");
         this.data = data;
         this.binerPdf = binerPdf;
         this.pdf = new PdfDiJpanel();

@@ -38,6 +38,7 @@ public class EditSurat extends javax.swing.JPanel {
     
     public EditSurat(String noSurat, String tanggalSurat, String penerima, String kategori, String perihal, String statusPengiriman, String alamatTujuan) {
     initComponents();
+    admin.DashboardUtama.Judul.setText("Edit Surat Keluar");
      this.noSurat = noSurat;
     this.tanggalSurat = tanggalSurat;
     this.penerima1 = penerima;

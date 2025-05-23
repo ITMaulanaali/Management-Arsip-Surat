@@ -21,6 +21,7 @@ public class EditUser extends javax.swing.JPanel {
     
     public EditUser(String nama, String username, String peran) {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Edit User");
         Nama.setText(this.nama = nama);
         Username.setText(this.username = username);
         Role.setSelectedItem(peran);

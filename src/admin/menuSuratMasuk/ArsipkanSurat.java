@@ -54,6 +54,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     
     public ArsipkanSurat() {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Arsipkan Surat Masuk");
         tampilkanTanggalDanWaktu(); // Menampilkan tanggal dan waktu otomatis
         this.query= new Query();
         

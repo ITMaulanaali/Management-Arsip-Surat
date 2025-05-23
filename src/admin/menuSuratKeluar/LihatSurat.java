@@ -34,6 +34,7 @@ public class LihatSurat extends javax.swing.JPanel {
     public LihatSurat(String[] data, byte[] pdfBiner) {
         
         initComponents();
+        admin.DashboardUtama.Judul.setText("Lihat Surat Keluar");
         this.data = data;
         this.binerPdf = pdfBiner;
         this.pdf = new PdfDiJpanel();

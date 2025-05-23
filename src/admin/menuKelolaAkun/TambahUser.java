@@ -15,6 +15,7 @@ public class TambahUser extends javax.swing.JPanel {
     
     public TambahUser() {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Tambah User");
         setItem();
     }
     

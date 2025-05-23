@@ -44,6 +44,7 @@ public class TampilanKelolaAkun extends javax.swing.JPanel{
     
     public TampilanKelolaAkun() {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Home");
         diKlikHilang();
         menampilkanUser();
 //        buttonTable();
@@ -310,7 +311,7 @@ private void kustomTable() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tambah1ActionPerformed
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed

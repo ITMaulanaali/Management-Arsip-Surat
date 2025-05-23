@@ -29,6 +29,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
 
     public SuratByPeriode() {
     initComponents();
+    admin.DashboardUtama.Judul.setText("Periode Surat Keluar");
     kustomTable();
         
         

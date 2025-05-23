@@ -34,6 +34,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
     
     public SuratByPeriode() {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Periode Surat Masuk");
         kustomTable();
     
     // Set default text for cari JTextField

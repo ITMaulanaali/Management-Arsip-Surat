@@ -35,6 +35,7 @@ public class TampilanSuratMasuk extends javax.swing.JPanel {
      
     public TampilanSuratMasuk() {
         initComponents();
+        admin.DashboardUtama.Judul.setText("Home");
         this.status_notifikasi_surat = new ArrayList();
         this.baris = new ArrayList();
         kustomTable();
