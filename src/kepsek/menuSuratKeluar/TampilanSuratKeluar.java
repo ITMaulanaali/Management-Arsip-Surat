@@ -62,6 +62,7 @@ private ArrayList<Object[]> baris;
     
     public TampilanSuratKeluar() {
         initComponents();
+        kepsek.DashboardUtama.Judul.setText("Home");
         this.status_notifikasi_surat = new ArrayList();
         this.baris = new ArrayList();
         menampilkanSuratKeluar();

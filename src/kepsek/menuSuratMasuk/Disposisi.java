@@ -44,6 +44,7 @@ public class Disposisi extends javax.swing.JPanel {
     public Disposisi(String[] data, byte[] fileBiner) {
         this.panelUtama = panelUtama;
         initComponents();
+        kepsek.DashboardUtama.Judul.setText("Disposisi");
         tampilkanTanggalDanWaktu();
         this.query= new Query();
         this.usernameWaka = new ArrayList<>();

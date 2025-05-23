@@ -19,6 +19,7 @@ public class LihatSurat extends javax.swing.JPanel {
     
     public LihatSurat(String[] data, byte[] pdfBiner) {
        initComponents();
+       kepsek.DashboardUtama.Judul.setText("Lihat Surat Keluar");
         this.data = data;
         this.fileBiner = pdfBiner;
         this.pdf = new PdfDiJpanel();
@@ -168,8 +169,8 @@ public class LihatSurat extends javax.swing.JPanel {
                     .addComponent(perkecil)
                     .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(101, 101, 101)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                .addGap(150, 150, 150))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
