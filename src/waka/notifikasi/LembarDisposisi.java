@@ -36,6 +36,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
     // Constructor
     public LembarDisposisi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
         initComponents();
+        waka.DashboardUtama.Judul.setText("Lihat Disposisi");
         this.noDis = noDisposisi;
         this.noSurat = noSurat;
         this.perihall = perihal;

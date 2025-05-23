@@ -26,6 +26,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
     
     public LihatSuratv2(String noDis, String noSurat, String perihall, String tglDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
         initComponents();
+        waka.DashboardUtama.Judul.setText("Lihat Surat");
         this.noDis = noDis;
         this.noSurat = noSurat;
         this.perihall = perihall;

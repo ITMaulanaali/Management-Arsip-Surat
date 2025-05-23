@@ -24,6 +24,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
     
     public TampilanSuratTerdisposisiv2(String role) {
         initComponents();
+        waka.DashboardUtama.Judul.setText("Home");
         diKlikHilang();
         this.role = role;
         this.panel = new ArrayList();
@@ -156,8 +157,8 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(cari, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(filterdata, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
