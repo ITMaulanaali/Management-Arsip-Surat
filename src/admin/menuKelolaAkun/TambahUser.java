@@ -209,20 +209,24 @@ public class TambahUser extends javax.swing.JPanel {
         
         String[] atributs = {"username","password","nama","jenis_role"};
         String[] values = {username,password,nama,role};
-        
-        try{
+        if(!"".equals(nama) && !"".equals(username) && !"".equals(password)){
+            try{
             query.setNamaTabel("user").setAtribut(atributs).setValue(values).insert();
-            JOptionPane.showMessageDialog(null, "Berhasil menambahkan data");
+            JOptionPane.showMessageDialog(this, "Berhasil menambahkan data");
             
             admin.DashboardUtama.SubPanel.removeAll();
             admin.DashboardUtama.SubPanel.add(new admin.menuKelolaAkun.TampilanKelolaAkun());
             admin.DashboardUtama.SubPanel.revalidate();
             admin.DashboardUtama.SubPanel.repaint();
         }catch(SQLIntegrityConstraintViolationException e){
-            JOptionPane.showMessageDialog(null, "Username sudah digunakan");
+            JOptionPane.showMessageDialog(this, "Username sudah digunakan");
         } catch (Exception e) {
             Logger.getLogger(TambahUser.class.getName()).log(Level.SEVERE, null, e);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Pastikan seluruh field diisi");
+        }
+        
         
     }//GEN-LAST:event_Button_simpanActionPerformed
 
