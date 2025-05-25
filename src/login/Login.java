@@ -42,10 +42,8 @@ public class Login extends javax.swing.JPanel {
                 }else if(user.equals(hasil.getString("username"))){
                     nama = hasil.getString("username");
                     kredensial = hasil.getString("password");
-                    peran = hasil.getString("jenis_role");
                 }else if(password.equals(hasil.getString("password"))){
                     kredensial = hasil.getString("password");
-                    peran = hasil.getString("jenis_role");
                 }
             }
             

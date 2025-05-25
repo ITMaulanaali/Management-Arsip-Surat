@@ -15,7 +15,7 @@ import lib.Query;
 
 public class ArsipkanSurat extends javax.swing.JPanel {
      
-    private static final String DEFAULT_URUTAN_TEXT = "001";
+   private static final String DEFAULT_URUTAN_TEXT = "001";
     private static final String DEFAULT_KODE_LEMBAGA_TEXT = "HY";
     private static final String DEFAULT_NAMA_INSTANSI_TEXT = "SMK";
     private static final String DEFAULT_PENGIRIM_TEXT = "Nama Instansi";
@@ -26,181 +26,171 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     String urutanTerakhir;
 
     private void updateBulanDanTahun() {
-    String tanggalInput = tanggal_surat_masuk.getText().trim();
-    if (!tanggalInput.isEmpty()) {
-        try {
-            // Mengubah string tanggal menjadi LocalDate
-            LocalDate tanggal = LocalDate.parse(tanggalInput);
-            // Mengambil bulan dan tahun
-            this.bulanAngka = tanggal.getMonthValue();
-            this.tahunAngka = tanggal.getYear();
+        String tanggalInput = tanggal_surat_masuk.getText().trim();
+        if (!tanggalInput.isEmpty()) {
+            try {
+                // Mengubah string tanggal menjadi LocalDate
+                LocalDate tanggal = LocalDate.parse(tanggalInput);
+                // Mengambil bulan dan tahun
+                this.bulanAngka = tanggal.getMonthValue();
+                this.tahunAngka = tanggal.getYear();
 
-            // Set bulan dalam format romawi
-            this.bulanRomawi = convertToRoman(bulanAngka);
-        } catch (Exception e) {
-            // Jika format tanggal tidak valid, Anda bisa menampilkan pesan kesalahan
-            JOptionPane.showMessageDialog(this, "Format tanggal tidak valid! Gunakan format yyyy-MM-dd.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                // Set bulan dalam format romawi
+                this.bulanRomawi = convertToRoman(bulanAngka);
+            } catch (Exception e) {
+                // Jika format tanggal tidak valid, Anda bisa menampilkan pesan kesalahan
+                JOptionPane.showMessageDialog(this, "Format tanggal tidak valid! Gunakan format yyyy-MM-dd.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
-        
     }
-    
-        
- }
-    
+
     String lokasiFileLengkap;
-     Query query; 
-     String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
-    
+    Query query; 
+    String[] coloumn = {"no_surat","tanggal_surat","pengirim","kategori","perihal","file_surat","status_notifikasi"};
+
     public ArsipkanSurat() {
         initComponents();
         admin.DashboardUtama.Judul.setText("Arsipkan Surat Masuk");
         tampilkanTanggalDanWaktu(); // Menampilkan tanggal dan waktu otomatis
         this.query= new Query();
-        
-        
+
         // Set placeholder untuk setiap JTextField
-    setPlaceholder(pengirim, DEFAULT_PENGIRIM_TEXT);
-    setPlaceholder(kode_lembaga, DEFAULT_KODE_LEMBAGA_TEXT);
-    setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
+        setPlaceholder(pengirim, DEFAULT_PENGIRIM_TEXT);
+        setPlaceholder(kode_lembaga, DEFAULT_KODE_LEMBAGA_TEXT);
+        setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
 
-   
-    int lastRowIndex = 0;
+        int lastRowIndex = 0;
 
-             // Ambil data dari kolom "No Surat"
-            // Misalkan kolom "No Surat" adalah kolom ke-0
-            if(lastRowIndex != -1){
-                this.urutanTerakhir = (String) admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
-                String data = this.urutanTerakhir;
-                String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
-                String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
-                int angkaInt = Integer.parseInt(angka);
-                // Jika Anda ingin mengonversi ke integer
-                String angkaString;
-                if (angkaInt + 1 < 100) {
-                    // Jika angka kurang dari 100, format dengan leading zeros
-                    angkaString = String.format("%03d", angkaInt + 1);
-                    urutan_surat.setText(angkaString);
-                } else {
-                    // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
+        // Ambil data dari kolom "No Surat"
+        // Misalkan kolom "No Surat" adalah kolom ke-0
+        if(lastRowIndex != -1){
+            this.urutanTerakhir = (String) admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
+            String data = this.urutanTerakhir;
+            String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
+            String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
+            int angkaInt = Integer.parseInt(angka);
+            // Jika Anda ingin mengonversi ke integer
+            String angkaString;
+            if (angkaInt + 1 < 100) {
+                // Jika angka kurang dari 100, format dengan leading zeros
+                angkaString = String.format("%03d", angkaInt + 1);
+                urutan_surat.setText(angkaString);
+            } else {
+                // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
                 angkaString = Integer.toString(angkaInt + 1);
                 urutan_surat.setText(angkaString);
+            }
+        }
+
+        tanggal_surat_masuk.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                updateBulanDanTahun();
+            }
+        });
+
+        // Set default text and add focus listener for pengirim
+        pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+        pengirim.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (pengirim.getText().equals(DEFAULT_PENGIRIM_TEXT)) {
+                    pengirim.setText("");
                 }
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (pengirim.getText().isEmpty()) {
+                    pengirim.setText(DEFAULT_PENGIRIM_TEXT);
+                }
+            }
+        });
 
-    tanggal_surat_masuk.addFocusListener(new java.awt.event.FocusAdapter() {
-    public void focusLost(java.awt.event.FocusEvent evt) {
-        updateBulanDanTahun();
+        // Set default text and add focus listener for kode_lembaga
+        kode_lembaga.setText(DEFAULT_KODE_LEMBAGA_TEXT);
+        kode_lembaga.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (kode_lembaga.getText().equals(DEFAULT_KODE_LEMBAGA_TEXT)) {
+                    kode_lembaga.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (kode_lembaga.getText().isEmpty()) {
+                    kode_lembaga.setText(DEFAULT_KODE_LEMBAGA_TEXT);
+                }
+            }
+        });
+
+        // Set default text and add focus listener for nama_instansi
+        nama_instansi.setText(DEFAULT_NAMA_INSTANSI_TEXT);
+        nama_instansi.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (nama_instansi.getText().equals(DEFAULT_NAMA_INSTANSI_TEXT)) {
+                    nama_instansi.setText("");
+                }
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (nama_instansi.getText().isEmpty()) {
+                    nama_instansi.setText(DEFAULT_NAMA_INSTANSI_TEXT);
+                }
+            }
+        });
     }
-});
-    
-    // Set default text and add focus listener for pengirim
-    pengirim.setText(DEFAULT_PENGIRIM_TEXT);
-    pengirim.addFocusListener(new java.awt.event.FocusAdapter() {
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (pengirim.getText().equals(DEFAULT_PENGIRIM_TEXT)) {
-                pengirim.setText("");
-            }
-        }
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (pengirim.getText().isEmpty()) {
-                pengirim.setText(DEFAULT_PENGIRIM_TEXT);
-            }
-        }
-    });
 
-
-    // Set default text and add focus listener for kode_lembaga
-    kode_lembaga.setText(DEFAULT_KODE_LEMBAGA_TEXT);
-    kode_lembaga.addFocusListener(new java.awt.event.FocusAdapter() {
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (kode_lembaga.getText().equals(DEFAULT_KODE_LEMBAGA_TEXT)) {
-                kode_lembaga.setText("");
-            }
-        }
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (kode_lembaga.getText().isEmpty()) {
-                kode_lembaga.setText(DEFAULT_KODE_LEMBAGA_TEXT);
-            }
-        }
-    });
-
-    // Set default text and add focus listener for nama_instansi
-    nama_instansi.setText(DEFAULT_NAMA_INSTANSI_TEXT);
-    nama_instansi.addFocusListener(new java.awt.event.FocusAdapter() {
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (nama_instansi.getText().equals(DEFAULT_NAMA_INSTANSI_TEXT)) {
-                nama_instansi.setText("");
-            }
-        }
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (nama_instansi.getText().isEmpty()) {
-                nama_instansi.setText(DEFAULT_NAMA_INSTANSI_TEXT);
-            }
-        }
-    });
-    
-    }
-    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         ImageIcon background = new ImageIcon(getClass().getResource("/bahan/background/backgroundPanel800x483px.png"));
         g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
     }
-    
+
     private void setPlaceholder(javax.swing.JTextField textField, String placeholder) {
-    textField.setText(placeholder);
-    textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks menjadi abu-abu gelap
+        textField.setText(placeholder);
+        textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks menjadi abu-abu gelap
 
-    textField.addFocusListener(new java.awt.event.FocusAdapter() {
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (textField.getText().equals(placeholder)) {
-                textField.setText("");
-                textField.setForeground(java.awt.Color.BLACK); // Kembalikan warna teks ke hitam saat fokus
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(java.awt.Color.BLACK); // Kembalikan warna teks ke hitam saat fokus
+                }
             }
-        }
 
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (textField.getText().isEmpty()) {
-                textField.setText(placeholder);
-                textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks kembali menjadi abu-abu gelap
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(placeholder);
+                    textField.setForeground(new java.awt.Color(105, 105, 105)); // Set warna teks kembali menjadi abu-abu gelap
+                }
             }
-        }
-    });
+        });
     }
 
-     private void tampilkanTanggalDanWaktu() {
+    private void tampilkanTanggalDanWaktu() {
         DateTimeFormatter formatTanggal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDateTime sekarang = LocalDateTime.now();
-    tanggal_surat_masuk.setText(sekarang.format(formatTanggal));
+        LocalDateTime sekarang = LocalDateTime.now();
+        tanggal_surat_masuk.setText(sekarang.format(formatTanggal));
 
-    // Ambil bulan dan tahun dari tanggal saat ini
-    this.bulanAngka = sekarang.getMonthValue(); // Mendapatkan bulan dalam angka (1-12)
-    this.tahunAngka = sekarang.getYear(); // Mendapatkan tahun
+        // Ambil bulan dan tahun dari tanggal saat ini
+        this.bulanAngka = sekarang.getMonthValue(); // Mendapatkan bulan dalam angka (1-12)
+        this.tahunAngka = sekarang.getYear(); // Mendapatkan tahun
 
-    // Set bulan dalam format romawi
-    this.bulanRomawi = convertToRoman(bulanAngka);
-}
-
-private String convertToRoman(int month) {
-    switch (month) {
-        case 1: return "I";
-        case 2: return "II";
-        case 3: return "III";
-        case 4: return "IV";
-        case 5: return "V";
-        case 6: return "VI";
-        case 7: return "VII";
-        case 8: return "VIII";
-        case 9: return "IX";
-        case 10: return "X";
-        case 11: return "XI";
-        case 12: return "XII";
-        default: return ""; // Jika bulan tidak valid
+        // Set bulan dalam format romawi
+        this.bulanRomawi = convertToRoman(bulanAngka);
     }
-    
-    
+
+    private String convertToRoman(int month) {
+        switch (month) {
+            case 1: return "I";
+            case 2: return "II";
+            case 3: return "III";
+            case 4: return "IV";
+            case 5: return "V";
+            case 6: return "VI";
+            case 7: return "VII";
+            case 8: return "VIII";
+            case 9: return "IX";
+            case 10: return "X";
+            case 11: return "XI";
+            case 12: return "XII";
+            default: return ""; // Jika bulan tidak valid
+        }       
 }
     
     @SuppressWarnings("unchecked")
@@ -551,45 +541,84 @@ private String convertToRoman(int month) {
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
         
-    // Mengambil nilai dari setiap field
-    String nomerSurat = urutan_surat.getText().trim() + "/" + kode_lembaga.getText().trim() + "/" + nama_instansi.getText().trim() 
+    // Mengambil nilai komponen nomor surat terpisah dulu
+        String urutanSurat = urutan_surat.getText().trim();
+        String kodeLembaga = kode_lembaga.getText().trim();
+        String namaInstansiText = nama_instansi.getText().trim();
+
+        // Cek nomor surat harus valid, tidak boleh kosong atau placeholder
+        boolean isNomorSuratValid = !urutanSurat.isEmpty() && !urutanSurat.equals(DEFAULT_URUTAN_TEXT)
+                                  && !kodeLembaga.isEmpty() && !kodeLembaga.equals(DEFAULT_KODE_LEMBAGA_TEXT)
+                                  && !namaInstansiText.isEmpty() && !namaInstansiText.equals(DEFAULT_NAMA_INSTANSI_TEXT);
+
+        // Bentuk nomor surat lengkap
+        String nomerSurat = "";
+        if(isNomorSuratValid){
+            nomerSurat = urutanSurat + "/" + kodeLembaga + "/" + namaInstansiText 
                         + "/" + this.bulanRomawi + "/" + this.tahunAngka;
-    String tanggal = tanggal_surat_masuk.getText().trim();
-    String namapengirim = pengirim.getText().trim();
-    String personalkategori = kategori.getSelectedItem().toString().trim(); // Mengambil kategori dari JComboBox
-    String catatanperihal = perihal.getText().trim();
-    String file_surat = "";
-    if(this.lokasiFileLengkap != null){
-        file_surat = this.lokasiFileLengkap;
-    }
-    String tandastatusnotifikasi = statusNotifikasi.getText().trim();
+        }
 
-    // Validasi: Cek apakah ada field yang kosong dan file berformat PDF
-    if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT) || 
-        personalkategori.equals(DEFAULT_KATEGORI_TEXT) || catatanperihal.isEmpty() || 
-        file_surat.isEmpty() || !file_surat.toLowerCase().endsWith(".pdf")) {
-        
-        // Tampilkan pesan kesalahan jika ada field yang kosong atau file bukan pdf
-        JOptionPane.showMessageDialog(this, "Data Harus Diisi Semua dan file harus berformat PDF!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada kesalahan validasi
-    }
+        String tanggal = tanggal_surat_masuk.getText().trim();
+        String namapengirim = pengirim.getText().trim();
+        String personalkategori = kategori.getSelectedItem().toString().trim(); // Mengambil kategori dari JComboBox
+        String catatanperihal = perihal.getText().trim();
+        String file_surat = "";
+        if(this.lokasiFileLengkap != null){
+            file_surat = this.lokasiFileLengkap;
+        }
+        String tandastatusnotifikasi = statusNotifikasi.getText().trim();
 
-    String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
+        // Validasi: Cek apakah ada field yang kosong dan file berformat PDF
+        StringBuilder errorMessage = new StringBuilder("Harap isi data yang masih kosong:\n");
+        boolean isValid = true;
 
-    try {
-        query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
-        JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
+        if (!isNomorSuratValid) {
+            errorMessage.append("- Nomor Surat (urutan, kode lembaga, dan nama instansi harus diisi )\n");
+            isValid = false;
+        }
+        if (tanggal.isEmpty()) {
+            errorMessage.append("- Tanggal Surat Masuk\n");
+            isValid = false;
+        }
+        if (namapengirim.isEmpty() || namapengirim.equals(DEFAULT_PENGIRIM_TEXT)) {
+            errorMessage.append("- Pengirim\n");
+            isValid = false;
+        }
+        if (personalkategori.isEmpty() || personalkategori.equals(DEFAULT_KATEGORI_TEXT)) {
+            errorMessage.append("- Kategori\n");
+            isValid = false;
+        }
+        if (catatanperihal.isEmpty()) {
+            errorMessage.append("- Perihal\n");
+            isValid = false;
+        }
+        if (file_surat.isEmpty() || !file_surat.toLowerCase().endsWith(".pdf")) {
+            errorMessage.append("- File harus berformat PDF\n");
+            isValid = false;
+        }
 
-        // Memperbarui tampilan dengan menampilkan TampilanSuratMasuk
-        admin.DashboardUtama.SubPanel.removeAll();
-        admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
-        admin.DashboardUtama.SubPanel.revalidate();
-        admin.DashboardUtama.SubPanel.repaint();
+        if (!isValid) {
+            // Tampilkan pesan kesalahan jika ada field yang kosong
+            JOptionPane.showMessageDialog(this, errorMessage.toString(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            return; // Keluar dari metode jika ada kesalahan validasi
+        }
 
-    } catch (Exception ex) {
-        Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, "Gagal memasukkan data: " + ex.getMessage(), ex);
-        JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
-    }
+        String[] Value = {nomerSurat, tanggal, namapengirim, personalkategori, catatanperihal, file_surat, tandastatusnotifikasi};
+
+        try {
+            query.setNamaTabel("surat_masuk").setAtribut(coloumn).setValue(Value).insert();
+            JOptionPane.showMessageDialog(this, "Data Berhasil Di Simpan ");
+
+            // Memperbarui tampilan dengan menampilkan TampilanSuratMasuk
+            admin.DashboardUtama.SubPanel.removeAll();
+            admin.DashboardUtama.SubPanel.add(new admin.menuSuratMasuk.TampilanSuratMasuk());
+            admin.DashboardUtama.SubPanel.revalidate();
+            admin.DashboardUtama.SubPanel.repaint();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ArsipkanSurat.class.getName()).log(Level.SEVERE, "Gagal memasukkan data: " + ex.getMessage(), ex);
+            JOptionPane.showMessageDialog(this, "Gagal Ditambahkan");
+        }
         
     }//GEN-LAST:event_simpanMouseClicked
 

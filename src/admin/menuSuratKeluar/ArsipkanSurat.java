@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package admin.menuSuratKeluar;
 
 import admin.menuSuratMasuk.*;
@@ -539,57 +536,93 @@ this.tahunAngka = sekarang.getYear();
 
     private void simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_simpanMouseClicked
                                  
-    // Ambil nilai dari field input
-    String nomerSurat = urutan_surat.getText() + "/" + kode_lembaga.getText() + "/" + nama_instansi.getText() 
-                        + "/" + convertToRoman(Integer.parseInt(this.bulanAngka)) + "/" + this.tahunAngka;
-    String tanggal = tanggal_surat_keluar.getText();
-    String namapenerima = penerima.getText();
-    
-    // Ambil kategori dari JComboBox
-    String personalkategori = (String) kategori.getSelectedItem(); // Mengambil kategori yang dipilih
-    String catatanperihal = perihal.getText();
-    String file_surat = "";
-    if (this.lokasiFileLengkap != null) {
-        file_surat = this.lokasiFileLengkap;
+    // Ambil nilai komponen nomor surat secara terpisah
+    String urutanSurat = urutan_surat.getText().trim();
+    String kodeLembaga = kode_lembaga.getText().trim();
+    String namaInstansiText = nama_instansi.getText().trim();
+
+    // Validasi nomor surat: semua bagian harus diisi dan tidak boleh sama dengan placeholder
+    boolean isNomorSuratValid = !urutanSurat.isEmpty() && !urutanSurat.equals(DEFAULT_URUTAN_TEXT)
+                              && !kodeLembaga.isEmpty() && !kodeLembaga.equals(DEFAULT_KODE_LEMBAGA_TEXT)
+                              && !namaInstansiText.isEmpty() && !namaInstansiText.equals(DEFAULT_NAMA_INSTANSI_TEXT);
+
+    // Bentuk nomor surat lengkap (jika valid)
+    String nomerSurat = "";
+    if(isNomorSuratValid){
+        nomerSurat = urutanSurat + "/" + kodeLembaga + "/" + namaInstansiText 
+                    + "/" + convertToRoman(Integer.parseInt(this.bulanAngka)) + "/" + this.tahunAngka;
     }
+
+    // Ambil nilai field lain
+    String tanggal = tanggal_surat_keluar.getText().trim();
+    String namapenerima = penerima.getText().trim();
+    String namaalamat = alamat.getText().trim();
+    String personalkategori = (String) kategori.getSelectedItem();
+    String catatanperihal = perihal.getText().trim();
+    String file_surat = (this.lokasiFileLengkap != null) ? this.lokasiFileLengkap : "";
     String tandastatuspengiriman = (String) status.getSelectedItem();
-    String namaalamat = alamat.getText();
 
-    // Validasi input
-    if (nomerSurat.isEmpty() || tanggal.isEmpty() || namapenerima.equals("Nama Penerima") ||
-        namaalamat.equals("Nama Instansi") || personalkategori == null || catatanperihal.isEmpty() ||
-        file_surat.isEmpty() || tandastatuspengiriman == null) {
+    // Validasi semua field
+    StringBuilder errorMessage = new StringBuilder("Harap lengkapi data yang kosong atau belum sesuai:\n");
+    boolean isValid = true;
 
-       JOptionPane.showMessageDialog(this, "Harap lengkapi semua data sebelum arsipkan.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
+    if (!isNomorSuratValid) {
+        errorMessage.append("- Nomor Surat (urutan, kode lembaga, dan nama instansi harus diisi \n");
+        isValid = false;
+    }
+    if (tanggal.isEmpty()) {
+        errorMessage.append("- Tanggal Surat Keluar\n");
+        isValid = false;
+    }
+    if (namapenerima.isEmpty() || namapenerima.equals("Nama Penerima")) {
+        errorMessage.append("- Penerima\n");
+        isValid = false;
+    }
+    if (namaalamat.isEmpty() || namaalamat.equals("Nama Instansi")) {
+        errorMessage.append("- Alamat Tujuan\n");
+        isValid = false;
+    }
+    if (personalkategori == null) {
+        errorMessage.append("- Kategori\n");
+        isValid = false;
+    }
+    if (catatanperihal.isEmpty()) {
+        errorMessage.append("- Perihal\n");
+        isValid = false;
+    }
+    if (file_surat.isEmpty()) {
+        errorMessage.append("- File harus dipilih\n");
+        isValid = false;
+    }
+    if (tandastatuspengiriman == null) {
+        errorMessage.append("- Status Pengiriman\n");
+        isValid = false;
     }
 
-    // Siapkan array value untuk insert
+    if (!isValid) {
+        JOptionPane.showMessageDialog(this, errorMessage.toString(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        return; // Batalkan penyimpanan bila ada kesalahan validasi
+    }
+
+    // Jika valid semua, lanjut simpan ke database
     String[] Value = {nomerSurat, tanggal, namapenerima, personalkategori, catatanperihal, file_surat, tandastatuspengiriman, namaalamat};
 
     try {
-        // Pastikan objek query sudah diinisialisasi
         if (query == null) {
             query = new Query();
         }
-
-        // Simpan data ke tabel surat_keluar (asumsi insert)
         query.setNamaTabel("surat_keluar").setAtribut(coloumn).setValue(Value).insert();
+        JOptionPane.showMessageDialog(this, "Data berhasil disimpan.");
 
-        // Pesan yang konsisten
-        String successMessage = "Data berhasil disimpan.";
-        JOptionPane.showMessageDialog(this, successMessage);
-
-        // Kembali ke tampilan surat keluar
         admin.DashboardUtama.SubPanel.removeAll();
         admin.DashboardUtama.SubPanel.add(new admin.menuSuratKeluar.TampilanSuratKeluar());
         admin.DashboardUtama.SubPanel.revalidate();
         admin.DashboardUtama.SubPanel.repaint();
+
     } catch (Exception ex) {
-        Logger.getLogger(admin.menuSuratMasuk.ArsipkanSurat.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(admin.menuSuratKeluar.ArsipkanSurat.class.getName()).log(Level.SEVERE, null, ex);
         JOptionPane.showMessageDialog(this, "Gagal Ditambahkan!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
-        return; // Keluar dari metode jika ada field yang kosong
-    }    
+    }      
 
     }//GEN-LAST:event_simpanMouseClicked
 

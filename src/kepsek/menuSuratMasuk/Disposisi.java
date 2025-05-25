@@ -113,11 +113,7 @@ public class Disposisi extends javax.swing.JPanel {
             ResultSet hasil = stm.executeQuery();
             
             while(hasil.next()){
-                if(hasil.next() != false){
                     noDis = hasil.getString("no_disposisi");
-                }else{
-                    no_disposisi.setText("001");                    
-                }
             }
 
              // Ambil data dari kolom "No Surat"
@@ -184,6 +180,7 @@ public class Disposisi extends javax.swing.JPanel {
         jLabel5.setText("Nomor Disposisi");
 
         no_disposisi.setBackground(new java.awt.Color(196, 196, 196));
+        no_disposisi.setText("001");
         no_disposisi.setPreferredSize(new java.awt.Dimension(40, 30));
         no_disposisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
