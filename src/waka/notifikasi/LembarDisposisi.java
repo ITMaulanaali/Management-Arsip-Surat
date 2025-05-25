@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lib.Query;
@@ -32,9 +33,10 @@ public class LembarDisposisi extends javax.swing.JPanel {
     private String fileBiner;
     private String role;
     private String statusBaca;
+    private String statusDisposisi;
 
     // Constructor
-    public LembarDisposisi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
+    public LembarDisposisi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca, String statusDisposisi) {
         initComponents();
         waka.DashboardUtama.Judul.setText("Lihat Disposisi");
         this.noDis = noDisposisi;
@@ -45,6 +47,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         this.fileBiner = fileBiner;
         this.role = role;
         this.statusBaca = statusBaca;
+        this.statusDisposisi = statusDisposisi;
         this.query = new Query();
         setStatus();
         setLembar();
@@ -66,20 +69,38 @@ public class LembarDisposisi extends javax.swing.JPanel {
     }
     
     private void setStatus(){
-        if("Sudah Dibaca".equals(this.statusBaca) && this.noDis != null){
+        if(this.noDis != null){
+            System.out.println(this.statusBaca);
+            System.out.println(this.statusDisposisi);
+            System.out.println(this.noDis);
+            System.out.println(this.noSurat);
             try{
-            PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca Waka' WHERE no_surat = ?");
-            statement.setString(1, this.noSurat);
-            boolean result = statement.execute();
+                if(!this.statusDisposisi.contains(this.role)){
+                    lib.Koneksi.Koneksi().setAutoCommit(false);
+                    
+                    PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca Waka' WHERE no_surat = ?");
+                    statement.setString(1, this.noSurat);
+                    boolean result = statement.execute();
+                    
+                    PreparedStatement statement2 = lib.Koneksi.Koneksi().prepareStatement("UPDATE disposisi SET status_disposisi = CONCAT(status_disposisi, ' "+this.role+"') WHERE no_disposisi = '"+this.noDis+"'");
+                    boolean result2 = statement2.execute();
             
-                String totalNotif = waka.DashboardUtama.notifWaka.getText();
-                int i = Integer.parseInt(totalNotif);
-                waka.DashboardUtama.notifWaka.setText(Integer.toString(--i));
+                    String totalNotif = waka.DashboardUtama.notifWaka.getText();
+                    int i = Integer.parseInt(totalNotif);
+                    waka.DashboardUtama.notifWaka.setText(Integer.toString(--i));
+                }
+            
             
         }catch(Exception ex){
             Logger.getLogger(TampilanKelolaAkun.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
                 this.statusBaca = "Sudah Dibaca Waka";
+                this.statusDisposisi = "Terdisposisi "+this.role+"";
+                try {
+                    lib.Koneksi.Koneksi().setAutoCommit(true);
+                } catch (SQLException ex) {
+                    System.getLogger(LembarDisposisi.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
             }
         }
     }
@@ -277,7 +298,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         buttonLihat.setBackground(new Color(206,31,31));
 
         waka.DashboardUtama.SubPanel.removeAll();
-        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LihatSuratv2(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role, this.statusBaca));
+        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LihatSuratv2(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role, this.statusBaca, this.statusDisposisi));
         waka.DashboardUtama.SubPanel.revalidate();
         waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_buttonLihatMouseClicked

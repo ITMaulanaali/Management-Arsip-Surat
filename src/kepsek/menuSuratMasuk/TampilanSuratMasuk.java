@@ -168,7 +168,7 @@ private void setWarnaBaris() {
     
      void menampilkanSuratMasuk(){
         try {
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, IFNULL(CASE WHEN COUNT(disposisi.status_disposisi) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)) SEPARATOR ', ')) END, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%' GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi;");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
@@ -313,71 +313,66 @@ private void setWarnaBaris() {
 }                                    
 
 void menampilkanSuratMasuk(String searchText, String selectedOption) {
-    try {
-        String queryCondition = "";
-        boolean isStatusSearch = false;
-        
-        switch (selectedOption) {
-            case "No Surat":
-                queryCondition = "surat_masuk.no_surat"; // Pastikan menggunakan alias tabel
-                break;
-            case "Tanggal Diterima":
-                queryCondition = "surat_masuk.tanggal_surat"; // Pastikan menggunakan alias tabel
-                break;
-            case "Pengirim":
-                queryCondition = "surat_masuk.pengirim"; // Pastikan menggunakan alias tabel
-                break;
-            case "Kategori":
-                queryCondition = "surat_masuk.kategori"; // Pastikan menggunakan alias tabel
-                break;
-            case "Perihal":
-                queryCondition = "surat_masuk.perihal"; // Pastikan menggunakan alias tabel
-                break;
-            case "Status":
-                queryCondition = "IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi')"; // Pastikan menggunakan alias tabel
-               isStatusSearch = true;
-                break;
-            default:
-                break;
-        }
+try {
+    String queryCondition = "";
+    boolean isStatusSearch = false;
 
-        // Lakukan query dengan kondisi yang telah dibuat
-        String sql = "SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, "
-                   + "surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, "
-                   + "IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') AS status_disposisi "
-                   + "FROM surat_masuk "
-                   + "LEFT JOIN (SELECT no_surat, MIN(no_disposisi) AS min_no_disposisi "
-                   + "FROM disposisi WHERE status_disposisi = 'terdisposisi' GROUP BY no_surat) AS disposisi_terpilih "
-                   + "ON surat_masuk.no_surat = disposisi_terpilih.no_surat "
-                   + "LEFT JOIN disposisi ON disposisi.no_disposisi = disposisi_terpilih.min_no_disposisi ";
+    switch (selectedOption) {
+        case "No Surat":
+            queryCondition = "surat_masuk.no_surat";
+            break;
+        case "Tanggal Diterima":
+            queryCondition = "surat_masuk.tanggal_surat";
+            break;
+        case "Pengirim":
+            queryCondition = "surat_masuk.pengirim";
+            break;
+        case "Kategori":
+            queryCondition = "surat_masuk.kategori";
+            break;
+        case "Perihal":
+            queryCondition = "surat_masuk.perihal";
+            break;
+        case "Status":
+            isStatusSearch = true;
+            break;
+        default:
+            throw new IllegalArgumentException("Opsi pencarian tidak valid");
+    }
 
-        // Tambahkan kondisi pencarian jika ada
-        PreparedStatement stm;
-        if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
-            // Special handling for status search
-            if (isStatusSearch) {
-                if (searchText.equalsIgnoreCase("Belum Terdisposisi")) {
-                    sql += " WHERE disposisi.no_disposisi IS NULL";
-                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
-                } else if (searchText.equalsIgnoreCase("Terdisposisi")) {
-                    sql += " WHERE disposisi.status_disposisi = 'terdisposisi'";
-                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
-                } else {
-                    // For other status searches
-                    sql += " WHERE IFNULL(disposisi.status_disposisi, 'Belum Terdisposisi') LIKE ?";
-                    stm = lib.Koneksi.Koneksi().prepareStatement(sql);
-                    stm.setString(1, "%" + searchText + "%");
-                }
-            } else {
-                sql += " WHERE " + queryCondition + " LIKE ?";
-                stm = lib.Koneksi.Koneksi().prepareStatement(sql);
-                stm.setString(1, "%" + searchText + "%");
-            }
+    // Query dasar
+    String sql = "SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, " +
+                 "IFNULL(CASE WHEN COUNT(disposisi.status_disposisi) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' " +
+                 "ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)) SEPARATOR ', ')) END, 'Belum Terdisposisi') AS status_disposisi " +
+                 "FROM surat_masuk " +
+                 "LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat " +
+                 "LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%'";
+
+    // Tambahkan WHERE jika bukan status
+    if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
+        if (isStatusSearch) {
+            sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
+            sql += " HAVING status_disposisi LIKE ?";
         } else {
-            stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+            sql += " WHERE " + queryCondition + " LIKE ?";
+            sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
         }
+    } else {
+        sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
+    }
 
-        ResultSet hasil = stm.executeQuery();
+    // Cetak query untuk debugging
+    System.out.println("Final SQL: " + sql);
+
+    // Siapkan statement
+    PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement(sql);
+
+    if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
+        stm.setString(1, "%" + searchText + "%");
+    }
+
+    ResultSet hasil = stm.executeQuery();
+
         
         // Proses hasil query
         DefaultTableModel modelTable = new DefaultTableModel(); 

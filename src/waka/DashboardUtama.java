@@ -29,7 +29,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("select surat_masuk.status_notifikasi, disposisi.status_disposisi, user.jenis_role from disposisi inner join surat_masuk on(surat_masuk.no_surat = disposisi.no_surat) inner join user on (user.username = disposisi.username)");
             ResultSet hasil = stm.executeQuery();
             while(hasil.next()){
-                if("Sudah Dibaca".equals(hasil.getString("status_notifikasi")) && "Terdisposisi".equals(hasil.getString("status_disposisi")) && this.role.equals(hasil.getString("jenis_role"))){
+                if("Terdisposisi".equals(hasil.getString("status_disposisi")) && this.role.equals(hasil.getString("jenis_role"))){
                     i++;
                 }
             }

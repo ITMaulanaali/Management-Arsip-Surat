@@ -12,8 +12,9 @@ public class subNotifikasi extends javax.swing.JPanel {
     private String fileBiner;
     private String role;
     private String statusBaca;
+    private String statusDisposisi;
 
-    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
+    public subNotifikasi(String noDisposisi,String noSurat, String perihal, String tanggalDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca, String statusDisposisi) {
         initComponents();
         this.noDis = noDisposisi;
         this.noSurat = noSurat;
@@ -23,6 +24,7 @@ public class subNotifikasi extends javax.swing.JPanel {
         this.fileBiner = fileBiner;
         this.role = role;
         this.statusBaca = statusBaca;
+        this.statusDisposisi = statusDisposisi;
         setupData();
     }
     
@@ -31,7 +33,7 @@ public class subNotifikasi extends javax.swing.JPanel {
         noSuratMasuk.setText(this.noSurat);
         perihal.setText(this.perihall);
         tanggalDisposisi.setText(this.tglDisposisi);
-        if(this.statusBaca.equals("Sudah Dibaca")){
+        if(!this.statusDisposisi.contains(this.role)){
             this.setBackground(Color.WHITE);
         }
     }
@@ -157,7 +159,7 @@ public class subNotifikasi extends javax.swing.JPanel {
         buttonLihat.setBackground(new Color(206,31,31));
         
         waka.DashboardUtama.SubPanel.removeAll();
-        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role, this.statusBaca));
+        waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(this.noDis,this.noSurat,this.perihall,this.tglDisposisi,this.catatanDisposisi, this.fileBiner, this.role, this.statusBaca, this.statusDisposisi));
         waka.DashboardUtama.SubPanel.revalidate();
         waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_buttonLihatMouseClicked

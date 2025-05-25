@@ -23,8 +23,9 @@ public class LihatSuratv2 extends javax.swing.JPanel {
     private PdfDiJpanel pdf;
     private String role;
     private String statusBaca;
+    private String statusDisposisi;
     
-    public LihatSuratv2(String noDis, String noSurat, String perihall, String tglDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca) {
+    public LihatSuratv2(String noDis, String noSurat, String perihall, String tglDisposisi, String catatanDisposisi, String fileBiner, String role, String statusBaca, String statusDisposisi) {
         initComponents();
         waka.DashboardUtama.Judul.setText("Lihat Surat");
         this.noDis = noDis;
@@ -35,6 +36,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
         this.fileBiner = fileBiner;
         this.role = role;
         this.statusBaca = statusBaca;
+        this.statusDisposisi = statusDisposisi;
         this.pdf = new PdfDiJpanel();
         
         try {
@@ -209,7 +211,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
 
               
             waka.DashboardUtama.SubPanel.removeAll();
-            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(noDis, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role, this.statusBaca));
+            waka.DashboardUtama.SubPanel.add(new waka.notifikasi.LembarDisposisi(noDis, noSurat, perihall, tglDisposisi, catatanDisposisi, fileBiner, this.role, this.statusBaca, this.statusDisposisi));
             waka.DashboardUtama.SubPanel.revalidate();
             waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_kembali1MouseClicked
