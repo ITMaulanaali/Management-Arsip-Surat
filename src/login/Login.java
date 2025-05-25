@@ -26,51 +26,32 @@ public class Login extends javax.swing.JPanel {
 
     private void cekUser(String user, String password){
         String[] atributs = {"username","password","nama","jenis_role"};
-        String nama = null;
-        String kredensial = null;
-        String peran = null;
+        String nama = "";
+        String kredensial = "";
+        String peran = "";
         
         try {
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT username, password, jenis_role from user");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT username, password, jenis_role from user WHERE username = '"+user+"' OR password = '"+password+"'");
             ResultSet hasil = stm.executeQuery();
             while(hasil.next()){
-                nama = hasil.getString("username");
-                kredensial = hasil.getString("password");
-                peran = hasil.getString("jenis_role");
                 
+                if(user.equals(hasil.getString("username")) && password.equals(hasil.getString("password"))){
+                    nama = hasil.getString("username");
+                    kredensial = hasil.getString("password");
+                    peran = hasil.getString("jenis_role");
+                }else if(user.equals(hasil.getString("username"))){
+                    nama = hasil.getString("username");
+                    kredensial = hasil.getString("password");
+                    peran = hasil.getString("jenis_role");
+                }else if(password.equals(hasil.getString("password"))){
+                    kredensial = hasil.getString("password");
+                    peran = hasil.getString("jenis_role");
+                }
+            }
+            
                 if(user.equals(nama)){
                     if(password.equals(kredensial)){
                         switch (peran) {
-                        case "Waka Kurikulum":
-                            Main.PanelWadah.removeAll();
-                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                            Main.PanelWadah.revalidate();
-                            Main.PanelWadah.repaint();
-                            return;
-                        case "Waka Humas":
-                            Main.PanelWadah.removeAll();
-                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                            Main.PanelWadah.revalidate();
-                            Main.PanelWadah.repaint();
-                            return;
-                        case "Waka Kesiswaan":
-                            Main.PanelWadah.removeAll();
-                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                            Main.PanelWadah.revalidate();
-                            Main.PanelWadah.repaint();
-                            return;
-                        case "Waka Sarana dan Prasarana":
-                            Main.PanelWadah.removeAll();
-                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                            Main.PanelWadah.revalidate();
-                            Main.PanelWadah.repaint();
-                            return;
-                        case "Waka Manajemen Mutu":
-                            Main.PanelWadah.removeAll();
-                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
-                            Main.PanelWadah.revalidate();
-                            Main.PanelWadah.repaint();
-                            return;
                         case "admin":
                             Main.PanelWadah.removeAll();
                             Main.PanelWadah.add(new admin.DashboardUtama());
@@ -83,6 +64,11 @@ public class Login extends javax.swing.JPanel {
                             Main.PanelWadah.revalidate();
                             Main.PanelWadah.repaint();
                             return;
+                        default:
+                            Main.PanelWadah.removeAll();
+                            Main.PanelWadah.add(new waka.DashboardUtama(peran));
+                            Main.PanelWadah.revalidate();
+                            Main.PanelWadah.repaint();
                         }
                     }else{
                         JOptionPane.showMessageDialog(this, "Password Salah");
@@ -95,7 +81,6 @@ public class Login extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Username salah");
                     return;
                 }
-            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Terjadi Kesalahan");
         } 
