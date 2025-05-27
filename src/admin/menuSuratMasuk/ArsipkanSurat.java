@@ -15,10 +15,10 @@ import lib.Query;
 
 public class ArsipkanSurat extends javax.swing.JPanel {
      
-   private static final String DEFAULT_URUTAN_TEXT = "001";
+   private static final String DEFAULT_URUTAN_TEXT = "000";
     private static final String DEFAULT_KODE_LEMBAGA_TEXT = "HY";
     private static final String DEFAULT_NAMA_INSTANSI_TEXT = "SMK";
-    private static final String DEFAULT_PENGIRIM_TEXT = "Nama Instansi";
+    private static final String DEFAULT_PENGIRIM_TEXT = "";
     private static final String DEFAULT_KATEGORI_TEXT = "Personal";  
     int bulanAngka;
     int tahunAngka;
@@ -60,27 +60,32 @@ public class ArsipkanSurat extends javax.swing.JPanel {
         setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
 
         int lastRowIndex = 0;
-
-        // Ambil data dari kolom "No Surat"
-        // Misalkan kolom "No Surat" adalah kolom ke-0
-        if(lastRowIndex != -1){
-            this.urutanTerakhir = (String) admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
-            String data = this.urutanTerakhir;
-            String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
-            String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
-            int angkaInt = Integer.parseInt(angka);
-            // Jika Anda ingin mengonversi ke integer
-            String angkaString;
-            if (angkaInt + 1 < 100) {
-                // Jika angka kurang dari 100, format dengan leading zeros
-                angkaString = String.format("%03d", angkaInt + 1);
-                urutan_surat.setText(angkaString);
-            } else {
-                // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
+        int rowCount = admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getRowCount();
+         
+    if(lastRowIndex != -1){
+                if(rowCount == 0){
+                    urutan_surat.setText("001");
+                }else{
+                    this.urutanTerakhir = (String) admin.menuSuratMasuk.TampilanSuratMasuk.tabel_suratMasuk.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
+                    String data = this.urutanTerakhir;
+                String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
+                String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
+                int angkaInt = Integer.parseInt(angka);
+                // Jika Anda ingin mengonversi ke integer
+                String angkaString;
+                
+                if (angkaInt + 1 < 100) {
+                    // Jika angka kurang dari 100, format dengan leading zeros
+                    angkaString = String.format("%03d", angkaInt + 1);
+                    urutan_surat.setText(angkaString);
+                } else {
+                    // Jika angka lebih besar atau sama dengan 100, tampilkan tanpa leading zeros
                 angkaString = Integer.toString(angkaInt + 1);
                 urutan_surat.setText(angkaString);
+                }
+                } 
             }
-        }
+
 
         tanggal_surat_masuk.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {

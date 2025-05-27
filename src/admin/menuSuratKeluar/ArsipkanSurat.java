@@ -17,7 +17,7 @@ import lib.Query;
 
 public class ArsipkanSurat extends javax.swing.JPanel {
     
-    private static final String DEFAULT_URUTAN_TEXT = "001";
+    private static final String DEFAULT_URUTAN_TEXT = "000";
     private static final String DEFAULT_KODE_LEMBAGA_TEXT = "HY";
     private static final String DEFAULT_NAMA_INSTANSI_TEXT = "SMK";
     private static final String DEFAULT_BULAN_TEXT = "II";
@@ -50,9 +50,14 @@ public class ArsipkanSurat extends javax.swing.JPanel {
          this.query= new Query();
          initializePlaceholders(); // Initialize the placeholders
          int lastRowIndex = 0;
+         int rowCount = admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar.getRowCount();
+         
     if(lastRowIndex != -1){
-                this.urutanTerakhirNoSurat = (String) admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
-                String data = this.urutanTerakhirNoSurat;
+                if(rowCount == 0){
+                    urutan_surat.setText("001");
+                }else{
+                    this.urutanTerakhirNoSurat = (String) admin.menuSuratKeluar.TampilanSuratKeluar.tabel_suratkeluar.getValueAt(lastRowIndex, 0); // Ganti 0 dengan indeks kolom yang sesuai
+                    String data = this.urutanTerakhirNoSurat;
                 String[] parts = data.split("/"); // Memisahkan string berdasarkan '/'
                 String angka = parts[0]; // Mengambil elemen pertama, yaitu "14"
                 int angkaInt = Integer.parseInt(angka);
@@ -68,7 +73,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
                 angkaString = Integer.toString(angkaInt + 1);
                 urutan_surat.setText(angkaString);
                 }
-                
+                } 
             }
     }
     
@@ -82,7 +87,7 @@ public class ArsipkanSurat extends javax.swing.JPanel {
     private void initializePlaceholders() {
         
     setPlaceholder(penerima, "Nama Penerima");
-    setPlaceholder(alamat, "Nama Instansi");
+    setPlaceholder(alamat, "");
 //    setPlaceholder(urutan_surat, DEFAULT_URUTAN_TEXT);
     setPlaceholder(kode_lembaga, DEFAULT_KODE_LEMBAGA_TEXT);
     setPlaceholder(nama_instansi, DEFAULT_NAMA_INSTANSI_TEXT);
