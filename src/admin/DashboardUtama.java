@@ -52,12 +52,12 @@ public class DashboardUtama extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Aplikasi Surat Menyurat");
 
-        Judul.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Judul.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Judul.setForeground(new java.awt.Color(255, 255, 255));
         Judul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Judul.setText("Home");
@@ -69,7 +69,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 737, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 706, Short.MAX_VALUE)
                 .addComponent(Judul)
                 .addGap(19, 19, 19))
         );
@@ -102,7 +102,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
 
         surat_keluar.setBackground(new java.awt.Color(217, 217, 217));
-        surat_keluar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        surat_keluar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         surat_keluar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         surat_keluar.setText("Surat Keluar");
 
@@ -114,7 +114,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(surat_keluar)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         panel_surat_keluarLayout.setVerticalGroup(
             panel_surat_keluarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
         LabelSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
-        LabelSuratMasuk.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LabelSuratMasuk.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LabelSuratMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelSuratMasuk.setText("Surat Masuk");
 
@@ -176,7 +176,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/kelola-akun70px.png"))); // NOI18N
 
         kelola_akun.setBackground(new java.awt.Color(217, 217, 217));
-        kelola_akun.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        kelola_akun.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         kelola_akun.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kelola_akun.setText("Kelola Akun");
 

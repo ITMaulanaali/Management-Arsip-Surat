@@ -60,12 +60,12 @@ public class DashboardUtama extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Aplikasi Surat Menyurat");
 
-        Judul.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Judul.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Judul.setForeground(new java.awt.Color(255, 255, 255));
         Judul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Judul.setText("Home");
@@ -77,7 +77,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
                 .addComponent(Judul)
                 .addGap(18, 18, 18))
         );
@@ -163,6 +163,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        SubPanel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         SubPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

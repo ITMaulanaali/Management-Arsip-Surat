@@ -229,7 +229,7 @@ private void kustomTable() {
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
-        cari.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        cari.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -240,7 +240,7 @@ private void kustomTable() {
             }
         });
 
-        TableUser.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        TableUser.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         TableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -264,7 +264,7 @@ private void kustomTable() {
         jScrollPane2.setViewportView(TableUser);
 
         tambah1.setBackground(new java.awt.Color(238, 238, 238));
-        tambah1.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        tambah1.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tambah1.setText("Tambah");
         tambah1.setPreferredSize(new java.awt.Dimension(131, 40));
         tambah1.addActionListener(new java.awt.event.ActionListener() {
@@ -273,6 +273,7 @@ private void kustomTable() {
             }
         });
 
+        pilih.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Username", "Nama", "Peran", "Aksi" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 

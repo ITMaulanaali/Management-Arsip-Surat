@@ -119,7 +119,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel14.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel14.setText("Kembali");
 
         javax.swing.GroupLayout kembali1Layout = new javax.swing.GroupLayout(kembali1);
@@ -153,7 +153,7 @@ public class LihatSuratv2 extends javax.swing.JPanel {
                     .addComponent(kembali1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(101, 101, 101)
                 .addComponent(panelLihatsurat, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,11 +249,8 @@ public class LihatSuratv2 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconPeriode4;
     private javax.swing.JLabel imagePdf;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private java.awt.Panel kembali;
     private java.awt.Panel kembali1;
     private javax.swing.JScrollPane panelLihatsurat;
     private javax.swing.JLabel zoomOut;

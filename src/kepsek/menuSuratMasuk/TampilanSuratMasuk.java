@@ -223,6 +223,7 @@ private void setWarnaBaris() {
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
+        cari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -233,12 +234,14 @@ private void setWarnaBaris() {
             }
         });
 
+        pilih.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Tanggal Diterima", "Pengirim", "Kategori", "Perihal", "Status" }));
         pilih.setToolTipText("");
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
         jScrollPane2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
+        tabel_suratMasuk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabel_suratMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

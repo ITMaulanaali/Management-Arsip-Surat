@@ -57,32 +57,32 @@ public class subNotifikasi extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(8000, 110));
         setPreferredSize(new java.awt.Dimension(800, 110));
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Disposisi No.");
 
-        noDisposisi.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        noDisposisi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         noDisposisi.setText("isi no disposisi");
 
-        jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Surat No.");
 
-        noSuratMasuk.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        noSuratMasuk.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         noSuratMasuk.setText("ini no surat masuk");
 
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Perihal:");
 
-        jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Diterima:");
 
-        perihal.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        perihal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         perihal.setText("isi perihal surat masuk");
 
-        tanggalDisposisi.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        tanggalDisposisi.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tanggalDisposisi.setText("isi tanggal disposisi");
 
         buttonLihat.setBackground(new java.awt.Color(206, 31, 31));
-        buttonLihat.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        buttonLihat.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         buttonLihat.setText("Lihat");
         buttonLihat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,6 +93,11 @@ public class subNotifikasi extends javax.swing.JPanel {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonLihatMouseExited(evt);
+            }
+        });
+        buttonLihat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLihatActionPerformed(evt);
             }
         });
 
@@ -163,6 +168,10 @@ public class subNotifikasi extends javax.swing.JPanel {
         waka.DashboardUtama.SubPanel.revalidate();
         waka.DashboardUtama.SubPanel.repaint();
     }//GEN-LAST:event_buttonLihatMouseClicked
+
+    private void buttonLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLihatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonLihatActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
