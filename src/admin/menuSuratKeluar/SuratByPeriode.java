@@ -122,20 +122,21 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Mulai Tanggal :");
 
-        mulai_tanggal.setBackground(new java.awt.Color(196, 196, 196));
+        mulai_tanggal.setBackground(new java.awt.Color(255, 255, 255));
         mulai_tanggal.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Selesai Tanggal :");
 
-        selesai_tanggal.setBackground(new java.awt.Color(196, 196, 196));
+        selesai_tanggal.setBackground(new java.awt.Color(255, 255, 255));
         selesai_tanggal.setPreferredSize(new java.awt.Dimension(40, 30));
 
+        cari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -146,10 +147,11 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         });
 
+        pilih.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Penerima", "Kategori", "Perihal" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tampilkan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        tampilkan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tampilkan.setText("Tampilkan Surat");
         tampilkan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -165,6 +167,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
             }
         });
 
+        tabel_periode.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabel_periode.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -203,7 +206,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/print-30px.png"))); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setText("Cetak");
 
         javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
@@ -241,7 +244,7 @@ cari.addFocusListener(new java.awt.event.FocusAdapter() {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel13.setText("Kembali");
 
         javax.swing.GroupLayout kembaliLayout = new javax.swing.GroupLayout(kembali);

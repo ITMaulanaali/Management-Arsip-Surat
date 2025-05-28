@@ -174,6 +174,7 @@ private void kustomTable() {
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
+        cari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -184,6 +185,7 @@ private void kustomTable() {
             }
         });
 
+        pilih.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Tanggal Surat", "Pengirim", "Kategori", "Perihal", "Status Notifikasi" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
         pilih.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +210,7 @@ private void kustomTable() {
 
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/arsip-30px.png"))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel6.setText("Arsipkan");
 
         javax.swing.GroupLayout arsipkanLayout = new javax.swing.GroupLayout(arsipkan);
@@ -220,7 +222,7 @@ private void kustomTable() {
                 .addComponent(iconPeriode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         arsipkanLayout.setVerticalGroup(
             arsipkanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +249,7 @@ private void kustomTable() {
 
         iconPeriode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/periode-30px.png"))); // NOI18N
 
-        periode.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        periode.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         periode.setText("Periode");
 
         javax.swing.GroupLayout periode1Layout = new javax.swing.GroupLayout(periode1);
@@ -258,7 +260,7 @@ private void kustomTable() {
                 .addComponent(iconPeriode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(periode)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         periode1Layout.setVerticalGroup(
             periode1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +271,7 @@ private void kustomTable() {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabel_suratMasuk.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        tabel_suratMasuk.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tabel_suratMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -75,12 +75,12 @@ public class DashboardUtama extends javax.swing.JPanel {
         header.setMinimumSize(new java.awt.Dimension(1200, 50));
         header.setPreferredSize(new java.awt.Dimension(1200, 80));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Aplikasi Surat Menyurat");
 
-        Judul.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Judul.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Judul.setForeground(new java.awt.Color(255, 255, 255));
         Judul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Judul.setText("Home");
@@ -92,7 +92,7 @@ public class DashboardUtama extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 738, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
                 .addComponent(Judul)
                 .addGap(18, 18, 18))
         );
@@ -124,7 +124,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-keluar70px.png"))); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(217, 217, 217));
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Surat Keluar");
 
@@ -166,7 +166,7 @@ public class DashboardUtama extends javax.swing.JPanel {
         iconPeriode2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/menuUtama/surat-masuk70px.png"))); // NOI18N
 
         LabelSuratMasuk.setBackground(new java.awt.Color(217, 217, 217));
-        LabelSuratMasuk.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        LabelSuratMasuk.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         LabelSuratMasuk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelSuratMasuk.setText("Surat Masuk");
 
@@ -178,7 +178,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addComponent(iconPeriode2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LabelSuratMasuk)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(notif, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         PanelMenuSuratMasukLayout.setVerticalGroup(
@@ -192,7 +192,7 @@ public class DashboardUtama extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(189, 189, 189));
 
-        logout.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        logout.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali50px.png"))); // NOI18N
         logout.setText("Logout");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,7 +231,7 @@ public class DashboardUtama extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(PanelMenuSuratMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

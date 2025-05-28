@@ -147,7 +147,9 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
         });
 
         scrollPanel.setBackground(new java.awt.Color(158, 158, 158));
+        scrollPanel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        filterdata.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         filterdata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disposisi No.", "Surat No.", "Perihal:", "Diterima" }));
         filterdata.setPreferredSize(new java.awt.Dimension(80, 40));
 
@@ -174,7 +176,7 @@ public class TampilanSuratTerdisposisiv2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filterdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(423, Short.MAX_VALUE))
+                .addContainerGap(422, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(80, 80, 80)

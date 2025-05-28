@@ -128,25 +128,26 @@ public class LembarDisposisi extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(860, 480));
         setPreferredSize(new java.awt.Dimension(860, 480));
 
-        nomordisposisi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nomordisposisi.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         nomordisposisi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nomordisposisi.setText(" Lembar disposisi");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel12.setText("No Surat.");
 
-        nosurat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        nosurat.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         nosurat.setText("no surat masuk");
 
-        tanggalDisposisi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tanggalDisposisi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tanggalDisposisi.setText("12 Maret 2024");
 
         jPanel6.setBackground(new java.awt.Color(196, 196, 196));
+        jPanel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel19.setText("Perihal");
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel20.setText("Lomba Lks");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -172,12 +173,13 @@ public class LembarDisposisi extends javax.swing.JPanel {
 
         jPanel7.setBackground(new java.awt.Color(196, 196, 196));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel21.setText("Catatan");
 
         isiCatatan.setEditable(false);
         isiCatatan.setBackground(new java.awt.Color(196, 196, 196));
         isiCatatan.setColumns(20);
+        isiCatatan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         isiCatatan.setLineWrap(true);
         isiCatatan.setRows(5);
         isiCatatan.setWrapStyleWord(true);
@@ -206,7 +208,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
         );
 
         buttonLihat.setBackground(new java.awt.Color(206, 31, 31));
-        buttonLihat.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        buttonLihat.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         buttonLihat.setText("Lihat Surat");
         buttonLihat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -220,7 +222,7 @@ public class LembarDisposisi extends javax.swing.JPanel {
             }
         });
 
-        buttonLihat1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        buttonLihat1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         buttonLihat1.setText("Kembali");
         buttonLihat1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

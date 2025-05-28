@@ -88,7 +88,7 @@ public class LihatSurat extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel13.setText("Kembali");
 
         javax.swing.GroupLayout kembaliLayout = new javax.swing.GroupLayout(kembali);
@@ -99,8 +99,8 @@ public class LihatSurat extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jLabel13)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         kembaliLayout.setVerticalGroup(
             kembaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

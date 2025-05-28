@@ -133,14 +133,15 @@ public class SuratByPeriode extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(860, 483));
         setPreferredSize(new java.awt.Dimension(860, 483));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Mulai Tanggal :");
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Selesai Tanggal :");
 
+        cari.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         cari.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cari.setText("Cari");
         cari.setMinimumSize(new java.awt.Dimension(0, 40));
@@ -151,6 +152,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
+        pilih.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         pilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Surat", "Pengirim", "Kategori", "Perihal", "Disposisi" }));
         pilih.setPreferredSize(new java.awt.Dimension(80, 40));
         pilih.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +161,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
-        tampilkan_surat.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        tampilkan_surat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tampilkan_surat.setText("Tampilkan Surat");
         tampilkan_surat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -175,6 +177,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
+        tabel_periode1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabel_periode1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -215,7 +218,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/kembali-30px.png"))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel13.setText("Kembali");
 
         javax.swing.GroupLayout kembaliLayout = new javax.swing.GroupLayout(kembali);
@@ -253,7 +256,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bahan/globalIcon/print-30px.png"))); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel2.setText("Cetak");
 
         javax.swing.GroupLayout cetakLayout = new javax.swing.GroupLayout(cetak);
@@ -295,6 +298,7 @@ public class SuratByPeriode extends javax.swing.JPanel {
             }
         });
 
+        ganti_tabel.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ganti_tabel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surat Masuk", "Disposisi" }));
         ganti_tabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
