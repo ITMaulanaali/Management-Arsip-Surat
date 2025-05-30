@@ -8,6 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.border.LineBorder;
 import lib.PdfDiJpanel;
 
@@ -15,6 +19,7 @@ public class LihatSurat extends javax.swing.JPanel {
     private PdfDiJpanel pdf;
     private String[] data;
     private byte[] fileBiner;
+    ArrayList<String> DisposisiWaka;
     
     public LihatSurat(String[] data, byte[] fileBiner) {
         initComponents();
@@ -22,6 +27,7 @@ public class LihatSurat extends javax.swing.JPanel {
         this.data = data;
         this.fileBiner = fileBiner;
         this.pdf = new PdfDiJpanel();
+        this.DisposisiWaka = new ArrayList();
         
         setupContent();
         refreshNotif();
@@ -29,7 +35,7 @@ public class LihatSurat extends javax.swing.JPanel {
     }
     
     private void refreshNotif(){
-        if(!this.data[6].equals("Sudah Dibaca") && !this.data[5].equals("Terdisposisi")){
+        if(!this.data[6].contains("Sudah Dibaca") && !this.data[5].equals("Terdisposisi")){
             try{
             PreparedStatement statement = lib.Koneksi.Koneksi().prepareStatement("UPDATE surat_masuk SET status_notifikasi = 'Sudah Dibaca' WHERE no_surat = ?");
             statement.setString(1, this.data[0]);
@@ -210,11 +216,30 @@ public class LihatSurat extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void disposisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disposisiMouseClicked
-        // TODO add your handling code here:
+        if(this.data[5].contains("Belum")){
             kepsek.DashboardUtama.SubPanel.removeAll();
             kepsek.DashboardUtama.SubPanel.add(new kepsek.menuSuratMasuk.Disposisi(this.data, this.fileBiner));
             kepsek.DashboardUtama.SubPanel.revalidate();
-            kepsek.DashboardUtama.SubPanel.repaint();
+            kepsek.DashboardUtama.SubPanel.repaint();      
+        }else{
+            try {
+                PreparedStatement stmt = lib.Koneksi.Koneksi().prepareStatement("select user.jenis_role, surat_masuk.no_surat, disposisi.no_disposisi from disposisi inner join user on (user.username = disposisi.username) inner join surat_masuk on (surat_masuk.no_surat = disposisi.no_surat) where surat_masuk.no_surat = '"+this.data[0]+"'");
+                ResultSet hasil = stmt.executeQuery();
+                while(hasil.next()){
+                    this.DisposisiWaka.add(hasil.getString("user.jenis_role"));
+                }
+            } catch (SQLException ex) {
+                System.getLogger(LihatSurat.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            }finally{
+                String formatWaka = "";
+                for(String i : this.DisposisiWaka){
+                    formatWaka += "\n-"+i+"";
+                }
+                JOptionPane.showMessageDialog(this, "Surat ini sudah terdiposisi ke: "+formatWaka+"");
+                this.DisposisiWaka.clear();
+            }  
+        }
+            
     }//GEN-LAST:event_disposisiMouseClicked
 
     private void perbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perbesarMouseClicked
