@@ -168,7 +168,7 @@ private void setWarnaBaris() {
     
      void menampilkanSuratMasuk(){
         try {
-            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, IFNULL(CASE WHEN COUNT(disposisi.status_disposisi) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)) SEPARATOR ', ')) END, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%' GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi;");
+            PreparedStatement stm = lib.Koneksi.Koneksi().prepareStatement("SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, IFNULL(CASE WHEN COUNT(*) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(DISTINCT NULLIF(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)), '') ORDER BY disposisi.no_disposisi SEPARATOR ', '), CASE WHEN SUM(disposisi.status_disposisi = 'Terdisposisi') > 0 THEN ',' ELSE '' END) END, 'Belum Terdisposisi') AS status_disposisi FROM surat_masuk LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%' GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi");
             ResultSet hasil = stm.executeQuery();
             
             DefaultTableModel modelTable = new DefaultTableModel(); 
@@ -344,25 +344,32 @@ try {
     }
 
     // Query dasar
-    String sql = "SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, " +
-                 "IFNULL(CASE WHEN COUNT(disposisi.status_disposisi) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' " +
-                 "ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)) SEPARATOR ', ')) END, 'Belum Terdisposisi') AS status_disposisi " +
-                 "FROM surat_masuk " +
-                 "LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih ON surat_masuk.no_surat = disposisi_terpilih.no_surat " +
-                 "LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%'";
+// Query dasar TANPA GROUP BY
+String sql = "SELECT surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi, " +
+                     "IFNULL(CASE " +
+                     "WHEN COUNT(*) = SUM(disposisi.status_disposisi = 'Terdisposisi') THEN 'Terdisposisi' " +
+                     "ELSE CONCAT('Terdisposisi ', GROUP_CONCAT(DISTINCT NULLIF(TRIM(SUBSTRING(disposisi.status_disposisi, LENGTH('Terdisposisi') + 1)), '') ORDER BY disposisi.no_disposisi SEPARATOR ', '), " +
+                     "CASE WHEN SUM(disposisi.status_disposisi = 'Terdisposisi') > 0 THEN ',' ELSE '' END) " +
+                     "END, 'Belum Terdisposisi') AS status_disposisi " +
+                     "FROM surat_masuk " +
+                     "LEFT JOIN (SELECT no_surat FROM disposisi WHERE status_disposisi LIKE 'Terdisposisi%' GROUP BY no_surat) AS disposisi_terpilih " +
+                     "ON surat_masuk.no_surat = disposisi_terpilih.no_surat " +
+                     "LEFT JOIN disposisi ON disposisi.no_surat = disposisi_terpilih.no_surat AND disposisi.status_disposisi LIKE 'Terdisposisi%' ";
 
-    // Tambahkan WHERE jika bukan status
-    if (!searchText.isEmpty() && !searchText.equals(DEFAULT_SEARCH_TEXT)) {
-        if (isStatusSearch) {
-            sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
-            sql += " HAVING status_disposisi LIKE ?";
+        // Tambahkan kondisi pencarian
+        if (!searchText.isEmpty() && !searchText.equals("Cari")) { // Ganti "Cari" jika default search berbeda
+            if (isStatusSearch) {
+                sql += "GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi ";
+                sql += "HAVING status_disposisi LIKE ?";
+            } else {
+                sql += "WHERE " + queryCondition + " LIKE ? ";
+                sql += "GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
+            }
         } else {
-            sql += " WHERE " + queryCondition + " LIKE ?";
-            sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
+            sql += "GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
         }
-    } else {
-        sql += " GROUP BY surat_masuk.no_surat, surat_masuk.tanggal_surat, surat_masuk.pengirim, surat_masuk.kategori, surat_masuk.perihal, surat_masuk.status_notifikasi";
-    }
+
+
 
     // Cetak query untuk debugging
     System.out.println("Final SQL: " + sql);
